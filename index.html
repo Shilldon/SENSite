@@ -9,87 +9,102 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
-    <section class="container-fluid top-section">
-        <div class="row">
-            <div class="col-xs-12" style="height:10vh">
-                <h2>Special Educational Needs Consultancy Services</h2>
-            </div>
-        </div>
-    </section>
-    <section class="container-fluid middle-section">
-        <div class="row ">
-            <div class="col-xs-4" style="background-color:red;">
-                <img src="assets/images/avatar.jpg" style="height:100%"></img>
-            </div>
-            <div class="col-xs-6 col-xs-offset-1" style="background-color:green">
-                <p>Lindsey Stretton-Hill</p>
-                <p>Special Educational Needs Consultant</p>
-                <p>sparklepix@gmail.com</p>
-                <p>0797 181 6461</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <nav class="container-fluid">
+    <div class="backdrop-container container-fluid">
+        <!-- Navbar button and logo container section -->
+        <section class="container-fluid">
             <div class="row">
-                <div class="col-sm-12" class="navigation-bar">
+                <div class="col-xs-12">
+                    <img src="assets/images/logo.png" id="logo"></img>
+                    <button type="button" class="navbar-toggle collapsed nav-button" id="menu-button" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                        MENU
+                    </button>
+                    <button type="button" class="nav-button" style="visibility:hidden" id="contact-button">
+                        CONTACT
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 title-container" id="title">
+                    <span>Special Educational Needs Consultancy Services</span>
+                </div>
+            </div>
+            <!-- Navigation section -->
+            <nav class="row">
+                <div class="navbar-collapse collapse col-xs-12" id="navbar">
                     <ul class="nav navbar-nav navbar-main">
-                        <li id="about-button">About <i class="fa fa-chevron-right"></i></li>
+                        <li id="about-button">About <span><i class="fa fa-chevron-right"></i></span></li>
                         <li id="data-button">Data <i class="fa fa-chevron-right"></i></li>
                         <li id="test-button">Test <i class="fa fa-chevron-right"></i></li>
                         <li id="schools-button">Schools <i class="fa fa-chevron-right"></i></li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </section>
+            </nav>
+        </section>
 
-    <section class="container-fluid bottom-section">
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="tab" id="about-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                    laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem minima
-                    quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet ratione.
-                    Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident temporibus deleniti,
-                    harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur quaerat quo, et laboriosam
-                    eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque. Debitis excepturi cupiditate
-                    beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi
-                    harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
-                <p class="tab" id="data-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                    laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem minima
-                    quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet ratione.
-                    Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident temporibus deleniti,
-                    harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur quaerat quo, et laboriosam
-                    eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque. Debitis excepturi cupiditate
-                    beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi
-                    harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
-                <p class="tab" id="test-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                    laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem minima
-                    quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet ratione.
-                    Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident temporibus deleniti,
-                    harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur quaerat quo, et laboriosam
-                    eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque. Debitis excepturi cupiditate
-                    beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi
-                    harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
-                <p class="tab" id="schools-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                    laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem minima
-                    quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet ratione.
-                    Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident temporibus deleniti,
-                    harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur quaerat quo, et laboriosam
-                    eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque. Debitis excepturi cupiditate
-                    beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi
-                    harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
-            </div>
-        </div>
-    </section>
+        <!--actions section-->
+        <section>
+            <section class="container-fluid actions-section">
+                <div class="row">
+                    <div class="col-xs-12 tab" id="about-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis
+                            eligendi laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus
+                            quidem minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo
+                            dolores amet ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed
+                            fugiat provident temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet
+                            cupiditate quod tenetur quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore,
+                            distinctio possimus enim cumque. Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis
+                            modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur
+                            eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
+                    </div>
+                    <div class="col-xs-12 tab" id="data-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis
+                            eligendi laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus
+                            quidem minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo
+                            dolores amet ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed
+                            fugiat provident temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet
+                            cupiditate quod tenetur quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore,
+                            distinctio possimus enim cumque. Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis
+                            modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur
+                            eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
+                    </div>
+                    <div class="col-xs-12 tab" id="test-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis
+                            eligendi laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus
+                            quidem minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo
+                            dolores amet ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed
+                            fugiat provident temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet
+                            cupiditate quod tenetur quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore,
+                            distinctio possimus enim cumque. Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis
+                            modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur
+                            eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
+                    </div>
+                    <div class="col-xs-12 tab" id="schools-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis
+                            eligendi laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus
+                            quidem minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo
+                            dolores amet ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed
+                            fugiat provident temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet
+                            cupiditate quod tenetur quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore,
+                            distinctio possimus enim cumque. Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis
+                            modi. Quo ullam saepe omnis numquam, quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur
+                            eius, explicabo laboriosam distinctio velit tempora. Adipisci!</p>
+                    </div>
+                </div>
+    </div>
+
+
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/js/animations.js"></script>
 
 </body>

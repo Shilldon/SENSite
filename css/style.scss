@@ -1,65 +1,279 @@
+/*----- COLOUR DEFINITION -----*/
+
+$about-color: #6d23ff;
+$data-color: #7b3bfc;
+$test-color: #884ffb;
+$schools-color: #9c6df9;
+$white: #f5f5f5;
+
+/*-----BODY -----*/
+
+body {
+    //overflow-y: hidden;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.backdrop-container {
+    position: relative;
+    height: 100vh;
+    background: url(../assets/images/background-children.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*   display: flex;
+    position: relative;
+    justify-content: center;*/
+}
+
+/*-----MAIN SECTIONS -----*/
+
+.actions-section {
+    background-color: transparent;
+}
+
+
+/*----- TITLE BAR -----*/
+
+/*----- LOGO AND TITLE -----*/
+
+#title {
+    font-size: 15px;
+}
+
+.title-container {
+    color: $white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.title-animation {
+    animation: animate-title 1s forwards;
+}
+
+#logo {
+    display: block;
+    margin-right: 0;
+    width: 150px;
+    height: 150px/3*2;
+    transform: translate(0%, 10%);
+}
+
+.logo-animation {
+    animation: animate-logo 2s;
+}
+
+
+
+/*----- NAVIGATION BAR -----*/
+
+.nav-button {
+    position: absolute;
+    margin:0;
+    font-size:10px;
+    padding:5px;
+    right: 15px;
+    top: 15px;
+    width:60px;
+    color: $white;
+    border:2px solid black;
+    border-radius:10%;
+    background-image:linear-gradient($about-color, $schools-color);
+}
+
+#navbar {
+    height:30px;
+    border: none;
+    box-shadow: none; 
+}
+
+#navbar ul {
+    background-image: linear-gradient($about-color, $schools-color);
+}
+
+#navbar ul li {
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    color: $white;
+    font-size: 10px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+    margin: 0 -2px -0px -2px;
+    width: 25%;
+}
+
+.menubar-animation {
+    animation: animate-menubar 1s forwards;
+}
+
+/*----- NAVIGATION TABS -----*/
+
 .tab {
     border: 2px solid black;
+    background-color:$white;
     display: none;
     p {
-        font-size:30px;
+        font-size: 15px;
     }
 }
 
-ul {
-    width:100%;
-    height:100%;
-}
-
-li {
-    display:inline;
-    width:25%;
-    height:100%;
-    color:white;
-    text-align: center;
-    list-style-type: none;
-}
-
-.navigation-bar {
-    height:5vh;
-    min-height:30px;
-    padding:0;
-}
-
-.bottom-section {
-    height: 50vh;
-    min-height:300px;
-}
-
-.top-section {
-    height:10vh;
-    min-height: 60px;
-}
-
-.middle-section {
-    display: flex;
-    align-items: center;
-    height:35vh;
-    min-height: 210px;
-}
-
-$about-tab-color: blue;
-$data-tab-color: yellow;
-$test-tab-color: green;
-$schools-tab-color: purple;
-
-$tab-colors: (
-    about: $about-tab-color,
-    data:$data-tab-color,
-    test:$test-tab-color,
-    schools:$schools-tab-color,   
+$tab-colors: ( 
+about: $about-color,
+data:$data-color,
+test:$test-color,
+schools:$schools-color,
 );
 
-@each $key, $value in $tab-colors {
+@each $key,
+$value in $tab-colors {
     ##{$key}-tab {
         color: $value;
     }
-    ##{$key}-button {
-        background-color: $value;
+}
+
+
+/*----- MEDIA QUERIES -----*/
+
+@media (min-width: 480px) and (max-width: 767px) {
+
+    $logowidth: 275px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
     }
 }
+
+@media (min-width: 768px) {
+    .navigation-section {
+        height: 0;
+        max-height: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-toggle {
+        margin-right: 0;
+    }
+    /*
+    #navbar {
+    width: 100%;
+    z-index: 1;
+    padding: 0;
+    }
+
+    #navbar ul {
+        margin: 0;
+        width: 100%;
+    }
+
+    #navbar li {
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        margin-right: 0;
+    }*/
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    $logowidth: 275px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin: auto;
+        transform: translate(0%, 10%);
+    }
+
+    .title-container {
+        transform: translate(0, 0);
+    }
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+
+    $logowidth: 350px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin: auto;
+        transform: translate(0%, 10%);
+    }
+
+    #title {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #title {
+        font-size: 35px;
+    }
+    $logowidth: 400px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin: auto;
+        transform: translate(0%, 10%);
+    }
+
+}
+
+/*----- KEYFRAMES -----*/
+
+/*-----page set up animations -----*/
+
+@keyframes animate-logo {
+    0% {
+        transform: translate(0, -100%);
+    }
+    50% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 100%);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 10%);
+    }
+}
+
+@keyframes animate-title {
+    0% {
+        transform: translate(-100%, 0%);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 0);
+    }
+}
+
+@keyframes animate-menubar {
+    0% {
+        transform: translate(0, 100vh);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0, 0);
+    }
+}
+

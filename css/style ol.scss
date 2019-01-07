@@ -1,0 +1,329 @@
+/*----- COLOUR DEFINITION -----*/
+
+$about-color: #6d23ff;
+$data-color: #7b3bfc;
+$test-color: #884ffb;
+$schools-color: #9c6df9;
+$white: #f5f5f5;
+
+/*-----BODY -----*/
+
+body {
+    //overflow-y: hidden;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.backdrop-container {
+    position:relative;
+    height: 100vh;
+
+    background: url(../assets/images/background-children.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+/*-----MAIN SECTIONS -----*/
+
+.businesscard-section {
+    position: relative;
+    height: 400px;
+}
+
+.navigation-section {
+    position: relative;
+    padding: 0;
+    transform: translate(0%, 100vh);
+}
+
+.actions-section {
+    position: relative;
+    height: 100vh;
+    min-height: 300px;
+    background-color: $white;
+    padding: 0;
+    transform: translate(0%, 100vh);
+}
+
+.footer-section {
+    height: 60px;
+}
+
+/*----- TITLE BAR -----*/
+
+.title-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*----- LOGO AND TITLE -----*/
+
+#title {
+    font-size: 20px;
+}
+
+.title-container {
+    color: $white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    transform: translate(-100%, 0);
+}
+
+.title-animation {
+    animation: animate-title 1s forwards;
+}
+
+#logo {
+    display: block;
+    margin-right: 0;
+    width: 150px;
+    height: 150px/3*2;
+    transform: translate(0%, 10%);
+}
+
+.logo-animation {
+    animation: animate-logo 2s;
+}
+
+
+
+/*----- BUSINESS CARD -----*/
+
+#avatar {
+    width: 100%;
+    max-width: 30vh;
+    max-height: 30vh;
+    border-radius: 50%;
+    transform: translate(0, 50%);
+}
+
+.businesscard {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: $white;
+    display: flex;
+    align-items: center;
+    background-color: $schools-color;
+    height: 35vh;
+    margin-top: 30px;
+    max-height: 30vh;
+}
+
+
+/*----- NAVIGATION BAR -----*/
+
+.nav-button {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: $white;
+}
+
+#navbar {
+        position: absolute;
+ //       width: 20%;
+        top: 0px;
+        right: 0;
+        margin-right: 0;
+        padding-right: 0;    
+        z-index:10;
+
+}
+
+.menubar-animation {
+    animation: animate-menubar 1s forwards;
+}
+
+
+ul {
+    width: 100%; //height: 5vh;
+    height: 60px;
+}
+
+li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+    width: 25%;
+    height: 100%;
+    line-height: 60px;
+    color: $white;
+    text-align: center;
+    list-style-type: none;
+    vertical-align: middle;
+}
+
+/*----- NAVIGATION TABS -----*/
+
+.tab {
+    border: 2px solid black;
+    display: none;
+    p {
+        font-size: 30px;
+    }
+}
+
+$tab-colors: ( about: $about-color,
+data:$data-color,
+test:$test-color,
+schools:$schools-color,
+);
+
+@each $key,
+$value in $tab-colors {
+    ##{$key}-tab {
+        color: $value;
+    }
+    ##{$key}-button {
+        background-image: linear-gradient($about-color, $schools-color);
+        border: solid 1px;
+        border-bottom: solid 2px;
+        border-image: linear-gradient(to top, $about-color, $schools-color) 1 100%;
+    }
+
+}
+
+
+/*----- MEDIA QUERIES -----*/
+
+@media (min-width: 480px) and (max-width: 767px) {
+
+    $logowidth: 275px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+    }
+}    
+
+@media (min-width: 768px) {
+        .navigation-section {
+        height: 0;
+        max-height: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-toggle {
+        margin-right: 0;
+    }
+
+    #navbar {
+    width: 100%;
+    z-index: 1;
+    padding: 0;
+    }
+
+    #navbar ul {
+        margin: 0;
+        width: 100%;
+    }
+
+    #navbar li {
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    $logowidth: 275px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin:auto;
+        transform: translate(0%, 10%);
+    }
+
+    .title-container {
+        transform: translate(0, 0);
+    }
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+
+    $logowidth: 350px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin:auto;
+        transform: translate(0%, 10%);
+    }    
+    #title {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #title {
+        font-size: 35px;
+    }
+    $logowidth: 400px;
+
+    #logo {
+        width: $logowidth;
+        height: $logowidth/3*2;
+        display: block;
+        margin:auto;
+        transform: translate(0%, 10%);
+    }   
+
+}
+
+/*----- KEYFRAMES -----*/
+
+@keyframes animate-logo {
+    0% {
+        transform: translate(0, -100%);
+    }
+    50% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 100%);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 10%);
+    }
+}
+
+@keyframes animate-title {
+    0% {
+        transform: translate(-100%, 0%);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0%, 0);
+    }
+}
+
+@keyframes animate-menubar {
+    0% {
+        transform: translate(0, 100vh);
+    }
+    100% {
+        animation-timing-function: ease-in-out;
+        transform: translate(0, 0);
+    }
+}

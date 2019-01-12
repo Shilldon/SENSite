@@ -4,7 +4,7 @@ $about-color: #6d23ff;
 $data-color: #7b3bfc;
 $test-color: #884ffb;
 $schools-color: #9c6df9;
-$white: #f5f5f5;
+$white: #e1e1e1;
 
 /*-----BODY -----*/
 
@@ -23,8 +23,8 @@ body {
 }
 
 .backdrop-container {
-    position: relative;
-    height: 100vh;
+    //position: relative;
+
     background: url(../assets/images/background-children.jpg) no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -37,8 +37,9 @@ body {
 
 /*-----MAIN SECTIONS -----*/
 
-.actions-section {
-    background-color: transparent;
+.actions-container {
+    //background-color: red;
+
 }
 
 
@@ -46,20 +47,45 @@ body {
 
 /*----- LOGO AND TITLE -----*/
 
-#title {
-    font-size: 15px;
+.nav-button {
+    position: absolute;
+    margin: 0;
+    font-size: 10px;
+    padding: 5px;
+    right: 15px;
+    top: 15px;
+    width: 75px;
+    color: $white;
+    border: 2px solid black;
+    border-radius: 10%;
+    background-color: $about-color;
+    transition: ease-in-out 0.25s;
+    transform: scale(1,1);
+}
+
+.nav-button:active {
+    transition: ease-in-out 0.25s;
+    transform: scale(0.8,0.8);
 }
 
 .title-container {
     color: $white;
     font-family: 'Roboto', sans-serif;
-    font-size: 40px;
+    font-size: 13px;
+    line-height:5vh;
+ //   padding-top: 5px;
+  //  padding-bottom:10px;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
     text-align: center;
 }
 
 .title-animation {
     animation: animate-title 1s forwards;
+}
+
+
+#title {
+    font-size: 13px;
 }
 
 $logoWidth: 150px;
@@ -69,8 +95,8 @@ $logoWidth: 150px;
     margin-right: 0;
     width: $logoWidth;
     height: $logoWidth/3*2;
-    max-width: 25vh*3/2;
-    max-height: 25vh;
+    max-width: 15vh*3/2;
+    max-height: 15vh;
     transform: translate(0%, 10%);
 }
 
@@ -78,40 +104,43 @@ $logoWidth: 150px;
     animation: animate-logo 2s;
 }
 
-
-
 /*----- NAVIGATION BAR -----*/
 
-.nav-button {
-    position: absolute;
-    margin: 0;
-    font-size: 10px;
-    padding: 5px;
-    right: 15px;
-    top: 15px;
-    width: 60px;
-    color: $white;
-    border: 2px solid black;
-    border-radius: 10%;
-    background-image: linear-gradient($about-color, $schools-color);
+.navbar-container {
+    /*
+    height:5vh;
+    max-height:5vh;
+    min-height:25px;*/
+   /* position: relative;
+    bottom:0;*/
+    /*display: flex;
+    align-items: flex-end;*/
+}
+
+.navbar-container {
+   /* min-height: 5vh;*/
 }
 
 #navbar {
     border: none;
     box-shadow: none;
+    height:5vh;
+       // height:100%;
 }
 
 #navbar ul {
     background-image: linear-gradient($about-color, $schools-color);
+height:100%;
     margin-bottom: 0;
+    margin-top:0;
 }
 
 #navbar ul li {
     display: inline-block;
-    line-height: 20px;
+    line-height: 5vh;
     text-align: center;
     color: $white;
-    font-size: 10px;
+    font-size: 13px;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
     margin: 0 -2px -0px -2px;
     width: 25%;
@@ -126,7 +155,9 @@ $logoWidth: 150px;
 .tab {
     border: 2px solid black;
     background-color: $white;
+    height:70vh;
     display: none;
+    overflow:auto;
     p {
         font-size: 15px;
     }
@@ -145,6 +176,52 @@ $value in $tab-colors {
     }
 }
 
+
+/*----- CONTACT FORM -----*/
+#contact-form {
+    max-height:65vh;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    margin-top:20px;
+    background-color: rgba(109, 35, 255,0.7);
+    border: solid 4px $schools-color;
+    border-radius: 2%;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+#contact-form label {
+    color: $white;
+}
+
+#contact-form .col-sm-6 {
+ padding-top:10px;   
+}
+
+.contact-animation {
+    animation: animate-contactform 1s forwards;
+}
+
+/*----- FOOTER -----*/
+
+footer {
+    background-image: linear-gradient($about-color, $schools-color);
+}
+
+.social-list {
+
+    list-style: none;
+}
+
+.social-list li {
+    width:25%;
+    line-height:5vh;
+    text-align:center;
+    display: inline;    
+}
+.social-list li i {
+    color:$white;
+}
 
 /*----- MEDIA QUERIES -----*/
 
@@ -168,15 +245,14 @@ $value in $tab-colors {
         display: block;
         margin: auto;
         transform: translate(0%, 10%);
-        max-width: 100%;
-        max-height: 100%;
     }
 
     #navbar {
         width: 100%;
+        height:100%;
         padding-left: 0;
         padding-right: 0;
-        margin-top: 15px;
+        //margin-top: 15px;
         transform: translate(0, 100vh)
     }
 
@@ -200,7 +276,11 @@ $value in $tab-colors {
         margin-right: 0;
     }
 
-    .title-container {
+#contact-form {
+        opacity:0;
+}
+
+    #title {
         transform: translate(-100%, 0);
     }
 }
@@ -240,7 +320,6 @@ $value in $tab-colors {
         width: $logoWidth;
         height: $logoWidth/3*2;
     }
-
     #title {
         font-size: 35px;
     }
@@ -282,5 +361,15 @@ $value in $tab-colors {
     100% {
         animation-timing-function: ease-in-out;
         transform: translate(0, 0vh);
+    }
+}
+
+@keyframes animate-contactform {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

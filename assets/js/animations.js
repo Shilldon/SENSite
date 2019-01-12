@@ -1,8 +1,9 @@
 function animateLanding() {
-		if ($(window).width() > 767) {
+	if ($(window).width() > 767) {
 		animateLogo();
-			animateTitle();
-			animateMenuBar();
+		animateTitle();
+		animateMenuBar();
+		animateContactInformation();
 	}
 }
 
@@ -11,45 +12,70 @@ function animateLogo() {
 }
 
 function animateTitle() {
-	setTimeout(function() { $("#title").css("visibility", "visible");
-		$("#title").addClass('title-animation') }, 2500);
+	setTimeout(function() {
+		$("#title").css("visibility", "visible");
+		$("#title").addClass('title-animation')
+	}, 2500);
 }
 
 function animateMenuBar() {
 
 	setTimeout(function() { $("#navbar").addClass('menubar-animation') }, 3500);
-	setTimeout(function() { $(".actions-section").addClass('menubar-animation') }, 3500);
+	//	setTimeout(function() { $(".actions-section").addClass('menubar-animation') }, 3500);
+}
+
+function animateContactInformation() {
+
+	setTimeout(function() { $("#contact-form").addClass('contact-animation') }, 4500);
+	//	setTimeout(function() { $(".actions-section").addClass('menubar-animation') }, 3500);
+}
 
 
+function colorChange(bool) {
+	if(bool===true) {
+		$("#menu-button").css('background-color', '#6d23ff');	
+	}	
+	else {
+		$("#menu-button").css("background-color", "#9c6df9");	
+	}
 }
 
 $(document).ready(function() {
 	animateLanding()
 })
 
-$("#contact-button").on("click", function() {
+$("#menu-button").on("click", function() {
 
 	var button = $("li").first();
 	var buttonId;
-/*cycle through the tabs and hide them (if any showing) */
+	var titleContainer=$("span.title-container");
+	delay = 0;
+	/*cycle through the tabs and hide them (if any showing) */
 	for (i = 0; i <= 3; i++) {
 		buttonId = button.attr("id").split("-");
 		tabName = "#" + buttonId[0] + "-tab";
-			if ($("i", button).hasClass("fa-chevron-down")) {
-
-				console.log("has class")
-				$("i", button).removeClass("fa-chevron-down");
-				$("i", button).addClass("fa-chevron-right");
-				$(tabName).slideUp(250);
-				delay = 250;
-			}
+		if ($("i", button).hasClass("fa-chevron-down")) {
+			$("i", button).removeClass("fa-chevron-down");
+			$("i", button).addClass("fa-chevron-right");
+			$(tabName).slideUp(250);
+			delay = 250;
+		}
 		button = button.next();
 	}
-		if ($(window).width() <768) {
-	
-	$("#menu-button").css("visibility","visible");
-	$("#contact-button").css("visibility","hidden");
+	if ($(window).width() < 768) {
+		$("span.title-container").fadeToggle(500);
+		if( titleContainer.data('state')==='hidden' ) {
+			titleContainer.data('state','visible');
+			colorChange(true);
 		}
+		else {
+			titleContainer.data('state','hidden');
+			colorChange(false);
+		}
+		setTimeout(function() { $("#menu-button").html("DISCOVER") }, 250);
+		//$("#contact-button").css("visibility", "hidden");
+	}
+	setTimeout(function() { $("#contact-form").fadeIn(150) }, delay);
 })
 
 
@@ -75,6 +101,7 @@ $("li").on("click", function() {
 		console.log("clicked button:" + clickedButtonId[0]);
 		if (buttonId[0] != clickedButtonId[0]) {
 			console.log("button:" + $("i", button));
+			//check if another tab is showing and, if so hide it and delay showing new tab
 			if ($("i", button).hasClass("fa-chevron-down")) {
 
 				console.log("has class")
@@ -83,9 +110,14 @@ $("li").on("click", function() {
 				$(tabName).slideUp(250);
 				delay = 250;
 			}
+			else if ($("#contact-form").is(':visible') == true) {
+				$("#contact-form").fadeOut(150);
+				delay = 250;
+			}
 		}
 		button = button.next();
 	}
+
 
 
 	//if the clicked tab is hidden - show it and hide the menu button (helps user experience
@@ -96,21 +128,31 @@ $("li").on("click", function() {
 		setTimeout(function() {
 			$(clickedTabName).slideDown(250);
 		}, delay);
-				if ($(window).width() < 768) {
+		if ($(window).width() < 768) {
 
-		$("#menu-button").css("visibility","hidden");
-		$("#contact-button").css("visibility","visible");
-				}
+			$("#menu-button").html("CONTACT");
+			//	$("#contact-button").css("visibility", "visible");
+
+		}
+
 	}
 	else {
 		$("i", this).removeClass("fa-chevron-down");
 		$("i", this).addClass("fa-chevron-right");
 		$(clickedTabName).slideUp(250);
-				if ($(window).width() < 768) {
+		if ($(window).width() < 768) {
 
-		$("#menu-button").css("visibility","visible");
-		$("#contact-button").css("visibility","hidden");
-				}
+			$("#menu-button").html("DISCOVER");
+			//	$("#contact-button").css("visibility", "hidden");
+
+		}
+		setTimeout(function() { $("#contact-form").fadeIn(150) }, 250);
 	}
 
+})
+
+
+$("#calendar").on("click", function() {
+	console.log("clicked")
+	$("#contact-form").html('<iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>')
 })

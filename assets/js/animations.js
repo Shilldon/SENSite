@@ -1,3 +1,4 @@
+/*----- START UP ANIMATIONS -----*/
 function animateLanding() {
 	if ($(window).width() > 767) {
 		animateLogo();
@@ -13,30 +14,29 @@ function animateLogo() {
 
 function animateTitle() {
 	setTimeout(function() {
-		$("#title").css("visibility", "visible");
-		$("#title").addClass('title-animation')
+		$("#top-section--title").css("visibility", "visible");
+		$("#top-section--title").addClass('title-animation')
 	}, 2500);
 }
 
 function animateMenuBar() {
 
 	setTimeout(function() { $("#navbar").addClass('menubar-animation') }, 3500);
-	//	setTimeout(function() { $(".actions-section").addClass('menubar-animation') }, 3500);
 }
 
 function animateContactInformation() {
 
 	setTimeout(function() { $("#contact-form").addClass('contact-animation') }, 4500);
-	//	setTimeout(function() { $(".actions-section").addClass('menubar-animation') }, 3500);
 }
 
+/*----- NAV BUTTON COLOUR CHANGE -----*/
 
 function colorChange(bool) {
-	if(bool===true) {
-		$("#menu-button").css('background-color', '#6d23ff');	
-	}	
+	if (bool === true) {
+		$("#menu-button").css('background-color', '#6d23ff');
+	}
 	else {
-		$("#menu-button").css("background-color", "#9c6df9");	
+		$("#menu-button").css("background-color", "#9c6df9");
 	}
 }
 
@@ -44,17 +44,34 @@ $(document).ready(function() {
 	animateLanding()
 })
 
-$("#menu-button").on("click", function() {
+/*----- NAV BAR MENU BUTTONS FUNCTIONALITY -----*/
+function showTab(clickedButton) {
+	var clickedButtonId=$(clickedButton).attr("id").split("-")
+	var clickedButtonName=clickedButtonId[0]
+	var clickedTabName ="#" + clickedButtonName + "-tab"; ;
+	console.log("you clicked - " + clickedTabName);
+	$(clickedButton).data('state', 'open');
+	$("i", clickedButton).removeClass("fa-chevron-right");
+	$("i", clickedButton).addClass("fa-chevron-down");
+	$(clickedTabName).slideDown(250);
+}
 
+function hideOpenTab() {
+	console.log("closing tabs")
 	var button = $("li").first();
 	var buttonId;
-	var titleContainer=$("span.title-container");
-	delay = 0;
-	/*cycle through the tabs and hide them (if any showing) */
+	var buttonName
+	var tabName;
+	//cycle through the tabs and hide them (if any showing) 
 	for (i = 0; i <= 3; i++) {
+		//get the name of the associated tab from the button ID 
 		buttonId = button.attr("id").split("-");
-		tabName = "#" + buttonId[0] + "-tab";
-		if ($("i", button).hasClass("fa-chevron-down")) {
+		buttonName = buttonId[0];
+		tabName = "#" + buttonName + "-tab";
+		//check if the tab is open, if so, close it
+		if ($(button).data('state') == 'open') {
+			console.log(tabName+" is open - closing")
+			$(button).data('state', 'closed')
 			$("i", button).removeClass("fa-chevron-down");
 			$("i", button).addClass("fa-chevron-right");
 			$(tabName).slideUp(250);
@@ -62,29 +79,63 @@ $("#menu-button").on("click", function() {
 		}
 		button = button.next();
 	}
+}
+
+function changeNavButton() {
+	var topSectionHiddenTitle = $("#top-section--hidden-title");
 	if ($(window).width() < 768) {
-		$("span.title-container").fadeToggle(500);
-		if( titleContainer.data('state')==='hidden' ) {
-			titleContainer.data('state','visible');
+		topSectionHiddenTitle.fadeToggle(500);
+		if (topSectionHiddenTitle.data('state') === 'hidden') {
+			topSectionHiddenTitle.data('state', 'visible');
 			colorChange(true);
 		}
 		else {
-			titleContainer.data('state','hidden');
+			topSectionHiddenTitle.data('state', 'hidden');
 			colorChange(false);
 		}
 		setTimeout(function() { $("#menu-button").html("DISCOVER") }, 250);
-		//$("#contact-button").css("visibility", "hidden");
 	}
-	setTimeout(function() { $("#contact-form").fadeIn(150) }, delay);
+}
+
+function showContactForm() {
+	if ($("#contact-form").data('state') == 'closed') {
+		$("#contact-form").fadeIn(250);
+		$("#contact-form").data('state', 'open');
+	}
+}
+
+function hideContactForm() {
+	var delay=0;
+	if ($("#contact-form").data('state') == 'open') {
+		$("#contact-form").fadeOut(250);
+		$("#contact-form").data('state', 'closed');
+		delay=150;
+	}
+	return delay;
+}
+
+$("#menu-button").on("click", function() {
+	hideOpenTab();
+	showContactForm(delay);
+	changeNavButton();
 })
 
 
 $("li").on("click", function() {
 	//get the ID of the li item (button) that has been clicked
-	var clickedButtonId = $(this).attr("id").split("-");
-	//get the ID of the tab to be shown/hidden associated with that button
-	var clickedTabName = "#" + clickedButtonId[0] + "-tab";
-
+	var clickedButton = $(this);
+	if($(clickedButton).data('state')=='open') {
+		hideOpenTab();
+		console.log("hiding open tab - delaying "+delay)
+		setTimeout( function () { showContactForm() }, 250);
+	}
+	else {		
+		hideContactForm();
+		hideOpenTab();
+		setTimeout( function () { showTab(clickedButton) },250);
+	}		
+})
+/*
 	//set up variables to cycle through and hide other tabs, as appropriate
 	var button = $("li").first();
 	var buttonId;
@@ -100,11 +151,9 @@ $("li").on("click", function() {
 		console.log("buttonId:" + buttonId[0]);
 		console.log("clicked button:" + clickedButtonId[0]);
 		if (buttonId[0] != clickedButtonId[0]) {
-			console.log("button:" + $("i", button));
 			//check if another tab is showing and, if so hide it and delay showing new tab
-			if ($("i", button).hasClass("fa-chevron-down")) {
-
-				console.log("has class")
+			if ($("i", button).data('state')=='open') {
+				$("i", button).data('state','closed');
 				$("i", button).removeClass("fa-chevron-down");
 				$("i", button).addClass("fa-chevron-right");
 				$(tabName).slideUp(250);
@@ -116,13 +165,14 @@ $("li").on("click", function() {
 			}
 		}
 		button = button.next();
-	}
+	}*/
 
 
 
-	//if the clicked tab is hidden - show it and hide the menu button (helps user experience
-	//to avoid losing the menu accidentally), else hide the tab and show the menu button, if no other tab displayed.
-	if ($("i", this).hasClass("fa-chevron-right")) {
+//if the clicked tab is hidden - show it and hide the menu button (helps user experience
+//to avoid losing the menu accidentally), else hide the tab and show the menu button, if no other tab displayed.
+/*	if ($("i", this).data('state', 'closed')) {
+		$("i", this).data('state', 'open');
 		$("i", this).removeClass("fa-chevron-right");
 		$("i", this).addClass("fa-chevron-down");
 		setTimeout(function() {
@@ -137,19 +187,19 @@ $("li").on("click", function() {
 
 	}
 	else {
+		$("i", this).data('state', 'closed');
 		$("i", this).removeClass("fa-chevron-down");
 		$("i", this).addClass("fa-chevron-right");
-		$(clickedTabName).slideUp(250);
-		if ($(window).width() < 768) {
+		$(clickedTabName).slideUp(250);*/
+/*		if ($(window).width() < 768) {
 
 			$("#menu-button").html("DISCOVER");
-			//	$("#contact-button").css("visibility", "hidden");
 
 		}
 		setTimeout(function() { $("#contact-form").fadeIn(150) }, 250);
 	}
 
-})
+})*/
 
 
 $("#calendar").on("click", function() {

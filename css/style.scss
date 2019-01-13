@@ -1,10 +1,17 @@
-/*----- COLOUR DEFINITION -----*/
+/*----- DEFINITIONS -----*/
+
+/*----- COLOURS -----*/
 
 $about-color: #6d23ff;
 $data-color: #7b3bfc;
 $test-color: #884ffb;
 $schools-color: #9c6df9;
 $white: #e1e1e1;
+
+/*----- FONT-SIZE -----*/
+
+$title-font-size:13px;
+$body-font-size:12px;
 
 /*-----BODY -----*/
 
@@ -24,28 +31,34 @@ body {
 
 .backdrop-container {
     //position: relative;
-
     background: url(../assets/images/background-children.jpg) no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /*   display: flex;
-    position: relative;
-    justify-content: center;*/
 }
 
 /*-----MAIN SECTIONS -----*/
 
-.actions-container {
-    //background-color: red;
-
+.top-section {
+    height: 25vh;
 }
 
-
-/*----- TITLE BAR -----*/
+.bottom-section {
+    height: 70vh;
+}
 
 /*----- LOGO AND TITLE -----*/
+
+.top-section--logo-container {
+    height: 15vh;
+    max-height: 15vh
+}
+
+.top-section--title-container {
+    height: 5vh;
+    max-height: 5vh;
+}
 
 .nav-button {
     position: absolute;
@@ -60,32 +73,30 @@ body {
     border-radius: 10%;
     background-color: $about-color;
     transition: ease-in-out 0.25s;
-    transform: scale(1,1);
+    transform: scale(1, 1);
 }
 
 .nav-button:active {
     transition: ease-in-out 0.25s;
-    transform: scale(0.8,0.8);
+    transform: scale(0.8, 0.8);
 }
 
-.title-container {
+.top-section--title-text {
     color: $white;
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
-    line-height:5vh;
- //   padding-top: 5px;
-  //  padding-bottom:10px;
+    font-size: $title-font-size;
+    line-height: 5vh;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
     text-align: center;
 }
 
-.title-animation {
-    animation: animate-title 1s forwards;
+#top-section--hidden-title {
+    position: absolute;
+    width: 100%;
 }
 
-
-#title {
-    font-size: 13px;
+.title-animation {
+    animation: animate-title 1s forwards;
 }
 
 $logoWidth: 150px;
@@ -107,43 +118,34 @@ $logoWidth: 150px;
 /*----- NAVIGATION BAR -----*/
 
 .navbar-container {
-    /*
-    height:5vh;
-    max-height:5vh;
-    min-height:25px;*/
-   /* position: relative;
-    bottom:0;*/
-    /*display: flex;
-    align-items: flex-end;*/
-}
 
-.navbar-container {
-   /* min-height: 5vh;*/
+    height: 5vh;
+    max-height: 5vh;
 }
 
 #navbar {
     border: none;
     box-shadow: none;
-    height:5vh;
-       // height:100%;
-}
+    height: 5vh;
 
-#navbar ul {
-    background-image: linear-gradient($about-color, $schools-color);
-height:100%;
-    margin-bottom: 0;
-    margin-top:0;
-}
+    ul {
+        background-image: linear-gradient($about-color, $schools-color);
+        height: 100%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    ul li {
+        font-family: 'Roboto', sans-serif;
+        display: inline-block;
+        line-height: 5vh;
+        text-align: center;
+        color: $white;
+        font-size: $body-font-size;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+        margin: 0 -2px -0px -2px;
+        width: 25%;
+    }
 
-#navbar ul li {
-    display: inline-block;
-    line-height: 5vh;
-    text-align: center;
-    color: $white;
-    font-size: 13px;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
-    margin: 0 -2px -0px -2px;
-    width: 25%;
 }
 
 .menubar-animation {
@@ -152,14 +154,25 @@ height:100%;
 
 /*----- NAVIGATION TABS -----*/
 
+.tabs-container {
+    height: 100%;
+}
+
+
 .tab {
     border: 2px solid black;
     background-color: $white;
-    height:70vh;
+    height: 100%;
     display: none;
-    overflow:auto;
+    overflow: auto;
+    padding: 20px 0 20px 0;
     p {
-        font-size: 15px;
+        font-size: $body-font-size;
+    }
+    img {
+        margin:auto;
+        max-width: 15vh;
+        max-height:15vh;
     }
 }
 
@@ -177,25 +190,56 @@ $value in $tab-colors {
 }
 
 
+/*----- TEST TAB -----*/
+.test-tab--test-button {
+    background-color: $test-color;
+    color: $white;
+    transition: 0.3s ease-in-out;
+    outline: none;
+}
+
+.test-tab--test-button:active {
+    
+    color: $test-color;
+    background-color: $white;
+    transition: 0.3s ease-in-out;
+}
+
+
+
 /*----- CONTACT FORM -----*/
+
 #contact-form {
-    max-height:65vh;
-    font-size: 12px;
+
+    max-height: 60vh;
+    font-size: $body-font-size;
     font-family: 'Roboto', sans-serif;
-    margin-top:20px;
-    background-color: rgba(109, 35, 255,0.7);
+    color: $white;
+    margin-top: 20px;
+    background-color: rgba(109, 35, 255, 0.7);
     border: solid 4px $schools-color;
     border-radius: 2%;
-    padding-top:20px;
-    padding-bottom:20px;
-}
+    padding-top: 20px;
+    padding-bottom: 20px;
 
-#contact-form label {
-    color: $white;
-}
-
-#contact-form .col-sm-6 {
- padding-top:10px;   
+    label {
+        padding-top: 5px;
+    }
+    i {
+        padding-top: 6px;
+    }
+    button {
+        color: black;
+    }
+    input {
+        width: 100%;
+        background-color: $white;
+    }
+    textarea {
+        height: 15vh;
+        width: 100%;
+        background-color: $white;
+    }
 }
 
 .contact-animation {
@@ -205,125 +249,237 @@ $value in $tab-colors {
 /*----- FOOTER -----*/
 
 footer {
+    height: 5vh;
+    max-height: 5vh;
     background-image: linear-gradient($about-color, $schools-color);
 }
 
 .social-list {
+    width: 100%;
 
     list-style: none;
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+
+    ul {
+        width: 100%;
+        padding-inline-start: 0;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+    li {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 -2px -0px -2px;
+        width: 25%;
+        line-height: 5vh;
+        text-align: center;
+        display: inline-block;
+    }
+
+    li a {
+        padding: 8px 5px 0px 5px;
+    }
+
+    li a i {
+        transition: 0.3s ease-in-out;
+        width: 30px;
+        height: 30px;
+        padding: 9px 0;
+        vertical-align: middle;
+        text-align: center;
+        border: solid 0px;
+        border-radius: 50%;
+        color: $white;
+    }
+
+    li a i:hover {
+
+        background-color: $white;
+        transition: 0.3s ease-in-out;
+        color: black;
+
+    }
+
 }
 
-.social-list li {
-    width:25%;
-    line-height:5vh;
-    text-align:center;
-    display: inline;    
-}
-.social-list li i {
-    color:$white;
-}
 
 /*----- MEDIA QUERIES -----*/
 
 @media (min-width: 480px) and (max-width: 767px) {
 
     $logoWidth: 200px;
+    $title-font-size: 20px;
+    $body-font-size: 15px;
 
     #logo {
         width: $logoWidth;
         height: $logoWidth/3*2;
     }
 
-    #title {
-        font-size: 15px;
+    .top-section--title-text {
+        font-size: $title-font-size;
+    }
+    #contact-form {
+        font-size: $body-font-size;
+    }
+    #navbar ul li {
+        font-size: $body-font-size;
+    }
+    .tab p {
+        font-size: $body-font-size;
     }
 }
 
 @media (min-width: 768px) {
 
+    .top-section {
+        height: 30vh;
+        max-height: 30vh;
+    }
+
+    .bottom-section {
+        height: 65vh;
+        max-height: 65vh;
+    }
+
+    .top-section--logo-container {
+        height: 20vh;
+        max-height: 20vh;
+    }
+
     #logo {
         display: block;
         margin: auto;
         transform: translate(0%, 10%);
+        max-height: 20vh;
+        max-width: 20vh*3/2;
     }
 
     #navbar {
         width: 100%;
-        height:100%;
         padding-left: 0;
-        padding-right: 0;
-        //margin-top: 15px;
-        transform: translate(0, 100vh)
+        padding-right: 0; //margin-top: 15px;
+        transform: translate(0, 100vh);
+        ul {
+            background-image: linear-gradient($about-color, $schools-color);
+            margin-bottom: 0;
+            width: 100%;
+        }
+        ul li {
+            line-height: 5vh;
+            text-align: center;
+            color: $white;
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+            margin: 0 -2px -0px -2px;
+            width: 25%;
+        }
     }
 
-    #navbar ul {
-        background-image: linear-gradient($about-color, $schools-color);
-        margin-bottom: 0;
-        width: 100%;
-    }
-
-    #navbar ul li {
-        line-height: 35px;
-        text-align: center;
-        color: $white;
-        font-size: 16px;
-        text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
-        margin: 0 -2px -0px -2px;
-        width: 25%;
-    }
-
-    .navbar-toggle {
+    #navbar .navbar-toggle {
         margin-right: 0;
     }
 
-#contact-form {
-        opacity:0;
-}
+    #contact-form {
+        opacity: 0;
+    }
 
-    #title {
+    #top-section--title {
         transform: translate(-100%, 0);
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
 
-    $logoWidth: 275px;
+    $logoWidth: 300px;
+    $title-font-size: 25px;
+    $body-font-size: 18px;
 
     #logo {
         width: $logoWidth;
         height: $logoWidth/3*2;
     }
-
-    #title {
-        font-size: 20px;
+    .top-section--title-text {
+        font-size: $title-font-size;
+    }
+    #contact-form {
+        font-size: $body-font-size;
+    }
+    #navbar ul li {
+        font-size: $body-font-size;
+    }
+    .tab p {
+        font-size: $body-font-size;
+    }
+    .social-list li a i {
+        width: 38px;
+        height: 38px;
+        font-size: 21px;
     }
 }
 
 @media (min-width: 992px) and (max-width:1199px) {
 
     $logoWidth: 350px;
+    $title-font-size: 30px;
+    $body-font-size: 20px;
 
     #logo {
         width: $logoWidth;
         height: $logoWidth/3*2;
     }
-
-    #title {
-        font-size: 26px;
+    .top-section--title-text {
+        font-size: $title-font-size;
+    }
+    #contact-form {
+        font-size: $body-font-size;
+    }
+    #navbar ul li {
+        font-size: $body-font-size;
+    }
+    .tab p {
+        font-size: $body-font-size;
+    }
+    .social-list li a i {
+        width: 40px;
+        height: 40px;
+        font-size: 23px;
     }
 }
 
 @media (min-width: 1200px) {
     $logoWidth: 400px;
+    $title-font-size: 35px;
+    $body-font-size: 20px;
 
     #logo {
         width: $logoWidth;
         height: $logoWidth/3*2;
     }
-    #title {
-        font-size: 35px;
+    .top-section--title-text {
+        font-size: $title-font-size;
     }
-
+    #contact-form {
+        font-size: $body-font-size;
+    }
+    #navbar ul li {
+        font-size: $body-font-size;
+    }
+    .tab p {
+        font-size: $body-font-size;
+    }
+    .social-list li a i {
+        width: 42px;
+        height: 42px;
+        font-size: 25px;
+    }
 }
 
 /*----- KEYFRAMES -----*/

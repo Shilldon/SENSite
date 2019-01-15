@@ -16,7 +16,7 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-    overflow: hidden;
+   // overflow: hidden;
 }
 
 .row {
@@ -196,6 +196,7 @@ $value in $tab-colors {
     color: $white;
     transition: 0.3s ease-in-out;
     outline: none;
+    width:90px;
 }
 
 .test-tab--test-button:active {

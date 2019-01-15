@@ -7,9 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SEN Consultant</title>
 
+    <!-- framework -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+
+    <!--fonts and styles-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!--testing -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" />
+
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -37,10 +44,10 @@
                 <span class="top-section--title-text visible-xs" id="top-section--hidden-title">Helping Your Child To Achieve Their Dreams</span>
                 <div class="navbar-collapse collapse col-xs-12" id="navbar">
                     <ul class="nav navbar-nav navbar-main">
-                        <li id="about-button">About <span><i class="fa fa-chevron-right"></i></span></li>
-                        <li id="data-button">Data <i class="fa fa-chevron-right"></i></li>
-                        <li id="test-button">Test <i class="fa fa-chevron-right"></i></li>
-                        <li id="schools-button">Schools <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="about-button">About <span><i class="fa fa-chevron-right"></i></span></li>
+                        <li class="top-section--nav-list-button" id="data-button">Data <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="test-button">Test <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="schools-button">Schools <i class="fa fa-chevron-right"></i></li>
                     </ul>
                 </div>
             </nav>
@@ -106,7 +113,7 @@
 
                     </form>
                 </div>
-                <div class="col-xs-12 tab" data-state="closed"  id="about-tab">
+                <div class="col-xs-12 tab" data-state="closed" id="about-tab">
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Lindsey Stretton-Hill</p>
@@ -166,39 +173,81 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4" style="text-align: center">
-                                <button class="test-tab--test-button" id="button-literacy-test">Take Test</button>
+                                <button class="test-tab--test-button" id="button-literacy-select">Take Test</button>
                             </div>
                             <div class="col-xs-4" style="text-align: center">
-                                <button class="test-tab--test-button" id="button-numeracy-test">Take Test</button>
+                                <button class="test-tab--test-button" id="button-numeracy-select">Take Test</button>
                             </div>
                             <div class="col-xs-4" style="text-align: center">
-                                <button class="test-tab--test-button" id="button-memory-test">Take Test</button>
+                                <button class="test-tab--test-button" id="button-memory-select">Take Test</button>
                             </div>
                         </div>
                     </div>
-                    <div id="test-tab--literacy" style="display:none">
+                    <div class="test-tab" id="test-tab--literacy" style="display:none">
                         <div class="row">
                             <div class="col-xs-12">
                                 LIteracy Test
                             </div>
                         </div>
                     </div>
-                    <div id="test-tab--numeracy" style="display:none">
+                    <section class="test-tab" id="test-tab--numeracy" style="display:none">
                         <div class="row">
                             <div class="col-xs-12">
-                                Numeracy Test
+                                <h3 style="text-align:center">Numeracy Test</h3>
+                                <p>You will be presented with 10 arithmetic calculations, increasing in difficulty. You need to type the answer into the box where shown and click 'Submit'.</p>
+                                <p>If you do not know the answer to a calculation you can click 'Skip'.</p>
+                                <p>If you want to leave the test click 'Back' to return to the test menu.</p>
+                                <p>The time it takes you to complete the test and the number of questions you answer correctly will determine your numeracy score.</p>
+                                <p>Click 'OK' when you are ready to start, or 'Back' to return to the test menu.</p>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-xs-6" style="text-align: center">
+                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                            </div>
+                            <div class="col-xs-6" style="text-align: center">
+                                <button class="test-tab--test-button" id="button-numeracy-start">OK</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="test-tab" id="test-tab--numeracy-1" style="display:none">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 id="question-header" style="text-align:center">Question </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6" id="numeracy-calcuation" style="text-align: center">
+                                <span id="numeracy-question"></span>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <input id="numeracy-answer" style="width:100%"></input>
+                            </div>
+                            <div class="col-xs-1">
+                                <img id="answer-mark" src="" style="width:20px">
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                    <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                                </div>                                
+                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                    <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
+                                </div>
+                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                    <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <div id="test-tab--memory" style="display:none">
                         <div class="row">
                             <div class="col-xs-12">
                                 Memory Test
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
-                <div class="col-xs-12 tab" data-state="closed"  id="schools-tab">
+                <div class="col-xs-12 tab" data-state="closed" id="schools-tab">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
                         laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem
                         minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet
@@ -227,9 +276,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--Jasmine framework-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js"></script>
+
+    <!--local scripts-->
     <script type="text/javascript" src="assets/js/animations.js"></script>
+    <script type="text/javascript" src="assets/js/buttons.js"></script>
     <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
 
+
+    <!--tests -->
+    <script type="text/javascript" src="assets/spec/numeracy-testSpec.js"></script>
 </body>
 
 </html>

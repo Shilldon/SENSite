@@ -2,9 +2,6 @@
 /*----- COLOURS -----*/
 /*----- FONT-SIZE -----*/
 /*-----BODY -----*/
-body {
-  overflow: hidden; }
-
 .row {
   padding: 0;
   margin: 0; }
@@ -145,7 +142,8 @@ body {
   background-color: #884ffb;
   color: #e1e1e1;
   transition: 0.3s ease-in-out;
-  outline: none; }
+  outline: none;
+  width: 90px; }
 
 .test-tab--test-button:active {
   color: #884ffb;

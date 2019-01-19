@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <!--testing -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" />
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" />-->
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -55,6 +55,7 @@
 
         <!--actions section-->
         <section class="bottom-section container-fluid">
+            
             <div class="row tabs-container">
                 <div class="col-xs-10 col-xs-offset-1" data-state="open" id="contact-form">
                     <form action="action_page.php">
@@ -256,7 +257,7 @@
                             </div>
                         </div>
                     </section>                    
-                    <div id="test-tab--memory" style="display:none">
+                    <div class="test-tab" id="test-tab--memory" style="display:none">
                         <div class="row">
                             <div class="col-xs-12">
                                 Memory Test
@@ -265,22 +266,14 @@
                     </div>
                 </div>
                 <div class="col-xs-12 tab" data-state="closed" id="schools-tab">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                        laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem
-                        minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet
-                        ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident
-                        temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur
-                        quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque.
-                        Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam,
-                        quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio
-                        velit tempora. Adipisci!</p>
+                               
                 </div>
             </div>
         </section>
         <footer class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 social-list">
-                    <ul>
+            <div class="row" style="height:100%">
+                <div class="col-xs-12 social-list"style="height:100%" >
+                    <ul style="height:100%">
                         <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a target="_blank" href="#"><i class="fa fa-youtube"></i></a></li>
@@ -290,23 +283,29 @@
             </div>
         </footer>
     </div>
-
+</body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!--Jasmine framework-->
+    <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js"></script>
+
+-->
 
     <!--local scripts-->
     <script type="text/javascript" src="assets/js/animations.js"></script>
     <script type="text/javascript" src="assets/js/buttons.js"></script>
     <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
-
+    <script type="text/javascript" src="assets/js/maps.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyioC-vIWESMOvGOXbgXIpHnKt_LSH9tk&callback=initMap"></script>
+    <script src="assets/js/maps.js"></script>
 
     <!--tests -->
     <script type="text/javascript" src="assets/spec/numeracy-testSpec.js"></script>
-</body>
+
 
 </html>

@@ -51,7 +51,7 @@ function showTab(clickedButton) {
 	$(clickedButton).data('state', 'open');
 	$("i", clickedButton).removeClass("fa-chevron-right");
 	$("i", clickedButton).addClass("fa-chevron-down");
-	$(clickedTabName).slideDown(250);
+   	$(clickedTabName).slideDown(250);
 }
 
 function changeBackground(clickedButton) {
@@ -62,33 +62,15 @@ function changeBackground(clickedButton) {
 }
 
 function hideOpenTab() {
-	//var button = $("li").first();
 	var button;
 	var buttonId;
 	var buttonName
 	var tabName;
 	//cycle through the tabs and hide them (if any showing) 
 
-	/*
-	for (i = 0; i <= 3; i++) {
-		//get the name of the associated tab from the button ID 
-		buttonId = button.attr("id").split("-");
-		buttonName = buttonId[0];
-		tabName = "#" + buttonName + "-tab";
-		//check if the tab is open, if so, close it
-		if ($(button).data('state') == 'open') {
-			$(button).data('state', 'closed')
-			$("i", button).removeClass("fa-chevron-down");
-			$("i", button).addClass("fa-chevron-right");
-			$(tabName).slideUp(250);
-			delay = 250;
-		}
-		button = button.next();
-	}*/
 	$("li").each(function() {
 		button = $(this);
 		if (button.data('state') == 'open') {
-			console.log("closing")
 			buttonId = button.attr("id").split("-");
 			buttonName = buttonId[0];
 			tabName = "#" + buttonName + "-tab";

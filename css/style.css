@@ -2,6 +2,9 @@
 /*----- COLOURS -----*/
 /*----- FONT-SIZE -----*/
 /*-----BODY -----*/
+body {
+  overflow: hidden; }
+
 .row {
   padding: 0;
   margin: 0; }
@@ -19,10 +22,17 @@
 
 /*-----MAIN SECTIONS -----*/
 .top-section {
-  height: 25vh; }
+  height: 25vh;
+  max-height: 25vh; }
 
 .bottom-section {
-  height: 70vh; }
+  height: 70vh;
+  max-height: 75vh; }
+
+footer {
+  height: 5vh;
+  max-height: 5vh;
+  background-image: linear-gradient(#6d23ff, #9c6df9); }
 
 /*----- LOGO AND TITLE -----*/
 .top-section--logo-container {
@@ -120,10 +130,11 @@
   padding: 20px 0 20px 0; }
   .tab p {
     font-size: 12px; }
-  .tab img {
-    margin: auto;
-    max-width: 15vh;
-    max-height: 15vh; }
+
+#about-tab img {
+  margin: auto;
+  max-width: 15vh;
+  max-height: 15vh; }
 
 #about-tab {
   color: #6d23ff; }
@@ -180,11 +191,6 @@
   animation: animate-contactform 1s forwards; }
 
 /*----- FOOTER -----*/
-footer {
-  height: 5vh;
-  max-height: 5vh;
-  background-image: linear-gradient(#6d23ff, #9c6df9); }
-
 .social-list {
   width: 100%;
   list-style: none;

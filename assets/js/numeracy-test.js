@@ -82,6 +82,10 @@ function startNumeracyTest() {
         Question[i] = firstNumber + " " + firstOperator + " " + secondNumber + " " + secondOperator + " " + thirdNumber + " = ";
     }
     $("#numeracy-question").text(Question[0]);
+    $("#numeracy-answer").ready(function () {
+        setTimeout( function() { $("#numeracy-answer").focus() },5);                
+    });
+
 }
 
 function nextQuestion() {

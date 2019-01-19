@@ -16,7 +16,7 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-   // overflow: hidden;
+   overflow: hidden;
 }
 
 .row {
@@ -42,10 +42,18 @@ body {
 
 .top-section {
     height: 25vh;
+    max-height: 25vh;
 }
 
 .bottom-section {
     height: 70vh;
+    max-height: 75vh;
+}
+
+footer {
+    height: 5vh;
+    max-height: 5vh;
+    background-image: linear-gradient($about-color, $schools-color);
 }
 
 /*----- LOGO AND TITLE -----*/
@@ -169,6 +177,9 @@ $logoWidth: 150px;
     p {
         font-size: $body-font-size;
     }
+}
+
+#about-tab {
     img {
         margin:auto;
         max-width: 15vh;
@@ -248,12 +259,6 @@ $value in $tab-colors {
 }
 
 /*----- FOOTER -----*/
-
-footer {
-    height: 5vh;
-    max-height: 5vh;
-    background-image: linear-gradient($about-color, $schools-color);
-}
 
 .social-list {
     width: 100%;

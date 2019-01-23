@@ -190,6 +190,10 @@ footer {
 .contact-animation {
   animation: animate-contactform 1s forwards; }
 
+/*----- MAP -----*/
+#map {
+  height: 60vh; }
+
 /*----- FOOTER -----*/
 .social-list {
   width: 100%;

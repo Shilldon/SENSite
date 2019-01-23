@@ -1,28 +1,59 @@
-function initMap() {
-    var map = new google.maps.Map(document.getElementById("schools-tab"), {
-        zoom: 3,
-        center: {
-            lat: 46.619261,
-            lng: -33.134766
-        }
-    });
 
-    var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var locations = [
-        { lat: 40.785091, lng: -73.968285 },
-        { lat: 41.084045, lng: -73.874245 },
-        { lat: 40.754932, lng: -73.984016 }
-    ];
-
-    var markers = locations.map(function(location, i) {
-        return new google.maps.Marker({ //map is a javascript method here - it is like a for each function but for an array
-            position: location,
-            label: labels[i % labels.length]
+     function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: results[0].geometry.location,
+          radius: 1000,
+          type: ['school']
+        }, callback);            
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
         });
-    });
+      }
 
-    var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+      function initMap() {
 
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 51.401672, lng: -1.324373},
+          zoom: 15,
+          disableDefaultUI: true,
+        });
 
-    
-}
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          icon: 'assets/images/purple-pushpin.png',
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }

@@ -1,59 +1,145 @@
+$("#submit").click(function() {
+  clearMarkers();
+  getSchoolsData();
+});
 
-     function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: results[0].geometry.location,
-          radius: 1000,
-          type: ['school']
-        }, callback);            
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
+var map;
+var markers = [];
 
-      function initMap() {
+function getSchoolsData() {
+  //get local csv database of schools
+  $(document).ready(function() {
+    $.ajax({
+      type: "GET",
+      url: "assets/data/schoolsshort.csv",
+      dataType: "text",
+      success: function(data) { createLocalSchoolsArray(data); }
+    });
+  });
+}
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 51.401672, lng: -1.324373},
-          zoom: 15,
-          disableDefaultUI: true,
-        });
-
-        var geocoder = new google.maps.Geocoder();
-
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
-        });
-      }
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
+function createLocalSchoolsArray(allText) {
+  //get user input postcode
+  var postcode = document.getElementById('map-address').value;
+  postcode = postcode.toUpperCase();
+  var allTextLines = allText.split(/\r\n|\n/);
+  var headers = allTextLines[0].split(',');
+  var schoolsDataArray = [];
+  
+  //compare postcode to schools in local database
+  //create array of schools matching postcode
+  for (var i = 1; i < allTextLines.length; i++) {
+    var data = allTextLines[i].split(',');
+    if (data.length == headers.length) {
+      var schoolArray = [];
+      
+      //remove space in postcode
+      schoolPostcode = data[64].replace(" ", "");
+      if (schoolPostcode.search(postcode) != -1) {
+        for (var j = 0; j < headers.length; j++) {
+          schoolArray.push(data[j]);
         }
+        schoolsDataArray.push(schoolArray);
       }
+    }
+  }
+  //check if there are any schools in the array. If not return error that there
+  //are no schools in the selected postcode.
+  if (schoolsDataArray.length > 0) {
+    convertPostcodes(schoolsDataArray);
+  }
+  else {
+    document.getElementById("school-name").innerHTML = "No schools found in postcode " + postcode;
+  }
+}
 
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          icon: 'assets/images/purple-pushpin.png',
-          position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
+function convertPostcodes(schoolsDataArray) {
+  //get longitude and latitude from postcode ready to place google map marker
+  var schoolPostCodesArray = []
+  for (i = 0; i < schoolsDataArray.length; i++) {
+    var schoolPostCode = schoolsDataArray[i][64];
+    schoolPostCode = schoolPostCode.replace("Postcode:", "");
+    schoolPostCodesArray.push(schoolPostCode);
+  }
+  getPostcodeData(schoolPostCodesArray, function(data) {
+    for (i = 0; i < schoolsDataArray.length; i++) {
+      if (data.result[i].result != null) {
+        //Need to create long/lat array for google map markers
+        var schoolName = schoolsDataArray[i][4];
+        schoolName = schoolName.replace("EstablishmentName:", "");
+        var schoolType=schoolsDataArray[i][6];
+        var latitude = data.result[i].result.latitude;
+        var longitude = data.result[i].result.longitude;
+        drawMarker(latitude, longitude, schoolName, schoolType);
       }
+    }
+  });
+}
+
+function getPostcodeData(schoolPostCodes, callBack) {
+  //call postcodes API to get postcode data
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://api.postcodes.io/postcodes");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  var postcodes = JSON.stringify({ "postcodes": schoolPostCodes });
+  xhr.send(postcodes);
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      callBack(JSON.parse(this.responseText));
+    }
+  };
+}
+  var previousInfoWindow = false;
+
+function drawMarker(latitude, longitude, schoolName, schoolType) {
+  var schoolPosition = new google.maps.LatLng(latitude, longitude);
+
+  var marker = new google.maps.Marker({
+    position: schoolPosition,
+    title: schoolName,
+    icon: 'assets/images/purple-pushpin.png',
+    type: schoolType
+  });
+  
+  
+    var infowindow = new google.maps.InfoWindow({
+    content: marker.title
+  });
+  marker.addListener('click', function () {
+
+
+  console.log(marker.title);
+  console.log(marker.type)
+    if (previousInfoWindow) {
+      previousInfoWindow.close();
+    }
+    previousInfoWindow = infowindow;
+    infowindow.open(map, marker);
+    $("#school-name").text(marker.title);
+    $("#school-type").text(marker.type);
+    
+  });
+
+  markers.push(marker);
+  marker.setMap(map);
+}
+
+function clearMarkers() {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+}
+
+
+function initMap() {
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 51.401672, lng: -1.324373 },
+    zoom: 13,
+    disableDefaultUI: true,
+    styles: [
+      { elementType: 'geometry', styles: [{ color: '#6d23ff' }] }
+    ]
+  });
+}

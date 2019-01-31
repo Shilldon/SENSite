@@ -25,6 +25,7 @@
     <div class="backdrop-container container-fluid">
         <!-- Navbar button and logo container section -->
         <section class="container-fluid top-section">
+
             <div class="row top-section--logo-container">
                 <div class="col-xs-12">
                     <img src="assets/images/logo.png" id="logo"></img>
@@ -60,27 +61,27 @@
                 <div class="col-xs-10 col-xs-offset-1" data-state="open" id="contact-form">
                     <form action="action_page.php">
                         <div class="row">
-                            <div class="col-xs-12" style="text-align:center">
+                            <div class="col-xs-12 contact-form--title">
                                 <label>Contact us to discover more</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label for="firstname">First Name</label>
+                                <label for="first-name">First Name</label>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <input type="text" id="fname" name="firstname" placeholder="First Name">
+                                    <input type="text" id="firstname" name="first-name" placeholder="First Name">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label for="lastname">Last Name</label>
+                                <label for="last-name">Last Name</label>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <input type="text" id="lname" name="lastname" placeholder="Last Name">
+                                    <input type="text" id="lastname" name="last-name" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -114,16 +115,18 @@
 
                     </form>
                 </div>
-                <div class="col-xs-12 tab" data-state="closed" id="about-tab">
+                <article class="col-xs-12 tab" data-state="closed" id="about-tab">
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>Lindsey Stretton-Hill</p>
-                            <p><strong>Specialist Educational Needs Consultant</strong></p>
-                            <p><i class="fa fa-phone-square" aria-hidden="true"></i> 07971 816461</p>
-                            <p><i class="fa fa-envelope" aria-hidden="true"></i> sparklepixcs@gmail.com</p>
-                            <p><i class="fa fa-facebook-square" aria-hidden="true"></i> SparklePixCS</p>
-                            <p>Dyslexia Assessments</p>
-                            <p>Numeracy Assessments</p>
+                            <h2>Lindsey Stretton-Hill</h2>
+                            <h4><strong>Specialist Educational Needs Consultant</strong></h3>
+                                <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 07971 816461</h4>
+                                <h4><i class="fa fa-envelope" aria-hidden="true"></i> sparklepixcs@gmail.com</h4>
+                                <h4><i class="fa fa-facebook-square" aria-hidden="true"></i> SparklePixCS</h4>
+                                <h4>Specialist in:</h4>
+                                <h5>Dyslexia Assessments</h5>
+                                <h5>Numeracy Assessments</h5>
+                                <h5>Tutoring</h5>
                         </div>
                         <div class="row">
                             <!-- use list -->
@@ -138,8 +141,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 tab" data-state="closed" id="data-tab">
+                </article>
+                <article class="col-xs-12 tab" data-state="closed" id="data-tab">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
                         laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem
                         minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet
@@ -149,52 +152,52 @@
                         Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam,
                         quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio
                         velit tempora. Adipisci!</p>
-                </div>
-                <div class="col-xs-12 tab" data-state="closed" id="test-tab">
+                </article>
+                <article class="col-xs-12 tab" data-state="closed" id="test-tab">
                     <div id="test-tab--landing">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 style="text-align: center">Find out your Numeracy, Literacy and Memory scores</h3>
+                                <h3>Find out your Numeracy, Literacy and Memory scores</h3>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12" style="text-align: center">
+                            <div class="col-xs-12">
                                 <h4>Take a test</h4>
                             </div>
                         </div>
                         <div class="row"></div>
-                        <div class="col-xs-4" style="text-align: center">
+                        <div class="col-xs-4">
                             <h5>Literacy</h5>
                         </div>
-                        <div class="col-xs-4" style="text-align: center">
+                        <div class="col-xs-4">
                             <h5>Numeracy</h5>
                         </div>
-                        <div class="col-xs-4" style="text-align: center">
+                        <div class="col-xs-4">
                             <h5>Memory</h5>
                         </div>
                         <div class="row">
-                            <div class="col-xs-4" style="text-align: center">
+                            <div class="col-xs-4">
                                 <button class="test-tab--test-button" id="button-literacy-select">Take Test</button>
                             </div>
-                            <div class="col-xs-4" style="text-align: center">
+                            <div class="col-xs-4">
                                 <button class="test-tab--test-button" id="button-numeracy-select">Take Test</button>
                             </div>
-                            <div class="col-xs-4" style="text-align: center">
+                            <div class="col-xs-4">
                                 <button class="test-tab--test-button" id="button-memory-select">Take Test</button>
                             </div>
                         </div>
                     </div>
-                    <div class="test-tab" id="test-tab--literacy" style="display:none">
+                    <div class="test-tab" id="test-tab--literacy">
                         <div class="row">
                             <div class="col-xs-12">
                                 LIteracy Test
                             </div>
                         </div>
                     </div>
-                    <section class="test-tab" id="test-tab--numeracy" style="display:none">
+                    <section class="test-tab" id="test-tab--numeracy">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 style="text-align:center">Numeracy Test</h3>
+                                <h3>Numeracy Test</h3>
                                 <p>You will be presented with 10 arithmetic calculations, increasing in difficulty. You need to type the answer into the box where shown and click 'Submit'.</p>
                                 <p>If you do not know the answer to a calculation you can click 'Skip'.</p>
                                 <p>If you want to leave the test click 'Back' to return to the test menu.</p>
@@ -203,92 +206,104 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6" style="text-align: center">
+                            <div class="col-xs-6">
                                 <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
                             </div>
-                            <div class="col-xs-6" style="text-align: center">
+                            <div class="col-xs-6">
                                 <button class="test-tab--test-button" id="button-numeracy-start">OK</button>
                             </div>
                         </div>
                     </section>
-                    <section class="test-tab" id="test-tab--numeracy-test" style="display:none">
+                    <section class="test-tab" id="test-tab--numeracy-test">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 id="question-header" style="text-align:center">Question </h3>
+                                <h3 id="question-header">Question </h3>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6" id="numeracy-calcuation" style="text-align: center">
-                                <span id="numeracy-question"></span>
+                            <div class="col-xs-6">
+                                <span class="test-tab--question" id="numeracy-question"></span>
                             </div>
                             <div class="col-xs-3 col-xs-offset-1">
-                                <input id="numeracy-answer" style="width:100%"></input>
+                                <input class="test-tab--answer" id="numeracy-answer"></input>
                             </div>
                             <div class="col-xs-1">
-                                <img id="answer-mark" src="" style="width:20px">
+                                <img id="answer-mark" src="">
                             </div>
                             <div class="row">
-                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                <div class="col-xs-4">
                                     <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
                                 </div>
-                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                <div class="col-xs-4">
                                     <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
                                 </div>
-                                <div class="col-xs-4" style="text-align: center; padding-top:20px">
+                                <div class="col-xs-4">
                                     <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <section class="test-tab" id="test-tab--numeracy-result" style="display:none">
+                    <section class="test-tab" id="test-tab--numeracy-result">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 style="text-align:center">Your Score:</h3>
+                                <h3>Your Score:</h3>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12" id="numeracy-calcuation" style="text-align: center">
-                                <span id="numeracy-result"></span>
+                            <div class="col-xs-12" id="numeracy-calcuation">
+                                <h3 id="numeracy-result"></h3>
                             </div>
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-4" style="text-align: center; padding-top:20px">
+                                <div class="col-xs-4 col-xs-offset-4">
                                     <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <div class="test-tab" id="test-tab--memory" style="display:none">
+                    <div class="test-tab" id="test-tab--memory">
                         <div class="row">
                             <div class="col-xs-12">
                                 Memory Test
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 tab" data-state="closed" id="schools-tab">
+                </article>
+                <article class="col-xs-12 tab" data-state="closed" id="schools-tab">
                     <div class="row">
-                        <div class="col-xs-12" style="text-align:center">
-                            <div>
-                                <input id="address" type="textbox" placeholder="Enter postcode">
-                                <input id="submit" type="button" value="Search">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Find schools in your local area</p>
+                                <p>
+                                    <input id="map-address" type="textbox" placeholder="Enter postcode">
+                                    <input id="submit" type="button" value="Search">
+                                </p>
+                                <div class="row hidden-xs">
+                                    <div class="col-xs-12" style="border: solid 2px purple; height:45vh">
+                                        <h3>Details:</h3>
+                                        <h3 id="school-name">Name</h3>
+                                        <h3 id="school-type">data1</h3>
+                                        <h3 id="data3">data3</h3>
+                                        <h3 id="data4">data4</h3>
+                                        <h3 id="data5">data5</h3>
+                                        <h3 id="data6">data6</h3>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="map"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="map">
 
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+                </article>
             </div>
         </section>
         <footer class="container-fluid">
-            <div class="row" style="height:100%">
-                <div class="col-xs-12 social-list" style="height:100%">
-                    <ul style="height:100%">
+            <div class="row">
+                <div class="col-xs-12 social-list">
+                    <ul>
                         <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a target="_blank" href="#"><i class="fa fa-youtube"></i></a></li>

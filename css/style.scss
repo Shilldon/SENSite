@@ -16,7 +16,7 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 .row {
@@ -30,7 +30,6 @@ body {
 }
 
 .backdrop-container {
-    //position: relative;
     background: url(../assets/images/background-children.jpg) no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -94,7 +93,7 @@ footer {
     font-family: 'Roboto', sans-serif;
     font-size: $title-font-size;
     line-height: 5vh;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
     text-align: center;
 }
 
@@ -143,6 +142,7 @@ $logoWidth: 150px;
         margin-top: 0;
     }
     ul li {
+        cursor: pointer;
         font-family: 'Roboto', sans-serif;
         display: inline-block;
         line-height: 5vh;
@@ -173,17 +173,37 @@ $logoWidth: 150px;
     height: 100%;
     display: none;
     overflow: auto;
-    padding: 20px 0 20px 0;
+    padding: 10px 0 10px 0;
     p {
         font-size: $body-font-size;
     }
+    h3,
+    h4,
+    h5,
+    .col-xs-4 {
+        text-align: center;
+    }
+    .col-xs-12 {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .col-sm-6 {
+        text-align: center;
+        padding-bottom: 10px;
+    }    
 }
 
 #about-tab {
     img {
-        margin:auto;
-        max-width: 15vh;
-        max-height:15vh;
+        margin: auto;
+        max-width: 20vw;
+        max-height: 20vw;
+    }
+}
+
+#test-tab--landing {
+    .col-xs-4 {
+        text-align: center;
     }
 }
 
@@ -202,22 +222,76 @@ $value in $tab-colors {
 
 
 /*----- TEST TAB -----*/
+
+.test-tab {
+    display: none;
+
+    .col-xs-4 {
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .col-xs-6 {
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+}
+
+.test-tab--answer {
+    width: 100%;
+}
+
 .test-tab--test-button {
     background-color: $test-color;
     color: $white;
     transition: 0.3s ease-in-out;
     outline: none;
-    width:90px;
+    width: 90px;
 }
 
 .test-tab--test-button:active {
-    
+
     color: $test-color;
     background-color: $white;
     transition: 0.3s ease-in-out;
 }
 
+.test-tab--question {
+    font-size: 18px;
+    font-weight: 400;
+}
 
+#answer-mark {
+    width: 20px;
+}
+
+/*----- SCHOOLS TAB -----*/
+
+#schools-tab {
+    padding-top: 10px;
+
+    input {
+        font-size: 10px;
+    }
+}
+
+/*----- map within schools tab -----*/
+
+#map {
+    border: solid 2px $schools-color;
+    height: 55vh;
+}
+
+#map-address {
+    width: 25%;
+}
+
+#map-miles {
+    width: 10%;
+}
 
 /*----- CONTACT FORM -----*/
 
@@ -254,20 +328,20 @@ $value in $tab-colors {
     }
 }
 
+.contact-form--title {
+    text-align: center;
+}
+
 .contact-animation {
     animation: animate-contactform 1s forwards;
 }
 
-/*----- MAP -----*/
-#map {
-    height:60vh;
-}
 
 /*----- FOOTER -----*/
 
 .social-list {
     width: 100%;
-
+    height: 100%;
     list-style: none;
     float: left;
     padding-left: 0;
@@ -278,6 +352,7 @@ $value in $tab-colors {
 
     ul {
         width: 100%;
+        height: 100%;
         padding-inline-start: 0;
         padding-left: 0;
         padding-right: 0;
@@ -349,64 +424,6 @@ $value in $tab-colors {
     }
 }
 
-@media (min-width: 768px) {
-
-    .top-section {
-        height: 30vh;
-        max-height: 30vh;
-    }
-
-    .bottom-section {
-        height: 65vh;
-        max-height: 65vh;
-    }
-
-    .top-section--logo-container {
-        height: 20vh;
-        max-height: 20vh;
-    }
-
-    #logo {
-        display: block;
-        margin: auto;
-        transform: translate(0%, 10%);
-        max-height: 20vh;
-        max-width: 20vh*3/2;
-    }
-
-    #navbar {
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0; //margin-top: 15px;
-        transform: translate(0, 100vh);
-        ul {
-            background-image: linear-gradient($about-color, $schools-color);
-            margin-bottom: 0;
-            width: 100%;
-        }
-        ul li {
-            line-height: 5vh;
-            text-align: center;
-            color: $white;
-            text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
-            margin: 0 -2px -0px -2px;
-            width: 25%;
-        }
-    }
-
-    #navbar .navbar-toggle {
-        margin-right: 0;
-    }
-
-    #contact-form {
-        opacity: 0;
-    }
-
-    #top-section--title {
-        transform: translate(-100%, 0);
-    }
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
 
     $logoWidth: 300px;
@@ -433,6 +450,18 @@ $value in $tab-colors {
         width: 38px;
         height: 38px;
         font-size: 21px;
+    }
+    
+    h3 {
+        font-size: 30px;
+    }
+    
+    h4 {
+        font-size: 25px;
+    }
+    
+    h5 {
+        font-size: 20px;
     }
 }
 
@@ -490,6 +519,79 @@ $value in $tab-colors {
         width: 42px;
         height: 42px;
         font-size: 25px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .top-section {
+        height: 30vh;
+        max-height: 30vh;
+    }
+
+    .bottom-section {
+        height: 65vh;
+        max-height: 65vh;
+    }
+
+    .top-section--logo-container {
+        height: 20vh;
+        max-height: 20vh;
+    }
+
+    #logo {
+        display: block;
+        margin: auto;
+        transform: translate(0%, 10%);
+        max-height: 20vh;
+        max-width: 20vh*3/2;
+    }
+
+    #navbar {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0; //margin-top: 15px;
+        transform: translate(0, 100vh);
+        ul {
+            background-image: linear-gradient($about-color, $schools-color);
+            margin-bottom: 0;
+            width: 100%;
+        }
+        ul li {
+            line-height: 5vh;
+            text-align: center;
+            color: $white;
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+            margin: 0 -2px -0px -2px;
+            width: 25%;
+        }
+    }
+
+    #navbar .navbar-toggle {
+        margin-right: 0;
+    }
+
+    #contact-form {
+        opacity: 0;
+    }
+
+    #top-section--title {
+        transform: translate(-100%, 0);
+    }
+
+    #schools-tab {
+        font-size: 18px;
+        input {
+            font-size: 15px;
+        }
+    }
+    
+    #map-address {
+        width: 35%;
+    }
+
+    #map-miles {
+        width: 15%;
     }
 }
 

@@ -67,7 +67,7 @@ footer {
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   line-height: 5vh;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
   text-align: center; }
 
 #top-section--hidden-title {
@@ -104,6 +104,7 @@ footer {
     margin-bottom: 0;
     margin-top: 0; }
   #navbar ul li {
+    cursor: pointer;
     font-family: 'Roboto', sans-serif;
     display: inline-block;
     line-height: 5vh;
@@ -127,14 +128,28 @@ footer {
   height: 100%;
   display: none;
   overflow: auto;
-  padding: 20px 0 20px 0; }
+  padding: 10px 0 10px 0; }
   .tab p {
     font-size: 12px; }
+  .tab h3,
+  .tab h4,
+  .tab h5,
+  .tab .col-xs-4 {
+    text-align: center; }
+  .tab .col-xs-12 {
+    text-align: center;
+    padding-bottom: 10px; }
+  .tab .col-sm-6 {
+    text-align: center;
+    padding-bottom: 10px; }
 
 #about-tab img {
   margin: auto;
-  max-width: 15vh;
-  max-height: 15vh; }
+  max-width: 20vw;
+  max-height: 20vw; }
+
+#test-tab--landing .col-xs-4 {
+  text-align: center; }
 
 #about-tab {
   color: #6d23ff; }
@@ -149,6 +164,19 @@ footer {
   color: #9c6df9; }
 
 /*----- TEST TAB -----*/
+.test-tab {
+  display: none; }
+  .test-tab .col-xs-4 {
+    text-align: center;
+    padding-top: 20px; }
+  .test-tab .col-xs-6 {
+    text-align: center; }
+  .test-tab h3 {
+    text-align: center; }
+
+.test-tab--answer {
+  width: 100%; }
+
 .test-tab--test-button {
   background-color: #884ffb;
   color: #e1e1e1;
@@ -160,6 +188,30 @@ footer {
   color: #884ffb;
   background-color: #e1e1e1;
   transition: 0.3s ease-in-out; }
+
+.test-tab--question {
+  font-size: 18px;
+  font-weight: 400; }
+
+#answer-mark {
+  width: 20px; }
+
+/*----- SCHOOLS TAB -----*/
+#schools-tab {
+  padding-top: 10px; }
+  #schools-tab input {
+    font-size: 10px; }
+
+/*----- map within schools tab -----*/
+#map {
+  border: solid 2px #9c6df9;
+  height: 55vh; }
+
+#map-address {
+  width: 25%; }
+
+#map-miles {
+  width: 10%; }
 
 /*----- CONTACT FORM -----*/
 #contact-form {
@@ -187,16 +239,16 @@ footer {
     width: 100%;
     background-color: #e1e1e1; }
 
+.contact-form--title {
+  text-align: center; }
+
 .contact-animation {
   animation: animate-contactform 1s forwards; }
-
-/*----- MAP -----*/
-#map {
-  height: 60vh; }
 
 /*----- FOOTER -----*/
 .social-list {
   width: 100%;
+  height: 100%;
   list-style: none;
   float: left;
   padding-left: 0;
@@ -205,6 +257,7 @@ footer {
   margin-right: 0; }
   .social-list ul {
     width: 100%;
+    height: 100%;
     padding-inline-start: 0;
     padding-left: 0;
     padding-right: 0;
@@ -252,6 +305,78 @@ footer {
 
   .tab p {
     font-size: 15px; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  #logo {
+    width: 300px;
+    height: 200px; }
+
+  .top-section--title-text {
+    font-size: 25px; }
+
+  #contact-form {
+    font-size: 18px; }
+
+  #navbar ul li {
+    font-size: 18px; }
+
+  .tab p {
+    font-size: 18px; }
+
+  .social-list li a i {
+    width: 38px;
+    height: 38px;
+    font-size: 21px; }
+
+  h3 {
+    font-size: 30px; }
+
+  h4 {
+    font-size: 25px; }
+
+  h5 {
+    font-size: 20px; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  #logo {
+    width: 350px;
+    height: 233.33333px; }
+
+  .top-section--title-text {
+    font-size: 30px; }
+
+  #contact-form {
+    font-size: 20px; }
+
+  #navbar ul li {
+    font-size: 20px; }
+
+  .tab p {
+    font-size: 20px; }
+
+  .social-list li a i {
+    width: 40px;
+    height: 40px;
+    font-size: 23px; } }
+@media (min-width: 1200px) {
+  #logo {
+    width: 400px;
+    height: 266.66667px; }
+
+  .top-section--title-text {
+    font-size: 35px; }
+
+  #contact-form {
+    font-size: 20px; }
+
+  #navbar ul li {
+    font-size: 20px; }
+
+  .tab p {
+    font-size: 20px; }
+
+  .social-list li a i {
+    width: 42px;
+    height: 42px;
+    font-size: 25px; } }
 @media (min-width: 768px) {
   .top-section {
     height: 30vh;
@@ -296,70 +421,18 @@ footer {
     opacity: 0; }
 
   #top-section--title {
-    transform: translate(-100%, 0); } }
-@media (min-width: 768px) and (max-width: 991px) {
-  #logo {
-    width: 300px;
-    height: 200px; }
+    transform: translate(-100%, 0); }
 
-  .top-section--title-text {
-    font-size: 25px; }
-
-  #contact-form {
+  #schools-tab {
     font-size: 18px; }
+    #schools-tab input {
+      font-size: 15px; }
 
-  #navbar ul li {
-    font-size: 18px; }
+  #map-address {
+    width: 35%; }
 
-  .tab p {
-    font-size: 18px; }
-
-  .social-list li a i {
-    width: 38px;
-    height: 38px;
-    font-size: 21px; } }
-@media (min-width: 992px) and (max-width: 1199px) {
-  #logo {
-    width: 350px;
-    height: 233.33333px; }
-
-  .top-section--title-text {
-    font-size: 30px; }
-
-  #contact-form {
-    font-size: 20px; }
-
-  #navbar ul li {
-    font-size: 20px; }
-
-  .tab p {
-    font-size: 20px; }
-
-  .social-list li a i {
-    width: 40px;
-    height: 40px;
-    font-size: 23px; } }
-@media (min-width: 1200px) {
-  #logo {
-    width: 400px;
-    height: 266.66667px; }
-
-  .top-section--title-text {
-    font-size: 35px; }
-
-  #contact-form {
-    font-size: 20px; }
-
-  #navbar ul li {
-    font-size: 20px; }
-
-  .tab p {
-    font-size: 20px; }
-
-  .social-list li a i {
-    width: 42px;
-    height: 42px;
-    font-size: 25px; } }
+  #map-miles {
+    width: 15%; } }
 /*----- KEYFRAMES -----*/
 /*-----page set up animations -----*/
 @keyframes animate-logo {

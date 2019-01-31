@@ -1,5 +1,3 @@
-
-
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
@@ -11,7 +9,11 @@ $(".test-tab--test-button").on("click", function() {
             break;
         case 'start':
             $("#test-tab--" + testId).fadeOut(250);
-            setTimeout(function() { $("#test-tab--" + testId + "-test").fadeIn(250); }, 250);
+            setTimeout(function() {
+                $("#test-tab--" + testId + "-test").fadeIn(250, function() {
+                    $("#numeracy-answer").focus();
+                });
+            }, 250);
             $("#question-header").text("Question 1");
             if (testId == "numeracy") {
                 startNumeracyTest();

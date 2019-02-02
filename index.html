@@ -190,7 +190,7 @@
                     <div class="test-tab" id="test-tab--literacy">
                         <div class="row">
                             <div class="col-xs-12">
-                                LIteracy Test
+                                Literacy Test
                             </div>
                         </div>
                     </div>
@@ -273,19 +273,29 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p>Find schools in your local area</p>
-                                <p>
-                                    <input id="map-address" type="textbox" placeholder="Enter postcode">
-                                    <input id="submit" type="button" value="Search">
-                                </p>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        Postcode:
+                                    </div>
+                                <div class="col-xs-2" style="padding:0 0 15px 0;" >
+                                    <input id="map-address-1" style="width:100%; padding:0;"  type="textbox" maxlength="4" placeholder="SO21">
+                                    </div>
+                                    <div class="col-xs-2" style="padding:0 0 15px 0;">
+                                    <input id="map-address-2" style="width:100%;padding:0;"type="textbox" maxlength="3" placeholder="Optional">
+                                    </div>
+                                    <div class="col-xs-4">
+                                    <input id="map-submit" style="width:100%" type="button" value="Search">
+                                    </div>
+                                </div>
                                 <div class="row hidden-xs">
                                     <div class="col-xs-12" style="border: solid 2px purple; height:45vh">
-                                        <h3>Details:</h3>
-                                        <h3 id="school-name">Name</h3>
-                                        <h3 id="school-type">data1</h3>
-                                        <h3 id="data3">data3</h3>
-                                        <h3 id="data4">data4</h3>
-                                        <h3 id="data5">data5</h3>
-                                        <h3 id="data6">data6</h3>
+                                        <h3>School Details</h3>
+                                        <p id="school-name"></p>
+                                        <p id="school-type"></p>
+                                        <p id="education-phase"></p>
+                                        <p id="school-website"></p>
+                                        <p id="school-telephone"></p>
+                                        <p id="data6"></p>
                                         
                                     </div>
                                 </div>

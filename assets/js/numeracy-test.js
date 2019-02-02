@@ -16,6 +16,13 @@ function generateNumber() {
     return Math.ceil(Math.random() * Math.floor(10));
 }
 
+function clearTest() {
+    Answer=[];
+    Question=[];
+    QuestionNumber=0;
+    TotalScore=0;
+}
+
 function startNumeracyTest() {
     var firstNumber;
     var secondNumber;
@@ -109,6 +116,7 @@ function reportScore() {
 function skipQuestion() {
     if (QuestionNumber < 9) {
         nextQuestion();
+        $("#numeracy-answer").focus();
     }
     else {
         reportScore();
@@ -117,7 +125,7 @@ function skipQuestion() {
 
 function checkAnswer(answer) {
     console.log(answer);
-    if (isNaN(answer)) {
+    if (isNaN(answer) || answer=="") {
         alert("Enter a number as your answer!")
     }
     else if (answer == Answer[QuestionNumber]) {

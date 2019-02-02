@@ -21,6 +21,7 @@ $(".test-tab--test-button").on("click", function() {
             break;
         case 'back':
             $(this).closest('section').fadeOut(250);
+            clearTest();
             setTimeout(function() { $("#test-tab--landing").fadeIn(250); }, 250);
             break;
     }

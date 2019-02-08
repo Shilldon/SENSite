@@ -11,11 +11,6 @@ var QuestionNumber = 0;
 var TotalScore = 0;
 var Start = new Date();
 
-
-function generateNumber() {
-    return Math.ceil(Math.random() * Math.floor(10));
-}
-
 function clearTest() {
     Answer=[];
     Question=[];
@@ -24,15 +19,17 @@ function clearTest() {
 }
 
 function startNumeracyTest() {
-    var firstNumber;
+/*    var firstNumber;
     var secondNumber;
     var thirdNumber = "";
     var firstOperator;
-    var secondOperator = "";
+    var secondOperator = "";*/
     Start=new Date();
 
     for (i = 0; i <= 9; i++) {
-        firstNumber = generateNumber();
+        console.log("question="+i)
+        newQuestion();
+/*        firstNumber = generateNumber();
         secondNumber = generateNumber();
         thirdNumber = "";
         secondOperator = "";
@@ -85,8 +82,9 @@ function startNumeracyTest() {
                 firstoperator = 'x';
                 Answer[i] = firstNumber * secondNumber;
                 break;
-        }
-        Question[i] = firstNumber + " " + firstOperator + " " + secondNumber + " " + secondOperator + " " + thirdNumber + " = ";
+        }*/
+        Answer[i]=query.answer;
+        Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
     $("#numeracy-question").text(Question[0]);
 }

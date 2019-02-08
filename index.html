@@ -13,7 +13,7 @@
     <!--fonts and styles-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!--testing -->
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" />-->
 
@@ -270,58 +270,101 @@
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="schools-tab">
                     <div class="row">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p>Find schools in your local area</p>
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        Postcode:
-                                    </div>
-                                <div class="col-xs-2" style="padding:0 0 15px 0;" >
-                                    <input id="map-address-1" style="width:100%; padding:0;"  type="textbox" maxlength="4" placeholder="SO21">
-                                    </div>
-                                    <div class="col-xs-2" style="padding:0 0 15px 0;">
-                                    <input id="map-address-2" style="width:100%;padding:0;"type="textbox" maxlength="3" placeholder="Optional">
-                                    </div>
-                                    <div class="col-xs-4">
-                                    <input id="map-submit" style="width:100%" type="button" value="Search">
-                                    </div>
-                                </div>
-                                <div class="row hidden-xs">
-                                    <div class="col-xs-12" style="border: solid 2px purple; height:45vh">
-                                        <h3>School Details</h3>
-                                        <p id="school-name"></p>
-                                        <p id="school-type"></p>
-                                        <p id="education-phase"></p>
-                                        <p id="school-website"></p>
-                                        <p id="school-telephone"></p>
-                                        <p id="data6"></p>
-                                        
-                                    </div>
+                        <div class="col-sm-6" id="school-info">
+                            <div class="row" style="max-height:3vh; height: 3vh">
+                                <div class="col-xs-12" style="height:100%">
+                                    <p>Find schools in your local area</p>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div id="map"></div>
+                            <div class="row" style="max-height:3vh; height: 3vh">
+                                <div class="col-xs-3" style="height:100%">
+                                    Postcode:
+                                </div>
+                                <div class="col-xs-2" style="height:100%">
+                                    <input id="map-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                                </div>
+                                <div class="col-xs-2" style="height:100%">
+                                    <input id="map-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                                </div>
+                                <div class="col-xs-4" style="height:100%">
+                                    <input id="map-submit" style="width:100%" type="button" value="Search">
+                                </div>
+                            </div>
+                            <div class="row hidden-xs" style="max-height:33vh;height:33vh">
+                                <div class="col-xs-12" style="height:100%">
+                                    <h3>School Details</h3>
+                                    <p id="school-name"></p>
+                                    <p id="school-type"></p>
+                                    <p id="education-phase"></p>
+                                    <p id="school-website"></p>
+                                    <p id="school-telephone"></p>
+                                </div>
+                            </div>
+                            <div class="row hidden-xs" style="height:3vh">
+                                <div class="col-xs-12" style="height:100%">
+                                    <h4>Special Needs</h4>
+                                </div>
+                            </div>
+                            <div class="row schools-tab--disabilities hidden-xs" style="height:9vh;max-height:9vh">
+                                <div id="disability-icon-ASD" class="col-xs-3">
+                                    <p><i class="fas fa-puzzle-piece"></i></p>
+                                    <h6>Autistic Spectrum Disorder</h6>
+                                </div>
+                                <div id="disability-icon-SLD" class="col-xs-3">
+                                    <p><i class="fas fa-book-reader"></i></p>
+                                    <h6>Specific Learning Disabilities</h6>
+                                </div>
+                                <div id="disability-icon-LD" class="col-xs-3">
+                                    <p><i class="fas fa-shapes"></i></p>
+                                    <h6>Learning Difficulty</h6>
+                                </div>
+                                <div id="disability-icon-PD" class="col-xs-3">
+                                    <p><i class="fas fa-wheelchair"></i></p>
+                                    <h6>Physical Disability</h6>
+                                </div>
+                            </div>
+                            <div class="row schools-tab--disabilities hidden-xs" style="height:9vh;max-height:9vh">
+                                <div id="disability-icon-SEMH" class="col-xs-3">
+                                    <p><i class="fas fa-brain"></i></p>
+                                    <h6>Social, Emotional And Mental Health</h6>
+                                </div>
+                                <div id="disability-icon-HI" class="col-xs-3">
+                                    <p><i class="fas fa-deaf"></i></p>
+                                    <h6>Hearing Impairment</h6>
+                                </div>
+                                <div id="disability-icon-VI" class="col-xs-3">
+                                    <p><i class="fas fa-low-vision"></i></p>
+                                    <h6>Visual Impairment</h6>
+                                </div>
+                                <div id="disability-icon-SLC" class="col-xs-3">
+                                    <p><i class="fas fa-meh-blank"></i></p>
+                                    <h6>Speech, Language And Communication</h6>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-sm-6">
+                            <div id="map"></div>
+                        </div>
                     </div>
+            </div>
 
 
-                </article>
+            </article>
+    </div>
+    </section>
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 social-list">
+                <ul>
+                    <li><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a target="_blank" href="#"><i class="fab fa-youtube"></i></a></li>
+                    <li><a href=""><i class="fas fa-share"></i></a></li>
+                </ul>
             </div>
-        </section>
-        <footer class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 social-list">
-                    <ul>
-                        <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="#"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href=""><i class="fa fa-share"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
+        </div>
+    </footer>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -338,6 +381,7 @@
 <!--local scripts-->
 <script type="text/javascript" src="assets/js/animations.js"></script>
 <script type="text/javascript" src="assets/js/buttons.js"></script>
+<script type="text/javascript" src="assets/js/calculator.js"></script>
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
 <script type="text/javascript" src="assets/js/maps.js"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

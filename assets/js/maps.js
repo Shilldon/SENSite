@@ -39,6 +39,8 @@ function clearSchoolDetails() {
   $("#education-phase").text("");
   $("#school-website").html('');
   $("#school-telephone").text("");
+  $("div[id^='disability-icon']").css("color","grey");
+  $("div[id^='disability-icon']").css("background-color","transparent");
 }
 
 function centerMap(postcode) {
@@ -136,7 +138,12 @@ function convertPostcodes(schoolsDataArray) {
         }
         var schoolTelephone = schoolsDataArray[i][66];
         if (schoolTelephone > 0) { schoolTelephone = "0" + schoolTelephone; }
-        markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone];
+        var SEN=[];
+        for(j=0;j<13;j++) {
+          SEN[j]=schoolsDataArray[i][j+84].substr(0,2);
+          console.log(schoolName+" "+SEN[j]);
+        }
+        markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN];
         drawMarker(markerInfo);
       }
     }
@@ -170,7 +177,8 @@ function drawMarker(markerInfo) {
     type: markerInfo[3],
     educationPhase: markerInfo[4],
     schoolWebsite: markerInfo[5],
-    schoolTelephone: markerInfo[6]
+    schoolTelephone: markerInfo[6],
+    SEN: markerInfo[7]
   });
 
 
@@ -182,6 +190,7 @@ function drawMarker(markerInfo) {
     if (previousInfoWindow) {
       previousInfoWindow.close();
     }
+    clearSchoolDetails();
     previousInfoWindow = infowindow;
     infowindow.open(map, marker);
 
@@ -192,11 +201,24 @@ function drawMarker(markerInfo) {
     if (marker.schoolWebsite != "") {
       $("#school-website").html('<a href=' + marker.schoolWebsite + ' target="_blank">Go to website</a>');
     }
-    else {
-      $("#school-website").html('');
-    }
+  //  else {
+    //  $("#school-website").html('');
+    //}
     if (marker.schoolTelephone != "") { $("#school-telephone").text(marker.schoolTelephone); }
-
+    for(i=0;i<13;i++) {
+      switch (marker.SEN[i]) {
+        case "AS": $("#disability-icon-ASD").css("color","#e1e1e1"); $("#disability-icon-ASD").css("background-color","#9c6df9");break;
+        case "Sp": $("#disability-icon-SLD").css("color","#e1e1e1"); $("#disability-icon-SLD").css("background-color","#9c6df9"); break;
+        case "ML": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
+        case "SL": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
+        case "PM": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
+        case "PD": $("#disability-icon-PD").css("color","#e1e1e1"); $("#disability-icon-PD").css("background-color","#9c6df9"); break;
+        case "SE": $("#disability-icon-SEMH").css("color","#e1e1e1"); $("#disability-icon-SEMH").css("background-color","#9c6df9"); break;
+        case "HI": $("#disability-icon-HI").css("color","#e1e1e1"); $("#disability-icon-HI").css("background-color","#9c6df9"); break;
+        case "VI": $("#disability-icon-VI").css("color","#e1e1e1"); $("#disability-icon-VI").css("background-color","#9c6df9"); break;
+        case "SL": $("#disability-icon-SLC").css("color","#e1e1e1"); $("#disability-icon-SLC").css("background-color","#9c6df9"); break;
+      } 
+    }
   });
 
   markers.push(marker);

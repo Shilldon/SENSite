@@ -190,7 +190,7 @@ $logoWidth: 150px;
     .col-sm-6 {
         text-align: center;
         padding-bottom: 10px;
-    }    
+    }
 }
 
 #about-tab {
@@ -238,30 +238,27 @@ $value in $tab-colors {
     h3 {
         text-align: center;
     }
-}
 
-.test-tab--answer {
-    width: 100%;
-}
+    &--answer {
+        width: 100%;
+    }
+    &--test-button {
+        background-color: $test-color;
+        color: $white;
+        transition: 0.3s ease-in-out;
+        outline: none;
+        width: 90px;
+    }
+    &--test-button:active {
 
-.test-tab--test-button {
-    background-color: $test-color;
-    color: $white;
-    transition: 0.3s ease-in-out;
-    outline: none;
-    width: 90px;
-}
-
-.test-tab--test-button:active {
-
-    color: $test-color;
-    background-color: $white;
-    transition: 0.3s ease-in-out;
-}
-
-.test-tab--question {
-    font-size: 18px;
-    font-weight: 400;
+        color: $test-color;
+        background-color: $white;
+        transition: 0.3s ease-in-out;
+    }
+    &--question {
+        font-size: 18px;
+        font-weight: 400;
+    }
 }
 
 #answer-mark {
@@ -278,11 +275,29 @@ $value in $tab-colors {
     }
 }
 
+.schools-tab--disabilities {
+    .col-xs-3 {
+        padding-top: 10px;
+        border: 5px solid transparent;
+        border-radius: 15%;
+        color: grey;
+    }
+    p {
+        font-size: 12px;
+    }
+    i {
+        font-size: 30px;
+    }
+    div {
+        height: 100%;
+    }
+}
+
 /*----- map within schools tab -----*/
 
 #map {
     border: solid 2px $schools-color;
-    height: 55vh;
+    height: 60vh;
 }
 
 #map-address {
@@ -451,17 +466,25 @@ $value in $tab-colors {
         height: 38px;
         font-size: 21px;
     }
-    
+
     h3 {
-        font-size: 30px;
-    }
-    
-    h4 {
         font-size: 25px;
     }
-    
-    h5 {
+
+    h4 {
         font-size: 20px;
+    }
+
+    h5 {
+        font-size: 18px;
+    }
+    .schools-tab--disabilities {
+        p {
+            font-size: 8px;
+        }
+        i {
+            font-size: 20px;
+        }
     }
 }
 
@@ -469,7 +492,7 @@ $value in $tab-colors {
 
     $logoWidth: 350px;
     $title-font-size: 30px;
-    $body-font-size: 20px;
+    $body-font-size: 16px;
 
     #logo {
         width: $logoWidth;
@@ -585,7 +608,12 @@ $value in $tab-colors {
             font-size: 15px;
         }
     }
-    
+
+    #school-info {
+        border: solid 2px $schools-color;
+        height: 60vh;
+    }
+
     #map-address {
         width: 35%;
     }

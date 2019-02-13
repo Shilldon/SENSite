@@ -122,7 +122,7 @@
                             <h4><strong>Specialist Educational Needs Consultant</strong></h3>
                                 <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 07971 816461</h4>
                                 <h4><i class="fa fa-envelope" aria-hidden="true"></i> sparklepixcs@gmail.com</h4>
-                                <h4><i class="fa fa-facebook-square" aria-hidden="true"></i> SparklePixCS</h4>
+                                <h4><i class="fab fa-facebook" aria-hidden="true"></i> SparklePixCS</h4>
                                 <h4>Specialist in:</h4>
                                 <h5>Dyslexia Assessments</h5>
                                 <h5>Numeracy Assessments</h5>
@@ -161,45 +161,83 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 tab--menu-title">
                                 <h4>Take a test</h4>
                             </div>
                         </div>
-                        <div class="row"></div>
-                        <div class="col-xs-4">
-                            <h5>Literacy</h5>
-                        </div>
-                        <div class="col-xs-4">
-                            <h5>Numeracy</h5>
-                        </div>
-                        <div class="col-xs-4">
-                            <h5>Memory</h5>
-                        </div>
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-sm-4 tab--menu-button-container">
+                                <h4><i class="fa fa-book"></i></h4>
+                                <h5>Literacy</h5>
                                 <button class="test-tab--test-button" id="button-literacy-select">Take Test</button>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4 tab--menu-button-container">
+                                <h4><i class="fa fa-calculator"></i></h4>
+                                <h5>Numeracy</h5>
                                 <button class="test-tab--test-button" id="button-numeracy-select">Take Test</button>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4 tab--menu-button-container">
+                                <h4><i class="fas fa-brain"></i></h4>
+                                <h5>Memory</h5>
                                 <button class="test-tab--test-button" id="button-memory-select">Take Test</button>
                             </div>
                         </div>
                     </div>
-                    <div class="test-tab" id="test-tab--literacy">
+<!-- LITERACY TEST-->
+                    <section class="test-tab" id="test-tab--literacy">
                         <div class="row">
                             <div class="col-xs-12">
-                                Literacy Test
+                                <h3>Literacy Test</h3>
+                                <p>You will be presented with 10 pictures and partly completed sentences.  You need to type the missing word into the box where shown and click 'Submit' or press return.</p>
+                                <p>If you do not know the answer to a question you can click 'Skip'.</p>
+                                <p>If you want to leave the test click 'Back' to return to the test menu.</p>
+                                <p>The time it takes you to complete the test and the number of questions you answer correctly will determine your literacy score.</p>
+                                <p>Click 'OK' when you are ready to start, or 'Back' to return to the test menu.</p>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="test-tab--test-button" id="button-literacy-start">OK</button>
+                            </div>
+                        </div>                        
+                    </section>
+                    <section class="test-tab" id="test-tab--literacy-test">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 id="question-header">Question </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="test-tab--literacy-test-answer">
+                                Holding for answer
+                            </div>
+                        </div>
+                        <div class="row" id="test-tab--literacy-test-question">
+                            <div >holding for jumbled words</div>
+                            
+                        </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                                </div>
+                            </div>                        
+                    </section>    
+<!-- NUMERACY TEST-->
                     <section class="test-tab" id="test-tab--numeracy">
                         <div class="row">
                             <div class="col-xs-12">
                                 <h3>Numeracy Test</h3>
-                                <p>You will be presented with 10 arithmetic calculations, increasing in difficulty. You need to type the answer into the box where shown and click 'Submit'.</p>
-                                <p>If you do not know the answer to a calculation you can click 'Skip'.</p>
+                                <p>You will be presented with 10 arithmetic calculations. You need to type the answer into the box where shown and click 'Submit' or press return.</p>
+                                <p>If you do not know the answer to a question you can click 'Skip'.</p>
                                 <p>If you want to leave the test click 'Back' to return to the test menu.</p>
                                 <p>The time it takes you to complete the test and the number of questions you answer correctly will determine your numeracy score.</p>
                                 <p>Click 'OK' when you are ready to start, or 'Back' to return to the test menu.</p>
@@ -221,24 +259,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-6 col-xs-offset-2">
                                 <span class="test-tab--question" id="numeracy-question"></span>
                             </div>
-                            <div class="col-xs-3 col-xs-offset-1">
+                            <div class="col-xs-3">
                                 <input class="test-tab--answer" id="numeracy-answer"></input>
                             </div>
                             <div class="col-xs-1">
                                 <img id="answer-mark" src="">
                             </div>
                             <div class="row">
-                                <div class="col-xs-4">
-                                    <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
-                                </div>
-                                <div class="col-xs-4">
+                                <div class="col-sm-4">
                                     <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
                                 </div>
-                                <div class="col-xs-4">
+                                <div class="col-sm-4">
                                     <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
                                 </div>
                             </div>
                         </div>
@@ -260,85 +298,81 @@
                             </div>
                         </div>
                     </section>
-                    <div class="test-tab" id="test-tab--memory">
+<!-- MEMORY TEST -->
+                    <section class="test-tab" id="test-tab--memory">
                         <div class="row">
                             <div class="col-xs-12">
                                 Memory Test
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="schools-tab">
                     <div class="row">
-                        <div class="col-sm-6" id="school-info">
-                            <div class="row" style="max-height:3vh; height: 3vh">
-                                <div class="col-xs-12" style="height:100%">
-                                    <p>Find schools in your local area</p>
+                        <div class="col-sm-6">
+                            <div id="school-info">
+                                <div class="row" style="max-height:3vh; height: 3vh">
+                                    <div class="col-xs-12" style="height:100%">
+                                        <p>Find schools in your local area</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row" style="max-height:3vh; height: 3vh">
-                                <div class="col-xs-3" style="height:100%">
-                                    Postcode:
+                                <div class="row" style="max-height:3vh; height: 3vh">
+                                    <div class="col-xs-3" style="height:100%">
+                                        Postcode:
+                                    </div>
+                                    <div class="col-xs-3" style="height:100%">
+                                        <input id="map-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                                    </div>
+                                    <div class="col-xs-3" style="height:100%">
+                                        <input id="map-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                                    </div>
+                                    <div class="col-xs-3" style="height:100%">
+                                        <input id="map-submit" style="width:100%" type="button" value="Search">
+                                    </div>
                                 </div>
-                                <div class="col-xs-2" style="height:100%">
-                                    <input id="map-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                                <div class="row hidden-xs" style="max-height:30vh;height:30vh">
+                                    <div class="col-xs-12" style="height:100%">
+                                        <h3>School Details</h3>
+                                        <p id="school-name">Select a school from the map for more information</p>
+                                        <p id="school-type"></p>
+                                        <p id="education-phase"></p>
+                                        <p id="school-website"></p>
+                                        <p id="school-telephone"></p>
+                                        <p id="school-head"></p>
+                                    </div>
                                 </div>
-                                <div class="col-xs-2" style="height:100%">
-                                    <input id="map-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                                <div class="row hidden-xs" style="height:3vh; margin-bottom:15px">
+                                    <div class="col-xs-12" style="height:100%">
+                                        <h4>Special Needs</h4>
+                                    </div>
                                 </div>
-                                <div class="col-xs-4" style="height:100%">
-                                    <input id="map-submit" style="width:100%" type="button" value="Search">
+                                <div class="row schools-tab--disabilities hidden-xs" style="height:10vh;max-height:5vh">
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-SLD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Specific Learning Difficulty"><i class="fas fa-book-reader"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-LD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Learning Difficulty"><i class="fas fa-shapes"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-PD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Physical Disability"><i class="fas fa-wheelchair"></i></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row hidden-xs" style="max-height:33vh;height:33vh">
-                                <div class="col-xs-12" style="height:100%">
-                                    <h3>School Details</h3>
-                                    <p id="school-name"></p>
-                                    <p id="school-type"></p>
-                                    <p id="education-phase"></p>
-                                    <p id="school-website"></p>
-                                    <p id="school-telephone"></p>
-                                </div>
-                            </div>
-                            <div class="row hidden-xs" style="height:3vh">
-                                <div class="col-xs-12" style="height:100%">
-                                    <h4>Special Needs</h4>
-                                </div>
-                            </div>
-                            <div class="row schools-tab--disabilities hidden-xs" style="height:9vh;max-height:9vh">
-                                <div id="disability-icon-ASD" class="col-xs-3">
-                                    <p><i class="fas fa-puzzle-piece"></i></p>
-                                    <h6>Autistic Spectrum Disorder</h6>
-                                </div>
-                                <div id="disability-icon-SLD" class="col-xs-3">
-                                    <p><i class="fas fa-book-reader"></i></p>
-                                    <h6>Specific Learning Disabilities</h6>
-                                </div>
-                                <div id="disability-icon-LD" class="col-xs-3">
-                                    <p><i class="fas fa-shapes"></i></p>
-                                    <h6>Learning Difficulty</h6>
-                                </div>
-                                <div id="disability-icon-PD" class="col-xs-3">
-                                    <p><i class="fas fa-wheelchair"></i></p>
-                                    <h6>Physical Disability</h6>
-                                </div>
-                            </div>
-                            <div class="row schools-tab--disabilities hidden-xs" style="height:9vh;max-height:9vh">
-                                <div id="disability-icon-SEMH" class="col-xs-3">
-                                    <p><i class="fas fa-brain"></i></p>
-                                    <h6>Social, Emotional And Mental Health</h6>
-                                </div>
-                                <div id="disability-icon-HI" class="col-xs-3">
-                                    <p><i class="fas fa-deaf"></i></p>
-                                    <h6>Hearing Impairment</h6>
-                                </div>
-                                <div id="disability-icon-VI" class="col-xs-3">
-                                    <p><i class="fas fa-low-vision"></i></p>
-                                    <h6>Visual Impairment</h6>
-                                </div>
-                                <div id="disability-icon-SLC" class="col-xs-3">
-                                    <p><i class="fas fa-meh-blank"></i></p>
-                                    <h6>Speech, Language And Communication</h6>
+                                <div class="row schools-tab--disabilities hidden-xs" style="height:10vh;max-height:5vh">
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-SEMH" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Social, Emotional and Mental Health"><i class="fas fa-brain"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-HI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Hearing Impairment"><i class="fas fa-deaf"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-VI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Visual Impairment"><i class="fas fa-low-vision"></i></p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p id="disability-icon-SLC" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Speech, Language And Communication"><i class="fas fa-meh-blank"></i></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -383,6 +417,8 @@
 <script type="text/javascript" src="assets/js/buttons.js"></script>
 <script type="text/javascript" src="assets/js/calculator.js"></script>
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
+
+<script type="text/javascript" src="assets/js/literacy-test.js"></script>
 <script type="text/javascript" src="assets/js/maps.js"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UTwrPWlwTVB0qWHXeaZIRhpcwf8nP-U&libraries=places&callback=initMap"></script>

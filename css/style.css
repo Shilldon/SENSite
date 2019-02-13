@@ -3,7 +3,8 @@
 /*----- FONT-SIZE -----*/
 /*-----BODY -----*/
 body {
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 12px; }
 
 .row {
   padding: 0;
@@ -110,7 +111,6 @@ footer {
     line-height: 5vh;
     text-align: center;
     color: #e1e1e1;
-    font-size: 12px;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
     margin: 0 -2px -0px -2px;
     width: 25%; }
@@ -129,19 +129,19 @@ footer {
   display: none;
   overflow: auto;
   padding: 10px 0 10px 0; }
-  .tab p {
-    font-size: 12px; }
+  .tab h2,
   .tab h3,
   .tab h4,
   .tab h5,
   .tab .col-xs-4 {
     text-align: center; }
-  .tab .col-xs-12 {
-    text-align: center;
-    padding-bottom: 10px; }
   .tab .col-sm-6 {
     text-align: center;
     padding-bottom: 10px; }
+  .tab--menu-title-container {
+    text-align: center; }
+  .tab--menu-button-container {
+    text-align: center; }
 
 #about-tab img {
   margin: auto;
@@ -166,12 +166,10 @@ footer {
 /*----- TEST TAB -----*/
 .test-tab {
   display: none; }
-  .test-tab .col-xs-4 {
+  .test-tab .col-sm-4 {
     text-align: center;
     padding-top: 20px; }
   .test-tab .col-xs-6 {
-    text-align: center; }
-  .test-tab h3 {
     text-align: center; }
   .test-tab--answer {
     width: 100%; }
@@ -180,7 +178,7 @@ footer {
     color: #e1e1e1;
     transition: 0.3s ease-in-out;
     outline: none;
-    width: 90px; }
+    width: 50%; }
   .test-tab--test-button:active {
     color: #884ffb;
     background-color: #e1e1e1;
@@ -198,17 +196,16 @@ footer {
   #schools-tab input {
     font-size: 10px; }
 
-.schools-tab--disabilities .col-xs-3 {
-  padding-top: 10px;
-  border: 5px solid transparent;
-  border-radius: 15%;
-  color: grey; }
-.schools-tab--disabilities p {
-  font-size: 12px; }
 .schools-tab--disabilities i {
   font-size: 30px; }
-.schools-tab--disabilities div {
-  height: 100%; }
+
+.schools-tab--disabilities-icon {
+  color: grey;
+  margin: 0 0 10px;
+  border: solid 2px #9c6df9;
+  border-radius: 35%;
+  min-height: 5vh;
+  padding-top: 8px; }
 
 /*----- map within schools tab -----*/
 #map {
@@ -224,7 +221,6 @@ footer {
 /*----- CONTACT FORM -----*/
 #contact-form {
   max-height: 60vh;
-  font-size: 12px;
   font-family: 'Roboto', sans-serif;
   color: #e1e1e1;
   margin-top: 20px;
@@ -298,37 +294,25 @@ footer {
 
 /*----- MEDIA QUERIES -----*/
 @media (min-width: 480px) and (max-width: 767px) {
+  body {
+    font-size: 15px; }
+
   #logo {
     width: 200px;
     height: 133.33333px; }
 
   .top-section--title-text {
-    font-size: 20px; }
-
-  #contact-form {
-    font-size: 15px; }
-
-  #navbar ul li {
-    font-size: 15px; }
-
-  .tab p {
-    font-size: 15px; } }
+    font-size: 20px; } }
 @media (min-width: 768px) and (max-width: 991px) {
+  body {
+    font-size: 16px; }
+
   #logo {
     width: 300px;
     height: 200px; }
 
   .top-section--title-text {
     font-size: 25px; }
-
-  #contact-form {
-    font-size: 16px; }
-
-  #navbar ul li {
-    font-size: 16px; }
-
-  .tab p {
-    font-size: 16px; }
 
   .social-list li a i {
     width: 38px;
@@ -349,6 +333,9 @@ footer {
   .schools-tab--disabilities i {
     font-size: 20px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
+  body {
+    font-size: 16px; }
+
   #logo {
     width: 350px;
     height: 233.33333px; }
@@ -356,35 +343,20 @@ footer {
   .top-section--title-text {
     font-size: 30px; }
 
-  #contact-form {
-    font-size: 16px; }
-
-  #navbar ul li {
-    font-size: 16px; }
-
-  .tab p {
-    font-size: 16px; }
-
   .social-list li a i {
     width: 40px;
     height: 40px;
     font-size: 23px; } }
 @media (min-width: 1200px) {
+  body {
+    font-size: 20px; }
+
   #logo {
     width: 400px;
     height: 266.66667px; }
 
   .top-section--title-text {
     font-size: 35px; }
-
-  #contact-form {
-    font-size: 20px; }
-
-  #navbar ul li {
-    font-size: 20px; }
-
-  .tab p {
-    font-size: 20px; }
 
   .social-list li a i {
     width: 42px;

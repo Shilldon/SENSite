@@ -19,70 +19,9 @@ function clearTest() {
 }
 
 function startNumeracyTest() {
-/*    var firstNumber;
-    var secondNumber;
-    var thirdNumber = "";
-    var firstOperator;
-    var secondOperator = "";*/
     Start=new Date();
-
     for (i = 0; i <= 9; i++) {
-        console.log("question="+i)
         newQuestion();
-/*        firstNumber = generateNumber();
-        secondNumber = generateNumber();
-        thirdNumber = "";
-        secondOperator = "";
-        switch (i) {
-            case 0:
-                firstOperator = '+';
-                Answer[i] = firstNumber + secondNumber;
-                break;
-            case 1:
-                firstOperator = '+';
-                Answer[i] = firstNumber + secondNumber;
-                break;
-            case 2:
-                firstOperator = '-';
-                Answer[i] = firstNumber - secondNumber;
-                break;
-            case 3:
-                firstOperator = '-';
-                Answer[i] = firstNumber - secondNumber;
-                break;
-            case 4:
-                firstOperator = '+';
-                secondOperator = '+';
-                thirdNumber = generateNumber();
-                Answer[i] = firstNumber + secondNumber + thirdNumber;
-                break;
-            case 5:
-                firstOperator = '+';
-                secondOperator = '-';
-                thirdNumber = generateNumber();
-                Answer[i] = firstNumber + secondNumber - thirdNumber;
-                break;
-            case 6:
-                firstOperator = '-';
-                secondOperator = '+';
-                thirdNumber = generateNumber();
-                Answer[i] = firstNumber - secondNumber + thirdNumber;
-                break;
-            case 7:
-                firstOperator = '-';
-                secondOperator = '-';
-                thirdNumber = generateNumber();
-                Answer[i] = firstNumber - secondNumber - thirdNumber;
-                break;
-            case 8:
-                firstOperator = 'x';
-                Answer[i] = firstNumber * secondNumber;
-                break;
-            case 9:
-                firstoperator = 'x';
-                Answer[i] = firstNumber * secondNumber;
-                break;
-        }*/
         Answer[i]=query.answer;
         Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
@@ -107,8 +46,6 @@ function reportScore() {
     $("#test-tab--numeracy-test").fadeOut(250);
     setTimeout(function() { $("#test-tab--numeracy-result").fadeIn(250); }, 250);
     $("#numeracy-result").text(result.toString());
-
-
 }
 
 function skipQuestion() {

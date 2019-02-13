@@ -17,6 +17,7 @@ $body-font-size:12px;
 
 body {
     overflow: hidden;
+    font-size: $body-font-size;
 }
 
 .row {
@@ -148,7 +149,7 @@ $logoWidth: 150px;
         line-height: 5vh;
         text-align: center;
         color: $white;
-        font-size: $body-font-size;
+     //   font-size: $body-font-size;
         text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
         margin: 0 -2px -0px -2px;
         width: 25%;
@@ -175,21 +176,24 @@ $logoWidth: 150px;
     overflow: auto;
     padding: 10px 0 10px 0;
     p {
-        font-size: $body-font-size;
+     //   font-size: $body-font-size;
     }
+    h2,
     h3,
     h4,
     h5,
     .col-xs-4 {
         text-align: center;
     }
-    .col-xs-12 {
-        text-align: center;
-        padding-bottom: 10px;
-    }
     .col-sm-6 {
         text-align: center;
         padding-bottom: 10px;
+    }
+    &--menu-title-container {
+        text-align: center;
+    }
+    &--menu-button-container {
+        text-align:center;
     }
 }
 
@@ -226,16 +230,12 @@ $value in $tab-colors {
 .test-tab {
     display: none;
 
-    .col-xs-4 {
+    .col-sm-4 {
         text-align: center;
         padding-top: 20px;
     }
 
     .col-xs-6 {
-        text-align: center;
-    }
-
-    h3 {
         text-align: center;
     }
 
@@ -247,10 +247,9 @@ $value in $tab-colors {
         color: $white;
         transition: 0.3s ease-in-out;
         outline: none;
-        width: 90px;
+        width: 50%;
     }
     &--test-button:active {
-
         color: $test-color;
         background-color: $white;
         transition: 0.3s ease-in-out;
@@ -276,21 +275,18 @@ $value in $tab-colors {
 }
 
 .schools-tab--disabilities {
-    .col-xs-3 {
-        padding-top: 10px;
-        border: 5px solid transparent;
-        border-radius: 15%;
-        color: grey;
-    }
-    p {
-        font-size: 12px;
-    }
     i {
         font-size: 30px;
     }
-    div {
-        height: 100%;
-    }
+}
+
+.schools-tab--disabilities-icon {
+    color: grey;
+    margin: 0 0 10px;
+    border: solid 2px $schools-color;
+    border-radius: 35%;
+    min-height: 5vh;
+    padding-top: 8px;
 }
 
 /*----- map within schools tab -----*/
@@ -313,7 +309,7 @@ $value in $tab-colors {
 #contact-form {
 
     max-height: 60vh;
-    font-size: $body-font-size;
+  //  font-size: $body-font-size;
     font-family: 'Roboto', sans-serif;
     color: $white;
     margin-top: 20px;
@@ -420,6 +416,10 @@ $value in $tab-colors {
     $title-font-size: 20px;
     $body-font-size: 15px;
 
+body {
+    font-size: $body-font-size;
+}
+
     #logo {
         width: $logoWidth;
         height: $logoWidth/3*2;
@@ -427,15 +427,6 @@ $value in $tab-colors {
 
     .top-section--title-text {
         font-size: $title-font-size;
-    }
-    #contact-form {
-        font-size: $body-font-size;
-    }
-    #navbar ul li {
-        font-size: $body-font-size;
-    }
-    .tab p {
-        font-size: $body-font-size;
     }
 }
 
@@ -444,6 +435,9 @@ $value in $tab-colors {
     $logoWidth: 300px;
     $title-font-size: 25px;
     $body-font-size: 16px;
+body {
+    font-size: $body-font-size;
+}
 
     #logo {
         width: $logoWidth;
@@ -451,15 +445,6 @@ $value in $tab-colors {
     }
     .top-section--title-text {
         font-size: $title-font-size;
-    }
-    #contact-form {
-        font-size: $body-font-size;
-    }
-    #navbar ul li {
-        font-size: $body-font-size;
-    }
-    .tab p {
-        font-size: $body-font-size;
     }
     .social-list li a i {
         width: 38px;
@@ -493,6 +478,9 @@ $value in $tab-colors {
     $logoWidth: 350px;
     $title-font-size: 30px;
     $body-font-size: 16px;
+body {
+    font-size: $body-font-size;
+}
 
     #logo {
         width: $logoWidth;
@@ -500,15 +488,6 @@ $value in $tab-colors {
     }
     .top-section--title-text {
         font-size: $title-font-size;
-    }
-    #contact-form {
-        font-size: $body-font-size;
-    }
-    #navbar ul li {
-        font-size: $body-font-size;
-    }
-    .tab p {
-        font-size: $body-font-size;
     }
     .social-list li a i {
         width: 40px;
@@ -521,6 +500,9 @@ $value in $tab-colors {
     $logoWidth: 400px;
     $title-font-size: 35px;
     $body-font-size: 20px;
+body {
+    font-size: $body-font-size;
+}
 
     #logo {
         width: $logoWidth;
@@ -528,15 +510,6 @@ $value in $tab-colors {
     }
     .top-section--title-text {
         font-size: $title-font-size;
-    }
-    #contact-form {
-        font-size: $body-font-size;
-    }
-    #navbar ul li {
-        font-size: $body-font-size;
-    }
-    .tab p {
-        font-size: $body-font-size;
     }
     .social-list li a i {
         width: 42px;

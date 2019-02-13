@@ -39,8 +39,8 @@ function clearSchoolDetails() {
   $("#education-phase").text("");
   $("#school-website").html('');
   $("#school-telephone").text("");
-  $("div[id^='disability-icon']").css("color","grey");
-  $("div[id^='disability-icon']").css("background-color","transparent");
+  $("p[id^='disability-icon']").css("color", "grey");
+  $("p[id^='disability-icon']").css("background-color", "transparent");
 }
 
 function centerMap(postcode) {
@@ -131,19 +131,23 @@ function convertPostcodes(schoolsDataArray) {
         var educationPhase = schoolsDataArray[i][18];
         educationPhase = educationPhase.replace("Not applicable", "");
         var schoolWebsite = schoolsDataArray[i][65];
+        console.log(schoolWebsite);
         if (schoolWebsite != "") {
-          if (schoolWebsite.match(/http/g) == null || schoolWebsite.match(/https/g) == null) {
+          if (schoolWebsite.match(/http/g) == null) {
+            console.log("no http");
             schoolWebsite = "http://" + schoolWebsite;
           }
         }
+        console.log(schoolWebsite);
         var schoolTelephone = schoolsDataArray[i][66];
-        if (schoolTelephone > 0) { schoolTelephone = "0" + schoolTelephone; }
-        var SEN=[];
-        for(j=0;j<13;j++) {
-          SEN[j]=schoolsDataArray[i][j+84].substr(0,2);
-          console.log(schoolName+" "+SEN[j]);
+        if (schoolTelephone > 0) { schoolTelephone = "Telehphone: 0" + schoolTelephone; }
+        var SEN = [];
+        for (j = 0; j < 13; j++) {
+          SEN[j] = schoolsDataArray[i][j + 84].substr(0, 2);
+          console.log(schoolName + " " + SEN[j]);
         }
-        markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN];
+        var schoolHead=schoolsDataArray[i][67]+" "+schoolsDataArray[i][68]+" "+schoolsDataArray[i][69]
+        markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN, schoolHead];
         drawMarker(markerInfo);
       }
     }
@@ -167,6 +171,11 @@ function getPostcodeData(schoolPostCodes, callBack) {
 
 var previousInfoWindow = false;
 
+function colourInIcon (icon) {
+  $(icon).css("color", "#e1e1e1");
+  $(icon).css("background-color", "#9c6df9");  
+}
+
 function drawMarker(markerInfo) {
   var schoolPosition = new google.maps.LatLng(markerInfo[0], markerInfo[1]);
 
@@ -178,12 +187,17 @@ function drawMarker(markerInfo) {
     educationPhase: markerInfo[4],
     schoolWebsite: markerInfo[5],
     schoolTelephone: markerInfo[6],
-    SEN: markerInfo[7]
+    SEN: markerInfo[7],
+    schoolHead: markerInfo[8]
   });
-
-
+  var infoContent = '<div id="content"><h5>' + marker.title + '</h5>';
+  if ($(window).width() < 767) {
+    infoContent += '<a href=' + marker.schoolWebsite + ' target="_blank">' + marker.schoolWebsite + '</a>' +
+      '<p>' + marker.schoolTelephone + '</p>';
+  }
   var infowindow = new google.maps.InfoWindow({
-    content: marker.title
+    content: infoContent,
+
   });
   marker.addListener('click', function() {
     //check if previous infowindow is open and, if so, close it
@@ -196,28 +210,48 @@ function drawMarker(markerInfo) {
 
     //get data from marker and display in window.
     $("#school-name").text(marker.title);
-    $("#school-type").text("Type of school: "+marker.type);
-    if(marker.educationPhase !="") { $("#education-phase").text("Education level: "+marker.educationPhase); }
+    $("#school-type").text("Type of school: " + marker.type);
+    if (marker.educationPhase != "") { $("#education-phase").text("Education level: " + marker.educationPhase); }
     if (marker.schoolWebsite != "") {
       $("#school-website").html('<a href=' + marker.schoolWebsite + ' target="_blank">Go to website</a>');
     }
-  //  else {
-    //  $("#school-website").html('');
-    //}
+    if(marker.schoolHead!="") { $("#school-head").text("Head: "+marker.schoolHead); }
     if (marker.schoolTelephone != "") { $("#school-telephone").text(marker.schoolTelephone); }
-    for(i=0;i<13;i++) {
+    var icon;
+    for (i = 0; i < 13; i++) {
       switch (marker.SEN[i]) {
-        case "AS": $("#disability-icon-ASD").css("color","#e1e1e1"); $("#disability-icon-ASD").css("background-color","#9c6df9");break;
-        case "Sp": $("#disability-icon-SLD").css("color","#e1e1e1"); $("#disability-icon-SLD").css("background-color","#9c6df9"); break;
-        case "ML": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
-        case "SL": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
-        case "PM": $("#disability-icon-LD").css("color","#e1e1e1"); $("#disability-icon-LD").css("background-color","#9c6df9"); break;
-        case "PD": $("#disability-icon-PD").css("color","#e1e1e1"); $("#disability-icon-PD").css("background-color","#9c6df9"); break;
-        case "SE": $("#disability-icon-SEMH").css("color","#e1e1e1"); $("#disability-icon-SEMH").css("background-color","#9c6df9"); break;
-        case "HI": $("#disability-icon-HI").css("color","#e1e1e1"); $("#disability-icon-HI").css("background-color","#9c6df9"); break;
-        case "VI": $("#disability-icon-VI").css("color","#e1e1e1"); $("#disability-icon-VI").css("background-color","#9c6df9"); break;
-        case "SL": $("#disability-icon-SLC").css("color","#e1e1e1"); $("#disability-icon-SLC").css("background-color","#9c6df9"); break;
-      } 
+        case "AS":
+          icon="#disability-icon-ASD"
+          break;
+        case "Sp":
+          icon="#disability-icon-SLD";
+          break;
+        case "ML":
+          icon="#disability-icon-LD";
+          break;
+        case "SL":
+          icon="#disability-icon-LD";
+          break;
+        case "PM":
+          icon="#disability-icon-LD";
+          break;
+        case "PD":
+          icon="#disability-icon-PD";
+          break;
+        case "SE":
+          icon="#disability-icon-SEMH";
+          break;
+        case "HI":
+          icon="#disability-icon-HI";
+          break;
+        case "VI":
+          icon="#disability-icon-VI";
+          break;
+        case "SL":
+          icon="#disability-icon-SLC";
+          break;
+      }
+      colourInIcon(icon);
     }
   });
 

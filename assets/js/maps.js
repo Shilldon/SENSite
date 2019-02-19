@@ -13,7 +13,6 @@ $(document).ready(function() {
     if (e.keyCode == 13)
       $('#map-submit').focus();
     clearMarkers();
-    //getSchoolsData();
   });
 });
 

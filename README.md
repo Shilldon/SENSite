@@ -16,3 +16,5 @@ sparkle - https://svgsilh.com/image/1076611.html https://creativecommons.org/pub
 tick mark https://pixabay.com/en/check-mark-tick-mark-check-correct-1292787/
 cross https://www.maxpixel.net/Remove-Incorrect-Symbol-Sign-Red-Delete-Cancel-294245
 blackboard https://www.pexels.com/photo/ascent-blackboard-board-business-162560/
+
+shuffle array function Fisher-Yates Shuffle - https://github.com/coolaj86/knuth-shuffle

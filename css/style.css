@@ -187,6 +187,38 @@ footer {
     font-size: 18px;
     font-weight: 400; }
 
+.test-tab--literacy-test-container {
+  border: solid 2px #884ffb;
+  font-family: 'Indie Flower', cursive;
+  font-size: 18px;
+  min-height: 10vh;
+  padding: 0; }
+
+.test-tab--literacy-words {
+  text-align: center;
+  background-color: #e1e1e1;
+  border: none;
+  min-height: 5vh;
+  max-height: 5vh; }
+
+.test-tab--literacy-words-answer {
+  text-align: center;
+  min-height: 5vh;
+  max-height: 5vh;
+  background-color: #e1e1e1;
+  border: none; }
+
+.test-tab--literacy-word-button {
+  border: none;
+  background-color: #e1e1e1;
+  height: 100%; }
+
+.test-tab--literacy-word-button-answer {
+  border: none;
+  background-color: #e1e1e1;
+  height: 100%;
+  display: none; }
+
 #answer-mark {
   width: 20px; }
 

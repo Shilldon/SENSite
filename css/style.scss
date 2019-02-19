@@ -260,6 +260,50 @@ $value in $tab-colors {
     }
 }
 
+.test-tab--literacy-test-container {
+    border: solid 2px $test-color;  
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+    min-height:10vh;
+    padding:0;
+}
+
+.test-tab--literacy-words {
+    text-align:center;
+    background-color:$white;
+    //border: solid 1px grey;
+    border:none;
+    min-height:5vh;
+    max-height:5vh;
+   // padding:5px 5px 5px 5px;
+}
+
+.test-tab--literacy-words-answer {
+    text-align:center;
+    min-height:5vh;
+    max-height:5vh;
+    background-color:$white;
+    border: none;
+   // padding:5px 5px 5px 5px;
+}
+
+.test-tab--literacy-word-button {
+ //   width:100%;
+    border: none;
+    background-color:$white;
+    height:100%;
+    
+}
+
+.test-tab--literacy-word-button-answer {
+    border: none;
+    background-color:$white;
+//    width:100%;
+    height:100%;
+    display:none;
+    
+}
+
 #answer-mark {
     width: 20px;
 }

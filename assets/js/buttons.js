@@ -5,7 +5,6 @@ $(document).ready(function(){
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
-    console.log(action)
     var testId = buttonId[1];
     switch (action) {
         case 'select':
@@ -20,12 +19,10 @@ $(".test-tab--test-button").on("click", function() {
                 });
             }, 250);
             $("#question-header").text("Question 1");
-            console.log(testId);
             if (testId == "numeracy") {
                 startNumeracyTest();
             }
             else if(testId=="literacy") {
-                console.log("clicked literacy")
                 startLiteracyTest();
             }
             break;

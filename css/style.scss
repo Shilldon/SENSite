@@ -264,44 +264,37 @@ $value in $tab-colors {
     border: solid 2px $test-color;  
     font-family: 'Indie Flower', cursive;
     font-size: 18px;
-    min-height:10vh;
+    min-height:5vh;
+    margin:0 10px 0 10px;
     padding:0;
+        text-align:center;
 }
 
-.test-tab--literacy-words {
-    text-align:center;
-    background-color:$white;
-    //border: solid 1px grey;
-    border:none;
-    min-height:5vh;
-    max-height:5vh;
-   // padding:5px 5px 5px 5px;
-}
-
-.test-tab--literacy-words-answer {
-    text-align:center;
-    min-height:5vh;
-    max-height:5vh;
-    background-color:$white;
-    border: none;
-   // padding:5px 5px 5px 5px;
-}
-
-.test-tab--literacy-word-button {
- //   width:100%;
+.test-tab--literacy-word {
     border: none;
     background-color:$white;
     height:100%;
-    
+    display:inline-block;
+    outline:none;
 }
 
-.test-tab--literacy-word-button-answer {
-    border: none;
-    background-color:$white;
-//    width:100%;
-    height:100%;
-    display:none;
-    
+.test-tab--literacy-word-question-hidden {
+    display:none;    
+}
+
+.test-tab--literacy-word-question-shown {
+    display:inline-block;    
+}
+
+.test-tab--literacy-word-answer-hidden {
+    margin: 0 2.5px 0 2.5px;
+    border-bottom:solid 1px; 
+    border-right:none;
+    width: 50px;
+}
+
+.test-tab--literacy-word-answer-shown {
+    border: none; 
 }
 
 #answer-mark {

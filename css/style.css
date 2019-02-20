@@ -191,33 +191,32 @@ footer {
   border: solid 2px #884ffb;
   font-family: 'Indie Flower', cursive;
   font-size: 18px;
-  min-height: 10vh;
-  padding: 0; }
-
-.test-tab--literacy-words {
-  text-align: center;
-  background-color: #e1e1e1;
-  border: none;
   min-height: 5vh;
-  max-height: 5vh; }
+  margin: 0 10px 0 10px;
+  padding: 0;
+  text-align: center; }
 
-.test-tab--literacy-words-answer {
-  text-align: center;
-  min-height: 5vh;
-  max-height: 5vh;
-  background-color: #e1e1e1;
-  border: none; }
-
-.test-tab--literacy-word-button {
-  border: none;
-  background-color: #e1e1e1;
-  height: 100%; }
-
-.test-tab--literacy-word-button-answer {
+.test-tab--literacy-word {
   border: none;
   background-color: #e1e1e1;
   height: 100%;
+  display: inline-block;
+  outline: none; }
+
+.test-tab--literacy-word-question-hidden {
   display: none; }
+
+.test-tab--literacy-word-question-shown {
+  display: inline-block; }
+
+.test-tab--literacy-word-answer-hidden {
+  margin: 0 2.5px 0 2.5px;
+  border-bottom: solid 1px;
+  border-right: none;
+  width: 50px; }
+
+.test-tab--literacy-word-answer-shown {
+  border: none; }
 
 #answer-mark {
   width: 20px; }

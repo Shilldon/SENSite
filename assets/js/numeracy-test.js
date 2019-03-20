@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#numeracy-answer').keypress(function(e) {
-        if (e.keyCode == 13 && ($('#button-numeracy-submit').attr("disabled")!="disabled"))
+        if (e.keyCode == 13 && ($('#button-numeracy-submit').attr("disabled") != "disabled"))
             $('#button-numeracy-submit').click();
     });
 });
@@ -10,6 +10,7 @@ var Question = [];
 var QuestionNumber = 0;
 var TotalScore = 0;
 var Start = new Date();
+var DisplayResult;
 
 function clearTest() {
     Answer = [];
@@ -18,11 +19,13 @@ function clearTest() {
     TotalScore = 0;
     $("#numeracy-answer").val('');
     $("#numeracy-answer").focus();
-    $("#answer-mark").css('display','none');
+    $("#answer-mark").css('display', 'none');
 }
 
 function startNumeracyTest() {
     Start = new Date();
+    QuestionNumber=0;
+    TotalScore = 0;
     for (i = 0; i <= 9; i++) {
         newQuestion();
         Answer[i] = query.answer;
@@ -30,23 +33,52 @@ function startNumeracyTest() {
     }
     $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
     $("#numeracy-question").text(Question[0]);
-    $("#button-numeracy-submit").removeAttr("disabled");    
-}
-
-function nextQuestion() {
-    console.log("1st " + QuestionNumber)
-    QuestionNumber++;
-    console.log("2nd " + QuestionNumber)
-    $("#numeracy-answer").val('');
-    $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
-    $("#numeracy-question").text(Question[QuestionNumber]);
-    $("#answer-mark").fadeOut('slow');
-    $("#numeracy-answer").focus();
     $("#button-numeracy-submit").removeAttr("disabled");
 }
 
+function nextQuestion(testId) {
+    //    console.log("1st " + QuestionNumber)
+    console.log("testId"+testId)
+    QuestionNumber++;
+    //    console.log("2nd " + QuestionNumber)
+    if (testId == "numeracy") {
+        $("#numeracy-answer").val('');
+        $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
+        $("#numeracy-question").text(Question[QuestionNumber]);
+        $("#answer-mark").fadeOut('slow');
+        $("#numeracy-answer").focus();
+        $("#button-numeracy-submit").removeAttr("disabled");
+    }
+    else if (testId == "literacy") {
+        console.log("next literacy qestion")
+        wordsArray=Question[QuestionNumber];
+        $("#button-literacy-submit").removeAttr("disabled");
+        var questionDivContents = "";
+        var answerDivContents = "";
+        console.log("Question Array:" + QuestionArray)
+        QuestionArray = cleanArray(wordsArray);
+        console.log("Cleaned Question Array:" + QuestionArray)
+        AnswerArray = QuestionArray.slice(0);
+        QuestionArray = shuffleArray();
+        console.log("ShuffledQuestion Array:" + QuestionArray)
+        console.log("Answer Array:" + AnswerArray)
+        for (i = 0; i < QuestionArray.length; i++) {
+            if (QuestionArray[i] != "") {
+                console.log(i + " " + QuestionArray[i])
+                questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
+                answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img style='width:7.5%' id='literacy-answer-mark-" + i + "' src=''>";
+            }
+        }
+
+        $("#test-tab--literacy-test-question").html(questionDivContents)
+        $("#test-tab--literacy-test-answer").html(answerDivContents)
+       // QuestionNumber++;
+        $("#literacy-question-header").text("Question " + (QuestionNumber).toString());
+    }
+}
+
 function reportScore() {
-    QuestionNumber = 0;
+ //   QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
@@ -57,21 +89,22 @@ function reportScore() {
     $("#numeracy-result").text(result.toString());
 }
 
-function skipQuestion() {
+function skipQuestion(testId) {
+    console.log("skipping question")
     if (QuestionNumber < 9) {
-        nextQuestion();
-        $("#numeracy-answer").focus();
+        nextQuestion(testId);
+        $('#' + testId + '-answer').focus();
     }
     else {
-        reportScore();
+        DisplayResult = setTimeout(function() { reportScore() }, 1500);
     }
 }
 
 function checkAnswer(answer) {
-    console.log("Answer value=" + answer);
-    console.log($(answer).length);
+    //   console.log("Answer value=" + answer);
+    //   console.log($(answer).length);
     if (isNaN(answer) || answer == "") {
-        $("#button-numeracy-submit").removeAttr("disabled");            
+        $("#button-numeracy-submit").removeAttr("disabled");
         alert("Enter a number as your answer!");
         $("#numeracy-answer").focus();
     }
@@ -80,7 +113,7 @@ function checkAnswer(answer) {
         $("#answer-mark").attr('src', 'assets/images/tick.png');
         TotalScore++;
         if (QuestionNumber < 9) {
-            setTimeout(function() { nextQuestion() }, 1500);
+            setTimeout(function() { nextQuestion("numeracy") }, 1500);
         }
         else {
             reportScore();
@@ -90,10 +123,10 @@ function checkAnswer(answer) {
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/cross.png');
         if (QuestionNumber < 9) {
-            setTimeout(function() { nextQuestion() }, 2500);
+            setTimeout(function() { nextQuestion("numeracy") }, 2500);
         }
         else {
-            setTimeout(function() { reportScore()}, 2500);
+            setTimeout(function() { reportScore() }, 2500);
         }
     }
 }
@@ -137,13 +170,13 @@ function generateNumber() {
 
 
 $("#button-numeracy-submit").on("click", function() {
-   // console.log("clicked submit. disabled="+$(this).attr("disabled"));
+    // console.log("clicked submit. disabled="+$(this).attr("disabled"));
     answer = $("#numeracy-answer").val();
-    $(this).attr("disabled", true);    
+    $(this).attr("disabled", true);
     checkAnswer(answer);
 
 })
 
 $("#button-numeracy-skip").on("click", function() {
-    skipQuestion();
+    skipQuestion("numeracy");
 })

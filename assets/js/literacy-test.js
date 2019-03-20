@@ -30,32 +30,6 @@ function shuffleArray() {
     return QuestionArray;
 }
 
-function nextQuestion(wordsArray) {
-    $("#button-literacy-submit").removeAttr("disabled");    
-    var questionDivContents = "";
-    var answerDivContents = "";
-    console.log("Question Array:" + QuestionArray)
-    QuestionArray = cleanArray(wordsArray);
-    console.log("Cleaned Question Array:" + QuestionArray)
-    AnswerArray = QuestionArray.slice(0);
-    QuestionArray = shuffleArray();
-    console.log("ShuffledQuestion Array:" + QuestionArray)
-    console.log("Answer Array:" + AnswerArray)
-    for (i = 0; i < QuestionArray.length; i++) {
-        if (QuestionArray[i] != "") {
-            console.log(i + " " + QuestionArray[i])
-            questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
-            answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img style='width:7.5%' id='literacy-answer-mark-" + i + "' src=''>";
-        }
-    }
-    
-    $("#test-tab--literacy-test-question").html(questionDivContents)
-    $("#test-tab--literacy-test-answer").html(answerDivContents)
-    QuestionNumber++;
-    $("#literacy-question-header").text("Question " + (QuestionNumber).toString());    
-
-}
-
 function getQuestions() {
     $.ajax({
         type: "GET",
@@ -86,6 +60,8 @@ function createQuestionsArray(questions) {
 
 function startLiteracyTest() {
     Start = new Date();
+    TotalScore=0;
+    QuestionNumber=0;
     //retrieve the csv file of sentences and createa an array of possible questions
     getQuestions();
 }
@@ -98,7 +74,7 @@ function selectRandomQuestions() {
         console.log(Question[i])
     }
     //put text of question on screen
-    nextQuestion(Question[QuestionNumber]);
+    nextQuestion("literacy");
 }
 
 function revealWord(hideWordType, hideWord, wordValue) {
@@ -157,10 +133,10 @@ function checkLiteracyAnswer(submittedAnswer) {
         TotalScore++;
     }
     if(QuestionNumber<10) {
-    setTimeout( function() { nextQuestion(Question[QuestionNumber]) }, 2500);
+    setTimeout( function() { nextQuestion("literacy") }, 2500);
     }
     else {
-        reportScore();
+         DisplayResult=setTimeout( function() { reportScore() },1500);
     }
 }
 
@@ -195,7 +171,7 @@ $("#button-literacy-submit").on("click", function() {
 })
 
 function reportScore() {
-    QuestionNumber = 0;
+ //   QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
@@ -207,5 +183,5 @@ function reportScore() {
 }
 
 $("#button-literacy-skip").on("click", function() {
-    skipQuestion();
+    skipQuestion("literacy");
 })

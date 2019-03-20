@@ -18,3 +18,5 @@ cross https://www.maxpixel.net/Remove-Incorrect-Symbol-Sign-Red-Delete-Cancel-29
 blackboard https://www.pexels.com/photo/ascent-blackboard-board-business-162560/
 
 shuffle array function Fisher-Yates Shuffle - https://github.com/coolaj86/knuth-shuffle
+
+communication icons memory game https://pixabay.com/vectors/icons-transportation-computer-156784/

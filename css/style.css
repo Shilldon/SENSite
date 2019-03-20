@@ -218,6 +218,13 @@ footer {
 .test-tab--literacy-word-answer-shown {
   border: none; }
 
+#test-tab--memory-test .col-xs-3 {
+  text-align: center; }
+
+.test-tab--memory-icon {
+  width: 50px;
+  padding: 5px 0 5px 0; }
+
 #answer-mark {
   width: 20px; }
 

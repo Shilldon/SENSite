@@ -260,6 +260,7 @@ $value in $tab-colors {
     }
 }
 
+// set to .test-tab--literacy &&
 .test-tab--literacy-test-container {
     border: solid 2px $test-color;  
     font-family: 'Indie Flower', cursive;
@@ -295,6 +296,17 @@ $value in $tab-colors {
 
 .test-tab--literacy-word-answer-shown {
     border: none; 
+}
+
+#test-tab--memory-test {
+    .col-xs-3 {
+        text-align:center;
+    }
+}
+
+.test-tab--memory-icon {
+    width:50px;
+    padding:5px 0 5px 0;
 }
 
 #answer-mark {

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#numeracy-answer').keypress(function(e) {
-        if (e.keyCode == 13)
+        if (e.keyCode == 13 && ($('#button-numeracy-submit').attr("disabled")!="disabled"))
             $('#button-numeracy-submit').click();
     });
 });
@@ -12,35 +12,41 @@ var TotalScore = 0;
 var Start = new Date();
 
 function clearTest() {
-    Answer=[];
-    Question=[];
-    QuestionNumber=0;
-    TotalScore=0;
+    Answer = [];
+    Question = [];
+    QuestionNumber = 0;
+    TotalScore = 0;
+    $("#numeracy-answer").val('');
+    $("#numeracy-answer").focus();
+    $("#answer-mark").css('display','none');
 }
 
 function startNumeracyTest() {
-    Start=new Date();
+    Start = new Date();
     for (i = 0; i <= 9; i++) {
         newQuestion();
-        Answer[i]=query.answer;
+        Answer[i] = query.answer;
         Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
     $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
     $("#numeracy-question").text(Question[0]);
+    $("#button-numeracy-submit").removeAttr("disabled");    
 }
 
 function nextQuestion() {
-    console.log("1st "+ QuestionNumber)
+    console.log("1st " + QuestionNumber)
     QuestionNumber++;
-    console.log("2nd "+QuestionNumber)
+    console.log("2nd " + QuestionNumber)
     $("#numeracy-answer").val('');
-    $("#numeracy-question-header").text("Question " + (QuestionNumber +1).toString());
+    $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
     $("#numeracy-question").text(Question[QuestionNumber]);
     $("#answer-mark").fadeOut('slow');
+    $("#numeracy-answer").focus();
+    $("#button-numeracy-submit").removeAttr("disabled");
 }
 
 function reportScore() {
-    QuestionNumber=0;
+    QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
@@ -62,8 +68,10 @@ function skipQuestion() {
 }
 
 function checkAnswer(answer) {
-    console.log(answer);
-    if (isNaN(answer) || answer=="") {
+    console.log("Answer value=" + answer);
+    console.log($(answer).length);
+    if (isNaN(answer) || answer == "") {
+        $("#button-numeracy-submit").removeAttr("disabled");            
         alert("Enter a number as your answer!");
         $("#numeracy-answer").focus();
     }
@@ -85,7 +93,7 @@ function checkAnswer(answer) {
             setTimeout(function() { nextQuestion() }, 2500);
         }
         else {
-            reportScore();
+            setTimeout(function() { reportScore()}, 2500);
         }
     }
 }
@@ -101,7 +109,7 @@ function newQuestion() {
 }
 
 function question(firstNumber, secondNumber, thirdNumber, firstOperator, secondOperator, answer) {
-        this.firstNumber = generateNumber(),
+    this.firstNumber = generateNumber(),
         this.secondNumber = generateNumber(),
         this.thirdNumber = generateNumber(),
         this.firstOperator = generateOperator(),
@@ -129,12 +137,13 @@ function generateNumber() {
 
 
 $("#button-numeracy-submit").on("click", function() {
-    answer = +$("#numeracy-answer").val();
+   // console.log("clicked submit. disabled="+$(this).attr("disabled"));
+    answer = $("#numeracy-answer").val();
+    $(this).attr("disabled", true);    
     checkAnswer(answer);
-    $("#numeracy-answer").focus();
+
 })
 
 $("#button-numeracy-skip").on("click", function() {
     skipQuestion();
 })
-

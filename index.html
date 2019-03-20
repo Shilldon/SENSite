@@ -184,12 +184,12 @@
                             </div>
                         </div>
                     </div>
-<!-- LITERACY TEST-->
+                    <!-- LITERACY TEST-->
                     <section class="test-tab" id="test-tab--literacy">
                         <div class="row">
                             <div class="col-xs-12">
                                 <h3>Literacy Test</h3>
-                                <p>You will be presented with 10 pictures and partly completed sentences.  You need to type the missing word into the box where shown and click 'Submit' or press return.</p>
+                                <p>You will be presented with 10 pictures and partly completed sentences. You need to type the missing word into the box where shown and click 'Submit' or press return.</p>
                                 <p>If you do not know the answer to a question you can click 'Skip'.</p>
                                 <p>If you want to leave the test click 'Back' to return to the test menu.</p>
                                 <p>The time it takes you to complete the test and the number of questions you answer correctly will determine your literacy score.</p>
@@ -203,7 +203,7 @@
                             <div class="col-xs-6">
                                 <button class="test-tab--test-button" id="button-literacy-start">OK</button>
                             </div>
-                        </div>                        
+                        </div>
                     </section>
                     <section class="test-tab" id="test-tab--literacy-test">
                         <div class="row">
@@ -225,19 +225,36 @@
                         </div>
                         <div class="row test-tab--literacy-test-container" id="test-tab--literacy-test-question">
                         </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="test-tab" id="test-tab--literacy-result">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Your Score:</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 id="literacy-result"></h3>
+                            </div>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="col-xs-4 col-xs-offset-4">
                                     <button class="test-tab--test-button" id="button-literacy-back">Back</button>
                                 </div>
-                            </div>                        
-                    </section>    
-<!-- NUMERACY TEST-->
+                            </div>
+                        </div>
+                    </section>
+                    <!-- NUMERACY TEST-->
                     <section class="test-tab" id="test-tab--numeracy">
                         <div class="row">
                             <div class="col-xs-12">
@@ -275,17 +292,17 @@
                                 <img id="answer-mark" src="">
                             </div>
                         </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
-                                </div>
-                            </div>                        
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                            </div>
+                        </div>
                     </section>
                     <section class="test-tab" id="test-tab--numeracy-result">
                         <div class="row">
@@ -294,7 +311,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12" id="numeracy-calcuation">
+                            <div class="col-xs-12">
                                 <h3 id="numeracy-result"></h3>
                             </div>
                             <div class="row">
@@ -304,14 +321,96 @@
                             </div>
                         </div>
                     </section>
-<!-- MEMORY TEST -->
+                    <!-- MEMORY TEST -->
                     <section class="test-tab" id="test-tab--memory">
                         <div class="row">
                             <div class="col-xs-12">
-                                Memory Test
+                                <h3>Memory Test</h3>
+                                <p>You will be presented with a board of 16 images for 5 seconds. The images will then be hidden and you will need to select pairs by clicking on one image followed by a second.</p>
+                                <p>You will be timed on how long it takes you to pair all the images.</p>
+                                <p>If you want to leave the test click 'Back' to return to the test menu.</p>
+                                <p>The time it takes you to complete the test will determine your memory score.</p>
+                                <p>Click 'OK' when you are ready to start, or 'Back' to return to the test menu.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="test-tab--test-button" id="button-memory-start">OK</button>
                             </div>
                         </div>
                     </section>
+                    <section class="test-tab" id="test-tab--memory-test">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Memory Test</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>                            
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                            </div>
+                        </div>
+                    </section>
+
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="schools-tab">
                     <div class="row">
@@ -423,6 +522,7 @@
 <script type="text/javascript" src="assets/js/buttons.js"></script>
 <script type="text/javascript" src="assets/js/calculator.js"></script>
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
+<script type="text/javascript" src="assets/js/memory-test.js"></script>
 
 <script type="text/javascript" src="assets/js/literacy-test.js"></script>
 <script type="text/javascript" src="assets/js/maps.js"></script>

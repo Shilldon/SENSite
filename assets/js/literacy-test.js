@@ -1,13 +1,20 @@
 var AnswerArray = [];
 var QuestionArray = [];
+var ParentQuestionsArray = [];
 
-function shuffle() {
+function cleanArray(wordsArray) {
+    var cleanedArray = $.grep(wordsArray,function(n){
+        return(n);
+    });
+    console.log(cleanedArray)
+    return cleanedArray;  
+}
+
+function shuffleArray() {
     var currentIndex = QuestionArray.length,
         temporaryValue, randomIndex;
-
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -20,23 +27,71 @@ function shuffle() {
     return QuestionArray;
 }
 
-function defineQuestion(AnswerArray) {
+function defineQuestion(wordsArray) {
     var questionDivContents = "";
     var answerDivContents = "";
-    QuestionArray = AnswerArray.slice(0);
-    QuestionArray = shuffle();
+    console.log("Question Array:"+QuestionArray)
+    QuestionArray=cleanArray(wordsArray);
+    console.log("Cleaned Question Array:"+QuestionArray)
+    AnswerArray = QuestionArray.slice(0);
+    QuestionArray = shuffleArray();
+    console.log("ShuffledQuestion Array:"+ QuestionArray)
+    console.log("Answer Array:"+AnswerArray)
     for (i = 0; i < QuestionArray.length; i++) {
-        questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
-        answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img style='width:7.5%' id='literacy-answer-mark-" + i + "' src=''>";
+        if (QuestionArray[i] !="") {
+            console.log(i+" "+QuestionArray[i])
+            questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
+            answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img style='width:7.5%' id='literacy-answer-mark-" + i + "' src=''>";
+        }
     }
     $("#test-tab--literacy-test-question").html(questionDivContents)
     $("#test-tab--literacy-test-answer").html(answerDivContents)
 
 }
 
+function getQuestions() {
+    $.ajax({
+        type: "GET",
+        url: "assets/data/literacyquestions.csv",
+        dataType: "text",
+        success: function(data) {
+            var questionLines = createQuestionsArray(data);
+        }
+    });
+}
+
+function createQuestionsArray(questions) {
+    var allTextLines = questions.split(/\r\n|\n/);
+    var headers = allTextLines[0].split(',');
+    for (var i = 1; i < allTextLines.length; i++) {
+        var data = allTextLines[i].split(',');
+        if (data.length == headers.length) {
+            var questionLine = []
+            for (j = 0; j < headers.length; j++) {
+                questionLine.push(data[j]);
+            }
+            ParentQuestionsArray.push(questionLine);
+        }
+    }
+
+    selectRandomQuestions();
+}
+
 function startLiteracyTest() {
-    AnswerArray = ["the", "cat", "sat", "on", "the", "mat", "and", "the", "dog", "ate", "the", "big", "bone"];
-    defineQuestion(AnswerArray);
+    Start = new Date();
+    //retrieve the csv file of sentences and createa an array of possible questions
+    getQuestions();
+}
+
+function selectRandomQuestions() {
+    for (i = 0; i <= 9; i++) {
+        var randomQuestionIndex = i * 5 + Math.ceil(Math.random() * Math.floor(4));
+        console.log("random:"+randomQuestionIndex)
+        Question[i] = ParentQuestionsArray[randomQuestionIndex];
+        console.log(Question[i])
+    }
+    //put text of question on screen
+    defineQuestion(Question[0]);
 }
 
 function revealWord(hideWordType, hideWord, wordValue) {
@@ -52,14 +107,13 @@ function revealWord(hideWordType, hideWord, wordValue) {
     shownClass = "test-tab--literacy-word-" + hideWordType + "-shown";
     if (hideWord.hasClass(shownClass)) {
         hideWord.text("");
-        hideWord.toggleClass("test-tab--literacy-word-" + hideWordType + "-hidden test-tab--literacy-word-" + hideWordType + "-shown")
-
+        hideWord.toggleClass("test-tab--literacy-word-" + hideWordType + "-hidden test-tab--literacy-word-" + hideWordType + "-shown");
         while (whileBreak == false) {
             showWord = $("#" + showWordType + "-word-" + count);
             hiddenClass = "test-tab--literacy-word-" + showWordType + "-hidden";
             if (showWord.hasClass(hiddenClass)) {
                 whileBreak = true;
-                showWord.toggleClass("test-tab--literacy-word-" + showWordType + "-hidden test-tab--literacy-word-" + showWordType + "-shown")
+                showWord.toggleClass("test-tab--literacy-word-" + showWordType + "-hidden test-tab--literacy-word-" + showWordType + "-shown");
                 showWord.text(wordValue);
             }
             if (showWord.attr("id") == null) {
@@ -115,9 +169,6 @@ function checkLiteracyAnswer(submittedAnswer) {
     }
 }
 
-$("#button-numeracy-skip").on("click", function() {
+$("#button-literacy-skip").on("click", function() {
     skipQuestion();
 })
-
-
-//submit answer

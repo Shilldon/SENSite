@@ -1,13 +1,4 @@
-var query;
 
-function newQuestion() {
-    query = new question;
-    Object.defineProperty(query, 'answer', {
-        value: calculateAnswer(),
-        writeable: true
-    });
-    //$("#answer").text(query.answer);
-}
 
 Calculator = function(numberThree) {
     this.value = numberThree;
@@ -36,16 +27,6 @@ Calculator.prototype.subtract = function(number,reverse) {
 
 Calculator.prototype.multiply = function(number) {
             this.value *= number;
-}
-
-function question(questionNumber, firstNumber, secondNumber, thirdNumber, firstOperator, secondOperator, answer) {
-    this.questionNumber = 0,
-        this.firstNumber = generateNumber(),
-        this.secondNumber = generateNumber(),
-        this.thirdNumber = generateNumber(),
-        this.firstOperator = generateOperator(),
-        this.secondOperator = generateOperator(),
-        this.answer = 0
 }
 
 function calculateAnswer() {
@@ -89,20 +70,4 @@ function calculateAnswer() {
     return calculator.value;
 }
 
-function generateOperator() {
-    switch (Math.ceil(Math.random() * Math.floor(3))) {
-        case 1:
-            return "+";
-            break;
-        case 2:
-            return "-";
-            break;
-        case 3:
-            return "x";
-            break;
-    }
-}
 
-function generateNumber() {
-    return Math.ceil(Math.random() * Math.floor(10));
-}

@@ -56,7 +56,7 @@ function centerMap(postcode) {
       map.setCenter(new google.maps.LatLng(lat, long));
     }
     else {
-      alert("Request failed.")
+      alert("Please enter a valid postcode.")
     }
   });
 

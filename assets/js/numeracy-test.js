@@ -25,13 +25,16 @@ function startNumeracyTest() {
         Answer[i]=query.answer;
         Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
+    $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
     $("#numeracy-question").text(Question[0]);
 }
 
 function nextQuestion() {
+    console.log("1st "+ QuestionNumber)
     QuestionNumber++;
+    console.log("2nd "+QuestionNumber)
     $("#numeracy-answer").val('');
-    $("#question-header").text("Question " + (QuestionNumber + 1).toString());
+    $("#numeracy-question-header").text("Question " + (QuestionNumber +1).toString());
     $("#numeracy-question").text(Question[QuestionNumber]);
     $("#answer-mark").fadeOut('slow');
 }
@@ -61,7 +64,8 @@ function skipQuestion() {
 function checkAnswer(answer) {
     console.log(answer);
     if (isNaN(answer) || answer=="") {
-        alert("Enter a number as your answer!")
+        alert("Enter a number as your answer!");
+        $("#numeracy-answer").focus();
     }
     else if (answer == Answer[QuestionNumber]) {
         $("#answer-mark").css('display', 'block');
@@ -86,12 +90,51 @@ function checkAnswer(answer) {
     }
 }
 
+var query;
+
+function newQuestion() {
+    query = new question;
+    Object.defineProperty(query, 'answer', {
+        value: calculateAnswer(),
+        writeable: true
+    });
+}
+
+function question(firstNumber, secondNumber, thirdNumber, firstOperator, secondOperator, answer) {
+        this.firstNumber = generateNumber(),
+        this.secondNumber = generateNumber(),
+        this.thirdNumber = generateNumber(),
+        this.firstOperator = generateOperator(),
+        this.secondOperator = generateOperator(),
+        this.answer = 0
+}
+
+function generateOperator() {
+    switch (Math.ceil(Math.random() * Math.floor(3))) {
+        case 1:
+            return "+";
+            break;
+        case 2:
+            return "-";
+            break;
+        case 3:
+            return "x";
+            break;
+    }
+}
+
+function generateNumber() {
+    return Math.ceil(Math.random() * Math.floor(10));
+}
+
+
 $("#button-numeracy-submit").on("click", function() {
     answer = +$("#numeracy-answer").val();
     checkAnswer(answer);
-
+    $("#numeracy-answer").focus();
 })
 
 $("#button-numeracy-skip").on("click", function() {
     skipQuestion();
 })
+

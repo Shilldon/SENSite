@@ -256,6 +256,9 @@ footer {
 #map-miles {
   width: 10%; }
 
+.map--marker-stars {
+  width: 50%; }
+
 /*----- CONTACT FORM -----*/
 #contact-form {
   max-height: 60vh;

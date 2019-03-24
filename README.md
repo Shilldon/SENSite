@@ -1,7 +1,6 @@
 
 
 ##credits
-Avatar -https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg
 Books background - pxhere?
 Cubes - https://pixabay.com/en/cubes-assorted-random-toys-677092/
 children playing - https://commons.wikimedia.org/wiki/File:Children_playing_at_Children%27s_Book_Festival_(40285498720).jpg
@@ -20,3 +19,5 @@ blackboard https://www.pexels.com/photo/ascent-blackboard-board-business-162560/
 shuffle array function Fisher-Yates Shuffle - https://github.com/coolaj86/knuth-shuffle
 
 communication icons memory game https://pixabay.com/vectors/icons-transportation-computer-156784/
+
+https://api.postcodes.io/postcodes

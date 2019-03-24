@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip(); 
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 $(".test-tab--test-button").on("click", function() {
@@ -9,26 +9,10 @@ $(".test-tab--test-button").on("click", function() {
     console.log(action);
     switch (action) {
         case 'select':
-            $("#test-tab--landing").fadeOut(250);
-            setTimeout(function() { $("#test-tab--" + testId).fadeIn(250); }, 250);
+            buttonSelect(testId);
             break;
         case 'start':
-            $("#test-tab--" + testId).fadeOut(250);
-            setTimeout(function() {
-                $("#test-tab--" + testId + "-test").fadeIn(250, function() {
-                    $("#numeracy-answer").focus();
-                });
-            }, 250);
-            $("#question-header").text("Question 1");
-            if (testId == "numeracy") {
-                startNumeracyTest();
-            }
-            else if(testId=="literacy") {
-                startLiteracyTest();
-            }
-            else if(testId=="memory") {
-                startMemoryTest();
-            }            
+            buttonStart(testId);
             break;
         case 'back':
             $(this).closest('section').fadeOut(250);
@@ -39,3 +23,28 @@ $(".test-tab--test-button").on("click", function() {
             break;
     }
 })
+
+function buttonStart(test) {
+    $("#test-tab--" + test).fadeOut(250);
+    setTimeout(function() {
+        $("#test-tab--" + test + "-test").fadeIn(250, function() {
+            $("#numeracy-answer").focus();
+        });
+    }, 250);
+    if (test == "numeracy") {
+   //     $('#question-' + test + 'header').text("Question 1");
+        startNumeracyTest();
+    }
+    else if (test == "literacy") {
+  //      $('#question-' + test + 'header').text("Question 1");
+        startLiteracyTest();
+    }
+    else if (test == "memory") {
+        startMemoryTest();
+    }
+}
+
+function buttonSelect(test) {
+    $("#test-tab--landing").fadeOut(250);
+    setTimeout(function() { $("#test-tab--" + test).fadeIn(250); }, 250);
+}

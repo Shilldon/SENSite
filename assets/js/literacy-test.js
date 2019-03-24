@@ -2,7 +2,7 @@ var AnswerArray = [];
 var QuestionArray = [];
 var ParentQuestionsArray = [];
 var TotalScore = 0;
-var QuestionNumber=0;
+var QuestionNumber = 0;
 var Start = new Date();
 
 function cleanArray(wordsArray) {
@@ -60,18 +60,20 @@ function createQuestionsArray(questions) {
 
 function startLiteracyTest() {
     Start = new Date();
-    TotalScore=0;
-    QuestionNumber=0;
+    TotalScore = 0;
+    QuestionNumber = 0;
     //retrieve the csv file of sentences and createa an array of possible questions
     getQuestions();
 }
 
 function selectRandomQuestions() {
+    console.log("parent question arrayt"+ParentQuestionsArray);
     for (i = 0; i <= 9; i++) {
         var randomQuestionIndex = i * 5 + Math.ceil(Math.random() * Math.floor(4));
         console.log("random:" + randomQuestionIndex)
-        Question[i] = ParentQuestionsArray[randomQuestionIndex];
-        console.log(Question[i])
+        //add 1 to i to ensure the Question Array matches the question number
+        Question[i+1] = ParentQuestionsArray[randomQuestionIndex];
+        console.log("Question "+i+"="+Question[i])
     }
     //put text of question on screen
     nextQuestion("literacy");
@@ -132,21 +134,20 @@ function checkLiteracyAnswer(submittedAnswer) {
     if (wrong == false) {
         TotalScore++;
     }
-    if(QuestionNumber<10) {
-    setTimeout( function() { nextQuestion("literacy") }, 2500);
+    if (QuestionNumber < 10) {
+        setTimeout(function() { nextQuestion("literacy") }, 2500);
     }
     else {
-         DisplayResult=setTimeout( function() { reportScore() },1500);
+        DisplayResult = setTimeout(function() { reportScore("literacy") }, 1500);
     }
 }
 
 $("#button-literacy-submit").on("click", function() {
-    
     var count = 0;
     var answerWord;
     var submittedAnswer = [];
     var whileBreak = false;
-    var incompleteSentence=false;
+    var incompleteSentence = false;
     while (whileBreak == false) {
         answerWord = $("#answer-word-" + count);
         //reached end of sentence
@@ -156,7 +157,7 @@ $("#button-literacy-submit").on("click", function() {
         //incomplete sentence (word not submitted) break out and display error
         else if (answerWord.hasClass("test-tab--literacy-word-answer-hidden")) {
             whileBreak = true;
-            incompleteSentence=true;
+            incompleteSentence = true;
             alert("You need to complete the sentence");
         }
         else {
@@ -164,14 +165,13 @@ $("#button-literacy-submit").on("click", function() {
         }
         count++;
     }
-    if (incompleteSentence == false && $(this).attr("disabled")!="disabled"  ) {
-        $(this).attr("disabled", true);  
+    if (incompleteSentence == false && $(this).attr("disabled") != "disabled") {
+        $(this).attr("disabled", true);
         checkLiteracyAnswer(submittedAnswer);
     }
 })
-
+/*
 function reportScore() {
- //   QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
@@ -181,7 +181,7 @@ function reportScore() {
     setTimeout(function() { $("#test-tab--literacy-result").fadeIn(250); }, 250);
     $("#literacy-result").text(result.toString());
 }
-
+*/
 $("#button-literacy-skip").on("click", function() {
     skipQuestion("literacy");
 })

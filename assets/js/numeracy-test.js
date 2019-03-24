@@ -26,24 +26,24 @@ function startNumeracyTest() {
     Start = new Date();
     QuestionNumber=0;
     TotalScore = 0;
-    for (i = 0; i <= 9; i++) {
+    for (i = 1; i <= 10; i++) {
         newQuestion();
         Answer[i] = query.answer;
         Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
+    nextQuestion("numeracy");
+    /*
     $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
     $("#numeracy-question").text(Question[0]);
     $("#button-numeracy-submit").removeAttr("disabled");
+    */
 }
 
 function nextQuestion(testId) {
-    //    console.log("1st " + QuestionNumber)
-    console.log("testId"+testId)
     QuestionNumber++;
-    //    console.log("2nd " + QuestionNumber)
     if (testId == "numeracy") {
         $("#numeracy-answer").val('');
-        $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
+        $("#numeracy-question-header").text("Question " + (QuestionNumber).toString());
         $("#numeracy-question").text(Question[QuestionNumber]);
         $("#answer-mark").fadeOut('slow');
         $("#numeracy-answer").focus();
@@ -52,6 +52,7 @@ function nextQuestion(testId) {
     else if (testId == "literacy") {
         console.log("next literacy qestion")
         wordsArray=Question[QuestionNumber];
+        console.log("question "+QuestionNumber+" "+wordsArray);
         $("#button-literacy-submit").removeAttr("disabled");
         var questionDivContents = "";
         var answerDivContents = "";
@@ -72,31 +73,29 @@ function nextQuestion(testId) {
 
         $("#test-tab--literacy-test-question").html(questionDivContents)
         $("#test-tab--literacy-test-answer").html(answerDivContents)
-       // QuestionNumber++;
         $("#literacy-question-header").text("Question " + (QuestionNumber).toString());
     }
 }
 
-function reportScore() {
- //   QuestionNumber = 0;
+function reportScore(test) {
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
     var TotalTime = Math.ceil((endTime - startTime) / 1000);
     var result = Math.ceil(TotalScore / TotalTime * 100);
-    $("#test-tab--numeracy-test").fadeOut(250);
-    setTimeout(function() { $("#test-tab--numeracy-result").fadeIn(250); }, 250);
-    $("#numeracy-result").text(result.toString());
+    $('#test-tab--'+test+'-test').fadeOut(250);
+    setTimeout(function() { $('#test-tab--'+test+'-result').fadeIn(250); }, 250);
+    $('#'+test+'-result').text(result.toString());
 }
 
 function skipQuestion(testId) {
     console.log("skipping question")
-    if (QuestionNumber < 9) {
+    if (QuestionNumber < 10) {
         nextQuestion(testId);
         $('#' + testId + '-answer').focus();
     }
     else {
-        DisplayResult = setTimeout(function() { reportScore() }, 1500);
+        DisplayResult = setTimeout(function() { reportScore(testId) }, 1500);
     }
 }
 
@@ -122,11 +121,11 @@ function checkAnswer(answer) {
     else {
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/cross.png');
-        if (QuestionNumber < 9) {
+        if (QuestionNumber < 10) {
             setTimeout(function() { nextQuestion("numeracy") }, 2500);
         }
         else {
-            setTimeout(function() { reportScore() }, 2500);
+            setTimeout(function() { reportScore("numeracy") }, 2500);
         }
     }
 }

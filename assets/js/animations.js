@@ -70,7 +70,7 @@ function showTab(clickedButton) {
 	//if the tab is the schools map, focus on the search box after sweep in
 	if (clickedButtonName == "schools") {
 		$(clickedTabName).slideDown(250, function() {
-			$("#address").focus();
+			$('#map-address-1').focus();
 		});
 	}
 	else {
@@ -154,7 +154,7 @@ function changeMenuButton(content, menuClick) {
 function showContactForm() {
 	if ($("#contact-form").data('state') == 'closed') {
 		$("#contact-form").fadeIn(250);
-		$("#contact-form").data('state', 'open');		
+		$("#contact-form").data('state', 'open');
 	}
 }
 
@@ -182,14 +182,14 @@ $("#menu-button").on("click", function() {
 $(".top-section--nav-list-button").on("click", function() {
 	//get the ID of the li item (button) that has been clicked
 	var clickedButton = $(this);
-	
+
 	//if the tab is open, close it, show the contact form and change the nav
 	//button
 	if ($(clickedButton).data('state') == 'open') {
 		hideOpenTab();
 		changeMenuButton("DISCOVER", false);
 		changeMenuButtonColor(false);
-		
+
 		//hide the top section background when reverting to home screen
 		$(".top-section").css('background', 'none');
 		setTimeout(function() { showContactForm() }, 250);

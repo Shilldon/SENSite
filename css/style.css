@@ -163,6 +163,16 @@ footer {
 #schools-tab {
   color: #9c6df9; }
 
+/*----- DATA TAB -----*/
+#data-tab--chart {
+  width: 1000px;
+  height: 50vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 2px #7b3bfc; }
+
 /*----- TEST TAB -----*/
 .test-tab {
   display: none; }

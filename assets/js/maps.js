@@ -3,7 +3,7 @@ var markers = [];
 var markerInfo = [];
 //initialise arrays to hold data from master csv file and schools local to postcode search
 var masterSchoolsArray = [];
-var localSchoolsDataArray = [];
+//var localSchoolsDataArray = [];
 
 //once loaded get the data from local csv and process into master array
 $(document).ready(function() {
@@ -53,7 +53,7 @@ function searchForSchool() {
   clearSchoolDetails();
 
   //call function to create array of local schools
-  createLocalSchoolsArray(postcode);
+  var localSchoolsDataArray = createLocalSchoolsArray(postcode);
 
   //check if there are any schools in the array. If not return error that there
   //are no schools in the selected postcode.
@@ -67,7 +67,6 @@ function searchForSchool() {
 }
 
 function clearMarkers() {
-  console.log("clearing markers")
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -85,8 +84,8 @@ function clearSchoolDetails() {
 
 function createLocalSchoolsArray(postcode) {
   //reinitialise the localSchoolsDataArray to receive new postcode
-  localSchoolsDataArray = [];
-
+  var localSchoolsDataArray = [];
+  var schoolsDataArray = [];
   //search through masterSchoolsArray for postcodes matching input
   for (var j = 0; j < masterSchoolsArray.length; j++) {
     schoolPostcode = masterSchoolsArray[j][64];
@@ -95,10 +94,11 @@ function createLocalSchoolsArray(postcode) {
     schoolClosed = masterSchoolsArray[j][10];
     if (schoolClosed != "Closed") {
       if (schoolPostcode.search(postcode) != -1) {
-        localSchoolsDataArray.push(masterSchoolsArray[j]);
+        schoolsDataArray.push(masterSchoolsArray[j]);
       }
     }
   }
+  return schoolsDataArray;
 }
 
 //call external API and obtain lat, lng positions based on postcodes of schools
@@ -108,7 +108,6 @@ function getPostcodeData(schoolPostCodes, callBack) {
   xhr.open("POST", "https://api.postcodes.io/postcodes");
   xhr.setRequestHeader("Content-Type", "application/json");
   var postcodes = JSON.stringify({ "postcodes": schoolPostCodes });
-  console.log(postcodes)
   xhr.send(postcodes);
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -117,7 +116,7 @@ function getPostcodeData(schoolPostCodes, callBack) {
   };
 }
 
-function convertPostcodes(schoolsDataArray) {
+function convertPostcodes(localSchoolsDataArray) {
   //get longitude and latitude from postcode ready to place google map marker
   //initialise array to accept postcodes of the local schools
   var schoolPostCodesArray = []
@@ -143,7 +142,6 @@ function convertPostcodes(schoolsDataArray) {
         //csv is inconsistent at providing full webaddress - to ensure link on marker works add "http:" if required.
         if (schoolWebsite != "") {
           if (schoolWebsite.match(/http/g) == null) {
-            console.log("no http");
             schoolWebsite = "http://" + schoolWebsite;
           }
         }
@@ -153,7 +151,6 @@ function convertPostcodes(schoolsDataArray) {
         var SEN = [];
         for (j = 0; j < 13; j++) {
           SEN[j] = localSchoolsDataArray[i][j + 84].substr(0, 2);
-          console.log(schoolName + " " + SEN[j]);
         }
         var schoolHead = localSchoolsDataArray[i][67] + " " + localSchoolsDataArray[i][68] + " " + localSchoolsDataArray[i][69]
         var offsted = localSchoolsDataArray[i][126];
@@ -189,7 +186,6 @@ function centerMap(postcode) {
   var address = postcode;
   geocoder.geocode({ 'address': address }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      console.log("status=" + status);
       lat = results[0].geometry.location.lat();
       long = results[0].geometry.location.lng();
       /*     var marker = new google.maps.Marker({
@@ -239,7 +235,7 @@ function drawMarker(markerInfo) {
     }
     infoContent += '<p>' + marker.schoolTelephone + '</p>';
     if (rating > 0) {
-      infoContent += '<p>Offsted Rating:</p>';      
+      infoContent += '<p>Offsted Rating:</p>';
       infoContent += '<p><img class="map--marker-stars" src="assets/images/rating-' + rating + '.png"</p>';
     }
   }
@@ -268,7 +264,10 @@ function drawMarker(markerInfo) {
     }
     if (marker.schoolHead != "") { $("#school-head").text("Head: " + marker.schoolHead); }
     if (marker.schoolTelephone != "") { $("#school-telephone").text(marker.schoolTelephone); }
-    if (marker.offstedRating > 0) { $("#school-rating").html('<p>Offsted Rating: <img class="map--marker-stars" style="width:20%" src="assets/images/rating-' + marker.offstedRating + '.png"</p>'); }
+    if (marker.offstedRating > 0) {
+      $("#school-rating").html('<p>Offsted Rating: <img class="map--marker-stars" style="width:20%" src="assets/images/rating-' + marker.offstedRating + '.png"</p>');
+      $("#school-rating").css('display', 'inline-block');
+    }
     else { $("#school-rating").css('display', 'none'); }
     var icon;
     //check special needs catered for at school, highlight appropriate icons

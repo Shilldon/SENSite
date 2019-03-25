@@ -21,3 +21,4 @@ shuffle array function Fisher-Yates Shuffle - https://github.com/coolaj86/knuth-
 communication icons memory game https://pixabay.com/vectors/icons-transportation-computer-156784/
 
 https://api.postcodes.io/postcodes
+ratings : https://commons.wikimedia.org/wiki/File:Star_rating_1_of_5.png

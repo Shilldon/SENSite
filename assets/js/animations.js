@@ -9,7 +9,6 @@ function animateLanding() {
 		animateContactInformation();
 	}
 }
-
 //sweep in logo from above
 function animateLogo() {
 	$("#logo").addClass('logo-animation');
@@ -73,6 +72,12 @@ function showTab(clickedButton) {
 			$('#map-address-1').focus();
 		});
 	}
+	/*
+	else if (clickedButtonName == "data") {
+		$(clickedTabName).slideDown(250, function() {
+			defineChart();
+		});
+	}*/
 	else {
 		$(clickedTabName).slideDown(250);
 	}

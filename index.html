@@ -144,15 +144,16 @@
                     </div>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="data-tab">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic commodi iure quae obcaecati dolorum mollitia soluta unde quod nobis assumenda culpa doloribus et, laboriosam vitae vel dolore. Cum dolorem sit numquam saepe facilis eligendi
-                        laborum iste sunt asperiores quaerat, recusandae officiis soluta architecto accusamus beatae aliquid, adipisci dolorum? Modi nostrum sed illo quod neque ducimus aperiam eaque, impedit! Ut, illum, eius corporis temporibus quidem
-                        minima quasi adipisci id maxime facilis fuga voluptas. Quod accusantium reprehenderit saepe, expedita temporibus totam beatae rem nobis laboriosam ducimus error, non tempora laudantium, molestias inventore atque illo dolores amet
-                        ratione. Corporis maxime sint officia dolorem exercitationem voluptatem. Delectus voluptatem rerum voluptatibus laborum nesciunt eius aliquid nulla ducimus blanditiis sunt incidunt dolore iusto dicta cumque sed fugiat provident
-                        temporibus deleniti, harum cum illo. Suscipit omnis rem illo magni veniam quia officiis adipisci quisquam. Animi sit earum natus dolores, magni ipsa optio nihil nam possimus commodi eius doloremque, eveniet cupiditate quod tenetur
-                        quaerat quo, et laboriosam eos a omnis necessitatibus placeat fugiat officia. Reprehenderit illum dignissimos beatae fuga, cupiditate fugit quis dicta, excepturi porro molestiae voluptates inventore, distinctio possimus enim cumque.
-                        Debitis excepturi cupiditate beatae? Quasi culpa, architecto voluptates optio quo quos eos animi suscipit, quis eveniet itaque odio deserunt tempore amet enim natus adipisci fugit nemo reiciendis modi. Quo ullam saepe omnis numquam,
-                        quas iusto deserunt excepturi harum. Necessitatibus laborum dolores quam rerum ad fugiat enim, unde laudantium nesciunt voluptas fuga deleniti doloribus officia sed quae tenetur id, consequatur eius, explicabo laboriosam distinctio
-                        velit tempora. Adipisci!</p>
+                    <div class="col-xs-3 col-xs-offset-2" style="height:100%">
+                        <input id="chart-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                    </div>
+                    <div class="col-xs-3" style="height:100%">
+                        <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                    </div>
+                    <div class="col-xs-2" style="height:100%">
+                        <input id="chart-submit" style="width:100%" type="button" value="Search">
+                    </div>
+                    <div id="data-tab--chart"></div>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="test-tab">
                     <div id="test-tab--landing">
@@ -354,10 +355,10 @@
                             </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
@@ -368,10 +369,10 @@
                             </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
@@ -382,10 +383,10 @@
                             </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
@@ -396,14 +397,14 @@
                             </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
-                            <div class="col-xs-3">
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>                            
+                            </div>
                             <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
-                        </div>                        
+                            <div class="col-xs-3">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-4">
                                 <button class="test-tab--test-button" id="button-memory-back">Back</button>
@@ -525,6 +526,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
 <!--Jasmine framework-->
 <!--
@@ -541,10 +543,11 @@
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
 <script type="text/javascript" src="assets/js/memory-test.js"></script>
 <script type="text/javascript" src="assets/js/literacy-test.js"></script>
+<script src="assets/js/maps.js"></script>
+<script type="text/javascript" src="assets/js/data.js"></script>
 
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UTwrPWlwTVB0qWHXeaZIRhpcwf8nP-U&libraries=places&callback=initMap"></script>
-<script src="assets/js/maps.js"></script>
 
 <!--tests -->
 <script type="text/javascript" src="assets/spec/numeracy-testSpec.js"></script>

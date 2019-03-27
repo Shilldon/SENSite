@@ -3,7 +3,7 @@
 /*----- FONT-SIZE -----*/
 /*-----BODY -----*/
 body {
-  overflow: hidden;
+  overflow: auto;
   font-size: 12px; }
 
 .row {
@@ -164,14 +164,17 @@ footer {
   color: #9c6df9; }
 
 /*----- DATA TAB -----*/
-#data-tab--chart {
-  width: 1000px;
-  height: 50vh;
+.data-tab--chart-area {
+  width: 80vw;
+  height: 45vh;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border: solid 2px #7b3bfc; }
+
+.data-tab--chart-section {
+  display: none; }
 
 /*----- TEST TAB -----*/
 .test-tab {

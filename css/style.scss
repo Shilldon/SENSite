@@ -16,8 +16,8 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-    overflow: hidden;
-//overflow: auto;
+//    overflow: hidden;
+overflow: auto;
     font-size: $body-font-size;
 }
 
@@ -226,15 +226,19 @@ $value in $tab-colors {
 }
 
 /*----- DATA TAB -----*/
-#data-tab--chart {
-    width:1000px;
-    height:50vh;
+.data-tab--chart-area {
+
+    width:80vw;
+    height:45vh;
     position: absolute;
     left: 50%;
     top:50%;
     transform: translate(-50%,-50%);
-    border: solid 2px $data-color;
- //   overflow:auto;
+    border: solid 2px $data-color;   
+}
+
+.data-tab--chart-section  {
+    display:none;    
 }
 
 /*----- TEST TAB -----*/

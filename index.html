@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.css" type="text/css" />
     <!--testing -->
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" />-->
 
@@ -57,7 +58,6 @@
 
         <!--actions section-->
         <section class="bottom-section container-fluid">
-
             <div class="row tabs-container">
                 <div class="col-xs-10 col-xs-offset-1" data-state="open" id="contact-form">
                     <form action="action_page.php">
@@ -112,8 +112,6 @@
                                 <button type="submit" value="Submit">Submit</button>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
                 <article class="col-xs-12 tab" data-state="closed" id="about-tab">
@@ -144,16 +142,74 @@
                     </div>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="data-tab">
-                    <div class="col-xs-3 col-xs-offset-2" style="height:100%">
-                        <input id="chart-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                    <div id="data-tab--landing">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Find out about schools nationally or in your local area</h3>
+                                <p>Here you can find information on the number of schools within postcodes or local authority remit. What needs those schools cater for, number of pupils, and mix of boys and girls so you can find the right place for your
+                                    child.
+                                </p>
+                                <p>Select below for a national search or filtered by postcode.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2 tab--menu-button-container">
+                                <h4><i class="fa fa-map"></i></h4>
+                                <button class="data-tab--chart-button" id="button-data-select-national">National</button>
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
+                                <h4><i class="fa fa-map-marker"></i></h4>
+                                <button class="data-tab--chart-button" id="button-data-select-regional">Regional</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-3" style="height:100%">
-                        <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
-                    </div>
-                    <div class="col-xs-2" style="height:100%">
-                        <input id="chart-submit" style="width:100%" type="button" value="Search">
-                    </div>
-                    <div id="data-tab--chart"></div>
+
+                    <section class="data-tab--chart-section" id="data-tab--chart-national">
+                        <div class="row">
+                       <div class="row">
+                            <div class="col-xs-3 col-xs-offset-1" style="height:100%">
+display information by local authority, postcode, school type                            </div>
+                            <div class="col-xs-3" style="height:100%">
+                                <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                            </div>
+                            <div class="col-xs-2" style="height:100%">
+                                <input id="chart-submit" style="width:100%" type="button" value="Search">
+                            </div>
+                            <div id="data-tab--chart-selector" class="col-xs-2" style="height:100%"></div>
+                        </div>
+                        <div class="row" style="height: 52vh">
+                            <div class="col-xs-12 data-tab--chart-area" id="data-tab--chart-national">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-sm-offset-5 tab--menu-button-container">
+                                <button class="data-tab--chart-button" id="button-data-back">Back</button>
+                            </div>
+                        </div>                    
+                    </section>
+                    <section class="data-tab--chart-section" id="data-tab--chart-regional">
+                        <div class="row">
+                            <div class="col-xs-3 col-xs-offset-1" style="height:100%">
+                                <input id="chart-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                            </div>
+                            <div class="col-xs-3" style="height:100%">
+                                <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                            </div>
+                            <div class="col-xs-2" style="height:100%">
+                                <input id="chart-submit" style="width:100%" type="button" value="Search">
+                            </div>
+                            <div id="data-tab--chart-selector" class="col-xs-2" style="height:100%"></div>
+                        </div>
+                        <div class="row"  style="height: 52vh">
+                            <div class="col-xs-12 data-tab--chart-area" id="data-tab--chart-regional">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-sm-offset-5 tab--menu-button-container">
+                                <button class="data-tab--chart-button" id="button-data-back">Back</button>
+                            </div>
+                        </div>
+                    </section>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="test-tab">
                     <div id="test-tab--landing">
@@ -527,6 +583,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
 
 <!--Jasmine framework-->
 <!--
@@ -537,13 +595,14 @@
 -->
 
 <!--local scripts-->
+<script type="text/javascript" src="assets/js/queue.min.js"></script>
 <script type="text/javascript" src="assets/js/animations.js"></script>
 <script type="text/javascript" src="assets/js/buttons.js"></script>
 <script type="text/javascript" src="assets/js/calculator.js"></script>
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
 <script type="text/javascript" src="assets/js/memory-test.js"></script>
 <script type="text/javascript" src="assets/js/literacy-test.js"></script>
-<script src="assets/js/maps.js"></script>
+<script type="text/javascript" src="assets/js/maps.js"></script>
 <script type="text/javascript" src="assets/js/data.js"></script>
 
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

@@ -2,6 +2,8 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
+$()
+
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
@@ -24,6 +26,23 @@ $(".test-tab--test-button").on("click", function() {
     }
 })
 
+$(".data-tab--chart-button").on("click", function() {
+    var buttonId = $(this).attr("id").split("-");
+    var action = buttonId[2];
+    var chartId = buttonId[3];
+    console.log(chartId)
+    switch (action) {
+        case 'select':
+            $("#data-tab--landing").fadeOut(250);
+            setTimeout(function() { $("#data-tab--chart-" + chartId).fadeIn(250); }, 250);
+            break;
+        case 'back':
+            $(this).closest('section').fadeOut(250);
+            setTimeout(function() { $("#data-tab--landing").fadeIn(250); }, 250);
+            break;
+    }
+})
+
 function buttonStart(test) {
     $("#test-tab--" + test).fadeOut(250);
     setTimeout(function() {
@@ -32,11 +51,11 @@ function buttonStart(test) {
         });
     }, 250);
     if (test == "numeracy") {
-   //     $('#question-' + test + 'header').text("Question 1");
+        //     $('#question-' + test + 'header').text("Question 1");
         startNumeracyTest();
     }
     else if (test == "literacy") {
-  //      $('#question-' + test + 'header').text("Question 1");
+        //      $('#question-' + test + 'header').text("Question 1");
         startLiteracyTest();
     }
     else if (test == "memory") {

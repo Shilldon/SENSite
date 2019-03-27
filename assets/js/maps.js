@@ -22,7 +22,7 @@ function createSchoolsArray(allText) {
   var schoolsDataArray = [];
 
   //cycle through all lines of text and push data to master array
-  for (var i = 1; i < allTextLines.length; i++) {
+  for (var i = 0; i < allTextLines.length; i++) {
     var data = allTextLines[i].split(',');
     if (data.length == headers.length) {
       var schoolArray = [];
@@ -91,9 +91,10 @@ function createLocalSchoolsArray(postcode) {
     schoolPostcode = masterSchoolsArray[j][64];
 
     //check if the school is marked as closed, if so do not retrieve to local school array
+    //ensure header row is added (j=0)
     schoolClosed = masterSchoolsArray[j][10];
     if (schoolClosed != "Closed") {
-      if (schoolPostcode.search(postcode) != -1) {
+      if (j==0 || schoolPostcode.search(postcode) != -1) {
         schoolsDataArray.push(masterSchoolsArray[j]);
       }
     }
@@ -119,8 +120,9 @@ function getPostcodeData(schoolPostCodes, callBack) {
 function convertPostcodes(localSchoolsDataArray) {
   //get longitude and latitude from postcode ready to place google map marker
   //initialise array to accept postcodes of the local schools
+  //NB start for loop at 1 to skip header tow
   var schoolPostCodesArray = []
-  for (i = 0; i < localSchoolsDataArray.length; i++) {
+  for (i = 1; i < localSchoolsDataArray.length; i++) {
     var schoolPostCode = localSchoolsDataArray[i][64];
     schoolPostCodesArray.push(schoolPostCode);
   }

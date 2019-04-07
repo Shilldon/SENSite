@@ -12,7 +12,8 @@ $(".data-tab--chart-button").on("click", function() {
     switch (action) {
         case 'select':
             $("#data-tab--landing").fadeOut(250);
-            setTimeout(function() { $("#data-tab--chart-" + chartId+"-tab").fadeIn(250); }, 250);
+            setTimeout(function() { $("#data-tab--chart-" + chartId+"-tab").fadeIn(250); if(chartId=="national") { defineChartData(); } }, 250);
+            
             break;
         case 'back':
             $(this).closest('section').fadeOut(250);

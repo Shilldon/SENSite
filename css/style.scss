@@ -227,14 +227,27 @@ $value in $tab-colors {
 
 /*----- DATA TAB -----*/
 .data-tab--chart-area {
+    width: 80vw;
+    height: 52vh;
+    margin-left: 10vw;
+    border: solid 2px $data-color;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-    width:80vw;
-    height:45vh;
-    position: absolute;
-    left: 50%;
-    top:50%;
-    transform: translate(-50%,-50%);
-    border: solid 2px $data-color;   
+//    width:80vw;
+  //  height:52vh;
+ //   position: absolute;
+ 
+    //margin-left: 10vw;
+    //top:50%;
+//    transform: translate(-50%,-50%);
+//    border: solid 2px $data-color;   
+}
+
+.data-tab--chart {
+    padding-top: 20px;
+    height:95%;
+    width:100%; 
 }
 
 .data-tab--chart-section  {
@@ -546,7 +559,7 @@ body {
 
     $logoWidth: 350px;
     $title-font-size: 30px;
-    $body-font-size: 16px;
+    $body-font-size: 13px;
 body {
     font-size: $body-font-size;
 }

@@ -153,6 +153,11 @@
                             </div>
                         </div>
                         <div class="row">
+                           <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
+                                <h4><i class="fa fa-map"></i></h4>
+                                <button class="data-tab--chart-button" id="button-data-select-national">National</button>
+                            </div>
+
                             <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
                                 <h4><i class="fa fa-map-marker"></i></h4>
                                 <button class="data-tab--chart-button" id="button-data-select-regional">Regional</button>
@@ -161,10 +166,10 @@
                     </div>
                     <section class="data-tab--chart-section" id="data-tab--chart-regional-tab">
                         <div class="row">
-                            <div class="col-xs-3" style="height:100%">
+                            <div class="col-xs-1" style="height:100%">
                                 <input id="chart-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="Postcode">
                             </div>
-                            <div class="col-xs-3" style="height:100%">
+                            <div class="col-xs-1" style="height:100%">
                                 <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
                             </div>
                             <div class="col-xs-2" style="height:100%">
@@ -174,17 +179,17 @@
                             <div class="col-xs-2" style="height:100%">SEN Accomodated</div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3" style="height:100%">
-                                <input id="select-school-capacity" type="radio" name="graph_type" value="school_capacity"> School Capacity<br>
+                            <div class="col-xs-2" style="height:100%">
+                                <input id="select-school-capacity" type="radio" checked="checked" name="graph_type" value="school_capacity"> School Capacity<br>
                             </div>
-                            <div class="col-xs-3" style="height:100%">
+                            <div class="col-xs-2" style="height:100%">
                                 <input id="select-total-pupils" type="radio" name="graph_type" value="total_pupils"> Total Pupils<br>
                             </div>
                             <div id="data-tab--chart-selector-regional" class="col-xs-2 col-xs-offset-2" style="height:100%"></div>
                             <div id="data-tab--chart-selector2-regional" class="col-xs-2" style="height:100%"></div>
                         </div>
-                        <div class="row" style="height: 52vh">
-                            <div class="col-xs-12 data-tab--chart-area" id="data-tab--chart-regional">
+                        <div class="row data-tab--chart-area">
+                            <div class="col-xs-9 data-tab--chart" id="data-tab--chart-regional">
                             </div>
                         </div>
                         <div class="row">
@@ -197,9 +202,26 @@
                             <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container" >
                                 <button id="button-chart-plot-next" max="25">Next</button>
                             </div>
+ 
                             
                         </div>
                     </section>
+                    <section class="data-tab--chart-section" id="data-tab--chart-national-tab">
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row data-tab--chart-area">
+                            <div class="col-xs-9 data-tab--chart" id="data-tab--chart-national">
+                            </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-2 col-sm-offset-5 tab--menu-button-container">
+                                <button class="data-tab--chart-button" id="button-data-back">Back</button>
+                            </div>                            
+                        </div>
+                    </section>
+                    
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="test-tab">
                     <div id="test-tab--landing">

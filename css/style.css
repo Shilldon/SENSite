@@ -180,6 +180,10 @@ footer {
 .data-tab--chart-section {
   display: none; }
 
+#data-tab--chart-national .axis text {
+  overflow: hidden;
+  max-width: 15ch; }
+
 /*----- TEST TAB -----*/
 .test-tab {
   display: none; }

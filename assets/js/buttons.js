@@ -12,8 +12,8 @@ $(".data-tab--chart-button").on("click", function() {
     switch (action) {
         case 'select':
             $("#data-tab--landing").fadeOut(250);
-            setTimeout(function() { $("#data-tab--chart-" + chartId+"-tab").fadeIn(250); if(chartId=="national") { defineChartData(); } }, 250);
-            
+            setTimeout(function() { $("#data-tab--chart-" + chartId + "-tab").fadeIn(250); if (chartId == "national") { defineChartData(); } }, 250);
+
             break;
         case 'back':
             $(this).closest('section').fadeOut(250);
@@ -23,8 +23,8 @@ $(".data-tab--chart-button").on("click", function() {
 })
 
 $("#chart-submit").click(function() {
-    $('#button-chart-plot-previous').attr('min',0);
-    $('#button-chart-plot-next').attr('max',25);    
+    $('#button-chart-plot-previous').attr('min', 0);
+    $('#button-chart-plot-next').attr('max', 25);
     defineChartData();
 });
 
@@ -37,6 +37,20 @@ $('#chart-address-2').keypress(function(e) {
         $('#chart-submit').focus();
     defineChartData();
 });
+
+$("#select-school-capacity").click(function() {
+
+    if (typeof new_schools_dim != 'undefined') {
+        renderRegionalChart(new_schools_dim)
+    }
+})
+
+$("#select-total-pupils").click(function() {
+
+    if (typeof new_schools_dim != 'undefined') {
+        renderRegionalChart(new_schools_dim)
+    }
+})
 
 /*----- Test tab buttons -----*/
 

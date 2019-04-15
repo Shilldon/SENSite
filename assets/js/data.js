@@ -1,20 +1,24 @@
 $('#button-chart-plot-previous').on("click", function() {
+    var change = parseInt($('#button-chart-plot-next').attr('change'));
+
     var min = parseInt($('#button-chart-plot-previous').attr('min'));
-    min = min - 25;
+    min = min - change;
     $('#button-chart-plot-previous').attr('min', parseInt(min));
     var max = parseInt($('#button-chart-plot-next').attr('max'));
-    max = max - 25;
+    max = max - change;
     $('#button-chart-plot-next').attr('max', parseInt(max));
     defineChartData();
     //   retrievePostcodeData(ndx,min,max)
 })
 
 $('#button-chart-plot-next').on("click", function() {
+    var change = parseInt($('#button-chart-plot-next').attr('change'));
+
     var min = parseInt($('#button-chart-plot-previous').attr('min'));
-    min += 25;
+    min += change;
     $('#button-chart-plot-previous').attr('min', parseInt(min));
     var max = parseInt($('#button-chart-plot-next').attr('max'));
-    max += 25;
+    max += change;
     $('#button-chart-plot-next').attr('max', parseInt(max));
     defineChartData();
     //   retrievePostcodeData(ndx,min,max)
@@ -25,31 +29,41 @@ var chart;
 var colWidth;
 var barWidth;
 var barChartWidth;
-
 var barChartHeight;
+var pieChartWidth;
+var pieChartHeight;
 var scale;
 var dataset = [0];
 
 //load in csv of schools into schoolData crossfilter
 function defineChartData() {
-    queue()
-        .defer(d3.csv, 'assets/data/schoolsshort.csv')
-        .await(loadData);
-    barChartWidth = $(".data-tab--chart :visible").first().width();
-    console.log($(".data-tab--chart").first())
-    console.log(barChartWidth)
-    barChartHeight = $(".data-tab--chart :visible").first().height();
+    var postcode = $('#chart-address').val();
+    if (postcode != "") {
+        barChartWidth = $("#data-tab--chart-area").width()*0.8;
+        console.log(barChartWidth);
+        barChartHeight = $("#data-tab--chart-area").height()*0.9;
+    //    pieChartWidth=$("#data-tab--chart-area").width()*0.15;
+        pieChartHeight=$("#data-tab--chart-area").width()*0.15;
+       $('#data-tab--chart-area img').css('display', 'block');
+        queue()
+            .defer(d3.csv, 'assets/data/schools.csv')
+            .await(loadData);
+    }
+    else {
+        alert("enter postcode")
+    }
 
     function loadData(error, schoolData) {
+        //  $('#data-tab--chart-bar').css('display','block');
         ndx = crossfilter(schoolData);
-        console.log("national display: " + $("#data-tab--chart-national-tab").css('display'))
-        console.log("regional display: " + $("#data-tab--chart-regional-tab").css('display'))
-        if ($("#data-tab--chart-national-tab").css('display') == 'none') {
-            filterByPostcode(ndx, 0, 0);
-        }
-        else {
-            renderNationalChart(ndx)
-        }
+        //    if ($("#data-tab--chart-national-tab").css('display') == 'none') {
+        $('#data-tab--chart-area img').css('display', 'none');
+        filterByPostcode(ndx, 0, 0);
+
+        /*    }
+            else {
+                renderNationalChart(ndx)
+            }*/
     }
 }
 
@@ -68,15 +82,27 @@ function print_filter(filter) {
 function filterByPostcode(schoolData, minCount, maxCount) {
     //get user submitted postcode
     minCount = $('#button-chart-plot-previous').attr('min');
+
     maxCount = $('#button-chart-plot-next').attr('max');
+    console.log("maxCount" + maxCount)
+    //   console.log("max=" + maxCount + " min=" + minCount)
 
-    console.log("max=" + maxCount + " min=" + minCount)
-
-    var postcodePart1 = $('#chart-address-1').val();
-    var postcodePart2 = $('#chart-address-2').val();
-    var postcode;
-    postcode = postcodePart1 + " " + postcodePart2;
+    /*  var postcodePart1 = $('#chart-address-1').val();
+      var postcodePart2 = $('#chart-address-2').val();
+      var postcode=postcodePart1;
+      if(postcodePart2!=""){
+      postcode = postcodePart1 + " " + postcodePart2;
+      }*/
+    var postcode = $('#chart-address').val();
     postcode = postcode.toUpperCase();
+    if (postcode.endsWith('*') == true) {
+        console.log("postcode before mod=" + postcode)
+        postcode = postcode.substr(0, postcode.length - 1);
+        console.log("postcode after mod=" + postcode)
+    }
+    else {
+        postcode = postcode + " ";
+    }
 
     //create dimension of multiple arrays for filtering
     local_schools_dim = schoolData.dimension(function(d) {
@@ -91,15 +117,7 @@ function filterByPostcode(schoolData, minCount, maxCount) {
         }
 
     })
-    var count = 1;
-
-    /*   dimData = local_schools_dim.top(Infinity);
-       i=0;
-       dimData.forEach(function (x) {
-           i++;
-           console.log(i+" "+JSON.stringify(x.EstablishmentName));
-       });
-       */
+    var count = 0;
 
     //filter dimension to exclude postcodes that do not partial match user submitted postcode
     //and schools that are closed
@@ -115,43 +133,47 @@ function filterByPostcode(schoolData, minCount, maxCount) {
             return d;
         }
         else {
+          //  $('#data-tab--total-schools').text(count);
             count++;
             //         console.log(count)
         }
     });
+$('#data-tab--total-schools').text(count);        
+    
     schoolData.remove();
     local_schools_dim.filter(null);
-
-    if (count > maxCount) {
-        console.log("count more than max")
+    var resultsRange = $("#button-chart-plot-next").attr('change');
+    if (count >= maxCount) {
+        //     console.log("count more than max")
         $("#button-chart-plot-next").show();
     }
     else {
-        console.log("count less than max")
+        //   console.log("count less than max")
         $("#button-chart-plot-next").hide();
     }
-    if (minCount >= 25) {
-        console.log("mincount more than 25")
+    if (minCount >= resultsRange) {
+        //   console.log("mincount more than 25")
         $("#button-chart-plot-previous").show();
     }
     else {
-        console.log("mincount less than 25")
+        //       console.log("mincount less than 25")
 
         $("#button-chart-plot-previous").hide();
     }
 
     new_schools_dim = schoolData.dimension(dc.pluck('EstablishmentName'));
-    /*dimData = new_schools_dim.top(Infinity);
-        dimData.forEach(function (x) {
-            console.log(JSON.stringify(x));
-        });    */
+    establishment_type_dim = schoolData.dimension(dc.pluck('TypeOfEstablishment (name)'));
+    dimData = establishment_type_dim.top(Infinity);
+    dimData.forEach(function(x) {
+        //        console.log(JSON.stringify(x));
+    });
 
 
     //render charts
     renderOfstedSelector(schoolData, postcode);
     renderSENSelector(schoolData, postcode);
     //    renderPieChart(schoolData);
-    renderRegionalChart(new_schools_dim);
+    renderRegionalChart(new_schools_dim, establishment_type_dim);
 }
 
 //check the user submitted postcode against the postcode data taken from the csv - if partial match return true else false
@@ -193,7 +215,7 @@ function renderSENSelector(schoolData, postcode) {
             if (checkPostcode(postcode, d.Postcode)) {
                 //only return d if postcode and SEN class are correct
                 SEN = d['SEN' + i + ' (name)'];
-                console.log(SEN)
+                //               console.log(SEN)
                 if (SEN == "") {
                     SEN = "None";
                 }
@@ -212,65 +234,48 @@ function renderSENSelector(schoolData, postcode) {
 }
 
 //draw chart of number of pupils per school
-function renderRegionalChart(schools_dim) {
-    console.log("rendering regional chart");
+function renderRegionalChart(schools_dim, establishment_type_dim) {
+    //   console.log("rendering regional chart");
 
     function addSchool(p, v) {
-        //      p.count++;
-        // console.log(p.count)
+        //calculate remaining school capacity
         p.capacity += parseInt(v.SchoolCapacity) - parseInt(v.NumberOfBoys) - parseInt(v.NumberOfGirls);
+        //if oversubscribed set remaining capacity to 0
         if (p.capacity < 0) {
             p.capacity = 0;
         }
-        //    console.log("added "+v.EstablishmentName+" "+p.capacity)
-        //      console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
         return p;
     }
 
     function removeSchool(p, v) {
-        //     p.count--;
-        //    if (p.count == 0) {
-        //        p.capacity = 0;
-        //    }
-        //    else {
-        p.capacity += parseInt(v.SchoolCapacity) - parseInt(v.NumberOfBoys) - parseInt(v.NumberOfGirls);
-        if (p.capacity < 0) {
-            p.capacity = 0;
-        }
-        //    }
-        //     console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
-        //   console.log("removed "+v.EstablishmentName+" "+p.capacity)
+        //set school capacity to 0 - removing from filtered results
+        p.capacity = 0;
         return p;
     }
 
     function initialiseSchool() {
-        return { /*count:0,*/ capacity: 0 };
+        return { capacity: 0 };
     }
 
     var boy_pupils_per_school = schools_dim.group().reduceSum(dc.pluck('NumberOfBoys'));
     var girl_pupils_per_school = schools_dim.group().reduceSum(dc.pluck('NumberOfGirls'));
-    //   var school_capacity=schools_dim.group().reduceSum(dc.pluck('SchoolCapacity'));
-
     var school_capacity = schools_dim.group().reduceSum(function(d) {
-
-        //     console.log(i+" "+d.EstablishmentName+" capacity="+d.SchoolCapacity+"!");
+        //if School capacity not defined in csv calculate it as total pupils
         if (d.SchoolCapacity == "") {
-            //            console.log("not a number calculate capacity")
             d.SchoolCapacity = parseInt(d.NumberOfGirls) + parseInt(d.NumberOfBoys);
         }
         else {
             d.SchoolCapacity = parseInt(d.SchoolCapacity);
         }
-        //        console.log(d.EstablishmentName+" capacity="+capacity);
         return d.SchoolCapacity;
     });
 
     var reduced_school_capacity = schools_dim.group().reduce(addSchool, removeSchool, initialiseSchool);
 
-    var numberOfPupilsChart = dc.barChart('#data-tab--chart-regional');
+    var numberOfPupilsChart = dc.barChart('#data-tab--chart-bar');
 
     if ($('#select-total-pupils').is(':checked')) {
-        console.log("barChartHeight" + barChartHeight)
+        //display chart based on the total girls and boys at the school, showing, also remaining capacity
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
@@ -285,242 +290,274 @@ function renderRegionalChart(schools_dim) {
             .xUnits(dc.units.ordinal)
             .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
             .elasticY(true)
-            .on('renderlet', function(numberOfPupilsChart) {
-                    numberOfPupilsChart.selectAll('g.x text')
-                        .attr('transform', 'translate(-12.5,-120) rotate(270)');
-                    /*      console.log("barChartHeight=" + barChartHeight)
-                          numberOfPupilsChart.selectAll('rect.bar')
-                              .attr('width', function(d) {
-                                  currentBarWidth = $("rect.bar").attr('width');
-                                  if (d.layer == "Boys") {
-                                      return currentBarWidth * 1;
-                                  }
-                                  else if (d.layer == "Girls") {
-                                      return currentBarWidth * 0.75;
-                                  }
-                                  else if (d.layer == "Remaining Spaces") {
-                                      return currentBarWidth * 0.5;
-                                  }
-                              })*/
-                    numberOfPupilsChart.selectAll('g.tick line')
-                    .on("mouseover", console.log("moused over"))
-                    .attr('fill','black')
-                        .attr('full-name', function(d) { return d })
-                        .attr('short-name', function(d) {
-                            if (d.length > 30) {
-                                return d.substr(0, 30) + '...';
-                            }
-                        })
-                            .on("mouseover", function(d) { $(this).siblings().text($(this).attr('full-name'))})
-                            .on("mouseout", function(d) { $(this).siblings().text($(this).attr('short-name'))})
-
-                            numberOfPupilsChart.selectAll('rect.bar title')
-                                .text(function(d) {
-                                    //                 console.log(JSON.stringify(d)); 
-                                    console.log("layer=" + d.layer);
-                                    //                console.log("d.data.value = "+d.data.value); 
-                                    if (d.layer != "Remaining Spaces") {
-                                        return d.x + ": " + d.data.value
-                                    }
-                                    else {
-                                        return d.x + ": " + d.data.value.capacity
-
-                                    }
-
-                                });
-
-                            numberOfPupilsChart.selectAll('g.x text')
-                                .text(function(d) {
-                                    if (d.length > 30) {
-                                        return d.substr(0, 30) + '...';
-                                    }
-                                    else {
-                                        return d;
-                                    }
-                                });
-
-                        })
-
-                        .yAxisLabel("Number of Pupils")
-                        .yAxis().ticks(20);
-                }
-                else if ($('#select-school-capacity').is(':checked')) {
-                    numberOfPupilsChart
-                        .width(barChartWidth)
-                        .height(barChartHeight)
-                        .margins({ top: 20, right: 50, bottom: 30, left: 50 })
-                        .dimension(schools_dim)
-                        .group(school_capacity, "Total Capacity")
-                        .transitionDuration(500)
-                        .x(d3.scale.ordinal())
-                        .xAxisLabel("School")
-                        .xUnits(dc.units.ordinal)
-                        .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
-                        .elasticY(true)
-                        .on('renderlet', function(numberOfPupilsChart) {
-                            numberOfPupilsChart.selectAll('g.x text')
-                                .attr('transform', 'translate(-12.5,-120) rotate(270)');
-                        })
-                        .yAxisLabel("Number of Pupils")
-                        .yAxis().ticks(20);
-                }
-                dc.renderAll();
-            }
-
-        function renderNationalChart(schoolData) {
-            console.log("rendering national chart");
-
-            function addSchool(p, v) {
-                p.count++;
-                p.total += 1;
-                //      console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
-                return p;
-            }
-
-            function removeSchool(p, v) {
-                p.count--;
-                if (p.count == 0) {
-                    p.total = 0;
-                }
-                else {
-                    p.total--;
-                }
-                //     console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
-                return p;
-            }
-
-            function initialise() {
-                return { count: 0, total: 0 };
-            }
-
-            var establishment_dim = schoolData.dimension(dc.pluck('EstablishmentTypeGroup (name)'));
-            var establishment_categories = establishment_dim.group().reduce(addSchool, removeSchool, initialise);
-            //var school_capacity = schools_dim.group().reduceSum(dc.pluck('SchoolCapacity'));
-
-            var establishmentChart = dc.barChart('#data-tab--chart-national');
-            var xAxis = d3.svg.axis();
-
-            establishmentChart
-                .width(barChartWidth)
-                .height(barChartHeight)
-                .margins({ top: 20, right: 50, bottom: 30, left: 50 })
-                .dimension(establishment_dim)
-                .group(establishment_categories, "Type of Establishment")
-                .valueAccessor(function(d) {
-                    return d.value.total;
+            .yAxisLabel("Number of Pupils")
+            .yAxis().ticks(20);
+    }
+    else if ($('#select-school-capacity').is(':checked')) {
+        //display chart just setting out total school pupil capacity
+        numberOfPupilsChart
+            .width(barChartWidth)
+            .height(barChartHeight)
+            .margins({ top: 20, right: 50, bottom: 30, left: 50 })
+            .dimension(schools_dim)
+            .group(school_capacity, "Total Capacity")
+            .transitionDuration(500)
+            .x(d3.scale.ordinal())
+            .xAxisLabel("School")
+            .xUnits(dc.units.ordinal)
+            .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
+            .elasticY(true)
+            .yAxisLabel("Number of Pupils")
+            .yAxis().ticks(20);
+    }
+    numberOfPupilsChart
+        .ordinalColors(["#7b3bfc", "#884ffb", "#9c6df9"])
+        .on('renderlet', function(numberOfPupilsChart) {
+            numberOfPupilsChart.selectAll('rect.bar')
+                .on("mouseover.namechange", function(d) {
+                    barPosition = $(this).index();
+                    barFullName = $('g.x text').eq(barPosition).attr('full-name');
+                    $('g.x text').eq(barPosition).text(barFullName);
                 })
-                .transitionDuration(500)
-                .x(d3.scale.ordinal())
-                .xAxisLabel("Type of Establishment")
-                .on('renderlet', (function(chart) {
-                    establishmentChart.selectAll('g.x text')
-                        .attr('transform', 'translate(-12.5,0) rotate(315)')
-                }))
-                .xUnits(dc.units.ordinal)
-                .elasticY(true)
-                .yAxisLabel("Number of Establishments")
-                .yAxis().ticks(20);
-
-            /*   var establishmentChart = dc.rowChart('#data-tab--chart-national');
-               
-               establishmentChart
-                      .width(barChartWidth)
-                      .height(barChartHeight)
-                      .x(d3.scale.linear().domain([0,1000]))
-                      .elasticX(true)
-                      .dimension(establishment_dim)
-                      .group(establishment_categories);*/
-
-            dc.renderAll();
-        }
-
-        /*
-        function renderPieChart(schoolData) {
-
-            function addPupils(p, v) {
-                p.count++;
-                p.totalBoys += v.NumberOfBoys;
-                p.totalGirls += v.NumberOfGirls;
-                //      console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
-                return p.totalBoys, p.totalGirls;
-            }
-
-            function removePupils(p, v) {
-                p.count--;
-                if (p.count == 0) {
-                    p.totalBoys = 0;
-                    p.totalGirls = 0;
-                }
-                else {
-                    p.totalBoys -= v.NumberOfBoys;
-                    p.totalGirls -= v.NumberOfGirls;
-                }
-                //     console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
-                return p.totalBoys, p.totalGirls;
-            }
-
-            function initialisePupils() {
-                return { count: 0, totalBoys: 0, totalGirls: 0 };
-            }
-
-        /*    var girls_or_boys = schoolData.dimension(function(d) {
-                return  d.NumberOfBoys > d.NumberOfGirls ? 'Boys' : 'Girls';
-            })
-
-        var girls_or_boys = schoolData.dimension(dc.pluck('EstablishmentName'));
-
-            var girls_or_boys_group = girls_or_boys.group().reduce(addPupils, removePupils, initialisePupils);   
-
-            var girls_or_boys_chart = dc.pieChart('#PieChart');
-
-            girls_or_boys_chart /* dc.pieChart('#gain-loss-chart', 'chartGroup') 
-                // (_optional_) define chart width, `default = 200`
-                .width(180)
-                // (optional) define chart height, `default = 200`
-                .height(180)
-                // Define pie radius
-                .radius(80)
-                // Set dimension
-                .dimension(girls_or_boys)
-                // Set group
-                .group(girls_or_boys_group);
-
-            dc.renderAll();
-            // (_optional_) by default pie chart will use `group.key` as its label but you can overwrite it with a closure.
-              .label(function (d) {
-                  if (gainOrLossChart.hasFilter() && !gainOrLossChart.hasFilter(d.key)) {
-                      return d.key + '(0%)';
-                  }
-                  var label = d.key;
-                  if (all.value()) {
-                      label += '(' + Math.floor(d.value / all.value() * 100) + '%)';
-                  }
-                  return label;
-              })    
-        }
-        */
-
-        function wrap(text, width) {
-            console.log("called wrap text")
-            text.each(function() {
-                var text = d3.select(this),
-                    words = text.text().split(/\s+/).reverse(),
-                    word,
-                    line = [],
-                    lineNumber = 0,
-                    lineHeight = 1.1, // ems
-                    y = text.attr("y"),
-                    dy = parseFloat(text.attr("dy")),
-                    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-                while (word = words.pop()) {
-                    line.push(word);
-                    tspan.text(line.join(" "));
-                    if (tspan.node().getComputedTextLength() > width) {
-                        line.pop();
-                        tspan.text(line.join(" "));
-                        line = [word];
-                        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                .on("mouseout.namechange", function(d) {
+                    barPosition = $(this).index();
+                    barShortName = $('g.x text').eq(barPosition).attr('short-name');
+                    $('g.x text').eq(barPosition).text(barShortName);
+                });
+            numberOfPupilsChart.selectAll('g.x text')
+                .attr('transform', 'translate(-12.5,-120) rotate(270)')
+                .attr('full-name', function(d) { return d })
+                .attr('short-name', function(d) {
+                    if (d.length > 30) {
+                        return d.substr(0, 30) + '...';
                     }
-                }
-            });
+                })
+                .text(function(d) {
+                    if (d.length > 30) {
+                        return d.substr(0, 30) + '...';
+                    }
+                    else {
+                        return d;
+                    }
+                });
+            numberOfPupilsChart.selectAll('rect.bar title')
+                .text(function(d) {
+                    if (d.layer != "Remaining Spaces") {
+                        return d.x + ": " + d.data.value
+                    }
+                    else {
+                        return d.x + ": " + d.data.value.capacity
+                    }
+                });
+        })
+
+    //percentage calcs custom reduce
+
+
+    function initialiseEstablishments() {
+        return { schoolCount: 0, averagePupilDensity: 0, totalPupils: 0 }
+    }
+
+    function addEstablishment(p, v) {
+        //   p.totalPupilCount+=parseInt(v.NumberOfPupils);
+        p.schoolCount++;
+        p.totalPupils += parseInt(v.NumberOfPupils);
+        p.averagePupilDensity = p.totalPupils / p.schoolCount;
+        return p;
+    }
+
+    function removeEstablishment(p, v) {
+        //set school capacity to 0 - removing from filtered results
+        p.schoolCount--;
+        if (p.schoolCount == 0) {
+            p.totalPupils = 0;
+            p.averagePupilDensity = 0;
         }
+        else {
+            p.totalPupils -= parseInt(v.NumberOfPupils);
+            p.averagePupilDensity = p.totalPupils / p.schoolCount;
+        }
+        return p;
+    }
+
+    //    var total_pupils_per_establishment = establishment_type_dim.group().reduceSum(dc.pluck('NumberOfPupils'));
+    var total_pupils_per_establishment = establishment_type_dim.group().reduce(addEstablishment, removeEstablishment, initialiseEstablishments);
+    var pupilsPerEstablishmentChart = dc.pieChart('#PieChart');
+    pupilsPerEstablishmentChart
+        .height(pieChartHeight)
+        .radius(90)
+        .innerRadius(pieChartHeight/5)
+        .transitionDuration(1500)
+        .dimension(establishment_type_dim)
+        .group(total_pupils_per_establishment)
+        .valueAccessor(function(p) {
+            return p.value.averagePupilDensity;
+        })
+        .ordinalColors(['#6d23ff', '#7b3bfc', '#8b54fb', '#884ffb', '#9c6df9'])
+/*        .on('renderlet', function(pupilsPerEstablishmentChart) {
+            pupilsPerEstablishmentChart.selectAll('text.pie-slice')
+             //   .style('fill', 'black')
+            //    .attr('text-anchor','left')
+                .on("mouseover.namechange", function(d) {
+pupilsPerEstablishmentChart.selectAll('text.pie-slice')
+                .text(function(d) {
+                    return d.data.key;
+                })
+                })            
+        })*/
+        .on('pretransition', function(pupilsPerEstablishmentChart) {
+            pupilsPerEstablishmentChart.selectAll('text.pie-slice')
+                .text(function(d) {
+                    percentageOfPupils=dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2 * Math.PI) * 100);
+                    if(percentageOfPupils>0) {
+                        return percentageOfPupils + '%';;
+                    }
+                    else {
+                        return " ";
+                    }
+                })
+                .style('fill', 'black')
+        });
+
+    dc.renderAll();
+}
+/*
+function renderNationalChart(schoolData) {
+//    console.log("rendering national chart");
+
+    function addSchool(p, v) {
+        p.count++;
+        p.total += 1;
+        //      console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
+        return p;
+    }
+
+    function removeSchool(p, v) {
+        p.count--;
+        if (p.count == 0) {
+            p.total = 0;
+        }
+        else {
+            p.total--;
+        }
+        //     console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
+        return p;
+    }
+
+    function initialise() {
+        return { count: 0, total: 0 };
+    }
+
+    var establishment_dim = schoolData.dimension(dc.pluck('EstablishmentTypeGroup (name)'));
+    var establishment_categories = establishment_dim.group().reduce(addSchool, removeSchool, initialise);
+
+    var establishmentChart = dc.barChart('#data-tab--chart-national');
+    var xAxis = d3.svg.axis();
+
+
+
+    establishmentChart
+        .width(barChartWidth)
+        .height(barChartHeight)
+        .margins({ top: 20, right: 50, bottom: 30, left: 50 })
+        .dimension(establishment_dim)
+        .group(establishment_categories, "Type of Establishment")
+        .valueAccessor(function(d) {
+            return d.value.total;
+        })
+        .transitionDuration(500)
+        .x(d3.scale.ordinal())
+        .xAxisLabel("Type of Establishment")
+        .on('renderlet', (function(chart) {
+            establishmentChart.selectAll('g.x text')
+                .attr('style', function getTextWidth(text, font) {
+                    var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+                    var context = canvas.getContext("2d");
+                    context.font = font;
+                    var metrics = context.measureText(text);
+                    var barLabelWidth=$('rect').attr('width');
+                    var percentageChange=parseInt(barLabelWidth)/metrics.width;
+                    var currentFontSize=$(this).css('font-size');
+                    currentFontSize=parseInt(currentFontSize);
+                    var newFontSize=Math.floor(currentFontSize*percentageChange);
+                    if(metrics.width>$('rect').attr('width')) {
+                        return ($(this).attr('style')+'; font-size:'+newFontSize+'px');
+                    }
+                    else {
+                        return $(this).attr('style');
+                    }
+                });
+        }))
+        .xUnits(dc.units.ordinal)
+        .elasticY(true)
+        .yAxisLabel("Number of Establishments")
+        .yAxis().ticks(20);
+    dc.renderAll();
+}
+*/
+/*
+function renderPieChart(schoolData) {
+
+    function addPupils(p, v) {
+        p.count++;
+        p.totalBoys += v.NumberOfBoys;
+        p.totalGirls += v.NumberOfGirls;
+        //      console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
+        return p.totalBoys, p.totalGirls;
+    }
+
+    function removePupils(p, v) {
+        p.count--;
+        if (p.count == 0) {
+            p.totalBoys = 0;
+            p.totalGirls = 0;
+        }
+        else {
+            p.totalBoys -= v.NumberOfBoys;
+            p.totalGirls -= v.NumberOfGirls;
+        }
+        //     console.log("remove "+v['EstablishmentTypeGroup (name)']+" total "+p.total);
+        return p.totalBoys, p.totalGirls;
+    }
+
+    function initialisePupils() {
+        return { count: 0, totalBoys: 0, totalGirls: 0 };
+    }
+
+/*    var girls_or_boys = schoolData.dimension(function(d) {
+        return  d.NumberOfBoys > d.NumberOfGirls ? 'Boys' : 'Girls';
+    })
+
+var girls_or_boys = schoolData.dimension(dc.pluck('EstablishmentName'));
+
+    var girls_or_boys_group = girls_or_boys.group().reduce(addPupils, removePupils, initialisePupils);   
+
+    var girls_or_boys_chart = dc.pieChart('#PieChart');
+
+    girls_or_boys_chart /* dc.pieChart('#gain-loss-chart', 'chartGroup') 
+        // (_optional_) define chart width, `default = 200`
+        .width(180)
+        // (optional) define chart height, `default = 200`
+        .height(180)
+        // Define pie radius
+        .radius(80)
+        // Set dimension
+        .dimension(girls_or_boys)
+        // Set group
+        .group(girls_or_boys_group);
+
+    dc.renderAll();
+    // (_optional_) by default pie chart will use `group.key` as its label but you can overwrite it with a closure.
+      .label(function (d) {
+          if (gainOrLossChart.hasFilter() && !gainOrLossChart.hasFilter(d.key)) {
+              return d.key + '(0%)';
+          }
+          var label = d.key;
+          if (all.value()) {
+              label += '(' + Math.floor(d.value / all.value() * 100) + '%)';
+          }
+          return label;
+      })    
+}
+*/
+

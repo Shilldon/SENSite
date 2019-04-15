@@ -24,3 +24,4 @@ https://api.postcodes.io/postcodes
 ratings : https://commons.wikimedia.org/wiki/File:Star_rating_1_of_5.png
 
 coloring bars based on https://gist.github.com/renancouto/4675192
+loading https://en.wikipedia.org/wiki/File:InternetSlowdown_Day.gif

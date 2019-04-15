@@ -149,16 +149,16 @@
                                 <p>Here you can find information on the number of schools within postcodes or local authority remit. What needs those schools cater for, number of pupils, and mix of boys and girls so you can find the right place for your
                                     child.
                                 </p>
-                                <p>Select below for a national search or filtered by postcode.</p>
+                                <!-- <p>Select below for a national search or filtered by postcode.</p>-->
                             </div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
+                            <!--Find                    <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
                                 <h4><i class="fa fa-map"></i></h4>
                                 <button class="data-tab--chart-button" id="button-data-select-national">National</button>
-                            </div>
+                            </div>-->
 
-                            <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
+                            <div class="col-sm-12 tab--menu-button-container">
                                 <h4><i class="fa fa-map-marker"></i></h4>
                                 <button class="data-tab--chart-button" id="button-data-select-regional">Regional</button>
                             </div>
@@ -167,11 +167,14 @@
                     <section class="data-tab--chart-section" id="data-tab--chart-regional-tab">
                         <div class="row">
                             <div class="col-xs-1" style="height:100%">
-                                <input id="chart-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="Postcode">
+                                <input id="chart-address" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="Postcode">
                             </div>
                             <div class="col-xs-1" style="height:100%">
-                                <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                                <input id="max-results" style="width:100%; padding:0;" type="number" min="10" max="50" value="10">
                             </div>
+                            <!--     <div class="col-xs-1" style="height:100%">
+                                <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
+                            </div>-->
                             <div class="col-xs-2" style="height:100%">
                                 <input id="chart-submit" style="width:100%" type="button" value="Search">
                             </div>
@@ -188,23 +191,44 @@
                             <div id="data-tab--chart-selector-regional" class="col-xs-2 col-xs-offset-2" style="height:100%"></div>
                             <div id="data-tab--chart-selector2-regional" class="col-xs-2" style="height:100%"></div>
                         </div>
-                        <div class="row data-tab--chart-area">
-                            <div class="col-xs-9 data-tab--chart" id="data-tab--chart-regional">
+                        <div class="row">
+                            <div class="col-xs-col-10 col-xs-offset-1" id="data-tab--chart-area">
+                                <img style="display:none" src="assets/images/loading.gif">
+                                <div class="row" style="height:52vh">
+                                    <div class="col-xs-9 data-tab--chart" id="data-tab--chart-bar"></div>
+                                    <div class="col-xs-3">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                            Number Of Schools In Selection:
+                                            </div>
+                                        </div>
+                                         <div class="row">
+<div class="col-xs-12" id="data-tab--total-schools"></div>
+                                        </div>                                       
+                                        <div class="row">
+                                            <div class="col-xs-12" style="text-align: center">
+                                                Average Pupil Density
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3" id="PieChart"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-       <!--                   <div class="col-xs-3" id="PieChart"></div> -->
                         </div>
                         <div class="row">
                             <div class="col-sm-2 col-sm-offset-1 tab--menu-button-container">
                                 <button id="button-chart-plot-previous" min="0">Previous</button>
-                            </div>       
+                            </div>
                             <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container">
                                 <button class="data-tab--chart-button" id="button-data-back">Back</button>
-                            </div>                            
-                            <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container" >
+                            </div>
+                            <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container">
                                 <button id="button-chart-plot-next" max="25">Next</button>
                             </div>
- 
-                            
+
+
                         </div>
                     </section>
                     <section class="data-tab--chart-section" id="data-tab--chart-national-tab">
@@ -217,12 +241,11 @@
                             </div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-2 col-sm-offset-5 tab--menu-button-container">
+                            <div class="col-sm-2 col-sm-offset-5 tab--menu-button-container">
                                 <button class="data-tab--chart-button" id="button-data-back">Back</button>
-                            </div>                            
+                            </div>
                         </div>
                     </section>
-                    
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="test-tab">
                     <div id="test-tab--landing">

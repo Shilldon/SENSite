@@ -164,26 +164,44 @@ footer {
   color: #9c6df9; }
 
 /*----- DATA TAB -----*/
-.data-tab--chart-area {
+#data-tab--chart-area {
   width: 80vw;
   height: 52vh;
-  margin-left: 10vw;
   border: solid 2px #7b3bfc;
   margin-top: 10px;
   margin-bottom: 10px; }
+  #data-tab--chart-area img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 .data-tab--chart {
-  padding-top: 20px;
-  height: 95%;
-  width: 100%; }
+  padding-top: 20px; }
 
 .data-tab--chart-section {
   display: none; }
 
-#data-tab--chart-national .axis text {
-  overflow: hidden;
-  max-width: 15ch; }
+.pie-slice {
+  fill: black; }
 
+/*
+._0 {
+    .bar {
+        fill: $about-color;
+    }
+}
+
+._1{
+    .bar {
+    fill: $data-color;
+
+}
+
+._2 {
+.bar {
+    fill: $test-color;
+}*/
 /*----- TEST TAB -----*/
 .test-tab {
   display: none; }

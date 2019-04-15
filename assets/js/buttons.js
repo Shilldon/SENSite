@@ -23,8 +23,13 @@ $(".data-tab--chart-button").on("click", function() {
 })
 
 $("#chart-submit").click(function() {
-    $('#button-chart-plot-previous').attr('min', 0);
-    $('#button-chart-plot-next').attr('max', 25);
+    $('#button-chart-plot-previous').attr('min', 1);
+    var maxValue=$("#max-results").val();
+    console.log("onclickmax="+maxValue);
+    $('#button-chart-plot-next').attr('max', maxValue);
+    $('#button-chart-plot-next').attr('change', maxValue);
+    
+   // $('#data-tab--chart-bar').css('display','none');
     defineChartData();
 });
 

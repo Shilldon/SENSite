@@ -5,7 +5,7 @@
 $about-color: #6d23ff;
 $data-color: #7b3bfc;
 $test-color: #884ffb;
-$schools-color: #9c6df9;
+$schools-color: #9c6df9; 
 $white: #e1e1e1;
 
 /*----- FONT-SIZE -----*/
@@ -16,8 +16,8 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-//    overflow: hidden;
-overflow: auto;
+    //    overflow: hidden;
+    overflow: auto;
     font-size: $body-font-size;
 }
 
@@ -149,8 +149,7 @@ $logoWidth: 150px;
         display: inline-block;
         line-height: 5vh;
         text-align: center;
-        color: $white;
-     //   font-size: $body-font-size;
+        color: $white; //   font-size: $body-font-size;
         text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
         margin: 0 -2px -0px -2px;
         width: 25%;
@@ -177,7 +176,7 @@ $logoWidth: 150px;
     overflow: auto;
     padding: 10px 0 10px 0;
     p {
-     //   font-size: $body-font-size;
+        //   font-size: $body-font-size;
     }
     h2,
     h3,
@@ -194,7 +193,7 @@ $logoWidth: 150px;
         text-align: center;
     }
     &--menu-button-container {
-        text-align:center;
+        text-align: center;
     }
 }
 
@@ -226,38 +225,52 @@ $value in $tab-colors {
 }
 
 /*----- DATA TAB -----*/
-.data-tab--chart-area {
+
+#data-tab--chart-area {
     width: 80vw;
     height: 52vh;
-    margin-left: 10vw;
+ //   margin-left: 10vw;
     border: solid 2px $data-color;
     margin-top: 10px;
     margin-bottom: 10px;
-
-//    width:80vw;
-  //  height:52vh;
- //   position: absolute;
- 
-    //margin-left: 10vw;
-    //top:50%;
-//    transform: translate(-50%,-50%);
-//    border: solid 2px $data-color;   
+    img {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
 }
 
 .data-tab--chart {
     padding-top: 20px;
-    height:95%;
-    width:100%; 
+   // height: 95%;
+   // width: 100%;
 }
 
-.data-tab--chart-section  {
-    display:none;    
+.data-tab--chart-section {
+    display: none;
 }
 
-#data-tab--chart-national .axis text{
-  overflow: hidden;
-  max-width: 15ch;
+.pie-slice {
+    fill: black;
 }
+/*
+._0 {
+    .bar {
+        fill: $about-color;
+    }
+}
+
+._1{
+    .bar {
+    fill: $data-color;
+
+}
+
+._2 {
+.bar {
+    fill: $test-color;
+}*/
 
 /*----- TEST TAB -----*/
 
@@ -296,51 +309,51 @@ $value in $tab-colors {
 
 // set to .test-tab--literacy &&
 .test-tab--literacy-test-container {
-    border: solid 2px $test-color;  
+    border: solid 2px $test-color;
     font-family: 'Indie Flower', cursive;
     font-size: 18px;
-    min-height:5vh;
-    margin:0 10px 0 10px;
-    padding:0;
-        text-align:center;
+    min-height: 5vh;
+    margin: 0 10px 0 10px;
+    padding: 0;
+    text-align: center;
 }
 
 .test-tab--literacy-word {
     border: none;
-    background-color:$white;
-    height:100%;
-    display:inline-block;
-    outline:none;
+    background-color: $white;
+    height: 100%;
+    display: inline-block;
+    outline: none;
 }
 
 .test-tab--literacy-word-question-hidden {
-    display:none;    
+    display: none;
 }
 
 .test-tab--literacy-word-question-shown {
-    display:inline-block;    
+    display: inline-block;
 }
 
 .test-tab--literacy-word-answer-hidden {
     margin: 0 2.5px 0 2.5px;
-    border-bottom:solid 1px; 
-    border-right:none;
+    border-bottom: solid 1px;
+    border-right: none;
     width: 50px;
 }
 
 .test-tab--literacy-word-answer-shown {
-    border: none; 
+    border: none;
 }
 
 #test-tab--memory-test {
     .col-xs-3 {
-        text-align:center;
+        text-align: center;
     }
 }
 
 .test-tab--memory-icon {
-    width:50px;
-    padding:5px 0 5px 0;
+    width: 50px;
+    padding: 5px 0 5px 0;
 }
 
 #answer-mark {
@@ -388,15 +401,14 @@ $value in $tab-colors {
 }
 
 .map--marker-stars {
-    width:50%;
+    width: 50%;
 }
 
 /*----- CONTACT FORM -----*/
 
 #contact-form {
 
-    max-height: 60vh;
-  //  font-size: $body-font-size;
+    max-height: 60vh; //  font-size: $body-font-size;
     font-family: 'Roboto', sans-serif;
     color: $white;
     margin-top: 20px;
@@ -503,9 +515,9 @@ $value in $tab-colors {
     $title-font-size: 20px;
     $body-font-size: 15px;
 
-body {
-    font-size: $body-font-size;
-}
+    body {
+        font-size: $body-font-size;
+    }
 
     #logo {
         width: $logoWidth;
@@ -522,9 +534,9 @@ body {
     $logoWidth: 300px;
     $title-font-size: 25px;
     $body-font-size: 16px;
-body {
-    font-size: $body-font-size;
-}
+    body {
+        font-size: $body-font-size;
+    }
 
     #logo {
         width: $logoWidth;
@@ -565,9 +577,9 @@ body {
     $logoWidth: 350px;
     $title-font-size: 30px;
     $body-font-size: 13px;
-body {
-    font-size: $body-font-size;
-}
+    body {
+        font-size: $body-font-size;
+    }
 
     #logo {
         width: $logoWidth;
@@ -587,9 +599,9 @@ body {
     $logoWidth: 400px;
     $title-font-size: 35px;
     $body-font-size: 20px;
-body {
-    font-size: $body-font-size;
-}
+    body {
+        font-size: $body-font-size;
+    }
 
     #logo {
         width: $logoWidth;

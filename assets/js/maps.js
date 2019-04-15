@@ -9,7 +9,7 @@ var masterSchoolsArray = [];
 $(document).ready(function() {
   $.ajax({
     type: "GET",
-    url: "assets/data/schoolsshort.csv",
+    url: "assets/data/schools.csv",
     dataType: "text",
     success: function(data) { createSchoolsArray(data); }
   });

@@ -227,10 +227,15 @@ footer {
     font-weight: 400; }
 
 .test-tab--literacy-test-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 13vh;
+  max-height: 13vh;
   border: solid 2px #884ffb;
   font-family: 'Indie Flower', cursive;
   font-size: 18px;
-  min-height: 5vh;
   margin: 0 10px 0 10px;
   padding: 0;
   text-align: center; }
@@ -238,7 +243,6 @@ footer {
 .test-tab--literacy-word {
   border: none;
   background-color: #e1e1e1;
-  height: 100%;
   display: inline-block;
   outline: none; }
 
@@ -252,17 +256,45 @@ footer {
   margin: 0 2.5px 0 2.5px;
   border-bottom: solid 1px;
   border-right: none;
-  width: 50px; }
+  width: 50px;
+  height: 0; }
+
+.test-tab--literacy-answer-mark {
+  height: 25px; }
 
 .test-tab--literacy-word-answer-shown {
   border: none; }
 
+.text-tab--numeracy-question-container {
+  text-align: right; }
+
+.result-chart-container {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.result-chart {
+  height: 35vh;
+  width: 90vw;
+  border: solid 4px #884ffb; }
+  .result-chart svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-45%, -50%); }
+
 #test-tab--memory-test .col-xs-3 {
   text-align: center; }
 
+.test-tab--memory-test-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .test-tab--memory-icon {
-  width: 50px;
-  padding: 5px 0 5px 0; }
+  width: 60px;
+  padding: 5px; }
 
 #answer-mark {
   width: 20px; }
@@ -488,10 +520,17 @@ footer {
   #top-section--title {
     transform: translate(-100%, 0); }
 
+  .test-tab--literacy-word {
+    font-size: 30px; }
+
   #schools-tab {
     font-size: 18px; }
     #schools-tab input {
       font-size: 15px; }
+
+  .test-tab--memory-icon {
+    width: 100px;
+    padding: 10px; }
 
   #school-info {
     border: solid 2px #9c6df9;

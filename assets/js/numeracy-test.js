@@ -9,8 +9,10 @@ var Answer = [];
 var Question = [];
 var QuestionNumber = 0;
 var TotalScore = 0;
+var TestResult = 0;
 var Start = new Date();
 var DisplayResult;
+var CurrentTest;
 
 function clearTest() {
     Answer = [];
@@ -24,8 +26,9 @@ function clearTest() {
 
 function startNumeracyTest() {
     Start = new Date();
-    QuestionNumber=0;
+    QuestionNumber = 0;
     TotalScore = 0;
+    CurrentTest="numeracy";
     for (i = 1; i <= 10; i++) {
         newQuestion();
         Answer[i] = query.answer;
@@ -50,24 +53,17 @@ function nextQuestion(testId) {
         $("#button-numeracy-submit").removeAttr("disabled");
     }
     else if (testId == "literacy") {
-        console.log("next literacy qestion")
-        wordsArray=Question[QuestionNumber];
-        console.log("question "+QuestionNumber+" "+wordsArray);
+        wordsArray = Question[QuestionNumber];
         $("#button-literacy-submit").removeAttr("disabled");
         var questionDivContents = "";
         var answerDivContents = "";
-        console.log("Question Array:" + QuestionArray)
         QuestionArray = cleanArray(wordsArray);
-        console.log("Cleaned Question Array:" + QuestionArray)
         AnswerArray = QuestionArray.slice(0);
         QuestionArray = shuffleArray();
-        console.log("ShuffledQuestion Array:" + QuestionArray)
-        console.log("Answer Array:" + AnswerArray)
         for (i = 0; i < QuestionArray.length; i++) {
             if (QuestionArray[i] != "") {
-                console.log(i + " " + QuestionArray[i])
                 questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
-                answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img style='width:7.5%' id='literacy-answer-mark-" + i + "' src=''>";
+                answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img class='test-tab--literacy-answer-mark' id='literacy-answer-mark-" + i + "' src=''>";
             }
         }
 
@@ -77,16 +73,46 @@ function nextQuestion(testId) {
     }
 }
 
-function reportScore(test) {
+function reportScore() {
+    var end = new Date();
+    var startTime = Start.getTime();
+    var endTime = end.getTime();
+    var TotalTime = Math.ceil((endTime - startTime) / 1000);
+    TestResult = Math.ceil(TotalScore / TotalTime * 100);
+    $('#test-tab--' + CurrentTest + '-test').fadeOut(250);
+    setTimeout(function() { $('#test-tab--' + CurrentTest + '-result').fadeIn(250); }, 250);
+    $('#' + CurrentTest + '-result').text(TestResult.toString());
+//    if (test == "literacy") {
+        queue()
+            .defer(d3.csv, 'assets/data/'+CurrentTest+'scores.csv')
+            .await(loadData);
+//    }
+/*    else if (test == "numeracy") {
+        queue()
+            .defer(d3.csv, 'assets/data/numeracyscores.csv')
+            .await(loadNumeracyData);
+//    }
+//    else if (test == "memory") {
+        queue()
+            .defer(d3.csv, 'assets/data/memoryscores.csv')
+            .await(loadMemoryData);
+//    }    */
+}
+
+
+function reportMemoryScore() {
+ //   QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
     var TotalTime = Math.ceil((endTime - startTime) / 1000);
     var result = Math.ceil(TotalScore / TotalTime * 100);
-    $('#test-tab--'+test+'-test').fadeOut(250);
-    setTimeout(function() { $('#test-tab--'+test+'-result').fadeIn(250); }, 250);
-    $('#'+test+'-result').text(result.toString());
+    $("#test-tab--memory-test").fadeOut(250);
+    setTimeout(function() { $("#test-tab--memory-result").fadeIn(250); }, 250);
+    $("#memory-result").text(result.toString());
 }
+
+
 
 function skipQuestion(testId) {
     console.log("skipping question")
@@ -100,25 +126,37 @@ function skipQuestion(testId) {
 }
 
 function checkAnswer(answer) {
-    //   console.log("Answer value=" + answer);
-    //   console.log($(answer).length);
+       console.log("Answer value=" + answer);
+       console.log($(answer).length);
     if (isNaN(answer) || answer == "") {
         $("#button-numeracy-submit").removeAttr("disabled");
         alert("Enter a number as your answer!");
         $("#numeracy-answer").focus();
     }
+    //if the answer is right mark as correct and either proceed to the next question
+    //or end the test if up to question 10
     else if (answer == Answer[QuestionNumber]) {
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/tick.png');
         TotalScore++;
-        if (QuestionNumber < 9) {
+        if (QuestionNumber < 10) {
             setTimeout(function() { nextQuestion("numeracy") }, 1500);
         }
         else {
-            reportScore();
+            reportScore("numeracy");
         }
     }
     else {
+          $("#answer-mark").css('display', 'block');
+        $("#answer-mark").attr('src', 'assets/images/tick.png');
+        TotalScore++;
+        if (QuestionNumber < 10) {
+            setTimeout(function() { nextQuestion("numeracy") }, 1500);
+        }
+        else {
+            reportScore("numeracy");
+        }      
+        
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/cross.png');
         if (QuestionNumber < 10) {
@@ -165,6 +203,29 @@ function generateOperator() {
 
 function generateNumber() {
     return Math.ceil(Math.random() * Math.floor(10));
+}
+
+function loadNumeracyData(error, numeracyData) {
+    console.log(numeracyData)
+    ndx = crossfilter(numeracyData);
+    numeracyData.forEach(function(d) {
+        d.score = parseInt(d.score);
+        d.students = parseFloat(d.students);
+    });
+    renderResults(ndx, "numeracy");
+
+}
+
+function loadData(error, scoreData) {
+    console.log(scoreData)
+    console.log("prior to redndering results test is: "+CurrentTest)
+    ndx = crossfilter(scoreData);
+    scoreData.forEach(function(d) {
+        d.score = parseInt(d.score);
+        d.students = parseFloat(d.students);
+    });
+    renderResults(ndx, CurrentTest);
+
 }
 
 

@@ -9,7 +9,6 @@ function cleanArray(wordsArray) {
     var cleanedArray = $.grep(wordsArray, function(n) {
         return (n);
     });
-    console.log(cleanedArray)
     return cleanedArray;
 }
 
@@ -59,6 +58,7 @@ function createQuestionsArray(questions) {
 }
 
 function startLiteracyTest() {
+    CurrentTest = "literacy";
     Start = new Date();
     TotalScore = 0;
     QuestionNumber = 0;
@@ -67,13 +67,9 @@ function startLiteracyTest() {
 }
 
 function selectRandomQuestions() {
-    console.log("parent question arrayt"+ParentQuestionsArray);
     for (i = 0; i <= 9; i++) {
         var randomQuestionIndex = i * 5 + Math.ceil(Math.random() * Math.floor(4));
-        console.log("random:" + randomQuestionIndex)
-        //add 1 to i to ensure the Question Array matches the question number
-        Question[i+1] = ParentQuestionsArray[randomQuestionIndex];
-        console.log("Question "+i+"="+Question[i])
+        Question[i + 1] = ParentQuestionsArray[randomQuestionIndex];
     }
     //put text of question on screen
     nextQuestion("literacy");
@@ -131,6 +127,7 @@ function checkLiteracyAnswer(submittedAnswer) {
             image.attr('src', 'assets/images/tick.png');
         }
     }
+    wrong = false;
     if (wrong == false) {
         TotalScore++;
     }
@@ -142,7 +139,8 @@ function checkLiteracyAnswer(submittedAnswer) {
     }
 }
 
-$("#button-literacy-submit").on("click", function() {
+$(".test-tab--test-button").on("click", function() {
+    if($(this).attr('id')=='button-literacy-submit') {
     var count = 0;
     var answerWord;
     var submittedAnswer = [];
@@ -169,7 +167,77 @@ $("#button-literacy-submit").on("click", function() {
         $(this).attr("disabled", true);
         checkLiteracyAnswer(submittedAnswer);
     }
+    }
 })
+
+function loadLiteracyData(error, literacyData) {
+    ndx = crossfilter(literacyData);
+    literacyData.forEach(function(d) {
+        d.score = parseInt(d.score);
+        d.students = parseFloat(d.students);
+    });
+    renderResults(ndx, "literacy");
+
+}
+
+function print_filter(filter) {
+    var f = eval(filter);
+    if (typeof(f.length) != "undefined") {}
+    else {}
+    if (typeof(f.top) != "undefined") { f = f.top(Infinity); }
+    else {}
+    if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
+    else {}
+    // console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
+}
+
+
+function renderResults(resultData, test) {
+    print_filter(resultData)
+    var score_dim = resultData.dimension(dc.pluck('score'));
+    var students_dim = score_dim.group().reduceSum(dc.pluck('students'));
+    var minScore = score_dim.bottom(1)[0].score;
+    var maxScore = score_dim.top(1)[0].score;
+    console.log(minScore + ", " + maxScore)
+    if (TestResult > maxScore) { TestResult = maxScore; }
+    if (TestResult < minScore) { TestResult = minScore; }
+    var resultChart = dc.lineChart('#' + test + '-result-chart')
+
+    var chartHeight = $(".result-chart").height() - 25;
+    var chartWidth = $(".result-chart").width() - 25;
+
+    console.log("height=" + chartHeight + " width=" + chartWidth)
+    resultChart
+        .width(chartWidth)
+        .height(chartHeight)
+        .brushOn(false)
+        .on('renderlet', function(resultChart) {
+            resultChart.selectAll('.dot')
+                .attr('style', function(d) {
+                    scoreValue = d.data.key;
+                    //  console.log("scoreValue="+scoreValue+" TotalScore="+TotalScore)
+                    if (scoreValue == TestResult) {
+                        resultChart.xyTipsOn(false);
+                        return "fill-opacity:1; fill: red"
+                    }
+                    else {
+                        return "fill-opacity:0;"
+                    }
+                })
+                .on('mouseout.redhighlight', function(d) {
+                    scoreValue = d.data.key;
+                    if (scoreValue == TestResult) { $(this).attr('style', 'fill: red; fill-opacity:1') }
+                })
+        })
+        .dimension(score_dim)
+        .group(students_dim)
+        .transitionDuration(10)
+        .x(d3.scale.linear().domain([minScore, maxScore]))
+        .xAxisLabel("Score")
+        .yAxis().ticks(4);
+    dc.renderAll();
+}
+
 /*
 function reportScore() {
     var end = new Date();

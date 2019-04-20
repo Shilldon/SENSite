@@ -55,19 +55,12 @@ function defineChartData() {
     }
 
     function loadData(error, schoolData) {
-        //  $('#data-tab--chart-bar').css('display','block');
         ndx = crossfilter(schoolData);
-        //    if ($("#data-tab--chart-national-tab").css('display') == 'none') {
         $('#data-tab--chart-area img').css('display', 'none');
         filterByPostcode(ndx, 0, 0);
-
-        /*    }
-            else {
-                renderNationalChart(ndx)
-            }*/
     }
 }
-
+/*
 function print_filter(filter) {
     var f = eval(filter);
     if (typeof(f.length) != "undefined") {}
@@ -77,7 +70,7 @@ function print_filter(filter) {
     if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
     else {}
     console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
-}
+}*/
 
 //check user submitted postcode and filter schoolData based on postcode submitted
 function filterByPostcode(schoolData, minCount, maxCount) {

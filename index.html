@@ -317,8 +317,8 @@
                         </div>
                         <div class="row test-tab--literacy-test-container" id="test-tab--literacy-test-question">
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4">
+                        <div class="row visible-xs">
+                            <div class="col-sm-4 ">
                                 <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
                             </div>
                             <div class="col-sm-4">
@@ -326,6 +326,17 @@
                             </div>
                             <div class="col-sm-4">
                                 <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
                             </div>
                         </div>
                     </section>
@@ -339,10 +350,14 @@
                             <div class="col-xs-12">
                                 <h3 id="literacy-result"></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-4 col-xs-offset-4">
-                                    <button class="test-tab--test-button" id="button-literacy-back">Back</button>
-                                </div>
+                        </div>
+                        <div class="row result-chart-container">
+                            <div class="col-xs-12 result-chart" id="literacy-result-chart">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-offset-4">
+                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
                             </div>
                         </div>
                     </section>
@@ -374,17 +389,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-xs-offset-1">
-                                <span class="test-tab--question" id="numeracy-question"></span>
+                            <div class="col-xs-3 col-xs-offset-3 text-tab--numeracy-question-container">
+                                <span id="numeracy-question"></span>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-2">
                                 <input class="test-tab--answer" id="numeracy-answer"></input>
                             </div>
                             <div class="col-xs-1">
                                 <img id="answer-mark" src="">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row visible-xs">
                             <div class="col-sm-4">
                                 <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
                             </div>
@@ -395,6 +410,17 @@
                                 <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
                             </div>
                         </div>
+                        <div class="row hidden-xs">
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
+                            </div>
+                        </div>                        
                     </section>
                     <section class="test-tab" id="test-tab--numeracy-result">
                         <div class="row">
@@ -406,12 +432,18 @@
                             <div class="col-xs-12">
                                 <h3 id="numeracy-result"></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-4 col-xs-offset-4">
-                                    <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
-                                </div>
+                        </div>
+                        <div class="row result-chart-container">
+                            <div class="col-xs-12 result-chart" id="numeracy-result-chart">
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-offset-4">
+                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                            </div>
+                        </div>
+
                     </section>
                     <!-- MEMORY TEST -->
                     <section class="test-tab" id="test-tab--memory">
@@ -441,58 +473,34 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                            </div>
-                            <div class="col-xs-3">
                                 <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
                             </div>
                         </div>
@@ -512,10 +520,16 @@
                             <div class="col-xs-12">
                                 <h3 id="memory-result"></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-4 col-xs-offset-4">
-                                    <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                        </div>
+                        <div class="row">
+                            <div class="row result-chart-container">
+                                <div class="col-xs-12 result-chart" id="memory-result-chart">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-offset-4">
+                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
                             </div>
                         </div>
                     </section>

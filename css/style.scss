@@ -309,10 +309,16 @@ $value in $tab-colors {
 
 // set to .test-tab--literacy &&
 .test-tab--literacy-test-container {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height:13vh;
+    max-height:13vh;
     border: solid 2px $test-color;
     font-family: 'Indie Flower', cursive;
     font-size: 18px;
-    min-height: 5vh;
+   // min-height: 5vh;
     margin: 0 10px 0 10px;
     padding: 0;
     text-align: center;
@@ -321,7 +327,6 @@ $value in $tab-colors {
 .test-tab--literacy-word {
     border: none;
     background-color: $white;
-    height: 100%;
     display: inline-block;
     outline: none;
 }
@@ -339,10 +344,40 @@ $value in $tab-colors {
     border-bottom: solid 1px;
     border-right: none;
     width: 50px;
+    height:0;
+}
+
+.test-tab--literacy-answer-mark {
+    height:25px;
 }
 
 .test-tab--literacy-word-answer-shown {
     border: none;
+}
+
+.text-tab--numeracy-question-container {
+    text-align:right;
+}
+
+.result-chart-container {
+    height: 40vh;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    
+}
+
+
+.result-chart {
+    height: 35vh;
+    width: 90vw;
+    border: solid 4px $test-color;
+    svg {
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-45%,-50%);
+    }
 }
 
 #test-tab--memory-test {
@@ -351,9 +386,15 @@ $value in $tab-colors {
     }
 }
 
+.test-tab--memory-test-container {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
 .test-tab--memory-icon {
-    width: 50px;
-    padding: 5px 0 5px 0;
+    width: 60px;
+    padding: 5px;
 }
 
 #answer-mark {
@@ -674,12 +715,21 @@ $value in $tab-colors {
         transform: translate(-100%, 0);
     }
 
+.test-tab--literacy-word {
+    font-size: 30px;
+}
+
     #schools-tab {
         font-size: 18px;
         input {
             font-size: 15px;
         }
     }
+
+.test-tab--memory-icon {
+    width: 100px;
+    padding: 10px;
+}
 
     #school-info {
         border: solid 2px $schools-color;

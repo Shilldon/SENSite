@@ -1,5 +1,5 @@
 $(".test-tab--memory-icon").on("click", function() {
-    if ($(this).data("showing") == false && BoardLocked==false) {
+    if ($(this).data("showing") == false && BoardLocked==false && $(this).data("paired")==false) {
         turnUp($(this));
     }
 })
@@ -34,7 +34,7 @@ function turnUp(card) {
         CardShowing = false;
     }
     if(TotalScore==8) {
-         DisplayResult=setTimeout( function() { reportMemoryScore() },1000);   
+         DisplayResult=setTimeout( function() { reportScore("Memory") },1000);   
     }
     setTimeout( function() { BoardLocked=false }, 750);
 }
@@ -42,9 +42,10 @@ function turnUp(card) {
 function hideCard(firstCard, secondCard) {
     $(secondCard).data("showing", false);
     $(secondCard).attr("src", "assets/images/memory-0.png");
-    console.log("first card=" + firstCard)
-    $(firstCard).data("showing", false);
-    $(firstCard).attr("src", "assets/images/memory-0.png");
+    //$(firstCard)
+    $(firstCard)
+    .data("showing", false)
+    .attr("src", "assets/images/memory-0.png");
 }
 
 function shuffleMemoryArray(arr) {
@@ -65,6 +66,7 @@ function shuffleMemoryArray(arr) {
 }
 
 function startMemoryTest() {
+    CurrentTest="memory";
     TotalScore=0;
     Start = new Date();    
     var card = $(".test-tab--memory-icon");
@@ -77,7 +79,6 @@ function startMemoryTest() {
         $(card[i]).data("paired", false);
     }
     setTimeout(function() { hideBoard() }, 5000);
-    //console.log("card showing?="+$(card[1]).attr("showing"));
 }
 
 function hideBoard() {
@@ -87,16 +88,4 @@ function hideBoard() {
         $(card[i]).data("showing", false);
         $(card[i]).attr('src', 'assets/images/memory-0.png');
     }
-}
-
-function reportMemoryScore() {
- //   QuestionNumber = 0;
-    var end = new Date();
-    var startTime = Start.getTime();
-    var endTime = end.getTime();
-    var TotalTime = Math.ceil((endTime - startTime) / 1000);
-    var result = Math.ceil(TotalScore / TotalTime * 100);
-    $("#test-tab--memory-test").fadeOut(250);
-    setTimeout(function() { $("#test-tab--memory-result").fadeIn(250); }, 250);
-    $("#memory-result").text(result.toString());
 }

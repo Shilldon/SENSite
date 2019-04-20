@@ -24,12 +24,12 @@ $(".data-tab--chart-button").on("click", function() {
 
 $("#chart-submit").click(function() {
     $('#button-chart-plot-previous').attr('min', 1);
-    var maxValue=$("#max-results").val();
-    console.log("onclickmax="+maxValue);
+    var maxValue = $("#max-results").val();
+    console.log("onclickmax=" + maxValue);
     $('#button-chart-plot-next').attr('max', maxValue);
     $('#button-chart-plot-next').attr('change', maxValue);
-    
-   // $('#data-tab--chart-bar').css('display','none');
+
+    // $('#data-tab--chart-bar').css('display','none');
     defineChartData();
 });
 
@@ -77,6 +77,41 @@ $(".test-tab--test-button").on("click", function() {
             clearTimeout(DisplayResult);
             clearTest();
             setTimeout(function() { $("#test-tab--landing").fadeIn(250); }, 250);
+            break;
+        case 'submit':
+            if (testId == 'numeracy') {
+                answer = $("#numeracy-answer").val();
+                $(this).attr("disabled", true);
+                checkAnswer(answer);
+            }
+            else if (testId == 'literacy') {
+                var count = 0;
+                var answerWord;
+                var submittedAnswer = [];
+                var whileBreak = false;
+                var incompleteSentence = false;
+                while (whileBreak == false) {
+                    answerWord = $("#answer-word-" + count);
+                    //reached end of sentence
+                    if (answerWord.attr("id") == null) {
+                        whileBreak = true;
+                    }
+                    //incomplete sentence (word not submitted) break out and display error
+                    else if (answerWord.hasClass("test-tab--literacy-word-answer-hidden")) {
+                        whileBreak = true;
+                        incompleteSentence = true;
+                        alert("You need to complete the sentence");
+                    }
+                    else {
+                        submittedAnswer[count] = answerWord.text();
+                    }
+                    count++;
+                }
+                if (incompleteSentence == false && $(this).attr("disabled") != "disabled") {
+                    $(this).attr("disabled", true);
+                    checkLiteracyAnswer(submittedAnswer);
+                }
+            }
             break;
     }
 })

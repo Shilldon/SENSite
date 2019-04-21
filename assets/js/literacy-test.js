@@ -138,7 +138,7 @@ function checkLiteracyAnswer(submittedAnswer) {
         DisplayResult = setTimeout(function() { reportScore("literacy") }, 1500);
     }
 }
-
+/*
 $(".test-tab--test-button").on("click", function() {
     if($(this).attr('id')=='button-literacy-submit') {
     var count = 0;
@@ -168,7 +168,7 @@ $(".test-tab--test-button").on("click", function() {
         checkLiteracyAnswer(submittedAnswer);
     }
     }
-})
+})*/
 
 function loadLiteracyData(error, literacyData) {
     ndx = crossfilter(literacyData);

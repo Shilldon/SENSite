@@ -1,9 +1,13 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#numeracy-answer').keypress(function(e) {
-        if (e.keyCode == 13 && ($('#button-numeracy-submit').attr("disabled") != "disabled"))
+        var buttonStatus=$('#button-numeracy-submit').attr('disabled');
+        console.log("button Status="+buttonStatus)
+        console.log($('#button-numeracy-submit').attr("disabled"))
+        
+        if (e.keyCode == 13)
             $('#button-numeracy-submit').click();
     });
-});
+});*/
 
 var Answer = [];
 var Question = [];
@@ -28,21 +32,17 @@ function startNumeracyTest() {
     Start = new Date();
     QuestionNumber = 0;
     TotalScore = 0;
-    CurrentTest="numeracy";
+    CurrentTest = "numeracy";
     for (i = 1; i <= 10; i++) {
         newQuestion();
         Answer[i] = query.answer;
         Question[i] = query.firstNumber + " " + query.firstOperator + " " + query.secondNumber + " " + query.secondOperator + " " + query.thirdNumber + " = ";
     }
     nextQuestion("numeracy");
-    /*
-    $("#numeracy-question-header").text("Question " + (QuestionNumber + 1).toString());
-    $("#numeracy-question").text(Question[0]);
-    $("#button-numeracy-submit").removeAttr("disabled");
-    */
 }
 
 function nextQuestion(testId) {
+    console.log("next question fired");
     QuestionNumber++;
     if (testId == "numeracy") {
         $("#numeracy-answer").val('');
@@ -51,6 +51,7 @@ function nextQuestion(testId) {
         $("#answer-mark").fadeOut('slow');
         $("#numeracy-answer").focus();
         $("#button-numeracy-submit").removeAttr("disabled");
+        
     }
     else if (testId == "literacy") {
         wordsArray = Question[QuestionNumber];
@@ -82,26 +83,14 @@ function reportScore() {
     $('#test-tab--' + CurrentTest + '-test').fadeOut(250);
     setTimeout(function() { $('#test-tab--' + CurrentTest + '-result').fadeIn(250); }, 250);
     $('#' + CurrentTest + '-result').text(TestResult.toString());
-//    if (test == "literacy") {
-        queue()
-            .defer(d3.csv, 'assets/data/'+CurrentTest+'scores.csv')
-            .await(loadData);
-//    }
-/*    else if (test == "numeracy") {
-        queue()
-            .defer(d3.csv, 'assets/data/numeracyscores.csv')
-            .await(loadNumeracyData);
-//    }
-//    else if (test == "memory") {
-        queue()
-            .defer(d3.csv, 'assets/data/memoryscores.csv')
-            .await(loadMemoryData);
-//    }    */
+    queue()
+        .defer(d3.csv, 'assets/data/' + CurrentTest + 'scores.csv')
+        .await(loadData);
 }
 
 
 function reportMemoryScore() {
- //   QuestionNumber = 0;
+    //   QuestionNumber = 0;
     var end = new Date();
     var startTime = Start.getTime();
     var endTime = end.getTime();
@@ -126,12 +115,20 @@ function skipQuestion(testId) {
 }
 
 function checkAnswer(answer) {
-       console.log("Answer value=" + answer);
-       console.log($(answer).length);
     if (isNaN(answer) || answer == "") {
-        $("#button-numeracy-submit").removeAttr("disabled");
-        alert("Enter a number as your answer!");
-        $("#numeracy-answer").focus();
+
+        $("#numeracyErrorModal").modal({
+            show: 'true',
+            backdrop: 'static',
+            keyboard: 'false'
+        })
+        setTimeout(function() {
+            // console.log("modal hide");
+            $("#numeracyErrorModal").modal('hide');
+            $("#button-numeracy-submit").removeAttr("disabled");
+            $("#numeracy-answer").focus();
+
+        }, 2000);
     }
     //if the answer is right mark as correct and either proceed to the next question
     //or end the test if up to question 10
@@ -140,30 +137,20 @@ function checkAnswer(answer) {
         $("#answer-mark").attr('src', 'assets/images/tick.png');
         TotalScore++;
         if (QuestionNumber < 10) {
-            setTimeout(function() { nextQuestion("numeracy") }, 1500);
+            setTimeout(function() { console.log("nextquestion fired by right answer "+answer); nextQuestion("numeracy") }, 1500);
         }
         else {
             reportScore("numeracy");
         }
     }
     else {
-          $("#answer-mark").css('display', 'block');
-        $("#answer-mark").attr('src', 'assets/images/tick.png');
-        TotalScore++;
-        if (QuestionNumber < 10) {
-            setTimeout(function() { nextQuestion("numeracy") }, 1500);
-        }
-        else {
-            reportScore("numeracy");
-        }      
-        
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/cross.png');
         if (QuestionNumber < 10) {
-            setTimeout(function() { nextQuestion("numeracy") }, 2500);
+            setTimeout(function() { console.log("nextquestion fired by wrong answer "+answer); nextQuestion("numeracy"); }, 1500);
         }
         else {
-            setTimeout(function() { reportScore("numeracy") }, 2500);
+            setTimeout(function() { reportScore("numeracy") }, 1500);
         }
     }
 }
@@ -218,7 +205,7 @@ function loadNumeracyData(error, numeracyData) {
 
 function loadData(error, scoreData) {
     console.log(scoreData)
-    console.log("prior to redndering results test is: "+CurrentTest)
+    console.log("prior to redndering results test is: " + CurrentTest)
     ndx = crossfilter(scoreData);
     scoreData.forEach(function(d) {
         d.score = parseInt(d.score);
@@ -228,14 +215,15 @@ function loadData(error, scoreData) {
 
 }
 
-
-$("#button-numeracy-submit").on("click", function() {
+/*
+$(".test-tab--test-button").on("click", function() {
+if($(this).attr('id')=='button-numeracy-submit'){
     // console.log("clicked submit. disabled="+$(this).attr("disabled"));
     answer = $("#numeracy-answer").val();
     $(this).attr("disabled", true);
     checkAnswer(answer);
-
-})
+}
+})*/
 
 $("#button-numeracy-skip").on("click", function() {
     skipQuestion("numeracy");

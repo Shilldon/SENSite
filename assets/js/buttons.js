@@ -61,6 +61,7 @@ $("#select-total-pupils").click(function() {
 
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
+    console.log("button clicked="+buttonId)
     var action = buttonId[2];
     var testId = buttonId[1];
     console.log(action);
@@ -80,9 +81,11 @@ $(".test-tab--test-button").on("click", function() {
             break;
         case 'submit':
             if (testId == 'numeracy') {
-                answer = $("#numeracy-answer").val();
-                $(this).attr("disabled", true);
-                checkAnswer(answer);
+                if ($(this).attr('disabled') != true) {
+                    answer = $("#numeracy-answer").val();
+                    $(this).attr('disabled', true);
+                    checkAnswer(answer);
+                }
             }
             else if (testId == 'literacy') {
                 var count = 0;
@@ -100,15 +103,26 @@ $(".test-tab--test-button").on("click", function() {
                     else if (answerWord.hasClass("test-tab--literacy-word-answer-hidden")) {
                         whileBreak = true;
                         incompleteSentence = true;
-                        alert("You need to complete the sentence");
+        $("#literacyErrorModal").modal({
+            show: 'true',
+            backdrop: 'static',
+            keyboard: 'false'
+        })
+        setTimeout(function() {
+            // console.log("modal hide");
+            $("#literacyErrorModal").modal('hide');
+           // $("#button-numeracy-submit").removeAttr("disabled");
+           // $("#numeracy-answer").focus();
+
+        }, 2000);
                     }
                     else {
                         submittedAnswer[count] = answerWord.text();
                     }
                     count++;
                 }
-                if (incompleteSentence == false && $(this).attr("disabled") != "disabled") {
-                    $(this).attr("disabled", true);
+                if (incompleteSentence == false && $(this).attr("disabled") != true) {
+                    $(this).attr('disabled', true);
                     checkLiteracyAnswer(submittedAnswer);
                 }
             }

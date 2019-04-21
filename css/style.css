@@ -21,6 +21,9 @@ body {
   -o-background-size: cover;
   background-size: cover; }
 
+.center-text {
+  text-align: center; }
+
 /*-----MAIN SECTIONS -----*/
 .top-section {
   height: 25vh;
@@ -132,8 +135,7 @@ footer {
   .tab h2,
   .tab h3,
   .tab h4,
-  .tab h5,
-  .tab .col-xs-4 {
+  .tab h5 {
     text-align: center; }
   .tab .col-sm-6 {
     text-align: center;
@@ -265,8 +267,9 @@ footer {
 .test-tab--literacy-word-answer-shown {
   border: none; }
 
-.text-tab--numeracy-question-container {
-  text-align: right; }
+.test-tab--numeracy-question-container {
+  text-align: right;
+  font-size: 16px; }
 
 .result-chart-container {
   height: 40vh;
@@ -531,6 +534,9 @@ footer {
   .test-tab--memory-icon {
     width: 100px;
     padding: 10px; }
+
+  .test-tab--numeracy-question-container {
+    font-size: 24px; }
 
   #school-info {
     border: solid 2px #9c6df9;

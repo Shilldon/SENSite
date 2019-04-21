@@ -39,6 +39,10 @@ body {
     background-size: cover;
 }
 
+.center-text {
+    text-align: center;
+}
+
 /*-----MAIN SECTIONS -----*/
 
 .top-section {
@@ -175,14 +179,11 @@ $logoWidth: 150px;
     display: none;
     overflow: auto;
     padding: 10px 0 10px 0;
-    p {
-        //   font-size: $body-font-size;
-    }
+
     h2,
     h3,
     h4,
-    h5,
-    .col-xs-4 {
+    h5 {
         text-align: center;
     }
     .col-sm-6 {
@@ -355,8 +356,9 @@ $value in $tab-colors {
     border: none;
 }
 
-.text-tab--numeracy-question-container {
+.test-tab--numeracy-question-container {
     text-align:right;
+    font-size:16px;
 }
 
 .result-chart-container {
@@ -730,6 +732,11 @@ $value in $tab-colors {
     width: 100px;
     padding: 10px;
 }
+
+.test-tab--numeracy-question-container {
+    font-size:24px;
+}
+
 
     #school-info {
         border: solid 2px $schools-color;

@@ -60,7 +60,7 @@ function defineChartData() {
         filterByPostcode(ndx, 0, 0);
     }
 }
-/*
+
 function print_filter(filter) {
     var f = eval(filter);
     if (typeof(f.length) != "undefined") {}
@@ -70,13 +70,12 @@ function print_filter(filter) {
     if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
     else {}
     console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
-}*/
+}
 
 //check user submitted postcode and filter schoolData based on postcode submitted
 function filterByPostcode(schoolData, minCount, maxCount) {
     //get user submitted postcode
     minCount = $('#button-chart-plot-previous').attr('min');
-
     maxCount = $('#button-chart-plot-next').attr('max');
     console.log("maxCount" + maxCount)
     console.log("maxCount" + minCount)

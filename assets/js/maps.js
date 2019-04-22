@@ -2,41 +2,11 @@ var map;
 var markers = [];
 var markerInfo = [];
 //initialise arrays to hold data from master csv file and schools local to postcode search
-var masterSchoolsArray = [];
+//var masterSchoolsArray = [];
 //var localSchoolsDataArray = [];
-
-//once loaded get the data from local csv and process into master array
-$(document).ready(function() {
-  $.ajax({
-    type: "GET",
-    url: "assets/data/schools.csv",
-    dataType: "text",
-    success: function(data) { createSchoolsArray(data); }
-  });
-});
-
-function createSchoolsArray(allText) {
-  //create master array of schools from local csv file
-  var allTextLines = allText.split(/\r\n|\n/);
-  var headers = allTextLines[0].split(',');
-  var schoolsDataArray = [];
-
-  //cycle through all lines of text and push data to master array
-  for (var i = 0; i < allTextLines.length; i++) {
-    var data = allTextLines[i].split(',');
-    if (data.length == headers.length) {
-      var schoolArray = [];
-      for (var j = 0; j < headers.length; j++) {
-        schoolArray.push(data[j]);
-      }
-      masterSchoolsArray.push(schoolArray);
-    }
-  }
-}
 
 //retrieve postcode from input then search master array for schools matching postcode
 function searchForSchool() {
-
   //get user input postcode
   //Two part post code enables users to input a partial postcode to find schools close to their area.
   //User's full postcode is unlikely to generate any results as their postcode is unlikely to match a school
@@ -45,6 +15,19 @@ function searchForSchool() {
   var postcode;
   postcode = postcodePart1 + " " + postcodePart2;
   postcode = postcode.toUpperCase();
+  if (postcode != "") {
+    queue()
+      .defer(d3.csv, 'assets/data/schools.csv')
+      .await(loadSchoolMapData);
+  }
+  else {
+    alert("enter a postcode");
+  }
+
+  function loadSchoolMapData(error, schoolMapData) {
+    ndx = crossfilter(schoolMapData);
+    filterMapByPostcode(ndx);
+  }
 
   //tidy up:
   //remove any existing markers on the map
@@ -52,24 +35,67 @@ function searchForSchool() {
   //remove any existing data from the school information panel
   clearSchoolDetails();
 
-  //call function to create array of local schools
-  var localSchoolsDataArray = createLocalSchoolsArray(postcode);
 
-  //check if there are any schools in the array. If not return error that there
-  //are no schools in the selected postcode.
-  //If the array contains school data convert postcodes to lat, lng positions to display on map
-  if (localSchoolsDataArray.length > 0) {
-    convertPostcodes(localSchoolsDataArray);
-  }
-  else {
-    $("#school-name").text("No schools found in postcode " + postcode);
-  }
 }
 
 function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
+}
+
+function filterMapByPostcode(schoolMapData, minCount, maxCount) {
+  //get user submitted postcode
+
+  var postcodePart1 = $('#map-address-1').val();
+  var postcodePart2 = $('#map-address-2').val();
+  var postcode = postcodePart1;
+  if (postcodePart2 != "") {
+    postcode = postcodePart1 + " " + postcodePart2;
+  }
+  postcode = postcode.toUpperCase();
+  if (postcode.endsWith('*') == true) {
+    console.log("postcode before mod=" + postcode)
+    postcode = postcode.substr(0, postcode.length - 1);
+    console.log("postcode after mod=" + postcode)
+  }
+  else {
+    postcode = postcode + " ";
+  }
+
+  //create dimension of multiple arrays for filtering
+  var local_map_schools_dim = schoolMapData.dimension(function(d) {
+    return {
+      Postcode: d.Postcode,
+      'EstablishmentStatus (code)': d['EstablishmentStatus (code)'],
+    }
+
+  })
+  var count = 0;
+
+  //filter dimension to exclude postcodes that do not partial match user submitted postcode
+  //and schools that are closed
+  //and schools that provide no information on pupil numbers
+  local_map_schools_dim.filter(function(d) {
+    //count the results and filter those records that exceed the max or fall below the minimm record number
+    //this ensures not too many results are displayed on the chart
+    if (checkPostcode(postcode, d.Postcode) == false || d['EstablishmentStatus (code)'] != 1) {
+      return d;
+    }
+  });
+
+  schoolMapData.remove();
+  local_map_schools_dim.filter(null);
+
+  //create array to receive postcodes from SchoolData dimension (filtered by postcode)
+  var schoolPostCodesArray = []
+
+  local_map_schools_dim.top(Infinity).forEach(function(x) {
+    schoolPostCodesArray.push(x.Postcode);
+  });
+
+  convertPostcodes(local_map_schools_dim, schoolPostCodesArray)
+
 }
 
 function clearSchoolDetails() {
@@ -82,28 +108,8 @@ function clearSchoolDetails() {
   $("p[id^='disability-icon']").css("background-color", "transparent");
 }
 
-function createLocalSchoolsArray(postcode) {
-  //reinitialise the localSchoolsDataArray to receive new postcode
-  var localSchoolsDataArray = [];
-  var schoolsDataArray = [];
-  //search through masterSchoolsArray for postcodes matching input
-  for (var j = 0; j < masterSchoolsArray.length; j++) {
-    schoolPostcode = masterSchoolsArray[j][64];
-
-    //check if the school is marked as closed, if so do not retrieve to local school array
-    //ensure header row is added (j=0)
-    schoolClosed = masterSchoolsArray[j][10];
-    if (schoolClosed != "Closed") {
-      if (j==0 || schoolPostcode.search(postcode) != -1) {
-        schoolsDataArray.push(masterSchoolsArray[j]);
-      }
-    }
-  }
-  return schoolsDataArray;
-}
-
 //call external API and obtain lat, lng positions based on postcodes of schools
-function getPostcodeData(schoolPostCodes, callBack) {
+function getPostcodeData(schoolPostCodes, callback) {
   //call postcodes API to get postcode data
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "https://api.postcodes.io/postcodes");
@@ -112,93 +118,68 @@ function getPostcodeData(schoolPostCodes, callBack) {
   xhr.send(postcodes);
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      callBack(JSON.parse(this.responseText));
+      callback(JSON.parse(this.responseText));
     }
   };
 }
 
-function convertPostcodes(localSchoolsDataArray) {
+function convertPostcodes(local_map_schools_dim, schoolPostCodesArray) {
   //get longitude and latitude from postcode ready to place google map marker
-  //initialise array to accept postcodes of the local schools
-  //NB start for loop at 1 to skip header tow
-  var schoolPostCodesArray = []
-  for (i = 1; i < localSchoolsDataArray.length; i++) {
-    var schoolPostCode = localSchoolsDataArray[i][64];
-    schoolPostCodesArray.push(schoolPostCode);
-  }
   //import lat, lng positions from external API then create markers with requisite data
-  //from the localSchoolData array (name, address, education phase, school type, website, contact number, head teacher)
+  //from the local_map_schools_dim array (name, address, education phase, school type, website, contact number, head teacher)
+  var initialLong;
+  var initialLat;
+  schoolMarkerDataDim = local_map_schools_dim.top(Infinity);
   getPostcodeData(schoolPostCodesArray, function(data) {
-    for (i = 0; i < localSchoolsDataArray.length; i++) {
-      if (data.result[i].result != null) {
-        //get school information data and assign it to marker.
-        var latitude = data.result[i].result.latitude;
-        var longitude = data.result[i].result.longitude;
-        var schoolName = localSchoolsDataArray[i][4];
-        var schoolType = localSchoolsDataArray[i][6].replace("Other ", "");
-        schoolType = capitaliseFirstLetter(schoolType);
-        var educationPhase = localSchoolsDataArray[i][18];
-        educationPhase = educationPhase.replace("Not applicable", "");
-        var schoolWebsite = localSchoolsDataArray[i][65];
-
-        //csv is inconsistent at providing full webaddress - to ensure link on marker works add "http:" if required.
-        if (schoolWebsite != "") {
-          if (schoolWebsite.match(/http/g) == null) {
-            schoolWebsite = "http://" + schoolWebsite;
-          }
+    initialLat = data.result[0].result.latitude;
+    initialLong = data.result[0].result.longitude;
+    for (i = 0; i < schoolPostCodesArray.length; i++) {
+      var latitude = data.result[i].result.latitude;
+      var longitude = data.result[i].result.longitude;
+      var schoolName = schoolMarkerDataDim[i].EstablishmentName;
+      var schoolType = schoolMarkerDataDim[i]['TypeOfEstablishment (name)'].replace("Other ", "");
+      schoolType = capitaliseFirstLetter(schoolType);
+      var educationPhase = schoolMarkerDataDim[i]['PhaseOfEducation (name)'];
+      educationPhase = educationPhase.replace("Not applicable", "");
+      var schoolWebsite = schoolMarkerDataDim[i].SchoolWebsite;
+      if (schoolWebsite != "") {
+        if (schoolWebsite.match(/http/g) == null) {
+          schoolWebsite = "http://" + schoolWebsite;
         }
-
-        var schoolTelephone = localSchoolsDataArray[i][66];
-        if (schoolTelephone > 0) { schoolTelephone = "Telephone: 0" + schoolTelephone; }
-        var SEN = [];
-        for (j = 0; j < 13; j++) {
-          SEN[j] = localSchoolsDataArray[i][j + 84].substr(0, 2);
-        }
-        var schoolHead = localSchoolsDataArray[i][67] + " " + localSchoolsDataArray[i][68] + " " + localSchoolsDataArray[i][69]
-        var offsted = localSchoolsDataArray[i][126];
-        offsted = offsted.toLowerCase();
-        rating = 0;
-        switch (offsted) {
-          case "outstanding":
-            rating = 4;
-            break;
-          case "good":
-            rating = 3;
-            break;
-          case "requires improvement":
-            rating = 2;
-            break;
-          case "special measures":
-            rating = 1;
-            break;
-        }
-        //export school data to markers, then draw on map
-        markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN, schoolHead, rating];
-        drawMarker(markerInfo);
       }
+      var schoolTelephone = schoolMarkerDataDim[i].TelephoneNum;
+      if (schoolTelephone > 0) { schoolTelephone = "Telephone: 0" + schoolTelephone; }
+      var SEN = [];
+      for (j = 1; j <= 13; j++) {
+        SEN[j] = schoolMarkerDataDim[i]['SEN' + j + ' (name)'].substr(0, 2);
+      }
+      var schoolHead = schoolMarkerDataDim[i]['HeadTitle (name)'] + " " + schoolMarkerDataDim[i].HeadFirstName + " " + schoolMarkerDataDim[i].HeadLastName;
+      var ofsted = schoolMarkerDataDim[i]['OfstedRating (name)'];
+      if (ofsted != undefined) {
+        ofsted = ofsted.toLowerCase();
+      }
+      rating = 0;
+      switch (ofsted) {
+        case "outstanding":
+          rating = 4;
+          break;
+        case "good":
+          rating = 3;
+          break;
+        case "requires improvement":
+          rating = 2;
+          break;
+        case "special measures":
+          rating = 1;
+          break;
+      }
+
+      //export school data to markers, then draw on map
+      markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN, schoolHead, rating];
+      drawMarker(markerInfo);
     }
     //center the map on the first school in area.
-    centerMap(localSchoolsDataArray[0][64]);
-  });
-}
-
-function centerMap(postcode) {
-  //take address from postcode of first school in area and center map
-  var geocoder = new google.maps.Geocoder();
-  var address = postcode;
-  geocoder.geocode({ 'address': address }, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      lat = results[0].geometry.location.lat();
-      long = results[0].geometry.location.lng();
-      /*     var marker = new google.maps.Marker({
-             position: { lat: lat, lng: long },
-             map: map
-           })*/
-      map.setCenter(new google.maps.LatLng(lat, long));
-    }
-    else {
-      alert("Cannot centre on local school - invalid postcode from database.")
-    }
+    map.setCenter(new google.maps.LatLng(initialLat, initialLong));
   });
 
 }

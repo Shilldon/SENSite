@@ -127,8 +127,7 @@
                             <h5>Numeracy Assessments</h5>
                             <h5>Tutoring</h5>
                         </div>
-                        <div class="row">
-                            <!-- use list -->
+                        <div class="row about-tab--icon-container">
                             <div class="col-xs-4">
                                 <a href="https://www.patoss-dyslexia.org/" target="_blank"><img src="assets/images/patoss.jpg" class="bottom-section--about-tab--logo"></a>
                             </div>
@@ -144,27 +143,27 @@
                 <article class="col-xs-12 tab" data-state="closed" id="data-tab">
                     <div id="data-tab--landing">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <h3>Find out about schools nationally or in your local area</h3>
-                                <p>Here you can find information on the number of schools within postcodes or local authority remit. What needs those schools cater for, number of pupils, and mix of boys and girls so you can find the right place for your
-                                    child.
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <h3>Find out about schools in your local area</h3>
+                                <p>Here you can find information on the number of schools within postcodes areas, what special needs those schools cater for, ofsted ratings, pupil numbers per school, and mix of boys and girls so you can find the right place
+                                    for your child.
                                 </p>
-                                <!-- <p>Select below for a national search or filtered by postcode.</p>-->
+                                <p>Simply enter the first part of the postcode you want to search to display details about all schools in that postcode area.
+                                </p>
+                                <p>Use the * wildcard at the end of the postcode to search against a range of codes e.g:</p>
+                                <p>RG1 returns all schools in the RG1 post code area.</p>
+                                <p>RG1* returns all schools in postcode areas starting with RG1 which would include RG1 through RG19.</p>
+                                <p>There are, of course, a large number of schools in England. You can limit the results displayed up to a maximum of 50 per page.</p>
                             </div>
                         </div>
                         <div class="row">
-                            <!--Find                    <div class="col-sm-4 col-sm-offset-1 tab--menu-button-container">
-                                <h4><i class="fa fa-map"></i></h4>
-                                <button class="data-tab--chart-button" id="button-data-select-national">National</button>
-                            </div>-->
-
                             <div class="col-sm-12 tab--menu-button-container">
                                 <h4><i class="fa fa-map-marker"></i></h4>
-                                <button class="data-tab--chart-button" id="button-data-select-regional">Regional</button>
+                                <button class="data-tab--chart-button" id="button-data-select">Search</button>
                             </div>
                         </div>
                     </div>
-                    <section class="data-tab--chart-section" id="data-tab--chart-regional-tab">
+                    <section class="data-tab--chart-section" id="data-tab--chart-tab">
                         <div class="row">
                             <div class="col-xs-1" style="height:100%">
                                 <input id="chart-address" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="Postcode">
@@ -172,9 +171,7 @@
                             <div class="col-xs-1" style="height:100%">
                                 <input id="max-results" style="width:100%; padding:0;" type="number" min="10" max="50" value="10">
                             </div>
-                            <!--     <div class="col-xs-1" style="height:100%">
-                                <input id="chart-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
-                            </div>-->
+
                             <div class="col-xs-2" style="height:100%">
                                 <input id="chart-submit" style="width:100%" type="button" value="Search">
                             </div>
@@ -279,7 +276,7 @@
                     <!-- LITERACY TEST-->
                     <section class="test-tab" id="test-tab--literacy">
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-xs-10 col-xs-offset-1">
                                 <h3>Literacy Test</h3>
                                 <p>You will be presented with 10 pictures and partly completed sentences. You need to type the missing word into the box where shown and click 'Submit' or press return.</p>
                                 <p>If you do not know the answer to a question you can click 'Skip'.</p>
@@ -333,7 +330,7 @@
                                 <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
                             </div>
                         </div>
-                       <!-- Literacy test error modal -->
+                        <!-- Literacy test error modal -->
                         <div id="literacyErrorModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -346,7 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </section>
                     <section class="test-tab" id="test-tab--literacy-result">
                         <div class="row">
@@ -372,7 +369,7 @@
                     <!-- NUMERACY TEST-->
                     <section class="test-tab" id="test-tab--numeracy">
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-xs-10 col-xs-offset-1">
                                 <h3>Numeracy Test</h3>
                                 <p>You will be presented with 10 arithmetic calculations. You need to type the answer into the box where shown and click 'Submit' or press return.</p>
                                 <p>If you do not know the answer to a question you can click 'Skip'.</p>
@@ -465,7 +462,7 @@
                     <!-- MEMORY TEST -->
                     <section class="test-tab" id="test-tab--memory">
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-xs-10 col-xs-offset-1">
                                 <h3>Memory Test</h3>
                                 <p>You will be presented with a board of 16 images for 5 seconds. The images will then be hidden and you will need to select pairs by clicking on one image followed by a second.</p>
                                 <p>You will be timed on how long it takes you to pair all the images.</p>
@@ -574,8 +571,8 @@
                                         <input id="map-submit" style="width:100%" type="button" value="Search">
                                     </div>
                                 </div>
-                                <div class="row hidden-xs" style="max-height:30vh;height:30vh">
-                                    <div class="col-xs-12" style="height:100%">
+                                <div class="row hidden-xs" style="max-height:33vh;height:33vh">
+                                    <div class="col-xs-12" style="height:100%; overflow: auto">
                                         <h3>School Details</h3>
                                         <p id="school-name">Select a school from the map for more information</p>
                                         <p id="school-type"></p>
@@ -586,12 +583,12 @@
                                         <p id="school-rating"></p>
                                     </div>
                                 </div>
-                                <div class="row hidden-xs" style="height:3vh; margin-bottom:15px">
+                                <div class="row hidden-xs" style="margin-bottom:5px">
                                     <div class="col-xs-12" style="height:100%">
-                                        <h4>Special Needs</h4>
+                                        <h4>Special Needs Support Provided</h4>
                                     </div>
                                 </div>
-                                <div class="row schools-tab--disabilities hidden-xs" style="height:10vh;max-height:5vh">
+                                <div class="row schools-tab--disabilities hidden-xs">
                                     <div class="col-xs-3">
                                         <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
                                     </div>
@@ -627,11 +624,25 @@
                         </div>
                     </div>
             </div>
-
-
             </article>
+            <!-- Generic Error Modal -->
+            <div id="errorModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Error</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="error-message">You need to complete the sentence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Modal -->
+
     </div>
-    </section>
     <footer class="container-fluid">
         <div class="row">
             <div class="col-xs-12 social-list">

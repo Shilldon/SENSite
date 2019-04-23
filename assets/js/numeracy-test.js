@@ -51,7 +51,7 @@ function nextQuestion(testId) {
         $("#answer-mark").fadeOut('slow');
         $("#numeracy-answer").focus();
         $("#button-numeracy-submit").removeAttr("disabled");
-        
+
     }
     else if (testId == "literacy") {
         wordsArray = Question[QuestionNumber];
@@ -117,14 +117,14 @@ function skipQuestion(testId) {
 function checkAnswer(answer) {
     if (isNaN(answer) || answer == "") {
 
-        $("#numeracyErrorModal").modal({
+        $('#error-message').text('Please enter digits only.');
+        $("#errorModal").modal({
             show: 'true',
             backdrop: 'static',
             keyboard: 'false'
         })
         setTimeout(function() {
-            // console.log("modal hide");
-            $("#numeracyErrorModal").modal('hide');
+            $("#errorModal").modal('hide');
             $("#button-numeracy-submit").removeAttr("disabled");
             $("#numeracy-answer").focus();
 
@@ -137,7 +137,8 @@ function checkAnswer(answer) {
         $("#answer-mark").attr('src', 'assets/images/tick.png');
         TotalScore++;
         if (QuestionNumber < 10) {
-            setTimeout(function() { console.log("nextquestion fired by right answer "+answer); nextQuestion("numeracy") }, 1500);
+            setTimeout(function() { console.log("nextquestion fired by right answer " + answer);
+                nextQuestion("numeracy") }, 1500);
         }
         else {
             reportScore("numeracy");
@@ -147,7 +148,8 @@ function checkAnswer(answer) {
         $("#answer-mark").css('display', 'block');
         $("#answer-mark").attr('src', 'assets/images/cross.png');
         if (QuestionNumber < 10) {
-            setTimeout(function() { console.log("nextquestion fired by wrong answer "+answer); nextQuestion("numeracy"); }, 1500);
+            setTimeout(function() { console.log("nextquestion fired by wrong answer " + answer);
+                nextQuestion("numeracy"); }, 1500);
         }
         else {
             setTimeout(function() { reportScore("numeracy") }, 1500);

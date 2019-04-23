@@ -105,15 +105,21 @@ function hideOpenTab() {
 			$("i", button).addClass("fa-chevron-right");
 			$(tabName).slideUp(250);
 			delay = 250;
-
 			//if the test tab is open need to close the test and revert to
-			//test landing page for next time it is opened.
+			//test landing tab for next time it is opened.
 			if (buttonName == 'test') {
 				//hide the individual test tabs and prepare the main test menu
 				$("#test-tab--landing").css("display", "block");
 				$(".test-tab").each(function() {
 					$(".test-tab").css("display", "none");
 				});
+			}
+			else if(buttonName=='data') {
+				//hide the currently displayed chart and revert to data landing tab for the next
+				//time it is opened
+				$("#data-tab--landing").css("display", "block");
+				$("#data-tab--chart-tab").css("display","none");
+				
 			}
 		}
 	});
@@ -213,7 +219,4 @@ $(".top-section--nav-list-button").on("click", function() {
 	}
 })
 
-$("#calendar").on("click", function() {
-	console.log("clicked")
-	$("#contact-form").html('<iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>')
-})
+

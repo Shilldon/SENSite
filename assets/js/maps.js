@@ -21,7 +21,15 @@ function searchForSchool() {
       .await(loadSchoolMapData);
   }
   else {
-    alert("enter a postcode");
+    $('#error-message').text('Please enter a postcode.');
+    $("#errorModal").modal({
+      show: 'true',
+      backdrop: 'static',
+      keyboard: 'false'
+    });
+    setTimeout(function() {
+      $("#errorModal").modal('hide');
+    }, 2000);
   }
 
   function loadSchoolMapData(error, schoolMapData) {
@@ -75,10 +83,7 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
 
   //filter dimension to exclude postcodes that do not partial match user submitted postcode
   //and schools that are closed
-  //and schools that provide no information on pupil numbers
   local_map_schools_dim.filter(function(d) {
-    //count the results and filter those records that exceed the max or fall below the minimm record number
-    //this ensures not too many results are displayed on the chart
     if (checkPostcode(postcode, d.Postcode) == false || d['EstablishmentStatus (code)'] != 1) {
       return d;
     }
@@ -104,6 +109,8 @@ function clearSchoolDetails() {
   $("#education-phase").text("");
   $("#school-website").html('');
   $("#school-telephone").text("");
+  $("#school-head").text("");
+  $("#school-rating").text("");
   $("p[id^='disability-icon']").css("color", "grey");
   $("p[id^='disability-icon']").css("background-color", "transparent");
 }
@@ -297,8 +304,11 @@ function drawMarker(markerInfo) {
 
 //change color of icon to display providing information on SEN
 function colourInIcon(icon) {
-  $(icon).css("color", "#e1e1e1");
-  $(icon).css("background-color", "#9c6df9");
+  $(icon).css({
+    'transition-duration': '1s',
+    'color': '#e1e1e1',
+    'background-color': '#9c6df9'
+  });
 }
 
 //initialise map to starting location

@@ -51,7 +51,15 @@ function defineChartData() {
             .await(loadData);
     }
     else {
-        alert("enter postcode")
+        $('#error-message').text('Please enter a postcode.');
+        $("#errorModal").modal({
+            show: 'true',
+            backdrop: 'static',
+            keyboard: 'false'
+        });
+        setTimeout(function() {
+            $("#errorModal").modal('hide');    
+        },2000);
     }
 
     function loadData(error, schoolData) {
@@ -176,7 +184,7 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     renderOfstedSelector(schoolData, postcode);
     renderSENSelector(schoolData, postcode);
     //    renderPieChart(schoolData);
-    renderRegionalChart(schoolData);
+    renderChart(schoolData);
 }
 
 //check the user submitted postcode against the postcode data taken from the csv - if partial match return true else false
@@ -237,8 +245,7 @@ function renderSENSelector(schoolData, postcode) {
 }
 
 //draw chart of number of pupils per school
-function renderRegionalChart(schoolData) {
-    //   console.log("rendering regional chart");
+function renderChart(schoolData) {
 
     schools_dim = schoolData.dimension(dc.pluck('EstablishmentName'));
     establishment_type_dim = schoolData.dimension(dc.pluck('TypeOfEstablishment (name)'));

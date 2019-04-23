@@ -16,8 +16,8 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-    //    overflow: hidden;
-    overflow: auto;
+        overflow: hidden;
+    //overflow: auto;
     font-size: $body-font-size;
 }
 
@@ -201,9 +201,14 @@ $logoWidth: 150px;
 #about-tab {
     img {
         margin: auto;
-        max-width: 20vw;
-        max-height: 20vw;
+        max-height: 20vh;
+        max-width:20vw;
+        width:auto;
+        height:auto;
     }
+    .about-tab--icon-container {
+        text-align:center;
+    }    
 }
 
 #test-tab--landing {
@@ -421,11 +426,11 @@ $value in $tab-colors {
 
 .schools-tab--disabilities-icon {
     color: grey;
-    margin: 0 0 10px;
+   // margin: 0 0 10px;
     border: solid 2px $schools-color;
     border-radius: 35%;
-    min-height: 5vh;
-    padding-top: 8px;
+   // min-height: 5vh;
+    padding: 5px;
 }
 
 /*----- map within schools tab -----*/
@@ -489,6 +494,11 @@ $value in $tab-colors {
     animation: animate-contactform 1s forwards;
 }
 
+/*----- MODAL -----*/
+#errorModal {
+    color: $about-color;
+}
+
 
 /*----- FOOTER -----*/
 
@@ -516,8 +526,7 @@ $value in $tab-colors {
     li {
         padding-left: 0;
         padding-right: 0;
-        margin: 0 -2px -0px -2px;
-        width: 25%;
+        width: 24%;
         line-height: 5vh;
         text-align: center;
         display: inline-block;
@@ -636,6 +645,13 @@ $value in $tab-colors {
         height: 40px;
         font-size: 23px;
     }
+    
+        #schools-tab {
+        font-size: 18px;
+        input {
+            font-size: 12px;
+        }
+    }    
 }
 
 @media (min-width: 1200px) {
@@ -658,6 +674,13 @@ $value in $tab-colors {
         height: 42px;
         font-size: 25px;
     }
+    
+        #schools-tab {
+        font-size: 18px;
+        input {
+            font-size: 15px;
+        }
+    }        
 }
 
 @media (min-width: 768px) {
@@ -721,15 +744,10 @@ $value in $tab-colors {
     font-size: 30px;
 }
 
-    #schools-tab {
-        font-size: 18px;
-        input {
-            font-size: 15px;
-        }
-    }
+
 
 .test-tab--memory-icon {
-    width: 100px;
+    width: 90px;
     padding: 10px;
 }
 
@@ -737,6 +755,9 @@ $value in $tab-colors {
     font-size:24px;
 }
 
+.result-chart {
+    width: 40vw;
+}
 
     #school-info {
         border: solid 2px $schools-color;

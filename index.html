@@ -165,81 +165,83 @@
                     </div>
                     <section class="data-tab--chart-section" id="data-tab--chart-tab">
                         <div class="row">
-                            <div class="col-xs-1" style="height:100%">
-                                <input id="chart-address" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="Postcode">
+                            <div class="col-xs-4 col-sm-2">
+                                Enter postcode:
                             </div>
-                            <div class="col-xs-1" style="height:100%">
-                                <input id="max-results" style="width:100%; padding:0;" type="number" min="10" max="50" value="10">
+                            <div class="col-xs-2 col-sm-1 no-padding">
+                                <input class="form-control" id="chart-address" type="textbox" maxlength="4" placeholder="Postcode">
                             </div>
-
-                            <div class="col-xs-2" style="height:100%">
-                                <input id="chart-submit" style="width:100%" type="button" value="Search">
+                            <div class="col-xs-3 col-sm-1">
+                                Results:
                             </div>
-                            <div class="col-xs-2" style="height:100%">Ofsted Rating</div>
-                            <div class="col-xs-2" style="height:100%">SEN Accomodated</div>
+                            <div class="col-xs-2 col-sm-1 no-padding">
+                                <input class="form-control" id="max-results" type="number" min="10" max="50" value="10">
+                            </div>
+                            <div class="col-xs-5 col-sm-2">
+                                <input id="select-school-capacity" style="width:14px" type="radio" checked="checked" name="graph_type" value="school_capacity"><label>School Capacity</label>
+                            </div>
+                            <div class="col-xs-5 col-sm-2">
+                                <input id="select-total-pupils" style="width:14px" type="radio" name="graph_type" value="total_pupils"><label>Total Pupils</label>
+                            </div>
+                            <div class="col-xs-2 col-sm-1">
+                                <input class="form-control" id="chart-submit" type="button" value="Go">
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-2" style="height:100%">
-                                <input id="select-school-capacity" type="radio" checked="checked" name="graph_type" value="school_capacity"> School Capacity<br>
-                            </div>
-                            <div class="col-xs-2" style="height:100%">
-                                <input id="select-total-pupils" type="radio" name="graph_type" value="total_pupils"> Total Pupils<br>
-                            </div>
-                            <div id="data-tab--chart-selector-regional" class="col-xs-2 col-xs-offset-2" style="height:100%"></div>
-                            <div id="data-tab--chart-selector2-regional" class="col-xs-2" style="height:100%"></div>
+                            <div class="col-xs-5 col-sm-3" >Filter by Ofsted rating:</div>
+                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-ofsted">&nbsp</div>
+                            <div class="col-xs-5 col-sm-3">Filter by SEN:</div>
+                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-SEN">&nbsp</div>
                         </div>
                         <div class="row">
                             <div class="col-xs-col-10 col-xs-offset-1" id="data-tab--chart-area">
-                                <img style="display:none; z-index:2" src="assets/images/loading.gif">
-                                <div class="row" style="height:52vh">
-                                    <div class="col-xs-9 data-tab--chart" id="data-tab--chart-bar"></div>
-                                    <div class="col-xs-3">
+                                <img src="assets/images/loading.gif">
+                                <div class="row" style="border-bottom:solid 1px; margin-bottom: 5px">
+                                    <div class="col-xs-8 col-sm-4">
+                                        Schools In Postcode Area:
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2" id="data-tab--total-schools"></div>                                    
+  
+                                    <div class="col-xs-8 col-sm-4">
+                                        Displaying:
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2" id="data-tab--total-schools-range"></div>
+                                </div>                                
+                                
+                                <div class="row" >
+                                    <div class="col-xs-12 col-sm-8 data-tab--chart" id="data-tab--chart-bar"></div>
+                                    <div class="col-xs-12 col-sm-3 col-sm-offset-1">
                                         <div class="row">
-                                            <div class="col-xs-12">
-                                                Number Of Schools In Postcode Area:
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12" id="data-tab--total-schools"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                Displaying:
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12" id="data-tab--total-schools-range"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12" style="text-align: center">
+                                            <div class="col-xs-12" style="text-align: center; font-size:12px;">
                                                 Average Pupil Density Per School Type
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-3" id="data-tab--chart-pie"></div>
+                                            <div class="col-xs-12" id="data-tab--chart-pie" style="height:13vh; max-height:13vh"></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12" style="text-align: center">
+                                            <div class="col-xs-12" style="text-align: center;  font-size:12px; padding-top:10px">
                                                 Number Of Schools Per Educational Phase
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-3" id="data-tab--chart-row"></div>
+                                            <div class="col-xs-12" id="data-tab--chart-row" style="height:20vh; max-height:20vh"></div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>                                
                                 <div class="row">
-                                    <div class="col-sm-2 col-sm-offset-1 tab--menu-button-container">
-                                        <button id="button-chart-plot-previous" min="0">Previous</button>
+                                    <div class="col-xs-4 col-sm-2 col-sm-offset-1 tab--menu-button-container">
+                                        <button id="button-chart-plot-previous" style="display:none" min="0">Previous</button>
                                     </div>
-                                    <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container">
+                                    <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
                                         <button class="data-tab--chart-button" id="button-data-back">Back</button>
                                     </div>
-                                    <div class="col-sm-2 col-sm-offset-2 tab--menu-button-container">
-                                        <button id="button-chart-plot-next" max="25">Next</button>
+                                    <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
+                                        <button id="button-chart-plot-next" style="display:none" max="25">Next</button>
                                     </div>
                                 </div>
-                            </div>
+
                         </div>
                     </section>
                 </article>

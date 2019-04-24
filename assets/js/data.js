@@ -40,11 +40,11 @@ var dataset = [0];
 function defineChartData() {
     var postcode = $('#chart-address').val();
     if (postcode != "") {
-        barChartWidth = $("#data-tab--chart-area").width() * 0.8;
-        barChartHeight = $("#data-tab--chart-area").height() * 0.9;
-        rowChartHeight=$("#data-tab--chart-area").height()*0.25;
-        rowChartWidth=$("#data-tab--chart-area").width()*0.25;
-        pieChartHeight = $("#data-tab--chart-area").width() * 0.15;
+        barChartWidth = $("#data-tab--chart-bar").width();
+        barChartHeight = $("#data-tab--chart-bar").height();
+        rowChartHeight=$("#data-tab--chart-row").height();
+        rowChartWidth=$("#data-tab--chart-row").width();
+        pieChartHeight = $("#data-tab--chart-pie").height();
         $('#data-tab--chart-area img').css('display', 'block');
         queue()
             .defer(d3.csv, 'assets/data/schools.csv')
@@ -183,7 +183,6 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     //render charts
     renderOfstedSelector(schoolData, postcode);
     renderSENSelector(schoolData, postcode);
-    //    renderPieChart(schoolData);
     renderChart(schoolData);
 }
 
@@ -211,7 +210,7 @@ function renderOfstedSelector(schoolData, postcode) {
         }
     })
     var ratingSelector = rating_dim.group();
-    dc.selectMenu("#data-tab--chart-selector-regional")
+    dc.selectMenu("#data-tab--chart-selector-ofsted")
         .dimension(rating_dim)
         .group(ratingSelector);
 }
@@ -231,7 +230,7 @@ function renderSENSelector(schoolData, postcode) {
                     SEN = "None";
                 }
                 else {
-                    SEN = SEN.substring(SEN.indexOf("-") + 1);
+                    SEN = SEN.substring(0,SEN.indexOf('-'));
                 }
                 return SEN;
 
@@ -239,7 +238,7 @@ function renderSENSelector(schoolData, postcode) {
         }
     })
     var SENSelector = SEN_dim.group();
-    dc.selectMenu("#data-tab--chart-selector2-regional")
+    dc.selectMenu("#data-tab--chart-selector-SEN")
         .dimension(SEN_dim)
         .group(SENSelector);
 }
@@ -293,7 +292,7 @@ function renderChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 40, right: 50, bottom: 30, left: 50 })
+            .margins({ top: 40, right: 50, bottom: 30, left: 60 })
             .dimension(schools_dim)
             .group(boy_pupils_per_school, "Boys")
             .stack(girl_pupils_per_school, "Girls")
@@ -312,7 +311,7 @@ function renderChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 20, right: 50, bottom: 30, left: 50 })
+            .margins({ top: 20, right: 50, bottom: 30, left: 60 })
             .dimension(schools_dim)
             .group(school_capacity, "Total Capacity")
             .transitionDuration(500)

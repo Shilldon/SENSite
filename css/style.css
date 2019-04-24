@@ -10,6 +10,9 @@ body {
   padding: 0;
   margin: 0; }
 
+.no-padding {
+  padding: 0; }
+
 .container-fluid {
   margin: 0;
   padding: 0; }
@@ -172,21 +175,44 @@ footer {
 /*----- DATA TAB -----*/
 #data-tab--chart-area {
   width: 80vw;
-  height: 52vh;
+  height: 48vh;
+  overflow: auto;
   border: solid 2px #7b3bfc;
   margin-top: 10px;
   margin-bottom: 10px; }
   #data-tab--chart-area img {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%); }
+    transform: translate(-50%, -50%);
+    max-width: 55%;
+    height: auto;
+    display: none;
+    z-index: 2; }
 
 .data-tab--chart {
-  padding-top: 20px; }
+  padding-top: 20px;
+  height: 42vh; }
+
+.dc-chart {
+  padding: 0; }
 
 .data-tab--chart-section {
   display: none; }
+  .data-tab--chart-section input {
+    width: 100%;
+    padding: 0px;
+    font-size: 12px;
+    height: 20px;
+    vertical-align: middle;
+    margin: 0; }
+  .data-tab--chart-section label {
+    vertical-align: middle;
+    margin: 0;
+    font-weight: 100; }
+
+.data-tab--chart-selector {
+  min-width: 100%; }
 
 .pie-slice {
   fill: black; }
@@ -537,6 +563,14 @@ footer {
 
   #top-section--title {
     transform: translate(-100%, 0); }
+
+  .data-tab--chart-section {
+    display: none; }
+    .data-tab--chart-section input {
+      width: 100%;
+      padding: 0px;
+      font-size: 18px;
+      height: 26px; }
 
   .test-tab--literacy-word {
     font-size: 30px; }

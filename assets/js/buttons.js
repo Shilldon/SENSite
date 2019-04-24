@@ -2,13 +2,53 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-/*----- Chart tab buttons -----*/
+/*----- Menu Button and Nav Bar -----*/
+
+//clicking the nav button will show the contact form and hide any open tabs and
+//hides/shows the navbar
+$("#menu-button").on("click", function() {
+	$(".top-section").css('background-image', 'none');
+	hideOpenTab();
+	setTimeout(function() { showContactForm() }, 250);
+	changeMenuButton("DISCOVER", true);
+})
+
+
+$(".top-section--nav-list-button").on("click", function() {
+	//get the ID of the li item (button) that has been clicked
+	var clickedButton = $(this);
+
+	//if the tab is open, close it, show the contact form and change the nav
+	//button
+	if ($(clickedButton).data('state') == 'open') {
+		hideOpenTab();
+		changeMenuButton("DISCOVER", false);
+		changeMenuButtonColor(false);
+
+		//hide the top section background when reverting to home screen
+		$(".top-section").css('background', 'none');
+		setTimeout(function() { showContactForm() }, 250);
+
+	}
+	//otherwise close the contact form/hide the current tab and open the new tab.
+	//ensure the nav button changes to 'contact' to enable user to bring back 
+	//contact form from any page.
+	else {
+		hideContactForm();
+		hideOpenTab();
+		changeMenuButton("CONTACT", false);
+		changeMenuButtonColor(true);
+		changeBackground(clickedButton);
+		setTimeout(function() { showTab(clickedButton) }, 250);
+	}
+})
+
+/*----- Data tab buttons -----*/
 
 $(".data-tab--chart-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
     var chartId = buttonId[3];
-    console.log(chartId)
     switch (action) {
         case 'select':
             $("#data-tab--landing").fadeOut(250);
@@ -24,7 +64,6 @@ $(".data-tab--chart-button").on("click", function() {
 $("#chart-submit").click(function() {
     $('#button-chart-plot-previous').attr('min', 1);
     var maxValue = $("#max-results").val();
-    console.log("onclickmax=" + maxValue);
     $('#button-chart-plot-next').attr('max', maxValue);
     $('#button-chart-plot-next').attr('change', maxValue);
     defineChartData();
@@ -33,7 +72,7 @@ $("#chart-submit").click(function() {
 $('#chart-address').keypress(function(e) {
     if (e.keyCode == 13) {
         $('#chart-submit').focus();
-    defineChartData();
+        defineChartData();
     }
 });
 
@@ -53,10 +92,8 @@ $("#select-total-pupils").click(function() {
 
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
-    console.log("button clicked=" + buttonId)
     var action = buttonId[2];
     var testId = buttonId[1];
-    console.log(action);
     switch (action) {
         case 'select':
             buttonSelect(testId);
@@ -70,6 +107,9 @@ $(".test-tab--test-button").on("click", function() {
             clearTimeout(DisplayResult);
             clearTest();
             setTimeout(function() { $("#test-tab--landing").fadeIn(250); }, 250);
+            break;
+        case 'skip':
+            skipQuestion(testId);
             break;
         case 'submit':
             if (testId == 'numeracy') {
@@ -120,31 +160,26 @@ $(".test-tab--test-button").on("click", function() {
     }
 })
 
-function buttonStart(test) {
-    $("#test-tab--" + test).fadeOut(250);
-    setTimeout(function() {
-        $("#test-tab--" + test + "-test").fadeIn(250, function() {
-            $("#numeracy-answer").focus();
-        });
-    }, 250);
-    if (test == "numeracy") {
-        //     $('#question-' + test + 'header').text("Question 1");
-        startNumeracyTest();
-    }
-    else if (test == "literacy") {
-        //      $('#question-' + test + 'header').text("Question 1");
-        startLiteracyTest();
-    }
-    else if (test == "memory") {
-        startMemoryTest();
-    }
-}
 
-function buttonSelect(test) {
-    $("#test-tab--landing").fadeOut(250);
-    setTimeout(function() { $("#test-tab--" + test).fadeIn(250); }, 250);
-}
+/*-----Map buttons-----*/
+
+$("#map-submit").click(function() {
+  searchForSchool();
+});
+
+$('#map-address-1').keypress(function(e) {
+  if (e.keyCode == 13)
+    $('#map-address-2').focus();
+});
+$('#map-address').keypress(function(e) {
+  if (e.keyCode == 13) {
+    $('#map-submit').focus();
+    searchForSchool();
+  }
+});
+
+/*-----calendar-----*/
 
 $("#calendar").on("click", function() {
-	$("#contact-form").html('<iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>')
+    $("#contact-form").html('<iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>')
 })

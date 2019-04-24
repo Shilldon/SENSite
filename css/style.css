@@ -45,12 +45,20 @@ footer {
 .top-section--logo-container {
   height: 15vh;
   max-height: 15vh; }
-
 .top-section--title-container {
   height: 5vh;
   max-height: 5vh; }
-
-.nav-button {
+.top-section--title-text {
+  color: #e1e1e1;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 5vh;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+  text-align: center; }
+.top-section #top-section--hidden-title {
+  position: absolute;
+  width: 100%; }
+.top-section .nav-button {
   position: absolute;
   margin: 0;
   font-size: 10px;
@@ -64,22 +72,9 @@ footer {
   background-color: #6d23ff;
   transition: ease-in-out 0.25s;
   transform: scale(1, 1); }
-
-.nav-button:active {
+.top-section .nav-button:active {
   transition: ease-in-out 0.25s;
   transform: scale(0.8, 0.8); }
-
-.top-section--title-text {
-  color: #e1e1e1;
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  line-height: 5vh;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
-  text-align: center; }
-
-#top-section--hidden-title {
-  position: absolute;
-  width: 100%; }
 
 .title-animation {
   animation: animate-title 1s forwards; }
@@ -96,7 +91,7 @@ footer {
 .logo-animation {
   animation: animate-logo 2s; }
 
-/*----- NAVIGATION BAR -----*/
+/*----- MENU BAR -----*/
 .navbar-container {
   height: 5vh;
   max-height: 5vh; }
@@ -125,6 +120,18 @@ footer {
   animation: animate-menubar 1s forwards; }
 
 /*----- NAVIGATION TABS -----*/
+#about-tab {
+  color: #6d23ff; }
+
+#data-tab {
+  color: #7b3bfc; }
+
+#test-tab {
+  color: #884ffb; }
+
+#schools-tab {
+  color: #9c6df9; }
+
 .tabs-container {
   height: 100%; }
 
@@ -148,6 +155,7 @@ footer {
   .tab--menu-button-container {
     text-align: center; }
 
+/*----- ABOUT TAB -----*/
 #about-tab img {
   margin: auto;
   max-height: 20vh;
@@ -156,21 +164,6 @@ footer {
   height: auto; }
 #about-tab .about-tab--icon-container {
   text-align: center; }
-
-#test-tab--landing .col-xs-4 {
-  text-align: center; }
-
-#about-tab {
-  color: #6d23ff; }
-
-#data-tab {
-  color: #7b3bfc; }
-
-#test-tab {
-  color: #884ffb; }
-
-#schools-tab {
-  color: #9c6df9; }
 
 /*----- DATA TAB -----*/
 #data-tab--chart-area {
@@ -193,10 +186,12 @@ footer {
 .data-tab--chart {
   padding-top: 20px;
   height: 42vh; }
-
-.dc-chart {
-  padding: 0; }
-
+.data-tab--chart-title {
+  text-align: center;
+  font-size: 12px;
+  display: none;
+  padding-top: 10px;
+  font-weight: 700; }
 .data-tab--chart-section {
   display: none; }
   .data-tab--chart-section input {
@@ -210,31 +205,19 @@ footer {
     vertical-align: middle;
     margin: 0;
     font-weight: 100; }
-
 .data-tab--chart-selector {
   min-width: 100%; }
+
+.dc-chart {
+  padding: 0; }
 
 .pie-slice {
   fill: black; }
 
-/*
-._0 {
-    .bar {
-        fill: $about-color;
-    }
-}
-
-._1{
-    .bar {
-    fill: $data-color;
-
-}
-
-._2 {
-.bar {
-    fill: $test-color;
-}*/
 /*----- TEST TAB -----*/
+#test-tab--landing .col-xs-4 {
+  text-align: center; }
+
 .test-tab {
   display: none; }
   .test-tab .col-sm-4 {
@@ -257,79 +240,67 @@ footer {
   .test-tab--question {
     font-size: 18px;
     font-weight: 400; }
+  .test-tab--literacy-test-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 13vh;
+    max-height: 13vh;
+    border: solid 2px #884ffb;
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+    margin: 0 10px 0 10px;
+    padding: 0;
+    text-align: center; }
+  .test-tab--literacy-word {
+    border: none;
+    background-color: #e1e1e1;
+    display: inline-block;
+    outline: none;
+    display: inline-block;
+    text-align: right;
+    font-size: 16px; }
+    .test-tab--literacy-word-question-hidden {
+      display: none; }
+    .test-tab--literacy-word-question-shown {
+      display: inline-block; }
+    .test-tab--literacy-word-answer-hidden {
+      margin: 0 2.5px 0 2.5px;
+      border-bottom: solid 1px;
+      border-right: none;
+      width: 50px;
+      height: 0; }
+    .test-tab--literacy-word-answer-shown {
+      border: none; }
+  .test-tab--literacy-answer-mark {
+    height: 25px; }
+  .test-tab--numeracy-question-container {
+    text-align: right;
+    font-size: 16px; }
+  .test-tab--memory-test-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .test-tab--memory-icon {
+    width: 60px;
+    padding: 5px; }
+  .test-tab--result-chart-container {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .test-tab--result-chart {
+    height: 35vh;
+    width: 90vw;
+    border: solid 4px #884ffb; }
+    .test-tab--result-chart svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-45%, -50%); }
 
-.test-tab--literacy-test-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  height: 13vh;
-  max-height: 13vh;
-  border: solid 2px #884ffb;
-  font-family: 'Indie Flower', cursive;
-  font-size: 18px;
-  margin: 0 10px 0 10px;
-  padding: 0;
-  text-align: center; }
-
-.test-tab--literacy-word {
-  border: none;
-  background-color: #e1e1e1;
-  display: inline-block;
-  outline: none; }
-
-.test-tab--literacy-word-question-hidden {
-  display: none; }
-
-.test-tab--literacy-word-question-shown {
-  display: inline-block; }
-
-.test-tab--literacy-word-answer-hidden {
-  margin: 0 2.5px 0 2.5px;
-  border-bottom: solid 1px;
-  border-right: none;
-  width: 50px;
-  height: 0; }
-
-.test-tab--literacy-answer-mark {
-  height: 25px; }
-
-.test-tab--literacy-word-answer-shown {
-  border: none; }
-
-.test-tab--numeracy-question-container {
-  text-align: right;
-  font-size: 16px; }
-
-.result-chart-container {
-  height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-
-.result-chart {
-  height: 35vh;
-  width: 90vw;
-  border: solid 4px #884ffb; }
-  .result-chart svg {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-45%, -50%); }
-
-#test-tab--memory-test .col-xs-3 {
-  text-align: center; }
-
-.test-tab--memory-test-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-
-.test-tab--memory-icon {
-  width: 60px;
-  padding: 5px; }
-
-#answer-mark {
+#numeracy-answer-mark {
   width: 20px; }
 
 /*----- SCHOOLS TAB -----*/
@@ -340,7 +311,6 @@ footer {
 
 .schools-tab--disabilities i {
   font-size: 30px; }
-
 .schools-tab--disabilities-icon {
   color: grey;
   border: solid 2px #9c6df9;
@@ -351,12 +321,10 @@ footer {
 #map {
   border: solid 2px #9c6df9;
   height: 60vh; }
-
-#map-address {
-  width: 25%; }
-
-#map-miles {
-  width: 10%; }
+  #map-address {
+    width: 25%; }
+  #map-miles {
+    width: 10%; }
 
 .map--marker-stars {
   width: 50%; }
@@ -465,13 +433,11 @@ footer {
     height: 38px;
     font-size: 21px; }
 
-  h3 {
+  .tab h3 {
     font-size: 25px; }
-
-  h4 {
+  .tab h4 {
     font-size: 20px; }
-
-  h5 {
+  .tab h5 {
     font-size: 18px; }
 
   .schools-tab--disabilities p {
@@ -522,14 +488,13 @@ footer {
   .top-section {
     height: 30vh;
     max-height: 30vh; }
+    .top-section--logo-container {
+      height: 20vh;
+      max-height: 20vh; }
 
   .bottom-section {
     height: 65vh;
     max-height: 65vh; }
-
-  .top-section--logo-container {
-    height: 20vh;
-    max-height: 20vh; }
 
   #logo {
     display: block;
@@ -554,9 +519,8 @@ footer {
       text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
       margin: 0 -2px -0px -2px;
       width: 25%; }
-
-  #navbar .navbar-toggle {
-    margin-right: 0; }
+    #navbar .navbar-toggle {
+      margin-right: 0; }
 
   #contact-form {
     opacity: 0; }
@@ -572,17 +536,17 @@ footer {
       font-size: 18px;
       height: 26px; }
 
+  .dc-chart .axis text {
+    font: 14px sans-serif; }
+
   .test-tab--literacy-word {
     font-size: 30px; }
-
   .test-tab--memory-icon {
     width: 90px;
     padding: 10px; }
-
   .test-tab--numeracy-question-container {
     font-size: 24px; }
-
-  .result-chart {
+  .test-tab--result-chart {
     width: 40vw; }
 
   #school-info {

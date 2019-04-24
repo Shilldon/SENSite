@@ -42,8 +42,8 @@ function defineChartData() {
     if (postcode != "") {
         barChartWidth = $("#data-tab--chart-bar").width();
         barChartHeight = $("#data-tab--chart-bar").height();
-        rowChartHeight=$("#data-tab--chart-row").height();
-        rowChartWidth=$("#data-tab--chart-row").width();
+        rowChartHeight = $("#data-tab--chart-row").height();
+        rowChartWidth = $("#data-tab--chart-row").width();
         pieChartHeight = $("#data-tab--chart-pie").height();
         $('#data-tab--chart-area img').css('display', 'block');
         queue()
@@ -58,8 +58,8 @@ function defineChartData() {
             keyboard: 'false'
         });
         setTimeout(function() {
-            $("#errorModal").modal('hide');    
-        },2000);
+            $("#errorModal").modal('hide');
+        }, 2000);
     }
 
     function loadData(error, schoolData) {
@@ -69,38 +69,16 @@ function defineChartData() {
     }
 }
 
-function print_filter(filter) {
-    var f = eval(filter);
-    if (typeof(f.length) != "undefined") {}
-    else {}
-    if (typeof(f.top) != "undefined") { f = f.top(Infinity); }
-    else {}
-    if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
-    else {}
-    console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
-}
-
 //check user submitted postcode and filter schoolData based on postcode submitted
 function filterByPostcode(schoolData, minCount, maxCount) {
     //get user submitted postcode
     minCount = $('#button-chart-plot-previous').attr('min');
     maxCount = $('#button-chart-plot-next').attr('max');
-    console.log("maxCount" + maxCount)
-    console.log("maxCount" + minCount)
-    //   console.log("max=" + maxCount + " min=" + minCount)
 
-    /*  var postcodePart1 = $('#chart-address-1').val();
-      var postcodePart2 = $('#chart-address-2').val();
-      var postcode=postcodePart1;
-      if(postcodePart2!=""){
-      postcode = postcodePart1 + " " + postcodePart2;
-      }*/
     var postcode = $('#chart-address').val();
     postcode = postcode.toUpperCase();
     if (postcode.endsWith('*') == true) {
-        console.log("postcode before mod=" + postcode)
         postcode = postcode.substr(0, postcode.length - 1);
-        console.log("postcode after mod=" + postcode)
     }
     else {
         postcode = postcode + " ";
@@ -131,17 +109,11 @@ function filterByPostcode(schoolData, minCount, maxCount) {
             return d;
         }
         else if (count != 0 && (count < minCount || count >= maxCount)) {
-            console.log(count + " equal to " + maxCount + "?")
             count++;
-            console.log(count + " added one, now equal to " + maxCount + "?")
-
             return d;
         }
         else {
-            //  $('#data-tab--total-schools').text(count);
             count++;
-            console.log("return a result " + count)
-            //         console.log(count)
         }
     });
     var displayedCount = 0;
@@ -157,27 +129,19 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     local_schools_dim.filter(null);
     var resultsRange = $("#button-chart-plot-next").attr('change');
     if (count > maxCount) {
-        //     console.log("count more than max")
         $("#button-chart-plot-next").show();
     }
     else {
-        //   console.log("count less than max")
         $("#button-chart-plot-next").hide();
     }
     if (minCount >= resultsRange) {
-        //   console.log("mincount more than 25")
         $("#button-chart-plot-previous").show();
     }
     else {
-        //       console.log("mincount less than 25")
-
         $("#button-chart-plot-previous").hide();
     }
 
-    /*    dimData = establishment_type_dim.top(Infinity);
-        dimData.forEach(function(x) {
-            //        console.log(JSON.stringify(x));
-        });*/
+
 
 
     //render charts
@@ -189,7 +153,6 @@ function filterByPostcode(schoolData, minCount, maxCount) {
 //check the user submitted postcode against the postcode data taken from the csv - if partial match return true else false
 function checkPostcode(selectedPostcode, schoolPostcode) {
     if (schoolPostcode.search(selectedPostcode) != -1 || selectedPostcode == "") {
-        //     console.log("postcode checked" + schoolPostcode + " returned true")
         return true;
     }
     else {
@@ -225,12 +188,11 @@ function renderSENSelector(schoolData, postcode) {
             if (checkPostcode(postcode, d.Postcode)) {
                 //only return d if postcode and SEN class are correct
                 SEN = d['SEN' + i + ' (name)'];
-                //               console.log(SEN)
                 if (SEN == "") {
                     SEN = "None";
                 }
                 else {
-                    SEN = SEN.substring(0,SEN.indexOf('-'));
+                    SEN = SEN.substring(0, SEN.indexOf('-'));
                 }
                 return SEN;
 
@@ -245,6 +207,8 @@ function renderSENSelector(schoolData, postcode) {
 
 //draw chart of number of pupils per school
 function renderChart(schoolData) {
+
+    $('.data-tab--chart-title').css('display', 'block');
 
     schools_dim = schoolData.dimension(dc.pluck('EstablishmentName'));
     establishment_type_dim = schoolData.dimension(dc.pluck('TypeOfEstablishment (name)'));
@@ -304,7 +268,7 @@ function renderChart(schoolData) {
             .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
             .elasticY(true)
             .yAxisLabel("Number of Pupils")
-            .yAxis().ticks(20);
+            .yAxis().ticks(10);
     }
     else if ($('#select-school-capacity').is(':checked')) {
         //display chart just setting out total school pupil capacity
@@ -414,7 +378,6 @@ function renderChart(schoolData) {
                 .text(function(d) {
                     percentageOfPupils = dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2 * Math.PI) * 100);
                     if (percentageOfPupils > 0) {
-                        console.log("percentage " + percentageOfPupils)
                         var pupilPercentage = parseFloat(percentageOfPupils).toFixed(2);
                         return pupilPercentage + '%';
                     }
@@ -446,15 +409,14 @@ function renderChart(schoolData) {
 
 
     var total_schools_phase_balance = phase_balance_dim.group().reduce(addPhase, removePhase, initialisePhase);
-     var phaseBalanceChart = dc.rowChart('#data-tab--chart-row');
-       
+    var phaseBalanceChart = dc.rowChart('#data-tab--chart-row');
+
     phaseBalanceChart
         .width(rowChartWidth)
         .height(rowChartHeight)
- //            .x(d3.scale.ordinal())
-       .x(d3.scale.linear().domain([0, 10]))
-         .ordinalColors(['#6d23ff', '#7b3bfc', '#9c6df9'])
-       .elasticX(true)
+        .x(d3.scale.linear().domain([0, 10]))
+        .ordinalColors(['#6d23ff', '#7b3bfc', '#9c6df9'])
+        .elasticX(true)
         .dimension(phase_balance_dim)
         .group(total_schools_phase_balance)
         .valueAccessor(function(d) {
@@ -462,9 +424,27 @@ function renderChart(schoolData) {
         })
         .on('pretransition', function(phaseBalanceChart) {
             phaseBalanceChart.selectAll('text')
-                .style('fill','black')
+                .style('fill', 'black')
         });
 
-dc.renderAll();
+    dc.renderAll();
 }
 
+/* For testing - function to print out contents of crossfilter
+function print_filter(filter) {
+    var f = eval(filter);
+    if (typeof(f.length) != "undefined") {}
+    else {}
+    if (typeof(f.top) != "undefined") { f = f.top(Infinity); }
+    else {}
+    if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
+    else {}
+    console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
+}*/
+
+/*For testing - function to print out contents of dimension
+    /*    dimData = establishment_type_dim.top(Infinity);
+        dimData.forEach(function(x) {
+            //        console.log(JSON.stringify(x));
+        });*/
+        

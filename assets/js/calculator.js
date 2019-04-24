@@ -6,11 +6,7 @@ Calculator = function(numberThree) {
 }
 
 Calculator.prototype.add = function(number) {
-    console.log("current value in add " + this.value)
         this.value += number;
-        console.log("adding =" + number)
-        console.log("new value in add " + this.value)
-
 }
 
 Calculator.prototype.subtract = function(number,reverse) {
@@ -51,8 +47,6 @@ function calculateAnswer() {
     var operator = firstOperator;
 
     for (j = 0; j < 2; j++) {
-        console.log("for number ="+number);
-        console.log("for operator="+operator);
         switch (operator) {
             case "x":
                 calculator.multiply(number);

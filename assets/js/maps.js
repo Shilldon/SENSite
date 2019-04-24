@@ -47,6 +47,7 @@ function searchForSchool() {
 }
 
 function clearMarkers() {
+  //set markers to null
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -55,17 +56,16 @@ function clearMarkers() {
 function filterMapByPostcode(schoolMapData, minCount, maxCount) {
   //get user submitted postcode
 
-  var postcodePart1 = $('#map-address-1').val();
-  var postcodePart2 = $('#map-address-2').val();
-  var postcode = postcodePart1;
-  if (postcodePart2 != "") {
-    postcode = postcodePart1 + " " + postcodePart2;
-  }
+  //var postcodePart1 = $('#map-address-1').val();
+  /* var postcodePart2 = $('#map-address-2').val();
+   var postcode = postcodePart1;
+   if (postcodePart2 != "") {
+     postcode = postcodePart1 + " " + postcodePart2;
+   }*/
+  var postcode = $('#map-address').val();
   postcode = postcode.toUpperCase();
   if (postcode.endsWith('*') == true) {
-    console.log("postcode before mod=" + postcode)
     postcode = postcode.substr(0, postcode.length - 1);
-    console.log("postcode after mod=" + postcode)
   }
   else {
     postcode = postcode + " ";
@@ -324,16 +324,3 @@ function initMap() {
   });
 }
 
-$("#map-submit").click(function() {
-  searchForSchool();
-});
-
-$('#map-address-1').keypress(function(e) {
-  if (e.keyCode == 13)
-    $('#map-address-2').focus();
-});
-$('#map-address-2').keypress(function(e) {
-  if (e.keyCode == 13)
-    $('#map-submit').focus();
-  searchForSchool();
-});

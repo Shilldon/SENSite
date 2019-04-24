@@ -72,12 +72,6 @@ function showTab(clickedButton) {
 			$('#map-address-1').focus();
 		});
 	}
-	/*
-	else if (clickedButtonName == "data") {
-		$(clickedTabName).slideDown(250, function() {
-			defineChart();
-		});
-	}*/
 	else {
 		$(clickedTabName).slideDown(250);
 	}
@@ -179,44 +173,4 @@ function hideContactForm() {
 	}
 	return delay;
 }
-
-//clicking the nav button will show the contact form and hide any open tabs and
-//hides/shows the navbar
-$("#menu-button").on("click", function() {
-	$(".top-section").css('background-image', 'none');
-	hideOpenTab();
-	setTimeout(function() { showContactForm() }, 250);
-	changeMenuButton("DISCOVER", true);
-})
-
-
-$(".top-section--nav-list-button").on("click", function() {
-	//get the ID of the li item (button) that has been clicked
-	var clickedButton = $(this);
-
-	//if the tab is open, close it, show the contact form and change the nav
-	//button
-	if ($(clickedButton).data('state') == 'open') {
-		hideOpenTab();
-		changeMenuButton("DISCOVER", false);
-		changeMenuButtonColor(false);
-
-		//hide the top section background when reverting to home screen
-		$(".top-section").css('background', 'none');
-		setTimeout(function() { showContactForm() }, 250);
-
-	}
-	//otherwise close the contact form/hide the current tab and open the new tab.
-	//ensure the nav button changes to 'contact' to enable user to bring back 
-	//contact form from any page.
-	else {
-		hideContactForm();
-		hideOpenTab();
-		changeMenuButton("CONTACT", false);
-		changeMenuButtonColor(true);
-		changeBackground(clickedButton);
-		setTimeout(function() { showTab(clickedButton) }, 250);
-	}
-})
-
 

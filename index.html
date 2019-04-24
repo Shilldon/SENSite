@@ -212,7 +212,7 @@
                                     <div class="col-xs-12 col-sm-8 data-tab--chart" id="data-tab--chart-bar"></div>
                                     <div class="col-xs-12 col-sm-3 col-sm-offset-1">
                                         <div class="row">
-                                            <div class="col-xs-12" style="text-align: center; font-size:12px;">
+                                            <div class="col-xs-12 data-tab--chart-title">
                                                 Average Pupil Density Per School Type
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@
                                             <div class="col-xs-12" id="data-tab--chart-pie" style="height:13vh; max-height:13vh"></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12" style="text-align: center;  font-size:12px; padding-top:10px">
+                                            <div class="col-xs-12 data-tab--chart-title">
                                                 Number Of Schools Per Educational Phase
                                             </div>
                                         </div>
@@ -358,8 +358,8 @@
                                 <h3 id="literacy-result"></h3>
                             </div>
                         </div>
-                        <div class="row result-chart-container">
-                            <div class="col-xs-12 result-chart" id="literacy-result-chart">
+                        <div class="row test-tab--result-chart-container">
+                            <div class="col-xs-12 test-tab--result-chart" id="literacy-result-chart">
                             </div>
                         </div>
                         <div class="row">
@@ -403,7 +403,7 @@
                                 <input class="test-tab--answer" id="numeracy-answer"></input>
                             </div>
                             <div class="col-xs-1">
-                                <img id="answer-mark" src="">
+                                <img id="numeracy-answer-mark" src="">
                             </div>
                         </div>
                         <div class="row">
@@ -449,8 +449,8 @@
                                 <h3 id="numeracy-result"></h3>
                             </div>
                         </div>
-                        <div class="row result-chart-container">
-                            <div class="col-xs-12 result-chart" id="numeracy-result-chart">
+                        <div class="row test-tab--result-chart-container">
+                            <div class="col-xs-12 test-tab--result-chart" id="numeracy-result-chart">
                             </div>
                         </div>
 
@@ -538,8 +538,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="row result-chart-container">
-                                <div class="col-xs-12 result-chart" id="memory-result-chart">
+                            <div class="row test-tab--result-chart-container">
+                                <div class="col-xs-12 test-tab--result-chart" id="memory-result-chart">
                                 </div>
                             </div>
                         </div>
@@ -564,11 +564,11 @@
                                         Postcode:
                                     </div>
                                     <div class="col-xs-3" style="height:100%">
-                                        <input id="map-address-1" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
-                                    </div>
+                                        <input id="map-address" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
+                                    </div><!--
                                     <div class="col-xs-3" style="height:100%">
                                         <input id="map-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
-                                    </div>
+                                    </div>-->
                                     <div class="col-xs-3" style="height:100%">
                                         <input id="map-submit" style="width:100%" type="button" value="Search">
                                     </div>
@@ -679,6 +679,7 @@
 <script type="text/javascript" src="assets/js/animations.js"></script>
 <script type="text/javascript" src="assets/js/buttons.js"></script>
 <script type="text/javascript" src="assets/js/calculator.js"></script>
+<script type="text/javascript" src="assets/js/tests.js"></script>
 <script type="text/javascript" src="assets/js/numeracy-test.js"></script>
 <script type="text/javascript" src="assets/js/memory-test.js"></script>
 <script type="text/javascript" src="assets/js/literacy-test.js"></script>

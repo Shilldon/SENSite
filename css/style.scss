@@ -5,7 +5,7 @@
 $about-color: #6d23ff;
 $data-color: #7b3bfc;
 $test-color: #884ffb;
-$schools-color: #9c6df9; 
+$schools-color: #9c6df9;
 $white: #e1e1e1;
 
 /*----- FONT-SIZE -----*/
@@ -16,8 +16,7 @@ $body-font-size:12px;
 /*-----BODY -----*/
 
 body {
-        overflow: hidden;
-    //overflow: auto;
+    overflow: hidden; //overflow: auto;
     font-size: $body-font-size;
 }
 
@@ -27,7 +26,7 @@ body {
 }
 
 .no-padding {
-    padding:0;
+    padding: 0;
 }
 
 .container-fluid {
@@ -67,49 +66,46 @@ footer {
 
 /*----- LOGO AND TITLE -----*/
 
-.top-section--logo-container {
-    height: 15vh;
-    max-height: 15vh
-}
-
-.top-section--title-container {
-    height: 5vh;
-    max-height: 5vh;
-}
-
-.nav-button {
-    position: absolute;
-    margin: 0;
-    font-size: 10px;
-    padding: 5px;
-    right: 15px;
-    top: 15px;
-    width: 75px;
-    color: $white;
-    border: 2px solid black;
-    border-radius: 10%;
-    background-color: $about-color;
-    transition: ease-in-out 0.25s;
-    transform: scale(1, 1);
-}
-
-.nav-button:active {
-    transition: ease-in-out 0.25s;
-    transform: scale(0.8, 0.8);
-}
-
-.top-section--title-text {
-    color: $white;
-    font-family: 'Roboto', sans-serif;
-    font-size: $title-font-size;
-    line-height: 5vh;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
-    text-align: center;
-}
-
-#top-section--hidden-title {
-    position: absolute;
-    width: 100%;
+.top-section {
+    &--logo-container {
+        height: 15vh;
+        max-height: 15vh;
+    }
+    &--title-container {
+        height: 5vh;
+        max-height: 5vh;
+    }
+    &--title-text {
+        color: $white;
+        font-family: 'Roboto', sans-serif;
+        font-size: $title-font-size;
+        line-height: 5vh;
+        text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+        text-align: center;
+    }
+    #top-section--hidden-title {
+        position: absolute;
+        width: 100%;
+    }
+    .nav-button {
+        position: absolute;
+        margin: 0;
+        font-size: 10px;
+        padding: 5px;
+        right: 15px;
+        top: 15px;
+        width: 75px;
+        color: $white;
+        border: 2px solid black;
+        border-radius: 10%;
+        background-color: $about-color;
+        transition: ease-in-out 0.25s;
+        transform: scale(1, 1);
+    }
+    .nav-button:active {
+        transition: ease-in-out 0.25s;
+        transform: scale(0.8, 0.8);
+    }
 }
 
 .title-animation {
@@ -132,7 +128,7 @@ $logoWidth: 150px;
     animation: animate-logo 2s;
 }
 
-/*----- NAVIGATION BAR -----*/
+/*----- MENU BAR -----*/
 
 .navbar-container {
 
@@ -171,10 +167,22 @@ $logoWidth: 150px;
 
 /*----- NAVIGATION TABS -----*/
 
+$tab-colors: ( about: $about-color,
+data:$data-color,
+test:$test-color,
+schools:$schools-color,
+);
+
+@each $key,
+$value in $tab-colors {
+    ##{$key}-tab {
+        color: $value;
+    }
+}
+
 .tabs-container {
     height: 100%;
 }
-
 
 .tab {
     border: 2px solid black;
@@ -202,35 +210,18 @@ $logoWidth: 150px;
     }
 }
 
+/*----- ABOUT TAB -----*/
+
 #about-tab {
     img {
         margin: auto;
         max-height: 20vh;
-        max-width:20vw;
-        width:auto;
-        height:auto;
+        max-width: 20vw;
+        width: auto;
+        height: auto;
     }
     .about-tab--icon-container {
-        text-align:center;
-    }    
-}
-
-#test-tab--landing {
-    .col-xs-4 {
         text-align: center;
-    }
-}
-
-$tab-colors: ( about: $about-color,
-data:$data-color,
-test:$test-color,
-schools:$schools-color,
-);
-
-@each $key,
-$value in $tab-colors {
-    ##{$key}-tab {
-        color: $value;
     }
 }
 
@@ -239,77 +230,71 @@ $value in $tab-colors {
 #data-tab--chart-area {
     width: 80vw;
     height: 48vh;
-    overflow:auto;
- //   margin-left: 10vw;
+    overflow: auto;
     border: solid 2px $data-color;
     margin-top: 10px;
     margin-bottom: 10px;
     img {
         position: absolute;
-        top:60%;
-        left:50%;
-        transform: translate(-50%,-50%);
-        max-width:55%;
-        height:auto;
-        display:none; 
-        z-index:2;         
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 55%;
+        height: auto;
+        display: none;
+        z-index: 2;
     }
 }
 
-.data-tab--chart {
-    padding-top: 20px;
-    height:42vh; 
-   // height: 95%;
-   // width: 100%;
+.data-tab {
+    &--chart {
+        padding-top: 20px;
+        height: 42vh;
+    }
+    &--chart-title {
+        text-align: center;
+        font-size: 12px;
+        display: none;
+        padding-top: 10px;
+        font-weight: 700;
+    }
+    &--chart-section {
+        display: none;
+
+        input {
+            width: 100%;
+            padding: 0px;
+            font-size: 12px;
+            height: 20px;
+            vertical-align: middle;
+            margin: 0;
+        }
+        label {
+            vertical-align: middle;
+            margin: 0;
+            font-weight: 100;
+        }
+    }
+    &--chart-selector {
+        min-width: 100%;
+    }
 }
 
 .dc-chart {
-    padding:0;
-}
-.data-tab--chart-section {
-    display: none;
-    
-    input {
-        width: 100%;
-        padding:0px; 
-        font-size:12px; 
-        height:20px;     
-        vertical-align: middle;
-        margin:0;
-    }
-    label {
-        vertical-align:middle;
-        margin:0;
-        font-weight:100;
-    }
-}
-
-.data-tab--chart-selector {
-    min-width:100%;
+    padding: 0;
 }
 
 .pie-slice {
     fill: black;
 }
-/*
-._0 {
-    .bar {
-        fill: $about-color;
-    }
-}
-
-._1{
-    .bar {
-    fill: $data-color;
-
-}
-
-._2 {
-.bar {
-    fill: $test-color;
-}*/
 
 /*----- TEST TAB -----*/
+
+#test-tab--landing {
+    .col-xs-4 {
+        text-align: center;
+    }
+}
 
 .test-tab {
     display: none;
@@ -342,100 +327,83 @@ $value in $tab-colors {
         font-size: 18px;
         font-weight: 400;
     }
-}
-
-// set to .test-tab--literacy &&
-.test-tab--literacy-test-container {
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height:13vh;
-    max-height:13vh;
-    border: solid 2px $test-color;
-    font-family: 'Indie Flower', cursive;
-    font-size: 18px;
-   // min-height: 5vh;
-    margin: 0 10px 0 10px;
-    padding: 0;
-    text-align: center;
-}
-
-.test-tab--literacy-word {
-    border: none;
-    background-color: $white;
-    display: inline-block;
-    outline: none;
-}
-
-.test-tab--literacy-word-question-hidden {
-    display: none;
-}
-
-.test-tab--literacy-word-question-shown {
-    display: inline-block;
-}
-
-.test-tab--literacy-word-answer-hidden {
-    margin: 0 2.5px 0 2.5px;
-    border-bottom: solid 1px;
-    border-right: none;
-    width: 50px;
-    height:0;
-}
-
-.test-tab--literacy-answer-mark {
-    height:25px;
-}
-
-.test-tab--literacy-word-answer-shown {
-    border: none;
-}
-
-.test-tab--numeracy-question-container {
-    text-align:right;
-    font-size:16px;
-}
-
-.result-chart-container {
-    height: 40vh;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    
-}
-
-
-.result-chart {
-    height: 35vh;
-    width: 90vw;
-    border: solid 4px $test-color;
-    svg {
-        position:absolute;
-        left:50%;
-        top:50%;
-        transform: translate(-45%,-50%);
+    &--literacy {
+        &-test-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            height: 13vh;
+            max-height: 13vh;
+            border: solid 2px $test-color;
+            font-family: 'Indie Flower', cursive;
+            font-size: 18px; // min-height: 5vh;
+            margin: 0 10px 0 10px;
+            padding: 0;
+            text-align: center;
+        }
+        &-word {
+            border: none;
+            background-color: $white;
+            display: inline-block;
+            outline: none;
+            display: inline-block;
+            text-align: right;
+            font-size: 16px;
+            &-question-hidden {
+                display: none;
+            }
+            &-question-shown {
+                display: inline-block;
+            }
+            &-answer-hidden {
+                margin: 0 2.5px 0 2.5px;
+                border-bottom: solid 1px;
+                border-right: none;
+                width: 50px;
+                height: 0;
+            }
+            &-answer-shown {
+                border: none;
+            }
+        }
+        &-answer-mark {
+            height: 25px;
+        }
+    }
+    &--numeracy-question-container {
+        text-align: right;
+        font-size: 16px;
+    }
+    &--memory-test-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &--memory-icon {
+        width: 60px;
+        padding: 5px;
+    }
+    &--result-chart-container {
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &--result-chart {
+        height: 35vh;
+        width: 90vw;
+        border: solid 4px $test-color;
+        svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-45%, -50%);
+        }
     }
 }
 
-#test-tab--memory-test {
-    .col-xs-3 {
-        text-align: center;
-    }
-}
-
-.test-tab--memory-test-container {
-    display: flex;
-    align-items:center;
-    justify-content: center;
-}
-
-.test-tab--memory-icon {
-    width: 60px;
-    padding: 5px;
-}
-
-#answer-mark {
+#numeracy-answer-mark {
     width: 20px;
 }
 
@@ -449,19 +417,18 @@ $value in $tab-colors {
     }
 }
 
-.schools-tab--disabilities {
-    i {
-        font-size: 30px;
+.schools-tab {
+    &--disabilities {
+        i {
+            font-size: 30px;
+        }
     }
-}
-
-.schools-tab--disabilities-icon {
-    color: grey;
-   // margin: 0 0 10px;
-    border: solid 2px $schools-color;
-    border-radius: 35%;
-   // min-height: 5vh;
-    padding: 5px;
+    &--disabilities-icon {
+        color: grey; // margin: 0 0 10px;
+        border: solid 2px $schools-color;
+        border-radius: 35%; // min-height: 5vh;
+        padding: 5px;
+    }
 }
 
 /*----- map within schools tab -----*/
@@ -469,14 +436,12 @@ $value in $tab-colors {
 #map {
     border: solid 2px $schools-color;
     height: 60vh;
-}
-
-#map-address {
-    width: 25%;
-}
-
-#map-miles {
-    width: 10%;
+    &-address {
+        width: 25%;
+    }
+    &-miles {
+        width: 10%;
+    }
 }
 
 .map--marker-stars {
@@ -487,7 +452,7 @@ $value in $tab-colors {
 
 #contact-form {
 
-    max-height: 60vh; //  font-size: $body-font-size;
+    max-height: 60vh;
     font-family: 'Roboto', sans-serif;
     color: $white;
     margin-top: 20px;
@@ -526,6 +491,7 @@ $value in $tab-colors {
 }
 
 /*----- MODAL -----*/
+
 #errorModal {
     color: $about-color;
 }
@@ -617,6 +583,7 @@ $value in $tab-colors {
     $logoWidth: 300px;
     $title-font-size: 25px;
     $body-font-size: 16px;
+
     body {
         font-size: $body-font-size;
     }
@@ -634,17 +601,20 @@ $value in $tab-colors {
         font-size: 21px;
     }
 
-    h3 {
-        font-size: 25px;
+    .tab {
+        h3 {
+            font-size: 25px;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        h5 {
+            font-size: 18px;
+        }
     }
 
-    h4 {
-        font-size: 20px;
-    }
-
-    h5 {
-        font-size: 18px;
-    }
     .schools-tab--disabilities {
         p {
             font-size: 8px;
@@ -676,13 +646,13 @@ $value in $tab-colors {
         height: 40px;
         font-size: 23px;
     }
-    
-        #schools-tab {
+
+    #schools-tab {
         font-size: 18px;
         input {
             font-size: 12px;
         }
-    }    
+    }
 }
 
 @media (min-width: 1200px) {
@@ -705,13 +675,13 @@ $value in $tab-colors {
         height: 42px;
         font-size: 25px;
     }
-    
-        #schools-tab {
+
+    #schools-tab {
         font-size: 18px;
         input {
             font-size: 15px;
         }
-    }        
+    }
 }
 
 @media (min-width: 768px) {
@@ -719,16 +689,15 @@ $value in $tab-colors {
     .top-section {
         height: 30vh;
         max-height: 30vh;
+        &--logo-container {
+            height: 20vh;
+            max-height: 20vh;
+        }
     }
 
     .bottom-section {
         height: 65vh;
         max-height: 65vh;
-    }
-
-    .top-section--logo-container {
-        height: 20vh;
-        max-height: 20vh;
     }
 
     #logo {
@@ -757,10 +726,9 @@ $value in $tab-colors {
             margin: 0 -2px -0px -2px;
             width: 25%;
         }
-    }
-
-    #navbar .navbar-toggle {
-        margin-right: 0;
+        .navbar-toggle {
+            margin-right: 0;
+        }
     }
 
     #contact-form {
@@ -771,36 +739,35 @@ $value in $tab-colors {
         transform: translate(-100%, 0);
     }
 
-.data-tab--chart-section {
-    display: none;
-    
-    input {
-        width: 100%;
-        padding:0px; 
-        font-size:18px; 
-        height:26px;       
+    .data-tab--chart-section {
+        display: none;
+
+        input {
+            width: 100%;
+            padding: 0px;
+            font-size: 18px;
+            height: 26px;
+        }
     }
-}
+    .dc-chart .axis text {
+        font: 14px sans-serif;
+    }
 
-
-.test-tab--literacy-word {
-    font-size: 30px;
-}
-
-
-
-.test-tab--memory-icon {
-    width: 90px;
-    padding: 10px;
-}
-
-.test-tab--numeracy-question-container {
-    font-size:24px;
-}
-
-.result-chart {
-    width: 40vw;
-}
+    .test-tab {
+        &--literacy-word {
+            font-size: 30px;
+        }
+        &--memory-icon {
+            width: 90px;
+            padding: 10px;
+        }
+        &--numeracy-question-container {
+            font-size: 24px;
+        }
+        &--result-chart {
+            width: 40vw;
+        }
+    }
 
     #school-info {
         border: solid 2px $schools-color;

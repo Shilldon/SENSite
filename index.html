@@ -27,7 +27,11 @@
     <div class="backdrop-container container-fluid">
         <!-- Navbar button and logo container section -->
         <section class="container-fluid top-section">
-
+            <div class="row">
+                <div class="col-xs-12 top-section--opaque-container">
+                   &nbsp 
+                </div>
+            </div>
             <div class="row top-section--logo-container">
                 <div class="col-xs-12">
                     <img src="assets/images/logo.png" id="logo"></img>
@@ -60,7 +64,7 @@
         <section class="bottom-section container-fluid">
             <div class="row tabs-container">
                 <div class="col-xs-10 col-xs-offset-1" data-state="open" id="contact-form">
-                    <form action="action_page.php">
+                    <form action="">
                         <div class="row">
                             <div class="col-xs-12 contact-form--title">
                                 <label>Contact us to discover more</label>
@@ -105,8 +109,6 @@
                                 <i class="fa fa-calendar" id="calendar"></i>
                             </div>
                         </div>
-                        <!--                            <iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> -->
-
                         <div class="row">
                             <div class="col-xs-12">
                                 <button type="submit" value="Submit">Submit</button>
@@ -178,17 +180,17 @@
                                 <input class="form-control" id="max-results" type="number" min="10" max="50" value="10">
                             </div>
                             <div class="col-xs-5 col-sm-2">
-                                <input id="select-school-capacity" style="width:14px" type="radio" checked="checked" name="graph_type" value="school_capacity"><label>School Capacity</label>
+                                <input id="select-school-capacity" type="radio" checked="checked" name="graph_type" value="school_capacity"><label>School Capacity</label>
                             </div>
                             <div class="col-xs-5 col-sm-2">
-                                <input id="select-total-pupils" style="width:14px" type="radio" name="graph_type" value="total_pupils"><label>Total Pupils</label>
+                                <input id="select-total-pupils" type="radio" name="graph_type" value="total_pupils"><label>Total Pupils</label>
                             </div>
                             <div class="col-xs-2 col-sm-1">
                                 <input class="form-control" id="chart-submit" type="button" value="Go">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-5 col-sm-3" >Filter by Ofsted rating:</div>
+                            <div class="col-xs-5 col-sm-3">Filter by Ofsted rating:</div>
                             <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-ofsted">&nbsp</div>
                             <div class="col-xs-5 col-sm-3">Filter by SEN:</div>
                             <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-SEN">&nbsp</div>
@@ -196,19 +198,19 @@
                         <div class="row">
                             <div class="col-xs-col-10 col-xs-offset-1" id="data-tab--chart-area">
                                 <img src="assets/images/loading.gif">
-                                <div class="row" style="border-bottom:solid 1px; margin-bottom: 5px">
+                                <div class="row data-tab--schools-chart-info">
                                     <div class="col-xs-8 col-sm-4">
                                         Schools In Postcode Area:
                                     </div>
-                                    <div class="col-xs-4 col-sm-2" id="data-tab--total-schools"></div>                                    
-  
+                                    <div class="col-xs-4 col-sm-2" id="data-tab--total-schools"></div>
+
                                     <div class="col-xs-8 col-sm-4">
                                         Displaying:
                                     </div>
                                     <div class="col-xs-4 col-sm-2" id="data-tab--total-schools-range"></div>
-                                </div>                                
-                                
-                                <div class="row" >
+                                </div>
+
+                                <div class="row">
                                     <div class="col-xs-12 col-sm-8 data-tab--chart" id="data-tab--chart-bar"></div>
                                     <div class="col-xs-12 col-sm-3 col-sm-offset-1">
                                         <div class="row">
@@ -217,7 +219,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12" id="data-tab--chart-pie" style="height:13vh; max-height:13vh"></div>
+                                            <div class="col-xs-12" id="data-tab--chart-pie"></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 data-tab--chart-title">
@@ -225,22 +227,22 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12" id="data-tab--chart-row" style="height:20vh; max-height:20vh"></div>
+                                            <div class="col-xs-12" id="data-tab--chart-row"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-2 col-sm-offset-1 tab--menu-button-container">
-                                        <button id="button-chart-plot-previous" style="display:none" min="0">Previous</button>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
-                                        <button class="data-tab--chart-button" id="button-data-back">Back</button>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
-                                        <button id="button-chart-plot-next" style="display:none" max="25">Next</button>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-2 col-sm-offset-1 tab--menu-button-container">
+                                    <button id="button-chart-plot-previous" style="display:none" min="0">Previous</button>
                                 </div>
+                                <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
+                                    <button class="data-tab--chart-button" id="button-data-back">Back</button>
+                                </div>
+                                <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
+                                    <button id="button-chart-plot-next" style="display:none" max="25">Next</button>
+                                </div>
+                            </div>
 
                         </div>
                     </section>
@@ -551,75 +553,78 @@
                     </section>
                 </article>
                 <article class="col-xs-12 tab" data-state="closed" id="schools-tab">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div id="school-info">
-                                <div class="row" style="max-height:3vh; height: 3vh">
-                                    <div class="col-xs-12" style="height:100%">
-                                        <p>Find schools in your local area</p>
-                                    </div>
+                    <div class="row schools-tab--school-details">
+                        <div class="col-sm-6" id="school-info">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>Find schools in your local area</p>
                                 </div>
-                                <div class="row" style="max-height:3vh; height: 3vh">
-                                    <div class="col-xs-3" style="height:100%">
-                                        Postcode:
-                                    </div>
-                                    <div class="col-xs-3" style="height:100%">
-                                        <input id="map-address" style="width:100%; padding:0;" type="textbox" maxlength="4" placeholder="SO21">
-                                    </div><!--
-                                    <div class="col-xs-3" style="height:100%">
-                                        <input id="map-address-2" style="width:100%;padding:0;" type="textbox" maxlength="3" placeholder="Optional">
-                                    </div>-->
-                                    <div class="col-xs-3" style="height:100%">
-                                        <input id="map-submit" style="width:100%" type="button" value="Search">
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    Postcode:
                                 </div>
-                                <div class="row hidden-xs" style="max-height:33vh;height:33vh">
-                                    <div class="col-xs-12" style="height:100%; overflow: auto">
-                                        <h3>School Details</h3>
-                                        <p id="school-name">Select a school from the map for more information</p>
-                                        <p id="school-type"></p>
-                                        <p id="education-phase"></p>
-                                        <p id="school-website"></p>
-                                        <p id="school-telephone"></p>
-                                        <p id="school-head"></p>
-                                        <p id="school-rating"></p>
-                                    </div>
+                                <div class="col-xs-3">
+                                    <input class="form-control" id="map-address"type="textbox" maxlength="4" placeholder="Postcode">
                                 </div>
-                                <div class="row hidden-xs" style="margin-bottom:5px">
-                                    <div class="col-xs-12" style="height:100%">
+                                <div class="col-xs-3">
+                                    <input class="form-control" id="map-submit" type="button" value="Search">
+                                </div>
+                            </div>
+                            <div class="row">
+                                Search using first part of postcode. <br>Use * at end to search range of postcodes.
+                            </div>
+                            <div class="row hidden-xs">
+                                <div class="col-xs-12">
+                                    <h3>School Details</h3>
+                                    <p id="school-name">Select a school from the map for more information</p>
+                                    <p id="school-type"></p>
+                                    <p id="education-phase"></p>
+                                    <p id="school-website"></p>
+                                    <p id="school-telephone"></p>
+                                    <p id="school-head"></p>
+                                    <p id="school-rating"></p>
+                                </div>
+                            </div>
+
+                            <div class="row schools-tab--disabilities hidden-xs">
+                                <div class="row">
+                                    <div class="col-xs-12">
                                         <h4>Special Needs Support Provided</h4>
                                     </div>
                                 </div>
-                                <div class="row schools-tab--disabilities hidden-xs">
-                                    <div class="col-xs-3">
-                                        <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <p id="disability-icon-SLD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Specific Learning Difficulty"><i class="fas fa-book-reader"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <p id="disability-icon-LD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Learning Difficulty"><i class="fas fa-shapes"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <p id="disability-icon-PD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Physical Disability"><i class="fas fa-wheelchair"></i></p>
-                                    </div>
-                                </div>
-                                <div class="row schools-tab--disabilities hidden-xs" style="height:10vh;max-height:5vh">
-                                    <div class="col-xs-3">
+                                <div class="row">
+                                    <ul>
+                                        <li>
+                                            <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
+                                        </li>
+                                        <li>
+                                            <p id="disability-icon-SLD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Specific Learning Difficulty"><i class="fas fa-book-reader"></i></p>
+                                        </li>
+                                        <li>
+                                            <p id="disability-icon-LD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Learning Difficulty"><i class="fas fa-shapes"></i></p>
+                                        </li>
+                                        <li>
+                                            <p id="disability-icon-PD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Physical Disability"><i class="fas fa-wheelchair"></i></p>
+                                        </li>
+                                        <li>
                                         <p id="disability-icon-SEMH" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Social, Emotional and Mental Health"><i class="fas fa-brain"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
+                                         </li>
+                                        <li>
                                         <p id="disability-icon-HI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Hearing Impairment"><i class="fas fa-deaf"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
+
+                                        </li>
+                                        <li>
                                         <p id="disability-icon-VI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Visual Impairment"><i class="fas fa-low-vision"></i></p>
-                                    </div>
-                                    <div class="col-xs-3">
+                                        </li>
+                                        <li>
                                         <p id="disability-icon-SLC" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Speech, Language And Communication"><i class="fas fa-meh-blank"></i></p>
-                                    </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-sm-6">
                             <div id="map"></div>

@@ -150,9 +150,10 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     renderChart(schoolData);
 }
 
-//check the user submitted postcode against the postcode data taken from the csv - if partial match return true else false
+//check the user submitted postcode against the postcode data taken from the csv - if partial match return false else true
+//in order to filter out of dimension
 function checkPostcode(selectedPostcode, schoolPostcode) {
-    if (schoolPostcode.search(selectedPostcode) != -1 || selectedPostcode == "") {
+    if (schoolPostcode.startsWith(selectedPostcode) == true || selectedPostcode == "") {
         return true;
     }
     else {
@@ -256,7 +257,7 @@ function renderChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 40, right: 50, bottom: 30, left: 60 })
+            .margins({ top: 60, right: 50, bottom: 30, left: 70 })
             .dimension(schools_dim)
             .group(boy_pupils_per_school, "Boys")
             .stack(girl_pupils_per_school, "Girls")
@@ -265,7 +266,7 @@ function renderChart(schoolData) {
             .x(d3.scale.ordinal())
             .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
-            .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
+            .legend(dc.legend().x(50).y(0).itemHeight(15).gap(5))
             .elasticY(true)
             .yAxisLabel("Number of Pupils")
             .yAxis().ticks(10);
@@ -275,17 +276,17 @@ function renderChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 20, right: 50, bottom: 30, left: 60 })
+            .margins({ top: 60, right: 50, bottom: 30, left: 70 })
             .dimension(schools_dim)
             .group(school_capacity, "Total Capacity")
             .transitionDuration(500)
             .x(d3.scale.ordinal())
             .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
-            .legend(dc.legend().x(420).y(0).itemHeight(15).gap(5))
+            .legend(dc.legend().x(50).y(0).itemHeight(15).gap(5))
             .elasticY(true)
             .yAxisLabel("Number of Pupils")
-            .yAxis().ticks(20);
+            .yAxis().ticks(10);
     }
     numberOfPupilsChart
         .ordinalColors(["#7b3bfc", "#884ffb", "#9c6df9"])

@@ -56,19 +56,13 @@ function clearMarkers() {
 function filterMapByPostcode(schoolMapData, minCount, maxCount) {
   //get user submitted postcode
 
-  //var postcodePart1 = $('#map-address-1').val();
-  /* var postcodePart2 = $('#map-address-2').val();
-   var postcode = postcodePart1;
-   if (postcodePart2 != "") {
-     postcode = postcodePart1 + " " + postcodePart2;
-   }*/
   var postcode = $('#map-address').val();
   postcode = postcode.toUpperCase();
   if (postcode.endsWith('*') == true) {
     postcode = postcode.substr(0, postcode.length - 1);
   }
   else {
-    postcode = postcode + " ";
+    postcode=postcode+" ";
   }
 
   //create dimension of multiple arrays for filtering
@@ -94,12 +88,48 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
 
   //create array to receive postcodes from SchoolData dimension (filtered by postcode)
   var schoolPostCodesArray = []
-
+  var postcodeCount = 0;
   local_map_schools_dim.top(Infinity).forEach(function(x) {
-    schoolPostCodesArray.push(x.Postcode);
+    postcodeCount++;
+    if (postcodeCount <= 100) {
+      schoolPostCodesArray.push(x.Postcode);
+    }
   });
+  console.log(schoolPostCodesArray)
+  if (postcodeCount > 100) {
+    $('#error-message').text(postcodeCount + ' results returned. Displaying first 100, maximum. Please provide more specific postcode');
+    $("#errorModal").modal({
+      show: 'true',
+      backdrop: 'static',
+      keyboard: 'false'
+    })
+    //fade out error modal
+    setTimeout(function() {
+      $("#errorModal").modal('hide');
+      $("#button-numeracy-submit").removeAttr("disabled");
+      $("#numeracy-answer").focus();
 
-  convertPostcodes(local_map_schools_dim, schoolPostCodesArray)
+    }, 3000);
+  }
+
+  if (schoolPostCodesArray.length == 0) {
+    $('#error-message').text('No schools found in postcode area');
+    $("#errorModal").modal({
+      show: 'true',
+      backdrop: 'static',
+      keyboard: 'false'
+    })
+    //fade out error modal
+    setTimeout(function() {
+      $("#errorModal").modal('hide');
+      $("#button-numeracy-submit").removeAttr("disabled");
+      $("#numeracy-answer").focus();
+
+    }, 3000);
+  }
+  else {
+    convertPostcodes(local_map_schools_dim, schoolPostCodesArray)
+  }
 
 }
 
@@ -323,4 +353,3 @@ function initMap() {
     ]
   });
 }
-

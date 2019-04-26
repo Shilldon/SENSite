@@ -7,7 +7,7 @@ $(document).ready(function() {
 //clicking the nav button will show the contact form and hide any open tabs and
 //hides/shows the navbar
 $("#menu-button").on("click", function() {
-	$(".top-section").css('background-image', 'none');
+    removeBackgroundImage();
 	hideOpenTab();
 	setTimeout(function() { showContactForm() }, 250);
 	changeMenuButton("DISCOVER", true);
@@ -25,8 +25,8 @@ $(".top-section--nav-list-button").on("click", function() {
 		changeMenuButton("DISCOVER", false);
 		changeMenuButtonColor(false);
 
-		//hide the top section background when reverting to home screen
-		$(".top-section").css('background', 'none');
+		//hide the top section background when reverting to home screen and change opacity to none
+		removeBackgroundImage();
 		setTimeout(function() { showContactForm() }, 250);
 
 	}
@@ -178,8 +178,3 @@ $('#map-address').keypress(function(e) {
   }
 });
 
-/*-----calendar-----*/
-
-$("#calendar").on("click", function() {
-    $("#contact-form").html('<iframe src="https://calendar.google.com/calendar/embed?src=llafnderyff%40googlemail.com&ctz=Europe%2FLondon" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>')
-})

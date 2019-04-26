@@ -67,6 +67,13 @@ footer {
 /*----- LOGO AND TITLE -----*/
 
 .top-section {
+    &--opaque-container{
+        position: absolute;
+        top:0;
+        background-color:black;
+        opacity:0;
+        height:25vh;
+    }
     &--logo-container {
         height: 15vh;
         max-height: 15vh;
@@ -278,6 +285,18 @@ $value in $tab-colors {
     &--chart-selector {
         min-width: 100%;
     }
+    &--schools-chart-info {
+        border-bottom: solid 1px;
+        margin-bottom: 5px;
+    }
+}
+
+#select-total-pupils {
+    width: 14px;
+}
+
+#select-school-capacity {
+    width: 14px;
 }
 
 .dc-chart {
@@ -286,6 +305,17 @@ $value in $tab-colors {
 
 .pie-slice {
     fill: black;
+}
+
+#data-tab {
+    &--chart-pie {
+        height: 13vh;
+        max-height: 13vh;
+    }
+    &--chart-row {
+        height: 20vh;
+        max-height: 20vh;
+    }
 }
 
 /*----- TEST TAB -----*/
@@ -417,17 +447,43 @@ $value in $tab-colors {
     }
 }
 
+#school-info {
+    font-size: 1.75vh;
+}
+
 .schools-tab {
     &--disabilities {
+        position: absolute;
+        width: 100%;
+        padding-right: 30px;
+        bottom: 0;
         i {
-            font-size: 30px;
+            font-size: 2vh;
+        }
+        ul {
+            list-style: none;
+            width: 100%;
+            padding-left: 0;
+        }
+        li {
+            display: inline-block;
+            padding: 0 5px 0 5px;
         }
     }
     &--disabilities-icon {
         color: grey; // margin: 0 0 10px;
         border: solid 2px $schools-color;
-        border-radius: 35%; // min-height: 5vh;
-        padding: 5px;
+        border-radius: 50%;
+        padding: 10px;
+    }
+    &--school-details {
+        input {
+            width: 100%;
+            padding: 0px;
+            font-size: 18px;
+            height: 26px;
+            color: $schools-color;
+        }
     }
 }
 
@@ -435,13 +491,7 @@ $value in $tab-colors {
 
 #map {
     border: solid 2px $schools-color;
-    height: 60vh;
-    &-address {
-        width: 25%;
-    }
-    &-miles {
-        width: 10%;
-    }
+    height: 50vh;
 }
 
 .map--marker-stars {
@@ -769,17 +819,17 @@ $value in $tab-colors {
         }
     }
 
+    .schools-tab--school-details {
+        padding-left: 15px;
+    }
+
     #school-info {
         border: solid 2px $schools-color;
         height: 60vh;
     }
 
-    #map-address {
-        width: 35%;
-    }
-
-    #map-miles {
-        width: 15%;
+    #map {
+        height: 60vh;
     }
 }
 

@@ -87,7 +87,6 @@ function hideOpenTab() {
 	//cycle through the tabs and hide the open one (if any showing) 
 	$("li").each(function() {
 		button = $(this);
-
 		//check if the tab is open, if so set state to closed and revert the 
 		//chevron to right and slide up the tab
 		if (button.data('state') == 'open') {
@@ -98,23 +97,25 @@ function hideOpenTab() {
 			$("i", button).removeClass("fa-chevron-down");
 			$("i", button).addClass("fa-chevron-right");
 			$(tabName).slideUp(250);
-			delay = 250;
+			//delay = 250;
 			//if the test tab is open need to close the test and revert to
 			//test landing tab for next time it is opened.
-			if (buttonName == 'test') {
-				//hide the individual test tabs and prepare the main test menu
-				$("#test-tab--landing").css("display", "block");
-				$(".test-tab").each(function() {
-					$(".test-tab").css("display", "none");
-				});
-			}
-			else if(buttonName=='data') {
-				//hide the currently displayed chart and revert to data landing tab for the next
-				//time it is opened
-				$("#data-tab--landing").css("display", "block");
-				$("#data-tab--chart-tab").css("display","none");
-				
-			}
+			setTimeout(function() {
+				if (buttonName == 'test') {
+					//hide the individual test tabs and prepare the main test menu
+					$("#test-tab--landing").css("display", "block");
+					$(".test-tab").each(function() {
+						$(".test-tab").css("display", "none");
+					});
+				}
+				else if (buttonName == 'data') {
+					//hide the currently displayed chart and revert to data landing tab for the next
+					//time it is opened
+					$("#data-tab--landing").css("display", "block");
+					$("#data-tab--chart-tab").css("display", "none");
+
+				}
+			}, 250);
 		}
 	});
 
@@ -126,10 +127,12 @@ function hideOpenTab() {
 //to aid user identifying the section they are in 
 function changeBackground(clickedButton) {
 	var clickedButtonId = $(clickedButton).attr("id").split("-")
-	var clickedButtonName = clickedButtonId[0]
+	var clickedButtonName = clickedButtonId[0];
+	console.log(clickedButtonName)
 	$(".top-section").css('background', 'url(../assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
 	$(".top-section").css('background-size', 'cover');
 	$(".top-section").css('background-position', 'center');
+	$('.top-section--opaque-container').css('opacity','0.4');
 }
 
 //when the nav button is clicked hide / show the sub-title (mobile screens only)
@@ -140,7 +143,7 @@ function changeMenuButton(content, menuClick) {
 			topSectionHiddenTitle.fadeToggle(500);
 			if (topSectionHiddenTitle.data('state') === 'hidden') {
 				topSectionHiddenTitle.data('state', 'visible');
-				changeMenuButtonColor(true);
+				changeMenuButtonColor(true);			
 			}
 			else {
 				topSectionHiddenTitle.data('state', 'hidden');
@@ -157,6 +160,12 @@ function changeMenuButton(content, menuClick) {
 //on return to home page by clicking the nav button / hiding all tabs
 //show the contact form
 function showContactForm() {
+	console.log($('#contact-form').data('calendar-showing'))
+	if($('#contact-form').data('calendar-showing')===true) {
+		var contactFormHTML=$('#contact-form').data('contact-form');
+		$("#contact-form").html(contactFormHTML);
+    	$("#contact-form").data('calendar-showing',false);
+	}
 	if ($("#contact-form").data('state') == 'closed') {
 		$("#contact-form").fadeIn(250);
 		$("#contact-form").data('state', 'open');
@@ -174,3 +183,8 @@ function hideContactForm() {
 	return delay;
 }
 
+//on returning to home page remove background image and set the opacity to 0
+function removeBackgroundImage() {
+	$(".top-section").css('background-image', 'none');
+	$('.top-section--opaque-container').css('opacity','0');
+}

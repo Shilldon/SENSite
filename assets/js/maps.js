@@ -95,7 +95,6 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
       schoolPostCodesArray.push(x.Postcode);
     }
   });
-  console.log(schoolPostCodesArray)
   if (postcodeCount > 100) {
     $('#error-message').text(postcodeCount + ' results returned. Displaying first 100, maximum. Please provide more specific postcode');
     $("#errorModal").modal({

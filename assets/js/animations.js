@@ -128,8 +128,7 @@ function hideOpenTab() {
 function changeBackground(clickedButton) {
 	var clickedButtonId = $(clickedButton).attr("id").split("-")
 	var clickedButtonName = clickedButtonId[0];
-	console.log(clickedButtonName)
-	$(".top-section").css('background', 'url(../assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
+	$(".top-section").css('background', 'url(assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
 	$(".top-section").css('background-size', 'cover');
 	$(".top-section").css('background-position', 'center');
 	$('.top-section--opaque-container').css('opacity','0.4');
@@ -160,7 +159,6 @@ function changeMenuButton(content, menuClick) {
 //on return to home page by clicking the nav button / hiding all tabs
 //show the contact form
 function showContactForm() {
-	console.log($('#contact-form').data('calendar-showing'))
 	if($('#contact-form').data('calendar-showing')===true) {
 		var contactFormHTML=$('#contact-form').data('contact-form');
 		$("#contact-form").html(contactFormHTML);

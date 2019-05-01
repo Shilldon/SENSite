@@ -3,11 +3,11 @@
 //called on clicking start literacy test
 function startLiteracyTest() {
     //set global for CurrentTest to return correct chart result
-    CurrentTest = "literacy";
+    myVariable.CurrentTest = "literacy";
     //start a new timer using date() function
-    Start = new Date();
-    TotalScore = 0;
-    QuestionNumber = 0;
+    myVariable.Start = new Date();
+    myVariable.TotalScore = 0;
+    myVariable.QuestionNumber = 0;
     //retrieve the csv file of sentences and createa an array of possible questions
     getQuestions();
 }
@@ -29,7 +29,7 @@ function getQuestions() {
         dataType: "text",
         success: function(data) {
             //create master array of sentences from csv
-            var questionLines = createQuestionsArray(data);
+            createQuestionsArray(data);
         }
     });
 }
@@ -37,26 +37,27 @@ function getQuestions() {
 //breakdown master questions array into sentences 
 function createQuestionsArray(questions) {
     var allTextLines = questions.split(/\r\n|\n/);
+    var parentQuestionsArray=[];
     var headers = allTextLines[0].split(',');
     for (var i = 1; i < allTextLines.length; i++) {
         var data = allTextLines[i].split(',');
         if (data.length == headers.length) {
-            var questionLine = []
+            var questionLine = [];
             for (j = 0; j < headers.length; j++) {
                 questionLine.push(data[j]);
             }
-            ParentQuestionsArray.push(questionLine);
+            parentQuestionsArray.push(questionLine);
         }
     }
     //select random lines from the questions array
-    selectRandomQuestions();
+    selectRandomQuestions(parentQuestionsArray);
 }
 
-function selectRandomQuestions() {
+function selectRandomQuestions(parentQuestionsArray) {
     //select 10 random questions from each 5 lines of the parent array
     for (i = 0; i <= 9; i++) {
         var randomQuestionIndex = i * 5 + Math.ceil(Math.random() * Math.floor(4));
-        Question[i + 1] = ParentQuestionsArray[randomQuestionIndex];
+        myVariable.QuestionArray[i + 1] = parentQuestionsArray[randomQuestionIndex];
     }
     //put text of question on screen
     nextQuestion("literacy");
@@ -88,7 +89,7 @@ function revealWord(hideWordType, hideWord, wordValue) {
         showWordType = "question";
     }
     //set up class variable to apply to word to be shown
-    shownClass = "test-tab--literacy-word-" + hideWordType + "-shown";
+    var shownClass = "test-tab--literacy-word-" + hideWordType + "-shown";
     if (hideWord.hasClass(shownClass)) {
         //if the word to be hidden currently has the shown class toggle the class off and change the text to blank
         hideWord.text("");
@@ -97,8 +98,8 @@ function revealWord(hideWordType, hideWord, wordValue) {
         //cycle through until reaching a button with null attribute (end of word list)
         //find first button with hidden class and toggle to shown class and change text to the wordValue
         while (whileBreak == false) {
-            showWord = $("#" + showWordType + "-word-" + count);
-            hiddenClass = "test-tab--literacy-word-" + showWordType + "-hidden";
+            var showWord = $("#" + showWordType + "-word-" + count);
+            var hiddenClass = "test-tab--literacy-word-" + showWordType + "-hidden";
             if (showWord.hasClass(hiddenClass)) {
                 whileBreak = true;
                 showWord.toggleClass("test-tab--literacy-word-" + showWordType + "-hidden test-tab--literacy-word-" + showWordType + "-shown");
@@ -119,9 +120,9 @@ function checkLiteracyAnswer(submittedAnswer) {
     var wrong = false;
 
     for (i = 0; i < submittedAnswer.length; i++) {
-        imagename = "#literacy-answer-mark-" + i;
-        image = $(imagename);
-        if (submittedAnswer[i] != AnswerArray[i]) {
+        var imagename = "#literacy-answer-mark-" + i;
+        var image = $(imagename);
+        if (submittedAnswer[i] != myVariable.LiteracyAnswerArray[i]) {
             image.attr('src', 'assets/images/cross.png');
             wrong = true;
         }
@@ -132,15 +133,15 @@ function checkLiteracyAnswer(submittedAnswer) {
     wrong = false;
     if (wrong == false) {
         //if no words incorrect increase the score by 1
-        TotalScore++;
+        myVariable.TotalScore++;
     }
-    if (QuestionNumber < 10) {
+    if (myVariable.QuestionNumber < 10) {
         //if less than 10 questions answered move to next question
-        setTimeout(function() { nextQuestion("literacy") }, 2500);
+        setTimeout(function() { nextQuestion("literacy"); }, 2500);
     }
     else {
         //otherwise display the result
-        DisplayResult = setTimeout(function() { reportScore("literacy") }, 1500);
+        myVariable.DisplayResult = setTimeout(function() { reportScore("literacy"); }, 1500);
     }
 }
 

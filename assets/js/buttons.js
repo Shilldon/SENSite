@@ -9,9 +9,9 @@ $(document).ready(function() {
 $("#menu-button").on("click", function() {
     removeBackgroundImage();
 	hideOpenTab();
-	setTimeout(function() { showContactForm() }, 250);
+	setTimeout(function() { showContactForm(); }, 250);
 	changeMenuButton("DISCOVER", true);
-})
+});
 
 
 $(".top-section--nav-list-button").on("click", function() {
@@ -27,7 +27,7 @@ $(".top-section--nav-list-button").on("click", function() {
 
 		//hide the top section background when reverting to home screen and change opacity to none
 		removeBackgroundImage();
-		setTimeout(function() { showContactForm() }, 250);
+		setTimeout(function() { showContactForm(); }, 250);
 
 	}
 	//otherwise close the contact form/hide the current tab and open the new tab.
@@ -39,16 +39,15 @@ $(".top-section--nav-list-button").on("click", function() {
 		changeMenuButton("CONTACT", false);
 		changeMenuButtonColor(true);
 		changeBackground(clickedButton);
-		setTimeout(function() { showTab(clickedButton) }, 250);
+		setTimeout(function() { showTab(clickedButton); }, 250);
 	}
-})
+});
 
 /*----- Data tab buttons -----*/
 
 $(".data-tab--chart-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
-    var chartId = buttonId[3];
     switch (action) {
         case 'select':
             $("#data-tab--landing").fadeOut(250);
@@ -59,7 +58,7 @@ $(".data-tab--chart-button").on("click", function() {
             setTimeout(function() { $("#data-tab--landing").fadeIn(250); }, 250);
             break;
     }
-})
+});
 
 $("#chart-submit").click(function() {
     $('#button-chart-plot-previous').attr('min', 1);
@@ -78,15 +77,15 @@ $('#chart-address').keypress(function(e) {
 
 $("#select-school-capacity").click(function() {
     if (typeof new_schools_dim != 'undefined') {
-        renderChart(new_schools_dim)
+        renderChart(new_schools_dim);
     }
-})
+});
 
 $("#select-total-pupils").click(function() {
     if (typeof new_schools_dim != 'undefined') {
-        renderChart(new_schools_dim)
+        renderChart(new_schools_dim);
     }
-})
+});
 
 /*----- Test tab buttons -----*/
 
@@ -104,7 +103,7 @@ $(".test-tab--test-button").on("click", function() {
         case 'back':
             $(this).closest('section').fadeOut(250);
             //$('#test-tab--'+testId+'-result').css('display','none');
-            clearTimeout(DisplayResult);
+            clearTimeout(myVariable.DisplayResult);
             clearTest();
             setTimeout(function() { $("#test-tab--landing").fadeIn(250); }, 250);
             break;
@@ -114,7 +113,7 @@ $(".test-tab--test-button").on("click", function() {
         case 'submit':
             if (testId == 'numeracy') {
                 if ($(this).attr('disabled') != true) {
-                    answer = $("#numeracy-answer").val();
+                    var answer = $("#numeracy-answer").val();
                     $(this).attr('disabled', true);
                     checkAnswer(answer);
                 }
@@ -140,11 +139,8 @@ $(".test-tab--test-button").on("click", function() {
                             show: 'true',
                             backdrop: 'static',
                             keyboard: 'false'
-                        })
-
-                        setTimeout(function() {
-                            $("#errorModal").modal('hide');
-                        }, 2000);
+                        });
+                        setTimeout( function() { hideModal(); }, 2000);
                     }
                     else {
                         submittedAnswer[count] = answerWord.text();
@@ -158,9 +154,11 @@ $(".test-tab--test-button").on("click", function() {
             }
             break;
     }
-})
+});
 
-
+function hideModal() {
+	$("#errorModal").modal('hide');
+}
 /*-----Map buttons-----*/
 
 $("#map-submit").click(function() {

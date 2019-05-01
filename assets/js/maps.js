@@ -1,19 +1,12 @@
 var map;
-var markers = [];
-var markerInfo = [];
-//initialise arrays to hold data from master csv file and schools local to postcode search
-//var masterSchoolsArray = [];
-//var localSchoolsDataArray = [];
 
+//INPUT
 //retrieve postcode from input then search master array for schools matching postcode
 function searchForSchool() {
   //get user input postcode
   //Two part post code enables users to input a partial postcode to find schools close to their area.
   //User's full postcode is unlikely to generate any results as their postcode is unlikely to match a school
-  var postcodePart1 = $('#map-address-1').val();
-  var postcodePart2 = $('#map-address-2').val();
-  var postcode;
-  postcode = postcodePart1 + " " + postcodePart2;
+  var postcode = $('#map-address').val();
   postcode = postcode.toUpperCase();
   if (postcode != "") {
     queue()
@@ -36,112 +29,11 @@ function searchForSchool() {
     ndx = crossfilter(schoolMapData);
     filterMapByPostcode(ndx);
   }
-
   //tidy up:
   //remove any existing markers on the map
   clearMarkers();
   //remove any existing data from the school information panel
   clearSchoolDetails();
-
-
-}
-
-function clearMarkers() {
-  //set markers to null
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-}
-
-function filterMapByPostcode(schoolMapData, minCount, maxCount) {
-  //get user submitted postcode
-
-  var postcode = $('#map-address').val();
-  postcode = postcode.toUpperCase();
-  if (postcode.endsWith('*') == true) {
-    postcode = postcode.substr(0, postcode.length - 1);
-  }
-  else {
-    postcode=postcode+" ";
-  }
-
-  //create dimension of multiple arrays for filtering
-  var local_map_schools_dim = schoolMapData.dimension(function(d) {
-    return {
-      Postcode: d.Postcode,
-      'EstablishmentStatus (code)': d['EstablishmentStatus (code)'],
-    }
-
-  })
-  var count = 0;
-
-  //filter dimension to exclude postcodes that do not partial match user submitted postcode
-  //and schools that are closed
-  local_map_schools_dim.filter(function(d) {
-    if (checkPostcode(postcode, d.Postcode) == false || d['EstablishmentStatus (code)'] != 1) {
-      return d;
-    }
-  });
-
-  schoolMapData.remove();
-  local_map_schools_dim.filter(null);
-
-  //create array to receive postcodes from SchoolData dimension (filtered by postcode)
-  var schoolPostCodesArray = []
-  var postcodeCount = 0;
-  local_map_schools_dim.top(Infinity).forEach(function(x) {
-    postcodeCount++;
-    if (postcodeCount <= 100) {
-      schoolPostCodesArray.push(x.Postcode);
-    }
-  });
-  if (postcodeCount > 100) {
-    $('#error-message').text(postcodeCount + ' results returned. Displaying first 100, maximum. Please provide more specific postcode');
-    $("#errorModal").modal({
-      show: 'true',
-      backdrop: 'static',
-      keyboard: 'false'
-    })
-    //fade out error modal
-    setTimeout(function() {
-      $("#errorModal").modal('hide');
-      $("#button-numeracy-submit").removeAttr("disabled");
-      $("#numeracy-answer").focus();
-
-    }, 3000);
-  }
-
-  if (schoolPostCodesArray.length == 0) {
-    $('#error-message').text('No schools found in postcode area');
-    $("#errorModal").modal({
-      show: 'true',
-      backdrop: 'static',
-      keyboard: 'false'
-    })
-    //fade out error modal
-    setTimeout(function() {
-      $("#errorModal").modal('hide');
-      $("#button-numeracy-submit").removeAttr("disabled");
-      $("#numeracy-answer").focus();
-
-    }, 3000);
-  }
-  else {
-    convertPostcodes(local_map_schools_dim, schoolPostCodesArray)
-  }
-
-}
-
-function clearSchoolDetails() {
-  $("#school-name").text("");
-  $("#school-type").text("");
-  $("#education-phase").text("");
-  $("#school-website").html('');
-  $("#school-telephone").text("");
-  $("#school-head").text("");
-  $("#school-rating").text("");
-  $("p[id^='disability-icon']").css("color", "grey");
-  $("p[id^='disability-icon']").css("background-color", "transparent");
 }
 
 //call external API and obtain lat, lng positions based on postcodes of schools
@@ -157,6 +49,85 @@ function getPostcodeData(schoolPostCodes, callback) {
       callback(JSON.parse(this.responseText));
     }
   };
+}
+
+//PROCESS
+
+function filterMapByPostcode(schoolMapData, minCount, maxCount) {
+  //get user submitted postcode
+  var postcode = $('#map-address').val();
+  postcode = postcode.toUpperCase();
+  if (postcode.endsWith('*') == true) {
+    postcode = postcode.substr(0, postcode.length - 1);
+  }
+  else {
+    postcode=postcode+" ";
+  }
+
+  //create dimension of multiple arrays for filtering
+  var local_map_schools_dim = schoolMapData.dimension(function(d) {
+    return {
+      Postcode: d.Postcode,
+      'EstablishmentStatus (code)': d['EstablishmentStatus (code)'],
+    };
+
+  });
+  var count = 0;
+
+  //filter dimension to exclude postcodes that do not partial match user submitted postcode
+  //and schools that are closed
+  local_map_schools_dim.filter(function(d) {
+    if (checkPostcode(postcode, d.Postcode) == false || d['EstablishmentStatus (code)'] != 1) {
+      return d;
+    }
+  });
+
+  schoolMapData.remove();
+  local_map_schools_dim.filter(null);
+
+  //create array to receive postcodes from SchoolData dimension (filtered by postcode)
+  var schoolPostCodesArray = [];
+  var postcodeCount = 0;
+  local_map_schools_dim.top(Infinity).forEach(function(x) {
+    postcodeCount++;
+    if (postcodeCount <= 100) {
+      schoolPostCodesArray.push(x.Postcode);
+    }
+  });
+  if (postcodeCount > 100) {
+    $('#error-message').text(postcodeCount + ' results returned. Displaying maximum of 100. Please provide more specific postcode');
+    $("#errorModal").modal({
+      show: 'true',
+      backdrop: 'static',
+      keyboard: 'false'
+    });
+    //fade out error modal
+    setTimeout(function() {
+      $("#errorModal").modal('hide');
+      $("#button-numeracy-submit").removeAttr("disabled");
+      $("#numeracy-answer").focus();
+
+    }, 3500);
+  }
+
+  if (schoolPostCodesArray.length == 0) {
+    $('#error-message').text('No schools found in postcode area');
+    $("#errorModal").modal({
+      show: 'true',
+      backdrop: 'static',
+      keyboard: 'false'
+    });
+    //fade out error modal
+    setTimeout(function() {
+      $("#errorModal").modal('hide');
+      $("#button-numeracy-submit").removeAttr("disabled");
+      $("#numeracy-answer").focus();
+
+    }, 3000);
+  }
+  else {
+    convertPostcodes(local_map_schools_dim, schoolPostCodesArray);
+  }
 }
 
 function convertPostcodes(local_map_schools_dim, schoolPostCodesArray) {
@@ -194,7 +165,7 @@ function convertPostcodes(local_map_schools_dim, schoolPostCodesArray) {
       if (ofsted != undefined) {
         ofsted = ofsted.toLowerCase();
       }
-      rating = 0;
+      var rating = 0;
       switch (ofsted) {
         case "outstanding":
           rating = 4;
@@ -211,13 +182,12 @@ function convertPostcodes(local_map_schools_dim, schoolPostCodesArray) {
       }
 
       //export school data to markers, then draw on map
-      markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN, schoolHead, rating];
+      var markerInfo = [latitude, longitude, schoolName, schoolType, educationPhase, schoolWebsite, schoolTelephone, SEN, schoolHead, rating];
       drawMarker(markerInfo);
     }
     //center the map on the first school in area.
     map.setCenter(new google.maps.LatLng(initialLat, initialLong));
   });
-
 }
 
 //csv is inconsistent with naming of schools - this function ensures names, addresses etc are properly formatted with capital letters at the start.
@@ -225,6 +195,7 @@ function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+//OUTPUT
 //initialise variable to check if previous map marker as been clicked on and opened.
 var previousInfoWindow = false;
 
@@ -245,12 +216,14 @@ function drawMarker(markerInfo) {
     schoolHead: markerInfo[8],
     offstedRating: markerInfo[9]
   });
+  var rating=marker.offstedRating;
   //display school information on marker
   var infoContent = '<div id="content"><h5>' + marker.title + '</h5>';
 
   if ($(window).width() < 767) {
+    
     if (marker.schoolWebsite != "") {
-      infoContent = '<div id="content"><h5><a href=' + marker.schoolWebsite + ' target="_blank">' + marker.title + '</a></h5>'
+      infoContent = '<div id="content"><h5><a href=' + marker.schoolWebsite + ' target="_blank">' + marker.title + '</a></h5>';
     }
     infoContent += '<p>' + marker.schoolTelephone + '</p>';
     if (rating > 0) {
@@ -293,7 +266,7 @@ function drawMarker(markerInfo) {
     for (i = 0; i < 13; i++) {
       switch (marker.SEN[i]) {
         case "AS":
-          icon = "#disability-icon-ASD"
+          icon = "#disability-icon-ASD";
           break;
         case "Sp":
           icon = "#disability-icon-SLD";
@@ -326,8 +299,7 @@ function drawMarker(markerInfo) {
       colourInIcon(icon);
     }
   });
-
-  markers.push(marker);
+  myVariable.Markers.push(marker);
   marker.setMap(map);
 }
 
@@ -342,7 +314,6 @@ function colourInIcon(icon) {
 
 //initialise map to starting location
 function initMap() {
-
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 51.401672, lng: -1.324373 },
     zoom: 13,
@@ -351,4 +322,25 @@ function initMap() {
       { elementType: 'geometry', styles: [{ color: '#6d23ff' }] }
     ]
   });
+}
+
+//clear markers on map
+function clearMarkers() {
+  //set markers to null
+  for (var i = 0; i < myVariable.Markers.length; i++) {
+    myVariable.Markers[i].setMap(null);
+  }
+}
+
+//Clears information from school panel
+function clearSchoolDetails() {
+  $("#school-name").text("");
+  $("#school-type").text("");
+  $("#education-phase").text("");
+  $("#school-website").html('');
+  $("#school-telephone").text("");
+  $("#school-head").text("");
+  $("#school-rating").text("");
+  $("p[id^='disability-icon']").css("color", "grey");
+  $("p[id^='disability-icon']").css("background-color", "transparent");
 }

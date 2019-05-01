@@ -1,11 +1,11 @@
-Calculator = function(numberThree) {
+var Calculator = function(numberThree) {
     this.value = numberThree;
     return this.value;
-}
+};
 
 Calculator.prototype.add = function(number) {
     this.value += number;
-}
+};
 
 Calculator.prototype.subtract = function(number, reverse) {
     if (reverse == true) {
@@ -14,11 +14,11 @@ Calculator.prototype.subtract = function(number, reverse) {
     else {
         this.value = this.value - number;
     }
-}
+};
 
 Calculator.prototype.multiply = function(number) {
     this.value *= number;
-}
+};
 
 function calculateAnswer() {
     var initialCalculatorInput = query.firstNumber;
@@ -35,7 +35,7 @@ function calculateAnswer() {
         secondOperator = query.firstOperator;
         subtractReverse = true;
     }
-    calculator = new Calculator(initialCalculatorInput);
+    var calculator = new Calculator(initialCalculatorInput);
 
     var number = firstCalculatorInput;
 
@@ -51,7 +51,7 @@ function calculateAnswer() {
                 break;
             case "-":
                 calculator.subtract(number, subtractReverse);
-                break
+                break;
         }
         operator = secondOperator;
         number = secondCalculatorInput;

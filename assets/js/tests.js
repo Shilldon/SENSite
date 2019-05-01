@@ -1,30 +1,5 @@
 //Generic functions relevant to all test tabs (numeracy literacy and memory)
 
-//All tests globals
-var Start = new Date();
-var DisplayResult;
-var CurrentTest;
-var TotalScore = 0;
-var QuestionNumber = 0;
-var TestResult = 0;
-
-//Literacy test globals
-var AnswerArray = [];
-var QuestionArray = [];
-var ParentQuestionsArray = [];
-
-//Numeracy test globals
-var Answer = [];
-var Question = [];
-
-//Memory test globals
-//create an array of pairs of icons
-var MemoryArray = new Array(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8);
-var CardShowing = false
-var FirstCardShown = 0;
-var BoardLocked=false;
-
-
 //function fired when a 'start test' button is clicked
 function buttonStart(test) {
     //fade out the relevant test landing page
@@ -60,13 +35,13 @@ function buttonSelect(test) {
 //called on clicking skip
 function skipQuestion(testId) {
     //if total questions answered are less than 10 move to next question
-    if (QuestionNumber < 10) {
+    if (myVariable.QuestionNumber < 10) {
         nextQuestion(testId);
        // $('#' + testId + '-answer').focus();
     }
     //otherwise after pause - display the result
     else {
-        DisplayResult = setTimeout(function() { reportScore(testId) }, 1500);
+        myVariable.DisplayResult = setTimeout(function() { reportScore(testId); }, 1500);
     }
 }
 
@@ -74,14 +49,14 @@ function skipQuestion(testId) {
 //or the next question on skipping or submitting answer to previous question
 function nextQuestion(testId) {
     //increase the question number
-    QuestionNumber++;
+    myVariable.QuestionNumber++;
     if (testId == "numeracy") {
         //change the question number at the top of the tab
-        $("#numeracy-question-header").text("Question " + (QuestionNumber).toString());
+        $("#numeracy-question-header").text("Question " + (myVariable.QuestionNumber).toString());
         //empty the answer box
         $("#numeracy-answer").val('');
         //show the question
-        $("#numeracy-question").text(Question[QuestionNumber]);
+        $("#numeracy-question").text(myVariable.QuestionArray[myVariable.QuestionNumber]);
         //deleted the answer mark (tick or cross) from last question
         $("#numeracy-answer-mark").fadeOut('slow');
         //place cursor in answer box
@@ -89,35 +64,36 @@ function nextQuestion(testId) {
         //re-enable the answer submit button (disabled after submitting answer to prevent
         //numerous submissions for one question on repeated clicking)
         $("#button-numeracy-submit").removeAttr("disabled");
-
     }
     else if (testId == "literacy") {
+        //set up array to receive list of words from master questions array
+        var thisQuestion=[];
         //get the next array of words
-        wordsArray = Question[QuestionNumber];
+        var wordsArray = myVariable.QuestionArray[myVariable.QuestionNumber];
         //change the question number at the top of the page
-        $("#literacy-question-header").text("Question " + (QuestionNumber).toString());
+        $("#literacy-question-header").text("Question " + (myVariable.QuestionNumber).toString());
         var questionDivContents = "";
         var answerDivContents = "";
         //remove empty spaces from the wordsArray
-        QuestionArray = cleanArray(wordsArray);
+        thisQuestion = cleanArray(wordsArray);
         //record the answer array
-        AnswerArray = QuestionArray.slice(0);
+        myVariable.LiteracyAnswerArray = thisQuestion.slice(0);
         //then shuffle up the words to create the question
-        QuestionArray = shuffleArray(QuestionArray);
+        thisQuestion = shuffleArray(thisQuestion);
 
         //for each word in the array create a button in the question section on the page with that word
         //and create a space in the answer section
-        for (i = 0; i < QuestionArray.length; i++) {
-            if (QuestionArray[i] != "") {
-                questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + QuestionArray[i] + "</button>";
+        for (i = 0; i < thisQuestion.length; i++) {
+            if (thisQuestion[i] != "") {
+                questionDivContents = questionDivContents + "<button id='question-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-question-shown'>" + thisQuestion[i] + "</button>";
                 answerDivContents = answerDivContents + "<button  id='answer-word-" + i + "' onclick='wordSelect($(this))' class='test-tab--literacy-word test-tab--literacy-word-answer-hidden'></button><img class='test-tab--literacy-answer-mark' id='literacy-answer-mark-" + i + "' src=''>";
             }
         }
 
         //show the question
-        $("#test-tab--literacy-test-question").html(questionDivContents)
+        $("#test-tab--literacy-test-question").html(questionDivContents);
         //show the blank answer array
-        $("#test-tab--literacy-test-answer").html(answerDivContents)
+        $("#test-tab--literacy-test-answer").html(answerDivContents);
         //re-enable the answer submit button (disabled after submitting answer to prevent
         //numerous submissions for one question on repeated clicking)
         $("#button-literacy-submit").removeAttr("disabled");
@@ -130,18 +106,18 @@ function nextQuestion(testId) {
 function reportScore() {
     //get the start and end times for the tests and calculate time spent
     var end = new Date();
-    var startTime = Start.getTime();
+    var startTime = myVariable.Start.getTime();
     var endTime = end.getTime();
     var TotalTime = Math.ceil((endTime - startTime) / 1000);
     //generate result based on score on test and time taken
-    TestResult = Math.ceil(TotalScore / TotalTime * 100);
-    $('#test-tab--' + CurrentTest + '-test').fadeOut(250);
-    setTimeout(function() { $('#test-tab--' + CurrentTest + '-result').fadeIn(250); }, 250);
-    $('#' + CurrentTest + '-result').text(TestResult.toString());
+    var testResult = Math.ceil(myVariable.TotalScore / TotalTime * 100);
+    $('#test-tab--' + myVariable.CurrentTest + '-test').fadeOut(250);
+    setTimeout(function() { $('#test-tab--' + myVariable.CurrentTest + '-result').fadeIn(250); }, 250);
+    $('#' + myVariable.CurrentTest + '-result').text(testResult.toString());
 
     //retrieve the local csv files of test results to render in chart
     queue()
-        .defer(d3.csv, 'assets/data/' + CurrentTest + 'scores.csv')
+        .defer(d3.csv, 'assets/data/' + myVariable.CurrentTest + 'scores.csv')
         .await(loadData);
 
     function loadData(error, scoreData) {
@@ -150,14 +126,14 @@ function reportScore() {
             d.score = parseInt(d.score);
             d.students = parseFloat(d.students);
         });
-        renderResults(ndx, CurrentTest);
+        renderResults(ndx, testResult);
 
     }
 
 }
 
 //render a graph displaying the score achieved relative to population scores
-function renderResults(resultData, test) {
+function renderResults(resultData, testResult) {
     //create a dimension from cross filter for x axis based on score achieved
     var score_dim = resultData.dimension(dc.pluck('score'));
     //create a dimension from crossfilter for y axis based on percentage of student with the score
@@ -168,9 +144,9 @@ function renderResults(resultData, test) {
     var maxScore = score_dim.top(1)[0].score;
 
     //if test result is more than max or less than minimum score on graph set it to the max or min
-    if (TestResult > maxScore) { TestResult = maxScore; }
-    if (TestResult < minScore) { TestResult = minScore; }
-    var resultChart = dc.lineChart('#' + test + '-result-chart')
+    if (testResult > maxScore) { testResult = maxScore; }
+    if (testResult < minScore) { testResult = minScore; }
+    var resultChart = dc.lineChart('#' + myVariable.CurrentTest + '-result-chart');
 
     var chartHeight = $(".test-tab--result-chart").height() - 25;
     var chartWidth = $(".test-tab--result-chart").width() - 25;
@@ -184,20 +160,20 @@ function renderResults(resultData, test) {
             //the user's score
             resultChart.selectAll('.dot')
                 .attr('style', function(d) {
-                    scoreValue = d.data.key;
-                    if (scoreValue == TestResult) {
+                    var scoreValue = d.data.key;
+                    if (scoreValue == testResult) {
                         resultChart.xyTipsOn(false);
-                        return "fill-opacity:1; fill: red"
+                        return "fill-opacity:1; fill: red";
                     }
                     else {
-                        return "fill-opacity:0;"
+                        return "fill-opacity:0";
                     }
                 })
                 //ensure the dot is not removed on mouseover
                 .on('mouseout.redhighlight', function(d) {
-                    scoreValue = d.data.key;
-                    if (scoreValue == TestResult) { $(this).attr('style', 'fill: red; fill-opacity:1') }
-                })
+                    var scoreValue = d.data.key;
+                    if (scoreValue == testResult) { $(this).attr('style', 'fill: red; fill-opacity:1'); }
+                });
         })
         .dimension(score_dim)
         .group(students_dim)

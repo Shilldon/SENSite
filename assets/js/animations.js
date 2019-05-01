@@ -18,18 +18,18 @@ function animateLogo() {
 function animateTitle() {
 	setTimeout(function() {
 		$("#top-section--title").css("visibility", "visible");
-		$("#top-section--title").addClass('title-animation')
+		$("#top-section--title").addClass('title-animation');
 	}, 2500);
 }
 
 //sweep in nav bar from bottom
 function animateMenuBar() {
-	setTimeout(function() { $("#navbar").addClass('menubar-animation') }, 3500);
+	setTimeout(function() { $("#navbar").addClass('menubar-animation'); }, 3500);
 }
 
 //fade in contact form
 function animateContactInformation() {
-	setTimeout(function() { $("#contact-form").addClass('contact-animation') }, 4500);
+	setTimeout(function() { $("#contact-form").addClass('contact-animation'); }, 4500);
 }
 
 /*----- NAV BUTTON COLOUR CHANGE -----*/
@@ -47,17 +47,17 @@ function changeMenuButtonColor(bool) {
 }
 
 $(document).ready(function() {
-	animateLanding()
-})
+	animateLanding();
+});
 
 /*----- NAV BAR MENU BUTTONS FUNCTIONALITY -----*/
 
 //sweep down and show the tab that is clicked on
 function showTab(clickedButton) {
 	//get the name of the tab that was clicked on
-	var clickedButtonId = $(clickedButton).attr("id").split("-")
-	var clickedButtonName = clickedButtonId[0]
-	var clickedTabName = "#" + clickedButtonName + "-tab";;
+	var clickedButtonId = $(clickedButton).attr("id").split("-");
+	var clickedButtonName = clickedButtonId[0];
+	var clickedTabName = "#" + clickedButtonName + "-tab";
 
 	//set the tab state to open
 	$(clickedButton).data('state', 'open');
@@ -81,7 +81,7 @@ function showTab(clickedButton) {
 function hideOpenTab() {
 	var button;
 	var buttonId;
-	var buttonName
+	var buttonName;
 	var tabName;
 
 	//cycle through the tabs and hide the open one (if any showing) 
@@ -93,7 +93,7 @@ function hideOpenTab() {
 			buttonId = button.attr("id").split("-");
 			buttonName = buttonId[0];
 			tabName = "#" + buttonName + "-tab";
-			$(button).data('state', 'closed')
+			$(button).data('state', 'closed');
 			$("i", button).removeClass("fa-chevron-down");
 			$("i", button).addClass("fa-chevron-right");
 			$(tabName).slideUp(250);
@@ -126,7 +126,7 @@ function hideOpenTab() {
 //change the background at the top of the page depending on the tab selected
 //to aid user identifying the section they are in 
 function changeBackground(clickedButton) {
-	var clickedButtonId = $(clickedButton).attr("id").split("-")
+	var clickedButtonId = $(clickedButton).attr("id").split("-");
 	var clickedButtonName = clickedButtonId[0];
 	$(".top-section").css('background', 'url(assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
 	$(".top-section").css('background-size', 'cover');
@@ -153,7 +153,7 @@ function changeMenuButton(content, menuClick) {
 	}
 	//change the wording on the nav button to either DISCOVER or CONTACT
 	//depending on where the user is on the site.
-	setTimeout(function() { $("#menu-button").html(content) }, 250);
+	setTimeout(function() { $("#menu-button").html(content); }, 250);
 }
 
 //on return to home page by clicking the nav button / hiding all tabs

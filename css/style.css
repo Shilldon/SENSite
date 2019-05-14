@@ -142,7 +142,7 @@ footer {
   height: 100%; }
 
 .tab {
-  border: 2px solid black;
+  border: 2px solid #6d23ff;
   background-color: #e1e1e1;
   height: 100%;
   display: none;
@@ -170,6 +170,8 @@ footer {
   height: auto; }
 #about-tab .about-tab--icon-container {
   text-align: center; }
+#about-tab h3 {
+  margin-top: 0; }
 
 /*----- DATA TAB -----*/
 #data-tab--chart-area {
@@ -184,7 +186,7 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 55%;
+    max-height: 50%;
     height: auto;
     display: none;
     z-index: 2; }
@@ -229,13 +231,17 @@ footer {
 .pie-slice {
   fill: black; }
 
-#data-tab--chart-pie {
-  height: 13vh;
-  max-height: 13vh; }
-#data-tab--chart-row {
-  height: 20vh;
-  max-height: 20vh; }
-
+/*
+#data-tab {
+    &--chart-pie {
+        height: 13vh;
+        max-height: 13vh;
+    }
+    &--chart-row {
+        height: 20vh;
+        max-height: 20vh;
+    }
+}*/
 /*----- TEST TAB -----*/
 #test-tab--landing .col-xs-4 {
   text-align: center; }
@@ -446,7 +452,7 @@ footer {
     color: black; }
 
 /*----- MEDIA QUERIES -----*/
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-height: 768px) and (max-height: 1023px) and (min-width: 769px) {
   body {
     font-size: 15px; }
 
@@ -455,55 +461,19 @@ footer {
     height: 133.33333px; }
 
   .top-section--title-text {
-    font-size: 20px; } }
-@media (min-width: 768px) and (max-width: 991px) {
-  body {
-    font-size: 16px; }
+    font-size: 24px; }
 
-  #logo {
-    width: 300px;
-    height: 200px; }
+  .data-tab--chart-section {
+    display: none; }
+    .data-tab--chart-section input {
+      width: 100%;
+      padding: 0px;
+      font-size: 18px;
+      height: 26px; }
 
-  .top-section--title-text {
-    font-size: 25px; }
-
-  .social-list li a i {
-    width: 38px;
-    height: 38px;
-    font-size: 21px; }
-
-  .tab h3 {
-    font-size: 25px; }
-  .tab h4 {
-    font-size: 20px; }
-  .tab h5 {
-    font-size: 18px; }
-
-  .schools-tab--disabilities p {
-    font-size: 8px; }
-  .schools-tab--disabilities i {
-    font-size: 20px; } }
-@media (min-width: 992px) and (max-width: 1199px) {
-  body {
-    font-size: 13px; }
-
-  #logo {
-    width: 350px;
-    height: 233.33333px; }
-
-  .top-section--title-text {
-    font-size: 30px; }
-
-  .social-list li a i {
-    width: 40px;
-    height: 40px;
-    font-size: 23px; }
-
-  #schools-tab {
-    font-size: 18px; }
-    #schools-tab input {
-      font-size: 12px; } }
-@media (min-width: 1200px) {
+  .dc-chart .axis text {
+    font: 14px sans-serif; } }
+@media (min-height: 1024px) and (min-width: 769px) {
   body {
     font-size: 20px; }
 
@@ -522,7 +492,11 @@ footer {
   #schools-tab {
     font-size: 18px; }
     #schools-tab input {
-      font-size: 15px; } }
+      font-size: 15px; }
+
+  .data-tab--chart-section input {
+    font-size: 16px;
+    height: 24px; } }
 @media (min-width: 768px) {
   .top-section {
     height: 30vh;
@@ -566,17 +540,6 @@ footer {
 
   #top-section--title {
     transform: translate(-100%, 0); }
-
-  .data-tab--chart-section {
-    display: none; }
-    .data-tab--chart-section input {
-      width: 100%;
-      padding: 0px;
-      font-size: 18px;
-      height: 26px; }
-
-  .dc-chart .axis text {
-    font: 14px sans-serif; }
 
   .test-tab--literacy-word {
     font-size: 30px; }

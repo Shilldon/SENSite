@@ -1,4 +1,4 @@
-# SEN Consultancy Website
+# SEN Consultant Website
 
 ## Overview
 

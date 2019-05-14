@@ -45,6 +45,7 @@ $(".top-section--nav-list-button").on("click", function() {
 
 /*----- Data tab buttons -----*/
 
+//Show/hide the chart-tab
 $(".data-tab--chart-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
@@ -60,14 +61,13 @@ $(".data-tab--chart-button").on("click", function() {
     }
 });
 
+//plot the charts
 $("#chart-submit").click(function() {
-    $('#button-chart-plot-previous').attr('min', 1);
-    var maxValue = $("#max-results").val();
-    $('#button-chart-plot-next').attr('max', maxValue);
-    $('#button-chart-plot-next').attr('change', maxValue);
+    initialiseForNextButtons();
     defineChartData();
 });
 
+//postcode input for plotting charts
 $('#chart-address').keypress(function(e) {
     if (e.keyCode == 13) {
         $('#chart-submit').focus();
@@ -75,12 +75,14 @@ $('#chart-address').keypress(function(e) {
     }
 });
 
+//radio button to show charts based on total school capacity
 $("#select-school-capacity").click(function() {
     if (typeof new_schools_dim != 'undefined') {
         renderChart(new_schools_dim);
     }
 });
 
+//radio button to show charts based on pupil numbers by gender
 $("#select-total-pupils").click(function() {
     if (typeof new_schools_dim != 'undefined') {
         renderChart(new_schools_dim);
@@ -89,20 +91,23 @@ $("#select-total-pupils").click(function() {
 
 /*----- Test tab buttons -----*/
 
+//events for buttons in test tab
 $(".test-tab--test-button").on("click", function() {
     var buttonId = $(this).attr("id").split("-");
     var action = buttonId[2];
     var testId = buttonId[1];
     switch (action) {
+        //show the relevant test
         case 'select':
             buttonSelect(testId);
             break;
+        //start the reelvant test
         case 'start':
             buttonStart(testId);
             break;
+        //go back to test menu    
         case 'back':
             $(this).closest('section').fadeOut(250);
-            //$('#test-tab--'+testId+'-result').css('display','none');
             clearTimeout(myVariable.DisplayResult);
             clearTest();
             setTimeout(function() { $("#test-tab--landing").fadeIn(250); }, 250);
@@ -110,6 +115,7 @@ $(".test-tab--test-button").on("click", function() {
         case 'skip':
             skipQuestion(testId);
             break;
+        //submit test answer - only for literacy and numeracy tests    
         case 'submit':
             if (testId == 'numeracy') {
                 if ($(this).attr('disabled') != true) {
@@ -124,6 +130,7 @@ $(".test-tab--test-button").on("click", function() {
                 var submittedAnswer = [];
                 var whileBreak = false;
                 var incompleteSentence = false;
+                //cycle through the words in the submitted sentence and form submitted answer array
                 while (whileBreak == false) {
                     answerWord = $("#answer-word-" + count);
                     //reached end of sentence
@@ -147,6 +154,7 @@ $(".test-tab--test-button").on("click", function() {
                     }
                     count++;
                 }
+                //if the sentence is complete and the submit button is not disabled check the answer
                 if (incompleteSentence == false && $(this).attr("disabled") != true) {
                     $(this).attr('disabled', true);
                     checkLiteracyAnswer(submittedAnswer);
@@ -165,14 +173,20 @@ $("#map-submit").click(function() {
   searchForSchool();
 });
 
-$('#map-address-1').keypress(function(e) {
-  if (e.keyCode == 13)
-    $('#map-address-2').focus();
-});
 $('#map-address').keypress(function(e) {
   if (e.keyCode == 13) {
     $('#map-submit').focus();
     searchForSchool();
   }
 });
+
+$('.data-tab--dropdown-select').click(function() {
+    var buttonId=$(this).attr('id').split("-");
+    var chart=buttonId[5];
+    //set local variable for chart type to be displayed
+    $("#data-tab--chart").attr("chart_type",chart);
+    console.log(chart)
+    initialiseForNextButtons();
+    defineChartData();
+})
 

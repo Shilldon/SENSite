@@ -192,7 +192,7 @@ $value in $tab-colors {
 }
 
 .tab {
-    border: 2px solid black;
+    border: 2px solid $about-color;
     background-color: $white;
     height: 100%;
     display: none;
@@ -230,6 +230,9 @@ $value in $tab-colors {
     .about-tab--icon-container {
         text-align: center;
     }
+    h3 {
+        margin-top:0;
+    }
 }
 
 /*----- DATA TAB -----*/
@@ -246,7 +249,7 @@ $value in $tab-colors {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        max-width: 55%;
+        max-height: 50%;
         height: auto;
         display: none;
         z-index: 2;
@@ -306,7 +309,7 @@ $value in $tab-colors {
 .pie-slice {
     fill: black;
 }
-
+/*
 #data-tab {
     &--chart-pie {
         height: 13vh;
@@ -316,7 +319,7 @@ $value in $tab-colors {
         height: 20vh;
         max-height: 20vh;
     }
-}
+}*/
 
 /*----- TEST TAB -----*/
 
@@ -607,10 +610,10 @@ $value in $tab-colors {
 
 /*----- MEDIA QUERIES -----*/
 
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-height: 768px) and (max-height: 1023px) and (min-width: 769px) {
 
     $logoWidth: 200px;
-    $title-font-size: 20px;
+    $title-font-size: 24px;
     $body-font-size: 15px;
 
     body {
@@ -625,86 +628,26 @@ $value in $tab-colors {
     .top-section--title-text {
         font-size: $title-font-size;
     }
-}
+    
+    .data-tab--chart-section {
+        display: none;
 
-@media (min-width: 768px) and (max-width: 991px) {
-
-    $logoWidth: 300px;
-    $title-font-size: 25px;
-    $body-font-size: 16px;
-
-    body {
-        font-size: $body-font-size;
-    }
-
-    #logo {
-        width: $logoWidth;
-        height: $logoWidth/3*2;
-    }
-    .top-section--title-text {
-        font-size: $title-font-size;
-    }
-    .social-list li a i {
-        width: 38px;
-        height: 38px;
-        font-size: 21px;
-    }
-
-    .tab {
-        h3 {
-            font-size: 25px;
-        }
-
-        h4 {
-            font-size: 20px;
-        }
-
-        h5 {
-            font-size: 18px;
-        }
-    }
-
-    .schools-tab--disabilities {
-        p {
-            font-size: 8px;
-        }
-        i {
-            font-size: 20px;
-        }
-    }
-}
-
-@media (min-width: 992px) and (max-width:1199px) {
-
-    $logoWidth: 350px;
-    $title-font-size: 30px;
-    $body-font-size: 13px;
-    body {
-        font-size: $body-font-size;
-    }
-
-    #logo {
-        width: $logoWidth;
-        height: $logoWidth/3*2;
-    }
-    .top-section--title-text {
-        font-size: $title-font-size;
-    }
-    .social-list li a i {
-        width: 40px;
-        height: 40px;
-        font-size: 23px;
-    }
-
-    #schools-tab {
-        font-size: 18px;
         input {
-            font-size: 12px;
+            width: 100%;
+            padding: 0px;
+            font-size: 18px;
+            height: 26px;
         }
     }
+    .dc-chart .axis text {
+        font: 14px sans-serif;
+    }
+
+    
+    
 }
 
-@media (min-width: 1200px) {
+@media (min-height: 1024px)  and (min-width: 769px) {
     $logoWidth: 400px;
     $title-font-size: 35px;
     $body-font-size: 20px;
@@ -731,6 +674,13 @@ $value in $tab-colors {
             font-size: 15px;
         }
     }
+
+    .data-tab--chart-section {
+        input {
+            font-size: 16px;
+            height: 24px;
+        }    
+    }    
 }
 
 @media (min-width: 768px) {
@@ -786,20 +736,6 @@ $value in $tab-colors {
 
     #top-section--title {
         transform: translate(-100%, 0);
-    }
-
-    .data-tab--chart-section {
-        display: none;
-
-        input {
-            width: 100%;
-            padding: 0px;
-            font-size: 18px;
-            height: 26px;
-        }
-    }
-    .dc-chart .axis text {
-        font: 14px sans-serif;
     }
 
     .test-tab {

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.css" type="text/css" />
     <!--testing -->
- <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" /> -->
+    <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" /> -->
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -29,7 +29,7 @@
         <section class="container-fluid top-section">
             <div class="row">
                 <div class="col-xs-12 top-section--opaque-container">
-                   &nbsp 
+                    &nbsp
                 </div>
             </div>
             <div class="row top-section--logo-container">
@@ -52,9 +52,9 @@
                 <div class="navbar-collapse collapse col-xs-12" id="navbar">
                     <ul class="nav navbar-nav navbar-main">
                         <li class="top-section--nav-list-button" id="about-button">About <span><i class="fa fa-chevron-right"></i></span></li>
-                        <li class="top-section--nav-list-button" id="data-button">Data <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="data-button">School Data <i class="fa fa-chevron-right"></i></li>
                         <li class="top-section--nav-list-button" id="test-button">Test <i class="fa fa-chevron-right"></i></li>
-                        <li class="top-section--nav-list-button" id="schools-button">Schools <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="schools-button">School Locator <i class="fa fa-chevron-right"></i></li>
                     </ul>
                 </div>
             </nav>
@@ -119,15 +119,26 @@
                 <article class="col-xs-12 tab" data-state="closed" id="about-tab">
                     <div class="row">
                         <div class="col-xs-12">
-                            <h2>Anne Trainer</h2>
+                            <h2><strong>Anne Trainer</strong></h2>
                             <h4><strong>Specialist Educational Needs Consultant</strong></h4>
                             <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 07779 999999</h4>
                             <h4><i class="fa fa-envelope" aria-hidden="true"></i> consultancy@address.com</h4>
                             <h4><i class="fab fa-facebook" aria-hidden="true"></i> ConsultancyCS</h4>
-                            <h4>Specialist in:</h4>
-                            <h5>Dyslexia Assessments</h5>
-                            <h5>Numeracy Assessments</h5>
-                            <h5>Tutoring</h5>
+                            <h2><strong>Specialist in:</strong></h2>
+                            <div class="row no-padding">
+                                <div class="col-sm-4">
+                                    <h3>Dyslexia Assessments</h3>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3>Numeracy Assessments</h3>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3>Tutoring</h3>
+                                </div>
+                            </div>
+
+
+
                         </div>
                         <div class="row about-tab--icon-container">
                             <div class="col-xs-4">
@@ -195,6 +206,7 @@
                             <div class="col-xs-5 col-sm-3">Filter by SEN:</div>
                             <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-SEN">&nbsp</div>
                         </div>
+
                         <div class="row">
                             <div class="col-xs-col-10 col-xs-offset-1" id="data-tab--chart-area">
                                 <img src="assets/images/loading.gif">
@@ -203,33 +215,24 @@
                                         Schools In Postcode Area:
                                     </div>
                                     <div class="col-xs-4 col-sm-2" id="data-tab--total-schools"></div>
-
                                     <div class="col-xs-8 col-sm-4">
                                         Displaying:
                                     </div>
                                     <div class="col-xs-4 col-sm-2" id="data-tab--total-schools-range"></div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-8 data-tab--chart" id="data-tab--chart-bar"></div>
-                                    <div class="col-xs-12 col-sm-3 col-sm-offset-1">
-                                        <div class="row">
-                                            <div class="col-xs-12 data-tab--chart-title">
-                                                Average Pupil Density Per School Type
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12" id="data-tab--chart-pie"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 data-tab--chart-title">
-                                                Number Of Schools Per Educational Phase
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12" id="data-tab--chart-row"></div>
-                                        </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" style="background-color:#7b3bfc; border-color: #9c6df9" type="button" data-toggle="dropdown">Display
+                                        <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="data-tab--dropdown-select" id="data-tab--dropdown-select-pupils">Number of pupils per establishment</a></li>
+                                            <li><a href="#" class="data-tab--dropdown-select" id="data-tab--dropdown-select-density">Pupil density per establishment type</a></li>
+                                            <li><a href="#" class="data-tab--dropdown-select" id="data-tab--dropdown-select-phase">Number of establishments per educational phase</a></li>
+                                        </ul>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 data-tab--chart" id="data-tab--chart"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -565,7 +568,7 @@
                                     Postcode:
                                 </div>
                                 <div class="col-xs-3">
-                                    <input class="form-control" id="map-address"type="textbox" maxlength="4" placeholder="Postcode">
+                                    <input class="form-control" id="map-address" type="textbox" maxlength="4" placeholder="Postcode">
                                 </div>
                                 <div class="col-xs-3">
                                     <input class="form-control" id="map-submit" type="button" value="Search">
@@ -608,17 +611,17 @@
                                             <p id="disability-icon-PD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Physical Disability"><i class="fas fa-wheelchair"></i></p>
                                         </li>
                                         <li>
-                                        <p id="disability-icon-SEMH" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Social, Emotional and Mental Health"><i class="fas fa-brain"></i></p>
-                                         </li>
+                                            <p id="disability-icon-SEMH" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Social, Emotional and Mental Health"><i class="fas fa-brain"></i></p>
+                                        </li>
                                         <li>
-                                        <p id="disability-icon-HI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Hearing Impairment"><i class="fas fa-deaf"></i></p>
+                                            <p id="disability-icon-HI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Hearing Impairment"><i class="fas fa-deaf"></i></p>
 
                                         </li>
                                         <li>
-                                        <p id="disability-icon-VI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Visual Impairment"><i class="fas fa-low-vision"></i></p>
+                                            <p id="disability-icon-VI" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Visual Impairment"><i class="fas fa-low-vision"></i></p>
                                         </li>
                                         <li>
-                                        <p id="disability-icon-SLC" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Speech, Language And Communication"><i class="fas fa-meh-blank"></i></p>
+                                            <p id="disability-icon-SLC" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Speech, Language And Communication"><i class="fas fa-meh-blank"></i></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -632,7 +635,7 @@
                     </div>
             </div>
             </article>
-            
+
             <!-- Generic Error Modal -->
             <div id="errorModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -656,47 +659,48 @@
                     <li><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
                     <li><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
                     <li><a target="_blank" href="#"><i class="fab fa-youtube"></i></a></li>
-                    <li><a href="mailto:?Subject=Anne%20Trainer%20SEN%20Consultancy&amp;Body=I%20think%20you%20will%20benefit%20from%20Anne%20Trainer%20SEN%Consultancy%20service%20https://shilldon.github.io/SEN/""><i class="fas fa-share"></i></a></li>
+                    <li>
+                        <a href="mailto:?Subject=Anne%20Trainer%20SEN%20Consultancy&amp;Body=I%20think%20you%20will%20benefit%20from%20Anne%20Trainer%20SEN%Consultancy%20service%20https://shilldon.github.io/SEN/" "><i class="fas fa-share "></i></a></li>
                 </ul>
             </div>
         </div>
     </footer>
     </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa " crossorigin="anonymous "></script>
+<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js "></script>
+<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js "></script>
+<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js "></script>
 
 
 <!--Jasmine framework-->
 <!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js "></script>
 -->
 
 
 <!--local scripts-->
-<script type="text/javascript" src="assets/js/queue.min.js"></script>
-<script type="text/javascript" src="assets/js/initvars.js"></script>
-<script type="text/javascript" src="assets/js/animations.js"></script>
-<script type="text/javascript" src="assets/js/buttons.js"></script>
-<script type="text/javascript" src="assets/js/calculator.js"></script>
-<script type="text/javascript" src="assets/js/tests.js"></script>
-<script type="text/javascript" src="assets/js/numeracy-test.js"></script>
-<script type="text/javascript" src="assets/js/memory-test.js"></script>
-<script type="text/javascript" src="assets/js/literacy-test.js"></script>
-<script type="text/javascript" src="assets/js/maps.js"></script>
-<script type="text/javascript" src="assets/js/data.js"></script>
+<script type="text/javascript " src="assets/js/queue.min.js "></script>
+<script type="text/javascript " src="assets/js/initvars.js "></script>
+<script type="text/javascript " src="assets/js/animations.js "></script>
+<script type="text/javascript " src="assets/js/buttons.js "></script>
+<script type="text/javascript " src="assets/js/calculator.js "></script>
+<script type="text/javascript " src="assets/js/tests.js "></script>
+<script type="text/javascript " src="assets/js/numeracy-test.js "></script>
+<script type="text/javascript " src="assets/js/memory-test.js "></script>
+<script type="text/javascript " src="assets/js/literacy-test.js "></script>
+<script type="text/javascript " src="assets/js/maps.js "></script>
+<script type="text/javascript " src="assets/js/data.js "></script>
 
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UTwrPWlwTVB0qWHXeaZIRhpcwf8nP-U&libraries=places&callback=initMap"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js "></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UTwrPWlwTVB0qWHXeaZIRhpcwf8nP-U&libraries=places&callback=initMap "></script>
 
 <!--tests -->
 
-<!-- <script type="text/javascript" src="assets/spec/numeracy-testSpec.js"></script> -->
+<!-- <script type="text/javascript " src="assets/spec/numeracy-testSpec.js "></script> -->
 
 
 </html>

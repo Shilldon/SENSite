@@ -48,7 +48,7 @@ This website is designed as an interactive front-end only website to achieve the
 Each of the tabs centres of one of Anne's main objectives:
 
 - About tab - contact information, services offered and qualifications.
-- Data tab - enables clients to search schools by postcode and shows by use of charts information about schools in the chosen postcode:<br>
+- School Data tab - enables clients to search schools by postcode and shows by use of charts information about schools in the chosen postcode:<br>
   - School sizes
   - Pupil gender ratios
   - SEN support offered
@@ -56,7 +56,7 @@ Each of the tabs centres of one of Anne's main objectives:
   - Number of schools in area of specific educational phase - to understand the cachement area
   - Pupil density per funding type - to understand the relative wealth of the area 
 - Test tab - Enables clients to test their literacy, numeracy and memory skills in three simple tests displaying their results against the national average in a chart.
-- Schools tab - Enables clients to search against postcodes for local schools returning (from local government downloaded CSV):
+- School Map tab - Enables clients to search against postcodes for local schools returning (from local government downloaded CSV):
   - School name
   - Contact details
   - Head teacher information
@@ -79,6 +79,8 @@ The site is styled using **Bootstrap 3.3.7**.<br>
 Menu animations<br>
 Button functionality<br>
 Data processing from external APIs and local csv<br>
+Educational Tests - Memory, literacy and numeracy<br>
+Rendering of charts<br>
 
 
 ## Features
@@ -119,7 +121,7 @@ See additional document for specific testing undertaken.
 
 ## Initial Wireframes
 Wireframes were designed using MarvelApp and can be located here:<br>
-https://marvelapp.com/[ ] 
+https://marvelapp.com/af24fga 
 
 ## Deployment
 A repository was created through the GitHub console under folder SENSite.<br>
@@ -129,7 +131,7 @@ The project was then deployed to GitHub pages through the GitHub online console 
 - Through the console settings tab the master branch was set to the default branch<br>
 - The master branch was then selected as the source for GitHub pages and the settings saved<br>
 
-To edit/run the code locally it is necessary to pull the code from the GitHub repository. This can be achieved through the GitHub console using the following steps: In order to do so:
+To edit/run the code locally it is necessary to pull the code from the GitHub repository. This can be achieved through the GitHub console using the following steps: 
 - Navigate to the main page of the repository
 - Click 'clone/download' under the repository name
 - To clone with HTTPS click the copy icon to copy the URL for the repository
@@ -148,19 +150,19 @@ Other than a standard browser no further software or implementation is required 
 #### Logo:<br>
 Sparkle image - https://svgsilh.com/image/1076611.html. This image is released under Creative Commons licence CC0 - https://creativecommons.org/publicdomain/zero/1.0/deed.en
 #### Backdrop Images:<br>
-Landing page - children playing - https://commons.wikimedia.org/wiki/File:Children_playing_at_Children%27s_Book_Festival_(40285498720).jpg
-About Tab - blackboard image - https://www.pexels.com/photo/ascent-blackboard-board-business-162560/
-Data Tab - cubes image - https://pixabay.com/en/cubes-assorted-random-toys-677092/
-Test Tab - book image - https://pxhere.com/en/photo/1214676
-Schools Tab - school sign - http://www.picpedia.org/highway-signs/s/school.html - This image is licensed by R M Media Ltd under a Creative Commons Attribution-ShareAlike licence (Creative Commons 3 - CC BY-SA 3.0). The original image is available on http://alphastockimages.com/ . The original author is Nick Youngson - http://www.nyphotographic.com/
+Landing page - children playing - https://commons.wikimedia.org/wiki/File:Children_playing_at_Children%27s_Book_Festival_(40285498720).jpg<br>
+About Tab - blackboard image - https://www.pexels.com/photo/ascent-blackboard-board-business-162560/<br>
+Data Tab - cubes image - https://pixabay.com/en/cubes-assorted-random-toys-677092/<br>
+Test Tab - book image - https://pxhere.com/en/photo/1214676<br>
+Schools Tab - school sign - http://www.picpedia.org/highway-signs/s/school.html - This image is licensed by R M Media Ltd under a Creative Commons Attribution-ShareAlike licence (Creative Commons 3 - CC BY-SA 3.0). The original image is available on http://alphastockimages.com/ . The original author is Nick Youngson - http://www.nyphotographic.com/<br>
 #### Test Tab Images:<br>
-Literacy and Numeracy - Tick - https://pixabay.com/en/check-mark-tick-mark-check-correct-1292787/
-Literacy and Numeracy - Cross - https://www.maxpixel.net/Remove-Incorrect-Symbol-Sign-Red-Delete-Cancel-294245
-Memory - Icons - https://pixabay.com/vectors/icons-transportation-computer-156784/
+Literacy and Numeracy - Tick - https://pixabay.com/en/check-mark-tick-mark-check-correct-1292787/<br>
+Literacy and Numeracy - Cross - https://www.maxpixel.net/Remove-Incorrect-Symbol-Sign-Red-Delete-Cancel-294245<br>
+Memory - Icons - https://pixabay.com/vectors/icons-transportation-computer-156784/<br>
 #### Schools Tab Images:<br>
-Map - Ofsted star rating - https://commons.wikimedia.org/wiki/File:Star_rating_1_of_5.png
+Map - Ofsted star rating - https://commons.wikimedia.org/wiki/File:Star_rating_1_of_5.png<br>
 #### Data tab:<br>
-Loading gif - https://en.wikipedia.org/wiki/File:InternetSlowdown_Day.gif
+Loading gif - https://en.wikipedia.org/wiki/File:InternetSlowdown_Day.gif<br>
 
 ### Code
 #### Individual functions:
@@ -181,11 +183,11 @@ Automatic testing:
 - Jasmine - https://jasmine.github.io/
 
 ### APIs
-Postcode geographic information - https://api.postcodes.io/postcodes
+Postcode geographic information - https://api.postcodes.io/postcodes<br>
 Maps - https://developers.google.com/maps/documentation/
 
 ### School Information
-Local csv database - Adaopted from https://get-information-schools.service.gov.uk/Downloads
+Local csv database - Adapted from https://get-information-schools.service.gov.uk/Downloads
 
 ### Fonts/Icons
 Google Fonts - [fonts.google.com](fonts.google.com)<br>

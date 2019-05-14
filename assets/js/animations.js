@@ -62,9 +62,9 @@ function showTab(clickedButton) {
 	//set the tab state to open
 	$(clickedButton).data('state', 'open');
 
-	//change the chevron to 'down'
-	$("i", clickedButton).removeClass("fa-chevron-right");
-	$("i", clickedButton).addClass("fa-chevron-down");
+	//change the caret to 'down'
+	$("i", clickedButton).removeClass("fa-caret-right");
+	$("i", clickedButton).addClass("fa-caret-down");
 
 	//if the tab is the schools map, focus on the search box after sweep in
 	if (clickedButtonName == "schools") {
@@ -88,16 +88,18 @@ function hideOpenTab() {
 	$("li").each(function() {
 		button = $(this);
 		//check if the tab is open, if so set state to closed and revert the 
-		//chevron to right and slide up the tab
+		//caret to right and slide up the tab
 		if (button.data('state') == 'open') {
 			buttonId = button.attr("id").split("-");
 			buttonName = buttonId[0];
 			tabName = "#" + buttonName + "-tab";
 			$(button).data('state', 'closed');
-			$("i", button).removeClass("fa-chevron-down");
-			$("i", button).addClass("fa-chevron-right");
+			$("i", button).removeClass("fa-caret-down");
+			$("i", button).addClass("fa-caret-right");
 			$(tabName).slideUp(250);
-			//delay = 250;
+			
+			//revert the tooltip text
+			button.attr('data-original-title','Click to find out more').tooltip('fixTitle').tooltip('hide');
 			//if the test tab is open need to close the test and revert to
 			//test landing tab for next time it is opened.
 			setTimeout(function() {
@@ -128,9 +130,9 @@ function hideOpenTab() {
 function changeBackground(clickedButton) {
 	var clickedButtonId = $(clickedButton).attr("id").split("-");
 	var clickedButtonName = clickedButtonId[0];
-	$(".top-section").css('background', 'url(assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
-	$(".top-section").css('background-size', 'cover');
-	$(".top-section").css('background-position', 'center');
+	$('.top-section').css('background', 'url(assets/images/background-' + clickedButtonName + '.jpg) no-repeat');
+	$('.top-section').css('background-size', 'cover');
+	$('.top-section').css('background-position', 'center');
 	$('.top-section--opaque-container').css('opacity','0.4');
 }
 

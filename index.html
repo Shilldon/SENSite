@@ -51,10 +51,10 @@
                 <span class="top-section--title-text visible-xs" id="top-section--hidden-title">Helping Your Child To Achieve Their Dreams</span>
                 <div class="navbar-collapse collapse col-xs-12" id="navbar">
                     <ul class="nav navbar-nav navbar-main">
-                        <li class="top-section--nav-list-button" id="about-button">About <span><i class="fa fa-chevron-right"></i></span></li>
-                        <li class="top-section--nav-list-button" id="data-button">School Data <i class="fa fa-chevron-right"></i></li>
-                        <li class="top-section--nav-list-button" id="test-button">Test <i class="fa fa-chevron-right"></i></li>
-                        <li class="top-section--nav-list-button" id="schools-button">School Locator <i class="fa fa-chevron-right"></i></li>
+                        <li class="top-section--nav-list-button" id="about-button" data-toggle="tooltip" data-placement="top" title="Click to find out more">About <span><i class="fa fa-caret-right"></i></span></li>
+                        <li class="top-section--nav-list-button" id="data-button" data-toggle="tooltip" data-placement="top" title="Click to find out more">School Data <i class="fa fa-caret-right"></i></li>
+                        <li class="top-section--nav-list-button" id="test-button" data-toggle="tooltip" data-placement="top" title="Click to find out more">Test <i class="fa fa-caret-right"></i></li>
+                        <li class="top-section--nav-list-button" id="schools-button" data-toggle="tooltip" data-placement="top" title="Click to find out more">School Map <i class="fa fa-caret-right"></i></li>
                     </ul>
                 </div>
             </nav>
@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" style="background-color:#7b3bfc; border-color: #9c6df9" type="button" data-toggle="dropdown">Display
+                                        <button class="btn btn-primary dropdown-toggle" id="data-tab--dropdown" type="button" data-toggle="dropdown">Display
                                         <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="#" class="data-tab--dropdown-select" id="data-tab--dropdown-select-pupils">Number of pupils per establishment</a></li>
@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 data-tab--chart" id="data-tab--chart"></div>
+                                    <div class="col-xs-12 col-sm-12 data-tab--chart" id="data-tab--chart-object"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -258,24 +258,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12 tab--menu-title">
-                                <h4>Take a test</h4>
+                            <div class="col-xs-12 hidden-xs tab--menu-title">
+                                <h2>Take a test</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 tab--menu-button-container">
-                                <h4><i class="fa fa-book"></i></h4>
-                                <h5>Literacy</h5>
+                                <h3><i class="fa fa-book"></i></h3>
+                                <h4>Literacy</h4>
                                 <button class="test-tab--test-button" id="button-literacy-select">Take Test</button>
                             </div>
                             <div class="col-sm-4 tab--menu-button-container">
-                                <h4><i class="fa fa-calculator"></i></h4>
-                                <h5>Numeracy</h5>
+                                <h3><i class="fa fa-calculator"></i></h3>
+                                <h4>Numeracy</h4>
                                 <button class="test-tab--test-button" id="button-numeracy-select">Take Test</button>
                             </div>
                             <div class="col-sm-4 tab--menu-button-container">
-                                <h4><i class="fas fa-brain"></i></h4>
-                                <h5>Memory</h5>
+                                <h3><i class="fas fa-brain"></i></h3>
+                                <h4>Memory</h4>
                                 <button class="test-tab--test-button" id="button-memory-select">Take Test</button>
                             </div>
                         </div>
@@ -285,7 +285,7 @@
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <h3>Literacy Test</h3>
-                                <p>You will be presented with 10 pictures and partly completed sentences. You need to type the missing word into the box where shown and click 'Submit' or press return.</p>
+                                <p>You will be presented with 10 jumbled sentences. You need to click the words to put them into the correct order and click 'Submit'. To remove a word from the sentence simply click on it.</p>
                                 <p>If you do not know the answer to a question you can click 'Skip'.</p>
                                 <p>If you want to leave the test click 'Back' to return to the test menu.</p>
                                 <p>The time it takes you to complete the test and the number of questions you answer correctly will determine your literacy score.</p>
@@ -330,7 +330,7 @@
                         <div class="row">
                             <div class="col-sm-2 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                                <button class="test-tab--test-button" id="button-literacy-back">Quit</button>
                             </div>
 
                             <div class="col-sm-4">
@@ -420,7 +420,7 @@
                         <div class="row">
                             <div class="col-sm-2 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                                <button class="test-tab--test-button" id="button-numeracy-back">Quit</button>
                             </div>
 
                             <div class="col-sm-4">
@@ -527,7 +527,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-4">
-                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                                <button class="test-tab--test-button" id="button-memory-back">Quit</button>
                             </div>
                         </div>
                     </section>
@@ -578,7 +578,7 @@
                                 Search using first part of postcode. <br>Use * at end to search range of postcodes.
                             </div>
                             <div class="row hidden-xs">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 schools-tab--school-information">
                                     <h3>School Details</h3>
                                     <p id="school-name">Select a school from the map for more information</p>
                                     <p id="school-type"></p>
@@ -599,7 +599,7 @@
                                 <div class="row">
                                     <ul>
                                         <li>
-                                            <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
+                                            <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><strike><i class="fas fa-puzzle-piece"></i></strike></p>
                                         </li>
                                         <li>
                                             <p id="disability-icon-SLD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Specific Learning Difficulty"><i class="fas fa-book-reader"></i></p>
@@ -624,6 +624,11 @@
                                             <p id="disability-icon-SLC" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Speech, Language And Communication"><i class="fas fa-meh-blank"></i></p>
                                         </li>
                                     </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Icon Key:<span style="color:grey"> Not supported</span> / <span style="color:#9c6df9"><strong>Supported</strong></span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

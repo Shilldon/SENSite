@@ -34,6 +34,9 @@ $(".top-section--nav-list-button").on("click", function() {
 	//ensure the nav button changes to 'contact' to enable user to bring back 
 	//contact form from any page.
 	else {
+	    //change the tooltip so the user knowns to click again to close the tab
+	    clickedButton.attr('data-original-title','Click to close').tooltip('fixTitle').tooltip('show');
+	    
 		hideContactForm();
 		hideOpenTab();
 		changeMenuButton("CONTACT", false);
@@ -88,6 +91,17 @@ $("#select-total-pupils").click(function() {
         renderChart(new_schools_dim);
     }
 });
+
+//dropdown menu to display different charts
+$('.data-tab--dropdown-select').click(function() {
+    var buttonId=$(this).attr('id').split("-");
+    var chart=buttonId[5];
+    //set local variable for chart type to be displayed
+    $("#data-tab--chart-object").attr("chart_type",chart);
+    initialiseForNextButtons();
+    defineChartData();
+})
+
 
 /*----- Test tab buttons -----*/
 
@@ -179,14 +193,4 @@ $('#map-address').keypress(function(e) {
     searchForSchool();
   }
 });
-
-$('.data-tab--dropdown-select').click(function() {
-    var buttonId=$(this).attr('id').split("-");
-    var chart=buttonId[5];
-    //set local variable for chart type to be displayed
-    $("#data-tab--chart").attr("chart_type",chart);
-    console.log(chart)
-    initialiseForNextButtons();
-    defineChartData();
-})
 

@@ -37,7 +37,7 @@ function defineChartData() {
         //display loading GIF
         $('#data-tab--chart-area img').css('display', 'block');
         //hide the chart
-        $('#data-tab--chart').css('display','none');
+        $('#data-tab--chart-object').css('display','none');
         queue()
             .defer(d3.csv, 'assets/data/schools.csv')
             .await(loadData);
@@ -59,7 +59,7 @@ function defineChartData() {
         //hide the loading gif
         $('#data-tab--chart-area img').css('display', 'none');
         //display the chart
-        $('#data-tab--chart').css('display','block');        
+        $('#data-tab--chart-object').css('display','block');        
         filterByPostcode(ndx, 0, 0);
     }
 }
@@ -190,7 +190,6 @@ function renderSENSelector(schoolData, postcode) {
                 else {
                     SEN = SEN.substring(0, SEN.indexOf('-'));
                 }
-                console.log(SEN)
                 return SEN;
             }
         }
@@ -203,8 +202,9 @@ function renderSENSelector(schoolData, postcode) {
 }
 
 function renderPhaseChart(schoolData) {
-    var rowChartHeight = $("#data-tab--chart").height();
-    var rowChartWidth = $("#data-tab--chart").width();
+    console.log("rendering phase chart")
+    var rowChartHeight = $("#data-tab--chart-object").height();
+    var rowChartWidth = $("#data-tab--chart-object").width();
     
     function initialisePhase() {
         return { phaseCount: 0 };
@@ -227,7 +227,7 @@ function renderPhaseChart(schoolData) {
 
 
     var total_schools_phase_balance = phase_balance_dim.group().reduce(addPhase, removePhase, initialisePhase);
-    var phaseBalanceChart = dc.rowChart('#data-tab--chart');
+    var phaseBalanceChart = dc.rowChart('#data-tab--chart-object');
 
     phaseBalanceChart
         .width(rowChartWidth)
@@ -244,14 +244,15 @@ function renderPhaseChart(schoolData) {
             phaseBalanceChart.selectAll('text')
                 .style('fill', 'black');
         });
-    
+ 
+    dc.renderAll();      
         
 }
 
 function renderPupilsChart(schoolData) {
     //get chart dimensions
-    var barChartWidth = $("#data-tab--chart").width();
-    var barChartHeight = $("#data-tab--chart").height();
+    var barChartWidth = $("#data-tab--chart-object").width();
+    var barChartHeight = $("#data-tab--chart-object").height();
 
 
     var schools_dim = schoolData.dimension(dc.pluck('EstablishmentName'));
@@ -293,7 +294,7 @@ function renderPupilsChart(schoolData) {
 
     var reduced_school_capacity = schools_dim.group().reduce(addSchool, removeSchool, initialiseSchool);
 
-    var numberOfPupilsChart = dc.barChart('#data-tab--chart');
+    var numberOfPupilsChart = dc.barChart('#data-tab--chart-object');
 
     if ($('#select-total-pupils').is(':checked')) {
         //display chart based on the total girls and boys at the school, showing, also remaining capacity
@@ -309,7 +310,7 @@ function renderPupilsChart(schoolData) {
             .x(d3.scale.ordinal())
             .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
-            .legend(dc.legend().x(50).y(0).itemHeight(15).gap(5))
+            .legend(dc.legend().x(50).y(5).itemHeight(15).gap(5))
             .elasticY(true)
             .yAxisLabel("Number of Pupils")
             .yAxis().ticks(10);
@@ -326,7 +327,7 @@ function renderPupilsChart(schoolData) {
             .x(d3.scale.ordinal())
             .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
-            .legend(dc.legend().x(50).y(0).itemHeight(15).gap(5))
+            .legend(dc.legend().x(50).y(5).itemHeight(15).gap(5))
             .elasticY(true)
             .yAxisLabel("Number of Pupils")
             .yAxis().ticks(10);
@@ -378,7 +379,7 @@ function renderPupilsChart(schoolData) {
 function renderDensityChart(schoolData) {
     //percentage calcs custom reduce
 
-    var pieChartHeight = $("#data-tab--chart").height();
+    var pieChartHeight = $("#data-tab--chart-object").height();
 
     function initialiseEstablishments() {
         return { schoolCount: 0, averagePupilDensity: 0, totalPupils: 0 };
@@ -407,14 +408,17 @@ function renderDensityChart(schoolData) {
         return p;
     }
 
+    var establishment_type_dim = schoolData.dimension(dc.pluck('TypeOfEstablishment (name)'));
     var total_pupils_per_establishment = establishment_type_dim.group().reduce(addEstablishment, removeEstablishment, initialiseEstablishments);
-    var pupilsPerEstablishmentChart = dc.pieChart('#data-tab--chart');
+    var pupilsPerEstablishmentChart = dc.pieChart('#data-tab--chart-object');
+    
     pupilsPerEstablishmentChart
         .height(pieChartHeight)
-        .radius(90)
-        .innerRadius(pieChartHeight / 5)
+        .radius(150)
+        .innerRadius(pieChartHeight /20)
         .transitionDuration(1500)
         .dimension(establishment_type_dim)
+        .legend(dc.legend().x(50).y(5).itemHeight(15).gap(5))
         .group(total_pupils_per_establishment)
         .valueAccessor(function(p) {
             return p.value.averagePupilDensity;
@@ -440,26 +444,16 @@ function renderDensityChart(schoolData) {
 
 //draw chart of number of pupils per school
 function renderChart(schoolData) {
-    var chartType=$("#data-tab--chart").attr("chart_type");
+    var chartType=$("#data-tab--chart-object").attr("chart_type");
     if(chartType==undefined) {
         chartType="pupils";
     }
     switch(chartType) {
         case "pupils": console.log("pupils"); renderPupilsChart(schoolData); break;    
-        case "density": renderDensityChart(schoolData); break;    
-        case "phase": renderPhaseChart(schoolData); break;    
+        case "density": console.log("density"); renderDensityChart(schoolData); break;    
+        case "phase":console.log("phase"); renderPhaseChart(schoolData); break;    
     }
-    
-
-
     $('.data-tab--chart-title').css('display', 'block');
-
-
-
-
-
- //   dc.renderAll("SEN-selector");
-  //  dc.renderAll("ofsted-selector");
 }
 
 /* For testing - function to print out contents of crossfilter

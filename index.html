@@ -28,13 +28,11 @@
         <!-- Navbar button and logo container section -->
         <section class="container-fluid top-section">
             <div class="row">
-                <div class="col-xs-12 top-section--opaque-container">
-                    &nbsp
-                </div>
+                <div class="col-xs-12 top-section--opaque-container"> </div>
             </div>
             <div class="row top-section--logo-container">
                 <div class="col-xs-12">
-                    <img src="assets/images/logo.png" id="logo"></img>
+                    <img src="assets/images/logo.png" id="logo" alt="logo">
                     <button type="button" class="navbar-toggle collapsed nav-button" id="menu-button" data-toggle="collapse" data-target="#navbar">
                     <span class="sr-only">Toggle navigation</span>
                         DISCOVER
@@ -64,7 +62,7 @@
         <section class="bottom-section container-fluid">
             <div class="row tabs-container">
                 <div class="col-xs-10 col-xs-offset-1" data-state="open" id="contact-form">
-                    <form action="">
+                    <form action="/index.html">
                         <div class="row">
                             <div class="col-xs-12 contact-form--title">
                                 <label>Contact us to discover more</label>
@@ -142,13 +140,13 @@
                         </div>
                         <div class="row about-tab--icon-container">
                             <div class="col-xs-4">
-                                <a href="https://www.patoss-dyslexia.org/" target="_blank"><img src="assets/images/patoss.jpg" class="bottom-section--about-tab--logo"></a>
+                                <a href="https://www.patoss-dyslexia.org/" target="_blank"><img src="assets/images/patoss.jpg" class="bottom-section--about-tab--logo" alt="Patoss logo"></a>
                             </div>
                             <div class="col-xs-4">
-                                <img src="assets/images/BDA.jpg">
+                                <img src="assets/images/BDA.jpg" alt="BDA logo">
                             </div>
                             <div class="col-xs-4">
-                                <img src="assets/images/sasc.jpg">
+                                <img src="assets/images/sasc.jpg" alt="SASC logo">
                             </div>
                         </div>
                     </div>
@@ -182,7 +180,7 @@
                                 Enter postcode:
                             </div>
                             <div class="col-xs-2 col-sm-1 no-padding">
-                                <input class="form-control" id="chart-address" type="textbox" maxlength="4" placeholder="Postcode">
+                                <input class="form-control" id="chart-address" type="text" maxlength="4" placeholder="Postcode">
                             </div>
                             <div class="col-xs-3 col-sm-1">
                                 Results:
@@ -202,9 +200,9 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-5 col-sm-3">Filter by Ofsted rating:</div>
-                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-ofsted">&nbsp</div>
+                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-ofsted"> </div>
                             <div class="col-xs-5 col-sm-3">Filter by SEN:</div>
-                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-SEN">&nbsp</div>
+                            <div class="col-xs-7 col-sm-3" id="data-tab--chart-selector-SEN"> </div>
                         </div>
 
                         <div class="row">
@@ -355,12 +353,17 @@
                     <section class="test-tab" id="test-tab--literacy-result">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3>Your Score:</h3>
+                                <h4>Your Score:</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 id="literacy-result"></h3>
+                                <h4 id="literacy-result"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <p>The graph below shows the standard deviation of national results. A score to the left of the red line this might indicate that you have educational needs should be diagnosed.</p>
                             </div>
                         </div>
                         <div class="row test-tab--result-chart-container">
@@ -428,32 +431,25 @@
                             </div>
                         </div>
 
-                        <!-- Numeracy test error modal -->
-                        <div id="numeracyErrorModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <!--        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-                                        <h4 class="modal-title">Error</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Enter a number as your answer.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </section>
                     <section class="test-tab" id="test-tab--numeracy-result">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3>Your Score:</h3>
+                                <h4>Your Score:</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 id="numeracy-result"></h3>
+                                <h4 id="numeracy-result"></h4>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <p>The graph below shows the standard deviation of national results. A score to the left of the red line this might indicate that you have educational needs should be diagnosed.</p>
+                            </div>
+                        </div>
+                        
                         <div class="row test-tab--result-chart-container">
                             <div class="col-xs-12 test-tab--result-chart" id="numeracy-result-chart">
                             </div>
@@ -534,14 +530,20 @@
                     <section class="test-tab" id="test-tab--memory-result">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3>Your Score:</h3>
+                                <h4>Your Score:</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 id="memory-result"></h3>
+                                <h4 id="memory-result"></h4>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <p>The graph below shows the standard deviation of national results. A score to the left of the red line this might indicate that you have educational needs should be diagnosed.</p>
+                            </div>
+                        </div>
+                        
                         <div class="row">
                             <div class="row test-tab--result-chart-container">
                                 <div class="col-xs-12 test-tab--result-chart" id="memory-result-chart">

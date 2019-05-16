@@ -33,7 +33,12 @@ function clearTest() {
 function checkAnswer(answer) {
     //error checking - if nothing or not a number, display error modal
     if (isNaN(answer) || answer == "") {
-        $('#error-message').text('Please enter digits only.');
+        if(answer=="") {
+            $('#error-message').text('Please enter your answer.');           
+        }
+        else {
+            $('#error-message').text('Please enter digits only.');           
+        }
         $("#errorModal").modal({
             show: 'true',
             backdrop: 'static',

@@ -37,7 +37,7 @@ function skipQuestion(testId) {
     //if total questions answered are less than 10 move to next question
     if (myVariable.QuestionNumber < 10) {
         nextQuestion(testId);
-       // $('#' + testId + '-answer').focus();
+        // $('#' + testId + '-answer').focus();
     }
     //otherwise after pause - display the result
     else {
@@ -67,7 +67,7 @@ function nextQuestion(testId) {
     }
     else if (testId == "literacy") {
         //set up array to receive list of words from master questions array
-        var thisQuestion=[];
+        var thisQuestion = [];
         //get the next array of words
         var wordsArray = myVariable.QuestionArray[myVariable.QuestionNumber];
         //change the question number at the top of the page
@@ -155,6 +155,7 @@ function renderResults(resultData, testResult) {
         .width(chartWidth)
         .height(chartHeight)
         .brushOn(false)
+        .margins({ top: 15, right: 50, bottom: 30, left: 50 })
         .on('renderlet', function(resultChart) {
             //cycle through points on line graph and highlight in red the point on the graph matching
             //the user's score
@@ -169,11 +170,21 @@ function renderResults(resultData, testResult) {
                         return "fill-opacity:0";
                     }
                 })
-                //ensure the dot is not removed on mouseover
+               //ensure the dot is not removed on mouseover
                 .on('mouseout.redhighlight', function(d) {
                     var scoreValue = d.data.key;
                     if (scoreValue == testResult) { $(this).attr('style', 'fill: red; fill-opacity:1'); }
                 });
+            resultChart.select('g')
+                .append("line")
+                .attr("style", "stroke:red")
+                .attr("x1", function(d) {
+                    console.log(d)
+                    return chartWidth/3
+                })
+                .attr("x2", chartWidth/3) 
+                .attr("y1", -chartHeight)
+                .attr("y2", 0);
         })
         .dimension(score_dim)
         .group(students_dim)
@@ -181,7 +192,32 @@ function renderResults(resultData, testResult) {
         .x(d3.scale.linear().domain([minScore, maxScore]))
         .xAxisLabel("Score")
         .yAxis().ticks(4);
+
     dc.renderAll();
+    var line = d3.svg.line().interpolate('linear');
+
+    function draw_verticals(chart, points) {
+        // merge
+        var selection = chart.g()
+            .select('g.chart-body')
+            .selectAll('path.horizontal')
+            .data(points)
+        // append
+        selection.enter()
+            .append('path')
+            .attr('class', 'horizontal reddot')
+            .attr('d', function(d) {
+                var x = chart.x()(d);
+                return line([
+                    [x, chart.y().range()[0]],
+                    [x, chart.y().range()[1]]
+                ]);
+            });
+        // remove
+        selection.exit().remove();
+    }
+
+    draw_verticals(resultChart, [10, 30]);
 }
 
 //shuffle array for memory and literacy questions 

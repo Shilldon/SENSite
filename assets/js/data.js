@@ -301,14 +301,13 @@ function renderPupilsChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 60, right: 50, bottom: 30, left: 70 })
+            .margins({ top: 60, right: 20, bottom: 15, left: 70 })
             .dimension(schools_dim)
             .group(boy_pupils_per_school, "Boys")
             .stack(girl_pupils_per_school, "Girls")
             .stack(reduced_school_capacity, "Remaining Spaces", function(d) { return d.value.capacity; })
             .transitionDuration(500)
             .x(d3.scale.ordinal())
-            .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
             .legend(dc.legend().x(50).y(5).itemHeight(15).gap(5))
             .elasticY(true)
@@ -320,12 +319,11 @@ function renderPupilsChart(schoolData) {
         numberOfPupilsChart
             .width(barChartWidth)
             .height(barChartHeight)
-            .margins({ top: 60, right: 50, bottom: 30, left: 70 })
+            .margins({ top: 60, right: 20, bottom: 10, left: 70 })
             .dimension(schools_dim)
             .group(school_capacity, "Total Capacity")
             .transitionDuration(500)
             .x(d3.scale.ordinal())
-            .xAxisLabel("School")
             .xUnits(dc.units.ordinal)
             .legend(dc.legend().x(50).y(5).itemHeight(15).gap(5))
             .elasticY(true)
@@ -348,11 +346,14 @@ function renderPupilsChart(schoolData) {
                 });
             numberOfPupilsChart.selectAll('g.x text')
                 .attr('transform', 'translate(-12.5,-120) rotate(270)')
-                .attr('full-name', function(d) { return d; })
+                .attr('full-name', function(d) {  return d; })
                 .attr('short-name', function(d) {
                     if (d.length > 30) {
                         return d.substr(0, 30) + '...';
                     }
+                })
+                .attr('style', function() {
+                    return $(this).attr('style')+' font-size:10px';
                 })
                 .text(function(d) {
                     if (d.length > 30) {

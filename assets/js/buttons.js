@@ -107,7 +107,7 @@ $('.data-tab--dropdown-select').click(function() {
 
 //events for buttons in test tab
 $(".test-tab--test-button").on("click", function() {
-    var buttonId = $(this).attr("id").split("-");
+    var buttonId = $(this).attr("data-buttonName").split("-");
     var action = buttonId[2];
     var testId = buttonId[1];
     switch (action) {

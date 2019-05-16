@@ -70,7 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label for="first-name">First Name</label>
+                                <label>First Name</label>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
@@ -80,7 +80,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label for="last-name">Last Name</label>
+                                <label>Last Name</label>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
@@ -207,7 +207,7 @@
 
                         <div class="row">
                             <div class="col-xs-col-10 col-xs-offset-1" id="data-tab--chart-area">
-                                <img src="assets/images/loading.gif">
+                                <img src="assets/images/loading.gif" alt="loading">
                                 <div class="row data-tab--schools-chart-info">
                                     <div class="col-xs-8 col-sm-4">
                                         Schools In Postcode Area:
@@ -235,13 +235,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2 col-sm-offset-1 tab--menu-button-container">
-                                    <button id="button-chart-plot-previous" style="display:none" min="0">Previous</button>
+                                    <button id="button-chart-plot-previous" style="display:none" data-min="0">Previous</button>
                                 </div>
                                 <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
                                     <button class="data-tab--chart-button" id="button-data-back">Back</button>
                                 </div>
                                 <div class="col-xs-4 col-sm-2 col-sm-offset-2 tab--menu-button-container">
-                                    <button id="button-chart-plot-next" style="display:none" max="25">Next</button>
+                                    <button id="button-chart-plot-next" style="display:none" data-max="25">Next</button>
                                 </div>
                             </div>
 
@@ -264,17 +264,17 @@
                             <div class="col-sm-4 tab--menu-button-container">
                                 <h3><i class="fa fa-book"></i></h3>
                                 <h4>Literacy</h4>
-                                <button class="test-tab--test-button" id="button-literacy-select">Take Test</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-select">Take Test</button>
                             </div>
                             <div class="col-sm-4 tab--menu-button-container">
                                 <h3><i class="fa fa-calculator"></i></h3>
                                 <h4>Numeracy</h4>
-                                <button class="test-tab--test-button" id="button-numeracy-select">Take Test</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-select">Take Test</button>
                             </div>
                             <div class="col-sm-4 tab--menu-button-container">
                                 <h3><i class="fas fa-brain"></i></h3>
                                 <h4>Memory</h4>
-                                <button class="test-tab--test-button" id="button-memory-select">Take Test</button>
+                                <button class="test-tab--test-button" data-buttonName="button-memory-select">Take Test</button>
                             </div>
                         </div>
                     </div>
@@ -292,10 +292,10 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-back">Back</button>
                             </div>
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-literacy-start">OK</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-start">OK</button>
                             </div>
                         </div>
                     </section>
@@ -322,17 +322,17 @@
                         <div class="row">
                             <div class="col-sm-4 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-literacy-submit">Submit</button>
+                                <button class="test-tab--test-button" id="button-literacy-submit" data-buttonName="button-literacy-submit">Submit</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-literacy-back">Quit</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-back">Quit</button>
                             </div>
 
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-literacy-skip">Skip</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-skip">Skip</button>
                             </div>
                         </div>
                         <!-- Literacy test error modal -->
@@ -372,7 +372,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4 center-text col-xs-offset-4">
-                                <button class="test-tab--test-button" id="button-literacy-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-literacy-back">Back</button>
                             </div>
                         </div>
                     </section>
@@ -390,10 +390,10 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-back">Back</button>
                             </div>
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-numeracy-start">OK</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-start">OK</button>
                             </div>
                         </div>
                     </section>
@@ -408,26 +408,26 @@
                                 <span id="numeracy-question"></span>
                             </div>
                             <div class="col-xs-2">
-                                <input class="test-tab--answer" id="numeracy-answer"></input>
+                                <input class="test-tab--answer" id="numeracy-answer">
                             </div>
                             <div class="col-xs-1">
-                                <img id="numeracy-answer-mark" src="">
+                                <img id="numeracy-answer-mark" src="assets/images/cross.png" alt="Answer mark">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-numeracy-submit">Submit</button>
+                                <button class="test-tab--test-button" id="button-numeracy-submit" data-buttonName="button-numeracy-submit">Submit</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 hidden-xs"></div>
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-numeracy-back">Quit</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-back">Quit</button>
                             </div>
 
                             <div class="col-sm-4">
-                                <button class="test-tab--test-button" id="button-numeracy-skip">Skip</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-skip">Skip</button>
                             </div>
                         </div>
 
@@ -449,7 +449,7 @@
                                 <p>The graph below shows the standard deviation of national results. A score to the left of the red line this might indicate that you have educational needs should be diagnosed.</p>
                             </div>
                         </div>
-                        
+
                         <div class="row test-tab--result-chart-container">
                             <div class="col-xs-12 test-tab--result-chart" id="numeracy-result-chart">
                             </div>
@@ -457,7 +457,7 @@
 
                         <div class="row">
                             <div class="col-xs-4  center-text col-xs-offset-4">
-                                <button class="test-tab--test-button" id="button-numeracy-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-numeracy-back">Back</button>
                             </div>
                         </div>
 
@@ -476,10 +476,10 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-memory-back">Back</button>
                             </div>
                             <div class="col-xs-6">
-                                <button class="test-tab--test-button" id="button-memory-start">OK</button>
+                                <button class="test-tab--test-button" data-buttonName="button-memory-start">OK</button>
                             </div>
                         </div>
                     </section>
@@ -491,39 +491,39 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2 test-tab--memory-test-container">
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
-                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png"></img>
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
+                                <img class="test-tab--memory-icon" src="assets/images/memory-1.png" alt="memory quiz icon">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-4">
-                                <button class="test-tab--test-button" id="button-memory-back">Quit</button>
+                                <button class="test-tab--test-button" data-buttonName="button-memory-back">Quit</button>
                             </div>
                         </div>
                     </section>
@@ -543,7 +543,7 @@
                                 <p>The graph below shows the standard deviation of national results. A score to the left of the red line this might indicate that you have educational needs should be diagnosed.</p>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="row test-tab--result-chart-container">
                                 <div class="col-xs-12 test-tab--result-chart" id="memory-result-chart">
@@ -552,7 +552,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4 center-text col-xs-offset-4">
-                                <button class="test-tab--test-button" id="button-memory-back">Back</button>
+                                <button class="test-tab--test-button" data-buttonName="button-memory-back">Back</button>
                             </div>
                         </div>
                     </section>
@@ -570,7 +570,7 @@
                                     Postcode:
                                 </div>
                                 <div class="col-xs-3">
-                                    <input class="form-control" id="map-address" type="textbox" maxlength="4" placeholder="Postcode">
+                                    <input class="form-control" id="map-address" type="text" maxlength="4" placeholder="Postcode">
                                 </div>
                                 <div class="col-xs-3">
                                     <input class="form-control" id="map-submit" type="button" value="Search">
@@ -601,7 +601,7 @@
                                 <div class="row">
                                     <ul>
                                         <li>
-                                            <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><strike><i class="fas fa-puzzle-piece"></i></strike></p>
+                                            <p id="disability-icon-ASD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Autistic Spectrum Disorder"><i class="fas fa-puzzle-piece"></i></p>
                                         </li>
                                         <li>
                                             <p id="disability-icon-SLD" class="schools-tab--disabilities-icon" data-toggle="tooltip" data-placement="top" title="Specific Learning Difficulty"><i class="fas fa-book-reader"></i></p>
@@ -634,14 +634,12 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="col-sm-6">
                             <div id="map"></div>
                         </div>
                     </div>
+                </article>
             </div>
-            </article>
 
             <!-- Generic Error Modal -->
             <div id="errorModal" class="modal fade" role="dialog">
@@ -658,30 +656,31 @@
             </div>
         </section>
 
-    </div>
-    <footer class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 social-list">
-                <ul>
-                    <li><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a target="_blank" href="#"><i class="fab fa-youtube"></i></a></li>
-                    <li>
-                        <a href="mailto:?Subject=Anne%20Trainer%20SEN%20Consultancy&amp;Body=I%20think%20you%20will%20benefit%20from%20Anne%20Trainer%20SEN%Consultancy%20service%20https://shilldon.github.io/SEN/" "><i class="fas fa-share "></i></a></li>
-                </ul>
+        <footer class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 social-list">
+                    <ul>
+                        <li><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li>
+                            <a href='mailto:?Subject=Anne Trainer SEN Consultancy&amp;Body=I think you will benefit from Anne Trainer SEN Consultancy service https://shilldon.github.io/SENSite/'><i class="fas fa-share "></i></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </div>
 </body>
+
+<!--external scripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa " crossorigin="anonymous "></script>
-<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js "></script>
-<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js "></script>
-<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa " crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js "></script>
 
 
-<!--Jasmine framework-->
+<!--Jasmine testing framework-->
 <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js "></script>
@@ -690,17 +689,17 @@
 
 
 <!--local scripts-->
-<script type="text/javascript " src="assets/js/queue.min.js "></script>
-<script type="text/javascript " src="assets/js/initvars.js "></script>
-<script type="text/javascript " src="assets/js/animations.js "></script>
-<script type="text/javascript " src="assets/js/buttons.js "></script>
-<script type="text/javascript " src="assets/js/calculator.js "></script>
-<script type="text/javascript " src="assets/js/tests.js "></script>
-<script type="text/javascript " src="assets/js/numeracy-test.js "></script>
-<script type="text/javascript " src="assets/js/memory-test.js "></script>
-<script type="text/javascript " src="assets/js/literacy-test.js "></script>
-<script type="text/javascript " src="assets/js/maps.js "></script>
-<script type="text/javascript " src="assets/js/data.js "></script>
+<script src="assets/js/queue.min.js "></script>
+<script src="assets/js/initvars.js "></script>
+<script src="assets/js/animations.js "></script>
+<script src="assets/js/buttons.js "></script>
+<script src="assets/js/calculator.js "></script>
+<script src="assets/js/tests.js "></script>
+<script src="assets/js/numeracy-test.js "></script>
+<script src="assets/js/memory-test.js "></script>
+<script src="assets/js/literacy-test.js "></script>
+<script src="assets/js/maps.js "></script>
+<script src="assets/js/data.js "></script>
 
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js "></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UTwrPWlwTVB0qWHXeaZIRhpcwf8nP-U&libraries=places&callback=initMap "></script>

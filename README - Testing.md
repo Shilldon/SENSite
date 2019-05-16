@@ -48,7 +48,7 @@ Data shown for schools on maps and sidebar checked against random samples from C
 On introduction of main csv further testing was undertaken against random fake and real postcodes.
 
 ### Mobile first design
-Site tested using Google Developer Tools, resizing viewport to various resolutions:<br>
+Site tested using Google Developer Tools and screenfly (http://quirktools.com/screenfly), resizing viewport to various resolutions:<br>
  - Desktop - 1280x1024,
  - Galaxy S5 360x640, 
  - iPad - vertical 768x1024, 
@@ -57,6 +57,7 @@ Site tested using Google Developer Tools, resizing viewport to various resolutio
  - iPhone7/6/8 375x667,
  - iPhoneX 375x812,
  - Laptop 1366x768
+
 to ensure design responded appropriately.
 NB data tab chart responsiveness while appearing correctly on tested screen sizes does not respond on changing screen size due to limitation of D3 charting.
 Further due to limitations on smaller screens charts do not display well and desktop/laptop is recommended for viewing.
@@ -68,3 +69,4 @@ After publishing to GitHub pages user feedback was requested and acted upon. Fee
 - Buttons appearing offscreen
 - Incorrect instructions for literacy test
 - Relabelling buttons for better user experience and to avoid confusion
+- Adding interpretation of results graph for tests

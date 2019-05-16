@@ -175,15 +175,13 @@ function renderResults(resultData, testResult) {
                     var scoreValue = d.data.key;
                     if (scoreValue == testResult) { $(this).attr('style', 'fill: red; fill-opacity:1'); }
                 });
-            resultChart.select('g')
+            //draw a vertical line at lower 1/3rd of chart to represent area under which SEN might be applicable  
+            resultChart.select('.axis.x')
                 .append("line")
                 .attr("style", "stroke:red")
-                .attr("x1", function(d) {
-                    console.log(d)
-                    return chartWidth/3
-                })
-                .attr("x2", chartWidth/3) 
-                .attr("y1", -chartHeight)
+                .attr("x1", resultChart.effectiveWidth()/3)
+                .attr("x2", resultChart.effectiveWidth()/3) 
+                .attr("y1", -resultChart.effectiveHeight())
                 .attr("y2", 0);
         })
         .dimension(score_dim)
@@ -194,30 +192,6 @@ function renderResults(resultData, testResult) {
         .yAxis().ticks(4);
 
     dc.renderAll();
-    var line = d3.svg.line().interpolate('linear');
-
-    function draw_verticals(chart, points) {
-        // merge
-        var selection = chart.g()
-            .select('g.chart-body')
-            .selectAll('path.horizontal')
-            .data(points)
-        // append
-        selection.enter()
-            .append('path')
-            .attr('class', 'horizontal reddot')
-            .attr('d', function(d) {
-                var x = chart.x()(d);
-                return line([
-                    [x, chart.y().range()[0]],
-                    [x, chart.y().range()[1]]
-                ]);
-            });
-        // remove
-        selection.exit().remove();
-    }
-
-    draw_verticals(resultChart, [10, 30]);
 }
 
 //shuffle array for memory and literacy questions 

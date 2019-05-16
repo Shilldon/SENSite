@@ -13,7 +13,7 @@ Anne's objectives are to:<br>
 5 - provide data to actual and potential clients on schools local to their area or nationally to help them identify a school suitable for their child;<br>
 6 - provide information on schools size, SEN offering, pupil ratios, funding types, and Ofted ratings from national government database;<br>
 7 - enable clients, to an extent, self-diagnose learning difficulties in the areas of literacy, numeracy and memory;<br>
-8 - show locations of and information about schools locally and nationally to actual and potential clients and provide links to those schools; 
+8 - show locations of and information about schools locally and nationally to actual and potential clients and provide links to those schools;<br>
 9 - maintain consistent branding across the webpage;<br>
 10 - keep actual and potential clients on the site by offering an interactive experience; <br>
 11 - enable actual and potential clients to easily contact her with bookings or enquiries;<br>

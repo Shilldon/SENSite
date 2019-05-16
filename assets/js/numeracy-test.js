@@ -47,6 +47,7 @@ function checkAnswer(answer) {
         //fade out error modal
         setTimeout(function() {
             $("#errorModal").modal('hide');
+            $("#button-numeracy-submit").removeAttr("disabled");
             $("#numeracy-answer").focus();
 
         }, 2000);
@@ -75,7 +76,6 @@ function checkAnswer(answer) {
             myVariable.DisplayResult = setTimeout(function() { reportScore("numeracy"); }, 1500);
         }
     }
-    $("#button-numeracy-submit").removeAttr("disabled");
 }
 
 var query;

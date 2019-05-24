@@ -233,7 +233,7 @@ function renderPhaseChart(schoolData) {
         .width(rowChartWidth)
         .height(rowChartHeight)
         .x(d3.scale.linear().domain([0, 10]))
-        .ordinalColors(['#6d23ff', '#7b3bfc', '#9c6df9'])
+        .ordinalColors(["#56048C", "#C866F2", "#C391D9"])
         .elasticX(true)
         .dimension(phase_balance_dim)
         .group(total_schools_phase_balance)
@@ -331,7 +331,7 @@ function renderPupilsChart(schoolData) {
             .yAxis().ticks(10);
     }
     numberOfPupilsChart
-        .ordinalColors(["#7b3bfc", "#884ffb", "#9c6df9"])
+        .ordinalColors(["#56048C", "#C866F2", "#C391D9"])
         .on('renderlet', function(numberOfPupilsChart) {
             numberOfPupilsChart.selectAll('rect.bar')
                 .on("mouseover.namechange", function(d) {
@@ -424,7 +424,7 @@ function renderDensityChart(schoolData) {
         .valueAccessor(function(p) {
             return p.value.averagePupilDensity;
         })
-        .ordinalColors(['#6d23ff', '#7b3bfc', '#8b54fb', '#884ffb', '#9c6df9'])
+        .ordinalColors(['#56048C', '#9126BF', '#C866F2', '#C391D9', '#F2D8EE'])
         .on('pretransition', function(pupilsPerEstablishmentChart) {
             pupilsPerEstablishmentChart.selectAll('text.pie-slice')
                 .text(function(d) {

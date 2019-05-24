@@ -39,10 +39,10 @@ function animateContactInformation() {
 //dark purple when de-pressed and nav bar is hidden or contact button is showing
 function changeMenuButtonColor(bool) {
 	if (bool === true) {
-		$("#menu-button").css('background-color', '#6d23ff');
+		$("#menu-button").removeClass("menu-button-active").addClass("menu-button-inactive");
 	}
 	else {
-		$("#menu-button").css("background-color", "#9c6df9");
+		$("#menu-button").removeClass("menu-button-inactive").addClass("menu-button-active");
 	}
 }
 

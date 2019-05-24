@@ -207,7 +207,10 @@ function drawMarker(markerInfo) {
   var marker = new google.maps.Marker({
     position: schoolPosition,
     title: markerInfo[2],
-    icon: 'assets/images/purple-pushpin.png',
+    icon: {
+      url: 'assets/images/purple-pushpin.png',
+      scaledSize: new google.maps.Size(30, 30)
+    },
     type: markerInfo[3],
     educationPhase: markerInfo[4],
     schoolWebsite: markerInfo[5],
@@ -257,46 +260,46 @@ function drawMarker(markerInfo) {
     if (marker.schoolHead != "") { $("#school-head").text("Head: " + marker.schoolHead); }
     if (marker.schoolTelephone != "") { $("#school-telephone").text(marker.schoolTelephone); }
     if (marker.offstedRating > 0) {
-      $("#school-rating").html('<p>Offsted Rating: <img class="map--marker-stars" style="width:20%" src="assets/images/rating-' + marker.offstedRating + '.png"</p>');
+      $("#school-rating").html('<p>Offsted Rating: <img class="map--marker-stars" src="assets/images/rating-' + marker.offstedRating + '.png"</p>');
       $("#school-rating").css('display', 'inline-block');
     }
     else { $("#school-rating").css('display', 'none'); }
-    var icon;
+    var disabilityIcon;
     //check special needs catered for at school, highlight appropriate icons
     for (i = 0; i < 13; i++) {
       switch (marker.SEN[i]) {
         case "AS":
-          icon = "#disability-icon-ASD";
+          disabilityIcon = "#disability-icon-ASD";
           break;
         case "Sp":
-          icon = "#disability-icon-SLD";
+          disabilityIcon = "#disability-icon-SLD";
           break;
         case "ML":
-          icon = "#disability-icon-LD";
+          disabilityIcon = "#disability-icon-LD";
           break;
         case "SL":
-          icon = "#disability-icon-LD";
+          disabilityIcon = "#disability-icon-LD";
           break;
         case "PM":
-          icon = "#disability-icon-LD";
+          disabilityIcon = "#disability-icon-LD";
           break;
         case "PD":
-          icon = "#disability-icon-PD";
+          disabilityIcon = "#disability-icon-PD";
           break;
         case "SE":
-          icon = "#disability-icon-SEMH";
+          disabilityIcon = "#disability-icon-SEMH";
           break;
         case "HI":
-          icon = "#disability-icon-HI";
+          disabilityIcon = "#disability-icon-HI";
           break;
         case "VI":
-          icon = "#disability-icon-VI";
+          disabilityIcon = "#disability-icon-VI";
           break;
         case "SL":
-          icon = "#disability-icon-SLC";
+          disabilityIcon = "#disability-icon-SLC";
           break;
       }
-      colourInIcon(icon);
+      colourInIcon(disabilityIcon);
     }
   });
   myVariable.Markers.push(marker);
@@ -304,12 +307,8 @@ function drawMarker(markerInfo) {
 }
 
 //change color of icon to display providing information on SEN
-function colourInIcon(icon) {
-  $(icon).css({
-    'transition-duration': '1s',
-    'color': '#e1e1e1',
-    'background-color': '#9c6df9'
-  });
+function colourInIcon(disabilityIcon) {
+  $(disabilityIcon).removeClass("schools-tab--disabilities-icon-inactive").addClass("schools-tab--disabilities-icon-active");
 }
 
 //initialise map to starting location
@@ -318,9 +317,6 @@ function initMap() {
     center: { lat: 51.401672, lng: -1.324373 },
     zoom: 13,
     disableDefaultUI: true,
-    styles: [
-      { elementType: 'geometry', styles: [{ color: '#6d23ff' }] }
-    ]
   });
 }
 
@@ -341,6 +337,5 @@ function clearSchoolDetails() {
   $("#school-telephone").text("");
   $("#school-head").text("");
   $("#school-rating").text("");
-  $("p[id^='disability-icon']").css("color", "grey");
-  $("p[id^='disability-icon']").css("background-color", "transparent");
+  $("p[id^='disability-icon']").removeClass("schools-tab--disabilities-icon-active").addClass("schools-tab--disabilities-icon-inactive");
 }

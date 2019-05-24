@@ -39,13 +39,13 @@ body {
 footer {
   height: 5vh;
   max-height: 5vh;
-  background-image: linear-gradient(#6d23ff, #9c6df9); }
+  background-image: linear-gradient(#56048C, #C391D9); }
 
 .tooltip.top .tooltip-inner {
-  background-color: #6d23ff; }
+  background-color: #56048C; }
 
 .tooltip.top > .tooltip-arrow {
-  border-top-color: #6d23ff; }
+  border-top-color: #56048C; }
 
 /*----- LOGO AND TITLE -----*/
 .top-section--opaque-container {
@@ -79,9 +79,8 @@ footer {
   top: 15px;
   width: 75px;
   color: #e1e1e1;
-  border: 2px solid black;
+  border: 2px solid #e1e1e1;
   border-radius: 10%;
-  background-color: #6d23ff;
   transition: ease-in-out 0.25s;
   transform: scale(1, 1); }
 .top-section .nav-button:active {
@@ -96,14 +95,23 @@ footer {
   margin-right: 0;
   width: 150px;
   height: 100px;
-  max-width: 22.5vh;
-  max-height: 15vh;
-  transform: translate(0%, 10%); }
+  max-width: 21vh;
+  max-height: 14vh;
+  transform: translate(0%, 10%);
+  border: 5px solid white;
+  border-radius: 5%;
+  background-image: linear-gradient(rgba(86, 4, 140, 0.5), rgba(195, 145, 217, 0.5)); }
 
 .logo-animation {
   animation: animate-logo 2s; }
 
 /*----- MENU BAR -----*/
+.menu-button-active {
+  background-color: #C866F2; }
+
+.menu-button-inactive {
+  background-color: #56048C; }
+
 .navbar-container {
   height: 5vh;
   max-height: 5vh; }
@@ -113,7 +121,7 @@ footer {
   box-shadow: none;
   height: 5vh; }
   #navbar ul {
-    background-image: linear-gradient(#6d23ff, #9c6df9);
+    background-image: linear-gradient(#56048C, #C391D9);
     height: 100%;
     margin-bottom: 0;
     margin-top: 0; }
@@ -135,22 +143,22 @@ footer {
 
 /*----- NAVIGATION TABS -----*/
 #about-tab {
-  color: #6d23ff; }
+  color: #56048C; }
 
 #data-tab {
-  color: #7b3bfc; }
+  color: #9126BF; }
 
 #test-tab {
-  color: #884ffb; }
+  color: #9126BF; }
 
 #schools-tab {
-  color: #9c6df9; }
+  color: #9126BF; }
 
 .tabs-container {
   height: 100%; }
 
 .tab {
-  border: 2px solid #6d23ff;
+  border: 2px solid #56048C;
   background-color: #e1e1e1;
   height: 100%;
   display: none;
@@ -186,7 +194,7 @@ footer {
   width: 80vw;
   height: 48vh;
   overflow: auto;
-  border: solid 2px #7b3bfc;
+  border: solid 2px #9126BF;
   margin-top: 10px;
   margin-bottom: 10px; }
   #data-tab--chart-area img {
@@ -204,11 +212,11 @@ footer {
   line-height: 10px;
   font-size: 10px;
   margin-left: 5px;
-  background-color: #7b3bfc;
-  border-color: #9c6df9; }
+  background-color: #9126BF;
+  border-color: #9126BF; }
 #data-tab--dropdown:hover:active:focus {
-  background-color: #9c6df9;
-  border-color: #7b3bfc; }
+  background-color: #9126BF;
+  border-color: #9126BF; }
 
 .dropdown-menu {
   font-size: 10px;
@@ -270,13 +278,13 @@ footer {
   .test-tab--answer {
     width: 100%; }
   .test-tab--test-button {
-    background-color: #884ffb;
+    background-color: #9126BF;
     color: #e1e1e1;
     transition: 0.3s ease-in-out;
     outline: none;
     width: 50%; }
   .test-tab--test-button:active {
-    color: #884ffb;
+    color: #9126BF;
     background-color: #e1e1e1;
     transition: 0.3s ease-in-out; }
   .test-tab--question {
@@ -289,7 +297,7 @@ footer {
     flex-wrap: wrap;
     height: 13vh;
     max-height: 13vh;
-    border: solid 2px #884ffb;
+    border: solid 2px #9126BF;
     font-family: 'Indie Flower', cursive;
     font-size: 18px;
     margin: 0 10px 0 10px;
@@ -335,7 +343,7 @@ footer {
   .test-tab--result-chart {
     height: 35vh;
     width: 90vw;
-    border: solid 4px #884ffb; }
+    border: solid 4px #9126BF; }
     .test-tab--result-chart svg {
       position: absolute;
       left: 50%;
@@ -350,7 +358,8 @@ footer {
 #schools-tab {
   padding-top: 10px; }
   #schools-tab input {
-    font-size: 10px; }
+    height: 16px;
+    font-size: 1.75vh; }
 
 #school-info {
   font-size: 1.75vh; }
@@ -369,21 +378,32 @@ footer {
   .schools-tab--disabilities li {
     display: inline-block;
     padding: 0 5px 0 5px; }
+  .schools-tab--disabilities span {
+    color: grey; }
+  .schools-tab--disabilities strong {
+    color: #9126BF; }
 .schools-tab--disabilities-icon {
-  color: grey;
-  border: solid 2px #9c6df9;
   border-radius: 50%;
-  padding: 10px; }
+  padding: 10px;
+  transition-duration: 1s; }
+.schools-tab--disabilities-icon-active {
+  color: #e1e1e1;
+  background-color: #9126BF;
+  border: solid 2px #e1e1e1; }
+.schools-tab--disabilities-icon-inactive {
+  color: grey;
+  border: solid 2px #9126BF;
+  background-color: #e1e1e1; }
 .schools-tab--school-details input {
   width: 100%;
   padding: 0px;
-  font-size: 18px;
+  font-size: 14px;
   height: 26px;
-  color: #9c6df9; }
+  color: #9126BF; }
 
 /*----- map within schools tab -----*/
 #map {
-  border: solid 2px #9c6df9;
+  border: solid 2px #9126BF;
   height: 50vh; }
 
 .map--marker-stars {
@@ -395,8 +415,8 @@ footer {
   font-family: 'Roboto', sans-serif;
   color: #e1e1e1;
   margin-top: 20px;
-  background-color: rgba(109, 35, 255, 0.7);
-  border: solid 4px #9c6df9;
+  background-color: rgba(86, 45, 140, 0.7);
+  border: solid 4px #e1e1e1;
   border-radius: 2%;
   padding-top: 20px;
   padding-bottom: 20px; }
@@ -422,7 +442,7 @@ footer {
 
 /*----- MODAL -----*/
 #errorModal {
-  color: #6d23ff; }
+  color: #56048C; }
 
 /*----- FOOTER -----*/
 .social-list {
@@ -467,13 +487,13 @@ footer {
     color: black; }
 
 /*----- MEDIA QUERIES -----*/
-@media (min-height: 768px) and (max-height: 1023px) and (min-width: 768px) {
+@media (max-height: 1024px) and (min-width: 767px) {
   body {
     font-size: 15px; }
 
   #logo {
-    width: 200px;
-    height: 133.33333px; }
+    width: 25.5vh;
+    height: 17vh; }
 
   .top-section--title-text {
     font-size: 24px; }
@@ -483,22 +503,18 @@ footer {
     .data-tab--chart-section input {
       width: 100%;
       padding: 0px;
-      font-size: 18px;
+      font-size: 14px;
       height: 26px; }
 
   .dc-chart .axis text {
-    font: 14px sans-serif; }
-
-  .schools-tab--school-information {
-    height: 30vh;
-    overflow-y: auto; } }
-@media (min-height: 1024px) and (min-width: 768px) {
+    font: 14px sans-serif; } }
+@media (min-height: 1024px) and (min-width: 767px) {
   body {
     font-size: 20px; }
 
   #logo {
-    width: 400px;
-    height: 266.66667px; }
+    width: 25.5vh;
+    height: 17vh; }
 
   .top-section--title-text {
     font-size: 33px; }
@@ -508,13 +524,8 @@ footer {
     height: 42px;
     font-size: 25px; }
 
-  #schools-tab {
-    font-size: 18px; }
-    #schools-tab input {
-      font-size: 15px; }
-
   .data-tab--chart-section input {
-    font-size: 16px;
+    font-size: 14px;
     height: 24px; } }
 @media (min-width: 768px) {
   .top-section {
@@ -541,7 +552,7 @@ footer {
     padding-right: 0;
     transform: translate(0, 100vh); }
     #navbar ul {
-      background-image: linear-gradient(#6d23ff, #9c6df9);
+      background-image: linear-gradient(#56048C, #C391D9);
       margin-bottom: 0;
       width: 100%; }
     #navbar ul li {
@@ -561,12 +572,12 @@ footer {
     transform: translate(-100%, 0); }
 
   #data-tab--dropdown {
-    line-height: 20px;
-    font-size: 20px;
+    line-height: 14px;
+    font-size: 14px;
     margin-left: 5px; }
 
   .dropdown-menu {
-    font-size: 18px; }
+    font-size: 14px; }
 
   .test-tab--literacy-word {
     font-size: 30px; }
@@ -581,8 +592,12 @@ footer {
   .schools-tab--school-details {
     padding-left: 15px; }
 
+  .schools-tab--school-information {
+    height: 30vh;
+    overflow-y: auto; }
+
   #school-info {
-    border: solid 2px #9c6df9;
+    border: solid 2px #9126BF;
     height: 59vh; }
 
   #map {

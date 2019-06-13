@@ -495,7 +495,7 @@ $value in $tab-colors {
     padding-top: 10px;
 
     input {
-        height:16px;
+        line-height: 2vh;
         font-size: 1.75vh;
     }
 }
@@ -565,7 +565,7 @@ $value in $tab-colors {
 }
 
 .map--marker-stars {
-    width: 50%;
+    width: 20%;
 }
 
 /*----- CONTACT FORM -----*/
@@ -834,7 +834,7 @@ $value in $tab-colors {
     }
 
     .schools-tab--school-information {
-        height: 30vh;
+        height: 20vh;
         overflow-y: auto;
     }
 

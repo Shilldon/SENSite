@@ -364,7 +364,7 @@ footer {
 #schools-tab {
   padding-top: 10px; }
   #schools-tab input {
-    height: 16px;
+    line-height: 2vh;
     font-size: 1.75vh; }
 
 #school-info {
@@ -413,7 +413,7 @@ footer {
   height: 50vh; }
 
 .map--marker-stars {
-  width: 50%; }
+  width: 20%; }
 
 /*----- CONTACT FORM -----*/
 #contact-form {
@@ -599,7 +599,7 @@ footer {
     padding-left: 15px; }
 
   .schools-tab--school-information {
-    height: 30vh;
+    height: 20vh;
     overflow-y: auto; }
 
   #school-info {

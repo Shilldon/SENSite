@@ -1,3 +1,9 @@
+
+//function used by the numeracy test to generate answers
+//Each question comprises three numbers and two operators, generated randomly.
+//Prototypes are created for the operators (+, - and *)
+//For simplicity division has not been implemented.
+
 var Calculator = function(numberThree) {
     this.value = numberThree;
     return this.value;

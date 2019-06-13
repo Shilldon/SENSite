@@ -1,6 +1,9 @@
+//User can select how many results to display per chart.
+//If the total results exceed the user's specified maximum then the next and previous buttons
+//enable the user to scroll through the results.
+
 $('#button-chart-plot-previous').on("click", function() {
     var change = parseInt($('#button-chart-plot-next').attr('change'));
-
     var min = parseInt($('#button-chart-plot-previous').attr('min'));
     min = min - change;
     $('#button-chart-plot-previous').attr('min', parseInt(min));
@@ -22,7 +25,9 @@ $('#button-chart-plot-next').on("click", function() {
     defineChartData();
 });
 
+
 //set initial values of next and previous buttons for displaying schools on charts
+//in order to ensure the correct results are displayed on clicking the buttons
 function initialiseForNextButtons() {
         $('#button-chart-plot-previous').attr('min', 1);
         var maxValue = $("#max-results").val();
@@ -34,7 +39,8 @@ function initialiseForNextButtons() {
 function defineChartData() {
     var postcode = $('#chart-address').val();
     if (postcode != "") {
-        //display loading GIF
+        //There could be a large number of results and while they are processed display an
+        //indication to the user that data is being processed by showing the "loading GIF"
         $('#data-tab--chart-area img').css('display', 'block');
         //hide the chart
         $('#data-tab--chart-object').css('display','none');
@@ -42,6 +48,7 @@ function defineChartData() {
             .defer(d3.csv, 'assets/data/schools.csv')
             .await(loadData);
     }
+    //if the user fails to provide a valid postcode display an error
     else {
         $('#error-message').text('Please enter a postcode.');
         $("#errorModal").modal({
@@ -56,7 +63,7 @@ function defineChartData() {
 
     function loadData(error, schoolData) {
         var ndx = crossfilter(schoolData);
-        //hide the loading gif
+        //hide the loading gif after the data is loaded
         $('#data-tab--chart-area img').css('display', 'none');
         //display the chart
         $('#data-tab--chart-object').css('display','block');        
@@ -97,6 +104,7 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     //filter dimension to exclude postcodes that do not partial match user submitted postcode
     //and schools that are closed
     //and schools that provide no information on pupil numbers
+    //in order to generate meaningful results
     local_schools_dim.filter(function(d) {
         //count the results and filter those records that exceed the max or fall below the minimm record number
         //this ensures not too many results are displayed on the chart
@@ -123,6 +131,8 @@ function filterByPostcode(schoolData, minCount, maxCount) {
     schoolData.remove();
     local_schools_dim.filter(null);
     var resultsRange = $("#button-chart-plot-next").attr('change');
+    //need to show or hide next and previous buttons depending on whether the results exceed the user
+    //specified maximum
     if (count > maxCount) {
         $("#button-chart-plot-next").show();
     }
@@ -201,6 +211,9 @@ function renderSENSelector(schoolData, postcode) {
         .group(SENSelector);
 }
 
+
+//This displays a Pie chart to provided the user with information on the total number of schools 
+//at each educational phase in the searched area (e.g. nursery, secondary etc)
 function renderPhaseChart(schoolData) {
     console.log("rendering phase chart")
     var rowChartHeight = $("#data-tab--chart-object").height();
@@ -233,6 +246,7 @@ function renderPhaseChart(schoolData) {
         .width(rowChartWidth)
         .height(rowChartHeight)
         .x(d3.scale.linear().domain([0, 10]))
+        //choose easy to distinguish ordinal colours
         .ordinalColors(["#56048C", "#C866F2", "#C391D9"])
         .elasticX(true)
         .dimension(phase_balance_dim)
@@ -240,6 +254,7 @@ function renderPhaseChart(schoolData) {
         .valueAccessor(function(d) {
             return d.value.phaseCount;
         })
+        //need to ensure the correct colour text for ease of reading
         .on('pretransition', function(phaseBalanceChart) {
             phaseBalanceChart.selectAll('text')
                 .style('fill', 'black');
@@ -249,8 +264,11 @@ function renderPhaseChart(schoolData) {
         
 }
 
+
+//This chart displays the number of pupils at each school in the searched postcode which the user
+//can choose to show broken down between gender
 function renderPupilsChart(schoolData) {
-    //get chart dimensions
+    //get chart size to ensure the chart is displayed properly in the viewing area.
     var barChartWidth = $("#data-tab--chart-object").width();
     var barChartHeight = $("#data-tab--chart-object").height();
 
@@ -377,6 +395,8 @@ function renderPupilsChart(schoolData) {
     dc.renderAll();      
 }
 
+//This chart displays the percentage of pupils in the searched postcode that attend different types of funded schools
+//e.g. state or private funded.
 function renderDensityChart(schoolData) {
     //percentage calcs custom reduce
 
@@ -457,20 +477,4 @@ function renderChart(schoolData) {
     $('.data-tab--chart-title').css('display', 'block');
 }
 
-/* For testing - function to print out contents of crossfilter
-function print_filter(filter) {
-    var f = eval(filter);
-    if (typeof(f.length) != "undefined") {}
-    else {}
-    if (typeof(f.top) != "undefined") { f = f.top(Infinity); }
-    else {}
-    if (typeof(f.dimension) != "undefined") { f = f.dimension(function(d) { return ""; }).top(Infinity); }
-    else {}
-    console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
-}*/
 
-/*For testing - function to print out contents of dimension
-    /*    dimData = establishment_type_dim.top(Infinity);
-        dimData.forEach(function(x) {
-            //        console.log(JSON.stringify(x));
-        });*/

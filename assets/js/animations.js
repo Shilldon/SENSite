@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 //sweep down and show the tab that is clicked on
 function showTab(clickedButton) {
-	//get the name of the tab that was clicked on
+	//get the name of the tab that was clicked on in order to determine the correct tab is opened
 	var clickedButtonId = $(clickedButton).attr("id").split("-");
 	var clickedButtonName = clickedButtonId[0];
 	var clickedTabName = "#" + clickedButtonName + "-tab";
@@ -62,7 +62,7 @@ function showTab(clickedButton) {
 	//set the tab state to open
 	$(clickedButton).data('state', 'open');
 
-	//change the caret to 'down'
+	//change the caret to 'down' so the user can clearly see which tab is displaying
 	$("i", clickedButton).removeClass("fa-caret-right");
 	$("i", clickedButton).addClass("fa-caret-down");
 
@@ -84,7 +84,8 @@ function hideOpenTab() {
 	var buttonName;
 	var tabName;
 
-	//cycle through the tabs and hide the open one (if any showing) 
+	//cycle through the tabs and hide the open one (if any showing)
+	//this ensures new tab will display correctly.
 	$("li").each(function() {
 		button = $(this);
 		//check if the tab is open, if so set state to closed and revert the 
@@ -99,6 +100,8 @@ function hideOpenTab() {
 			$(tabName).slideUp(250);
 			
 			//revert the tooltip text
+			//tooltip text is used to make it obvious to the user that they can click on the tab title to close the
+			//tab again.
 			button.attr('data-original-title','Click to find out more').tooltip('fixTitle').tooltip('hide');
 			//if the test tab is open need to close the test and revert to
 			//test landing tab for next time it is opened.

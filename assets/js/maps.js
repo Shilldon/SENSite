@@ -4,15 +4,18 @@ var map;
 //retrieve postcode from input then search master array for schools matching postcode
 function searchForSchool() {
   //get user input postcode
-  //Two part post code enables users to input a partial postcode to find schools close to their area.
   //User's full postcode is unlikely to generate any results as their postcode is unlikely to match a school
+  //The user is able to search against abbreviated poscodes
   var postcode = $('#map-address').val();
+  //convert the postcode to upper case to match the database
   postcode = postcode.toUpperCase();
   if (postcode != "") {
     queue()
       .defer(d3.csv, 'assets/data/schools.csv')
       .await(loadSchoolMapData);
   }
+  
+  //an invalid postcode will generate an error message
   else {
     $('#error-message').text('Please enter a postcode.');
     $("#errorModal").modal({
@@ -36,7 +39,8 @@ function searchForSchool() {
   clearSchoolDetails();
 }
 
-//call external API and obtain lat, lng positions based on postcodes of schools
+//function required to call external postcode API in order to obtain latitude and longitude locations for
+//display on the map
 function getPostcodeData(schoolPostCodes, callback) {
   //call postcodes API to get postcode data
   var xhr = new XMLHttpRequest();
@@ -56,6 +60,7 @@ function getPostcodeData(schoolPostCodes, callback) {
 function filterMapByPostcode(schoolMapData, minCount, maxCount) {
   //get user submitted postcode
   var postcode = $('#map-address').val();
+  //convert ot uppercase to ensure consistency of checking
   postcode = postcode.toUpperCase();
   if (postcode.endsWith('*') == true) {
     postcode = postcode.substr(0, postcode.length - 1);
@@ -64,7 +69,8 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
     postcode=postcode+" ";
   }
 
-  //create dimension of multiple arrays for filtering
+  //create dimension of multiple arrays for filtering the results by the
+  //type of establishment (e.g. nursery or secondary school etc)
   var local_map_schools_dim = schoolMapData.dimension(function(d) {
     return {
       Postcode: d.Postcode,
@@ -94,6 +100,7 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
       schoolPostCodesArray.push(x.Postcode);
     }
   });
+  //ensure that not too many results are returned that would clutter the map - display error if more than 100 results returned
   if (postcodeCount > 100) {
     $('#error-message').text(postcodeCount + ' results returned. Displaying maximum of 100. Please provide more specific postcode');
     $("#errorModal").modal({
@@ -110,6 +117,7 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
     }, 3500);
   }
 
+  //return an error if no schools are found in the particular postcode area selected
   if (schoolPostCodesArray.length == 0) {
     $('#error-message').text('No schools found in postcode area');
     $("#errorModal").modal({
@@ -126,13 +134,15 @@ function filterMapByPostcode(schoolMapData, minCount, maxCount) {
     }, 3000);
   }
   else {
+    //if appropriate results are generated call function to pull together school information
+    //including lat and lng position
     convertPostcodes(local_map_schools_dim, schoolPostCodesArray);
   }
 }
 
 function convertPostcodes(local_map_schools_dim, schoolPostCodesArray) {
   //get longitude and latitude from postcode ready to place google map marker
-  //import lat, lng positions from external API then create markers with requisite data
+  //import lat, lng positions from external API in order to create markers with requisite data
   //from the local_map_schools_dim array (name, address, education phase, school type, website, contact number, head teacher)
   var initialLong;
   var initialLat;
@@ -203,7 +213,7 @@ var previousInfoWindow = false;
 function drawMarker(markerInfo) {
   //locate marker based on lat lng taken from external API using postcode
   var schoolPosition = new google.maps.LatLng(markerInfo[0], markerInfo[1]);
-  //add data to marker
+  //add information to the marker to be displayed when the user clicks on it.
   var marker = new google.maps.Marker({
     position: schoolPosition,
     title: markerInfo[2],
@@ -220,7 +230,7 @@ function drawMarker(markerInfo) {
     offstedRating: markerInfo[9]
   });
   var rating=marker.offstedRating;
-  //display school information on marker
+  //attach school information on marker
   var infoContent = '<div id="content"><h5>' + marker.title + '</h5>';
 
   if ($(window).width() < 767) {
@@ -239,13 +249,13 @@ function drawMarker(markerInfo) {
 
   });
 
-  //functionality to detect click on marker, if so dsplay school information
+  //functionality to detect click on marker, if so display school information
   marker.addListener('click', function() {
     //check if previous infowindow is open and, if so, close it
     if (previousInfoWindow) {
       previousInfoWindow.close();
     }
-    //reinitilise school information panel
+    //reinitilise school information panel - need to close previous school info panel before opening another
     clearSchoolDetails();
     previousInfoWindow = infowindow;
     infowindow.open(map, marker);
@@ -320,7 +330,7 @@ function initMap() {
   });
 }
 
-//clear markers on map
+//clear markers on map in order to display next search results.
 function clearMarkers() {
   //set markers to null
   for (var i = 0; i < myVariable.Markers.length; i++) {
@@ -328,7 +338,7 @@ function clearMarkers() {
   }
 }
 
-//Clears information from school panel
+//Clears information from school panel in order to display next search results.
 function clearSchoolDetails() {
   $("#school-name").text("");
   $("#school-type").text("");

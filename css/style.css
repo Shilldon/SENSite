@@ -287,6 +287,12 @@ footer {
     color: #9126BF;
     background-color: #e1e1e1;
     transition: 0.3s ease-in-out; }
+  .test-tab--button-submit {
+    background-color: green; }
+  .test-tab--button-quit {
+    background-color: red; }
+  .test-tab--button-skip {
+    background-color: blue; }
   .test-tab--question {
     font-size: 18px;
     font-weight: 400; }

@@ -395,6 +395,15 @@ $value in $tab-colors {
         background-color: $white;
         transition: 0.3s ease-in-out;
     }
+    &--button-submit {
+        background-color:green;
+    }
+    &--button-quit {
+        background-color:red;
+    }
+    &--button-skip {
+        background-color: blue;
+    }
     &--question {
         font-size: 18px;
         font-weight: 400;
